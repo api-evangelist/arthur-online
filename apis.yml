@@ -1,0 +1,402 @@
+aid: arthur-online
+url: https://raw.githubusercontent.com/api-evangelist/arthur-online/refs/heads/main/apis.yml
+name: Arthur Online
+kind: company
+description: 'Arthur Online is a London-headquartered UK property management software platform,
+  founded in 2008 and acquired by Aareon in January 2021, that gives letting agents, self-managing
+  landlords, block and social housing managers, and student accommodation operators a cloud
+  system of record for properties, units, tenancies, tenants, applicants, viewings, maintenance
+  work orders, certificates, utilities and rental financials, with companion mobile apps for
+  managers, tenants, contractors and owners. It sits in the middle of the UK residential lettings
+  value chain: it is the agency-side operational system that pushes stock out to the Rightmove
+  and Zoopla portals and pulls accounting into Xero and QuickBooks, rather than a listings marketplace
+  or a data cooperative. Its API posture is unusually open for the sector but is not open data:
+  the full Arthur API v2 reference is published without a login as a public Postman collection
+  at developer.arthuronline.co.uk covering 324 documented requests across 16 resource areas,
+  yet every call is tenant-scoped OAuth 2.0 Authorization Code plus an X-EntityID header, credentials
+  are issued only from inside a paying Arthur account after contacting Arthur support, and no
+  data is readable anonymously. There is no RESO posture at all — the United Kingdom has no
+  MLS, no NAR, and no RESO Data Dictionary or Web API certification regime, so listings interoperability
+  here is portal-to-CRM feeds rather than a certified machine-readable standard.'
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/arthur-online.png
+tags:
+- Real Estate
+- United Kingdom
+- Property Management
+- PropTech
+- Rentals
+- Lettings
+- Tenancy
+- Maintenance
+- Property Listings
+- Social Housing
+- Student Housing
+- Block Management
+created: '2026-07-26'
+modified: '2026-07-26'
+specificationVersion: '0.19'
+apis:
+- aid: arthur-online:arthur-properties-api
+  name: Arthur Properties API
+  description: Property records and everything hung off a property in Arthur - assets, certificates,
+    conversations, general information, notes, units, tenancies, tasks, work orders, utilities,
+    transactions and tags. 20 documented paths across GET, POST, PUT and DELETE.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Properties
+  - Real Estate
+  - Property Records
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-units-api
+  name: Arthur Units API
+  description: Individual lettable units beneath a property, plus the unit-level assets, certificates,
+    conversations, notes, viewings, tenancies, tasks, work orders, utilities, transactions and
+    tags. 22 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Units
+  - Real Estate
+  - Inventory
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-tenancies-api
+  name: Arthur Tenancies API
+  description: Tenancy agreements over a unit, including tenants on the tenancy, deposit registration,
+    recurring charges, certificates, tasks, work orders, conversations, transactions, notes
+    and tags. 21 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Tenancies
+  - Leases
+  - Deposits
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-tenants-api
+  name: Arthur Tenants API
+  description: Tenant people records - list, view, create and update tenants, and invite a tenant
+    into the Arthur tenant portal. 3 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Tenants
+  - People
+  - Occupancy
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-applicants-api
+  name: Arthur Applicants API
+  description: Prospective renters moving through the lettings funnel, including applicant status,
+    credit checks, managers, assets, conversations, notes, tasks and tags. 15 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Applicants
+  - Leasing
+  - Credit Checks
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-viewings-api
+  name: Arthur Viewings API
+  description: Property and unit viewing appointments, the applicants attached to each viewing,
+    assigned managers, conversations, notes and tags. 15 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Viewings
+  - Leasing
+  - Scheduling
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-maintenance-api
+  name: Arthur Maintenance API
+  description: The largest surface in the API - tasks, subtasks, work orders, quotes and the
+    contractor workflow around them. 45 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Maintenance
+  - Work Orders
+  - Contractors
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-financials-api
+  name: Arthur Financials API
+  description: Rental financials - invoices, transactions, transaction payoff and recurring
+    charges. Read and update only; no create operations are documented. 6 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Financials
+  - Payments
+  - Accounting
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-assets-api
+  name: Arthur Assets API
+  description: Files and documents stored in Arthur and shared with owners, tenants and contractors.
+    2 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Assets
+  - Documents
+  - Files
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-utilities-api
+  name: Arthur Utilities API
+  description: Utility accounts attached to properties and units, and the meter readings recorded
+    against them. 4 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Utilities
+  - Meter Readings
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-certificates-api
+  name: Arthur Certificates API
+  description: Compliance certificates - gas safety, electrical, EPC and similar - with expiry
+    tracking that also drives webhook events at 30 days, 7 days and on the day. 2 documented
+    paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Certificates
+  - Compliance
+  - Safety
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-entities-api
+  name: Arthur Entities API
+  description: Arthur entities - the account boundary that every API call must name in the mandatory
+    X-EntityID request header. 2 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Entities
+  - Accounts
+  - Multi-tenancy
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-conversations-api
+  name: Arthur Conversations API
+  description: Threaded conversations and messages between managers, tenants, owners and contractors,
+    with attached assets. 4 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Conversations
+  - Messaging
+  - Communications
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-tags-api
+  name: Arthur Tags API
+  description: Cross-cutting tags applied to properties, units, tenancies, applicants, viewings
+    and notes, with tag and untag operations on each resource. 2 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Tags
+  - Classification
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-notes-api
+  name: Arthur Notes API
+  description: Free-text notes recorded against any Arthur resource, with their own tagging
+    operations. 5 documented paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Notes
+  - Annotations
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+- aid: arthur-online:arthur-types-api
+  name: Arthur Types API
+  description: Read-only reference vocabularies backing every enumerated field in Arthur - access
+    detail types, applicant statuses and types, area types, asset types, certificate types,
+    citizen types, contract types and 32 more. 39 documented GET paths.
+  humanURL: https://developer.arthuronline.co.uk/
+  baseURL: https://api.arthuronline.co.uk/v2
+  tags:
+  - Types
+  - Reference Data
+  - Vocabulary
+  properties:
+  - type: Documentation
+    url: https://developer.arthuronline.co.uk/
+  - type: APIReference
+    url: https://developer.arthuronline.co.uk/
+  - type: PostmanCollection
+    url: collections/arthur-online.postman_collection.json
+  - type: Authentication
+    url: https://auth.arthuronline.co.uk/oauth/token
+  - type: Webhooks
+    url: https://developer.arthuronline.co.uk/
+common:
+- type: Website
+  url: https://www.arthuronline.co.uk/
+- type: Portal
+  url: https://developer.arthuronline.co.uk/
+- type: Documentation
+  url: https://developer.arthuronline.co.uk/
+- type: APIReference
+  url: https://developer.arthuronline.co.uk/
+- type: PostmanCollection
+  url: collections/arthur-online.postman_collection.json
+- type: Signup
+  url: https://www.arthuronline.co.uk/connect/arthur-api
+- type: Support
+  url: https://support.arthuronline.co.uk/
+- type: Blog
+  url: https://www.arthuronline.co.uk/blog/
+- type: Integrations
+  url: https://www.arthuronline.co.uk/connect/
+- type: PrivacyPolicy
+  url: https://www.arthuronline.co.uk/privacy-policy/
+- type: TermsOfService
+  url: https://www.arthuronline.co.uk/terms-and-conditions/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

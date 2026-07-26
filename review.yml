@@ -1,0 +1,390 @@
+aid: arthur-online
+name: Arthur Online
+review:
+  question: >-
+    Does Arthur Online expose a real, reachable public developer surface, and what is its
+    RESO posture and access gate as a UK property-management platform?
+  answer: >-
+    Yes to the developer surface, no to RESO. The complete Arthur API v2 reference is published
+    anonymously as a public Postman Documenter collection at https://developer.arthuronline.co.uk/
+    (HTTP 200, no login), covering 324 documented requests across 16 resource areas. No RESO
+    certification, RESO Data Dictionary reference, OData endpoint, $metadata document, or
+    Universal Property Identifier appears anywhere on the site, in the developer portal HTML,
+    or in the 1,022,427-byte collection payload. Credentials are not self-serve: a developer
+    must first be inside a paying Arthur account and must contact Arthur support to be granted
+    API access, then register an OAuth application in Settings to receive a client ID and secret.
+  date: '2026-07-26'
+  reviewer: API Evangelist
+  homeMarket: United Kingdom
+  tier: property-management
+
+sectorPosture:
+  homeMarket: United Kingdom
+
+  resoPosture:
+    summary: No RESO reference found — RESO is absent from the UK market entirely.
+    certified: false
+    webApiCertification: none found
+    dataDictionaryCertification: none found
+    dataDictionaryVersion: null
+    certificationDirectoryEvidence: >-
+      Arthur Online does not appear in, and does not cite, any RESO certification directory
+      listing. No RESO badge, "RESO Certified", "Data Dictionary 1.7/2.0", or NAR affiliation
+      claim is made anywhere on arthuronline.co.uk or developer.arthuronline.co.uk.
+    odataEndpoint: none — the API is plain JSON REST over /v2, not OData
+    metadataDocument: >-
+      Probed https://api.arthuronline.co.uk/$metadata on 2026-07-26 — HTTP 401 (the whole
+      api.arthuronline.co.uk host returns 401 to anonymous requests). No OData service
+      document or $metadata is published anywhere.
+    universalPropertyIdentifier: >-
+      No UPI. Arthur identifies properties with its own opaque numeric property_id / unit_id
+      scoped to an entity (X-EntityID), with no cross-system property identifier.
+    greppedFor:
+      - RESO
+      - RESO Web API
+      - RESO Data Dictionary
+      - OData
+      - $metadata
+      - Universal Property Identifier
+      - UPI
+    greppedIn:
+      - collections/arthur-online.postman_collection.json (1,022,427 bytes, 0 hits)
+      - developer.arthuronline.co.uk portal HTML (41,725 bytes, 0 hits)
+    marketExplanation: >-
+      This is the expected and honest answer for the United Kingdom. There is no MLS in the
+      UK, no National Association of REALTORS equivalent mandating a machine-readable contract,
+      and therefore no RESO Web API or Data Dictionary certification regime. UK residential
+      listings reach consumers through the Rightmove/Zoopla portal duopoly, and agency CRM
+      and property-management systems such as Arthur push stock to those portals over private
+      bilateral feeds. Interoperability in this market is vendor-to-portal integration, not a
+      certified cooperative standard.
+
+  accessGate:
+    classification: application-approval
+    documentationGate: none — full API reference readable anonymously, HTTP 200, no signup wall
+    credentialGate: >-
+      Two-step and gated. (1) The public Arthur API page at
+      https://www.arthuronline.co.uk/connect/arthur-api (HTTP 200) states the API is available
+      "at no extra cost" but instructs developers to "Get in touch with our support team to
+      gain access" — there is no self-serve API key button anywhere on the site. (2) Once
+      access is enabled, the portal's "Create Application" step requires navigating to the
+      OAuth Applications section under Your Account in the Arthur Settings menu — i.e. inside
+      an authenticated, paying Arthur tenant — and clicking Add Application to be issued a
+      client ID and client secret.
+    whatADeveloperMustSignOrJoin: >-
+      A commercial Arthur Online subscription (the platform is paid property-management SaaS)
+      plus a support-desk request for API enablement. Arthur's Terms and Conditions
+      (https://www.arthuronline.co.uk/terms-and-conditions/, HTTP 200) govern. There is no MLS
+      membership, no board or association membership, no IDX or VOW data licence, no broker
+      or agent licensing requirement, and no separate API partner agreement documented.
+    notMembershipRequired: >-
+      Deliberately NOT classified membership-required or licence-agreement: nothing about a
+      cooperative, board, MLS, or listing-data licence applies here. The gate is a normal SaaS
+      customer relationship over the customer's OWN data, not a licence to redistribute
+      someone else's listing inventory.
+    dataScope: >-
+      The API exposes the calling entity's own property-management records only. There is no
+      cross-customer, market-wide, or aggregate listing dataset behind this API.
+
+  openData:
+    exists: false
+    explanation: >-
+      Arthur Online publishes no open dataset, no bulk download, and no anonymously callable
+      endpoint. Every path under https://api.arthuronline.co.uk/ returns HTTP 401 without a
+      bearer token. The UK's genuinely open property data layer sits in the public sector —
+      HM Land Registry Price Paid Data and ownership data under the Open Government Licence,
+      and Ordnance Survey addressing and mapping products — and belongs to those organizations'
+      profiles, not to Arthur. Arthur is a private commercial system of record and is correctly
+      recorded as open_data false.
+
+  authModel:
+    scheme: OAuth 2.0 Authorization Code (RFC 6749 section 4.1, cited verbatim by Arthur)
+    authorizationURL: https://auth.arthuronline.co.uk/oauth/authorize
+    tokenURL: https://auth.arthuronline.co.uk/oauth/token
+    refresh: Documented refresh-token flow against the same token endpoint
+    apiKey: none — no API-key or basic-auth alternative is documented
+    openIDConnect: >-
+      Probed https://auth.arthuronline.co.uk/.well-known/openid-configuration anonymously on
+      2026-07-26 — HTTP 404. Probed
+      https://api.arthuronline.co.uk/.well-known/openid-configuration — HTTP 401. No OIDC
+      discovery document is served; this is plain OAuth 2, not OpenID Connect.
+    scopes: >-
+      No OAuth scopes are documented. The authorize request shown in the portal carries only
+      client_id and redirect_uri. Authorization appears to be all-or-nothing per user consent.
+    requiredHeaders:
+      - "Authorization: Bearer {access_token}"
+      - "X-EntityID: {entity_id} (mandatory on every request — the account/tenant selector)"
+      - "Content-Type: application/json (on POST and PUT)"
+    rateLimit: >-
+      "a worldwide rate limit of 5,000 requests per hour" (verbatim from the portal's
+      Throttling page); higher limits by request to Arthur technical support.
+
+apiSurface:
+  baseURL: https://api.arthuronline.co.uk/v2
+  version: v2 (documented as an improvement over v1 — better data structure, better validation
+    and error feedback, faster responses)
+  documentedRequests: 324
+  resourceAreas: 16
+  areas:
+    - name: Properties
+      paths: 20
+    - name: Units
+      paths: 22
+    - name: Tenancies
+      paths: 21
+    - name: Tenants
+      paths: 3
+    - name: Applicants
+      paths: 15
+    - name: Viewings
+      paths: 15
+    - name: Maintenance
+      paths: 45
+    - name: Financials
+      paths: 6
+    - name: Assets
+      paths: 2
+    - name: Utilities
+      paths: 4
+    - name: Certificates
+      paths: 2
+    - name: Entities
+      paths: 2
+    - name: Conversations
+      paths: 4
+    - name: Tags
+      paths: 2
+    - name: Notes
+      paths: 5
+    - name: Types
+      paths: 39
+  segmentationNote: >-
+    Arthur's own documentation segmentation is used verbatim. Note what the sector seam looks
+    like from inside a UK property-management platform: there is a rich tenancy, maintenance,
+    compliance-certificate and utilities surface, a thin financials surface (invoices and
+    transactions are read/update only — no create), and NO listing-syndication, valuation/AVM,
+    title, conveyancing, or escrow surface at all. Portal syndication to Rightmove and Zoopla
+    is a product integration, not a documented API resource.
+  webhooks:
+    documented: true
+    subscription: >-
+      In-product only — subscribe from the Arthur webhook page via "Subscribe New Webhook",
+      select an event and supply a URL. No API to manage webhook subscriptions is documented.
+    delivery: HTTP POST with content-type application/x-www-form-urlencoded, user-agent CakePHP
+    signing: >-
+      NOT FOUND. The documented webhook headers block lists only content-length, content-type,
+      user-agent, connection and host — no signature, no shared secret, no timestamp. Absence
+      of payload signing is a finding.
+    triggerCount: 50+ documented event triggers
+    triggerModels:
+      - AccessKey
+      - Applicant
+      - Asset
+      - AssetSharingPerson
+      - Attachment
+      - Certificate
+      - Inventory
+      - Message
+      - Notice
+      - Person
+      - Property
+      - Recurring
+      - Reminder
+      - RentReview
+      - Renter
+      - ReportEntity
+      - SyncScheduler (Xero and QuickBooks sync lifecycle)
+      - Task
+  sdks:
+    found: false
+    note: >-
+      No official SDKs or client libraries are published. https://github.com/arthuronline
+      returns HTTP 200 but the account has zero public repositories. The portal's Testing
+      section recommends generic third-party API test tools rather than an Arthur SDK.
+  postman:
+    found: true
+    note: >-
+      The developer portal IS a Postman Documenter publication (generator meta tag "Postman
+      Documenter", publishedId 2s93sZ5YeM, collectionId
+      22554870-ca339827-50b5-4e48-b67a-fd294312ba96). The underlying Postman Collection v2.0.0
+      is served anonymously and has been harvested verbatim.
+  mcp:
+    found: false
+  llmsTxt:
+    found: false
+    note: https://www.arthuronline.co.uk/llms.txt returned HTTP 404 on 2026-07-26.
+
+harvestedArtifacts:
+  - path: collections/arthur-online.postman_collection.json
+    type: PostmanCollection
+    schema: https://schema.getpostman.com/json/collection/v2.0.0/collection.json
+    sourceURL: https://developer.arthuronline.co.uk/api/collections/22554870/2s93sZ5YeM?environment=22554870-9b57e406-8235-4d30-83c1-cf4cb4087e4d&segregateAuth=true&versionTag=latest
+    fetchDate: '2026-07-26'
+    httpStatus: 200
+    bytes: 1022427
+    parsed: true
+    parseNote: Parses as JSON; info.name "Public Property Manager", schema v2.0.0, 324 requests.
+    verbatim: true
+    note: >-
+      This is the only machine-readable contract Arthur publishes. It is NOT an OpenAPI and
+      NOT an OData $metadata document, so no openapi/ directory was created — nothing was
+      derived, converted, or invented at bootstrap. Conversion to OpenAPI, if desired, is a
+      job for the enrichment pipeline and must be labelled derived.
+
+openapiHarvest:
+  openapiFound: false
+  metadataFound: false
+  specsSaved: 0
+  note: >-
+    No OpenAPI, Swagger, or OData $metadata document is published by Arthur Online at any
+    probed location.
+
+probes:
+  - url: https://www.arthuronline.co.uk/
+    status: 200
+    note: Corporate site; product, industries, integrations. No developer link in main nav.
+  - url: https://developer.arthuronline.co.uk/
+    status: 200
+    note: >-
+      REAL public developer portal. Postman Documenter publication titled "Public Property
+      Manager". Readable with no login. (WebFetch received 403 from the CDN with a default
+      user-agent; a browser user-agent returned 200 and 41,725 bytes.)
+  - url: https://developers.arthuronline.co.uk/
+    status: 000
+    note: Does not resolve.
+  - url: https://docs.arthuronline.co.uk/
+    status: 000
+    note: Does not resolve.
+  - url: https://apidocs.arthuronline.co.uk/
+    status: 000
+    note: >-
+      Does not resolve. Cited by third-party search results as the legacy v1 API documentation
+      host; it is dead as of 2026-07-26. developer.arthuronline.co.uk is the live successor.
+  - url: https://api.arthuronline.co.uk/
+    status: 401
+    note: Live API host; returns 401 to every anonymous request. Nothing readable without a token.
+  - url: https://api.arthuronline.co.uk/v2
+    status: 401
+  - url: https://api.arthuronline.co.uk/$metadata
+    status: 401
+    note: No OData service. Probed explicitly to test the RESO/OData hypothesis.
+  - url: https://api.arthuronline.co.uk/openapi.json
+    status: 401
+  - url: https://api.arthuronline.co.uk/swagger.json
+    status: 401
+  - url: https://api.arthuronline.co.uk/.well-known/openid-configuration
+    status: 401
+  - url: https://auth.arthuronline.co.uk/.well-known/openid-configuration
+    status: 404
+    note: No OIDC discovery. Plain OAuth 2 only.
+  - url: https://auth.arthuronline.co.uk/oauth/authorize
+    status: 200
+  - url: https://developer.arthuronline.co.uk/openapi.json
+    status: 404
+  - url: https://developer.arthuronline.co.uk/swagger.json
+    status: 404
+  - url: https://developer.arthuronline.co.uk/api-docs
+    status: 404
+  - url: https://developer.arthuronline.co.uk/spec.json
+    status: 404
+  - url: https://developer.arthuronline.co.uk/sitemap.xml
+    status: 404
+  - url: https://developer.arthuronline.co.uk/api/collections/22554870/2s93sZ5YeM
+    status: 200
+    note: Postman Documenter collection JSON. Harvested verbatim.
+  - url: https://www.arthuronline.co.uk/api/
+    status: 404
+  - url: https://www.arthuronline.co.uk/developers/
+    status: 404
+  - url: https://www.arthuronline.co.uk/openapi.json
+    status: 404
+  - url: https://www.arthuronline.co.uk/swagger.json
+    status: 404
+  - url: https://www.arthuronline.co.uk/llms.txt
+    status: 404
+  - url: https://www.arthuronline.co.uk/connect/arthur-api
+    status: 200
+    note: >-
+      The access-gate page. States the API is at no extra cost and instructs developers to
+      "Get in touch with our support team to gain access."
+  - url: https://www.arthuronline.co.uk/connect/
+    status: 200
+    note: Integrations directory — Xero, QuickBooks, Zoopla, Rightmove, Fixflo, Signable, TransUnion.
+  - url: https://support.arthuronline.co.uk/
+    status: 200
+  - url: https://www.arthuronline.co.uk/blog/
+    status: 200
+  - url: https://www.arthuronline.co.uk/privacy-policy/
+    status: 200
+  - url: https://www.arthuronline.co.uk/terms-and-conditions/
+    status: 200
+  - url: https://www.arthuronline.co.uk/favicon.ico
+    status: 200
+    note: >-
+      Real brand icon exists at source. apis.yml points at the network S3 icon path
+      (icons/arthur-online.png) for the icon-backfill pipeline to populate.
+  - url: https://status.arthuronline.co.uk/
+    status: 503
+    note: Host resolves but returns 503 — no usable public status page.
+  - url: https://www.arthuronline.co.uk/status
+    status: 404
+  - url: https://github.com/arthuronline
+    status: 200
+    note: Account exists, zero public repositories. No SDKs.
+
+companyFacts:
+  headquarters: London, United Kingdom
+  founded: 2008
+  ownership: >-
+    Acquired by Aareon (European property-industry ERP and digital solutions provider) in
+    January 2021.
+  acquisitions: Acquired Tilt Property Software in July 2021.
+  segments:
+    - Letting agents
+    - Self-managing landlords
+    - Student housing
+    - Social housing
+    - Block management
+  keyIntegrations:
+    - Xero
+    - QuickBooks
+    - Zoopla
+    - Rightmove
+    - Fixflo
+    - Signable
+    - TransUnion
+
+findings:
+  summary: >-
+    Arthur Online is a rare thing in this sector study: a property organization with a
+    genuinely public, complete, machine-readable API reference that anyone can read without an
+    account — and simultaneously an API that no one can call without a paid subscription and a
+    support conversation. Documentation openness and data openness are separate axes and
+    Arthur splits them cleanly. It is also a clean demonstration of the UK market seam: with no
+    MLS and no NAR, there is no RESO certification to certify and no cooperative contract to
+    reach; the machine-readable listings standard simply does not exist in this jurisdiction,
+    and portal syndication to Rightmove and Zoopla happens as bilateral vendor integration
+    that never surfaces as a documented API resource. The open property data in the UK lives in
+    government (HM Land Registry, Ordnance Survey), not in the private stack.
+  gaps:
+    - No OpenAPI or any other formal API description; the Postman collection is the contract.
+    - No documented OAuth scopes — consent appears to be all-or-nothing.
+    - No webhook payload signing or shared secret documented.
+    - No official SDKs; GitHub org is empty.
+    - No public status page (status subdomain returns 503).
+    - No self-serve sandbox or trial credentials; access requires contacting support.
+    - Legacy apidocs.arthuronline.co.uk host is dead but still cited by third parties.
+
+sources:
+  - url: https://developer.arthuronline.co.uk/
+    type: APIReference
+    note: Public Postman Documenter portal; auth flow, request structure, filters, throttling, webhooks.
+  - url: https://www.arthuronline.co.uk/connect/arthur-api
+    type: Documentation
+    note: Access-gate page — "Get in touch with our support team to gain access", no extra cost.
+  - url: https://www.arthuronline.co.uk/
+    type: Website
+    note: Product, industry segments, integration list.
+  - url: https://support.arthuronline.co.uk/
+    type: Support
+    note: Knowledge base including API support articles.
