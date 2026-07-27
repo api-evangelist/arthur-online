@@ -1,0 +1,571 @@
+openapi: 3.1.0
+info:
+  title: Arthur Notes API
+  version: 2.0.0
+  description: Arthur Notes API - the notes surface of the Arthur API v2, the UK property management platform
+    from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public
+    Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to
+    an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization
+    Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Tags
+- name: Notes
+paths:
+  /notes/{note_id}/tags:
+    get:
+      operationId: listTagsOnNote
+      summary: List Tags on Note
+      tags:
+      - Tags
+      parameters:
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tags associated with the given note ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                - id: 33843
+                  name: 1000 spend limit
+                  color: blue
+                - id: 49572
+                  name: benefits lapsed
+                  color: blue
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: tagNote
+      summary: Tag Note
+      tags:
+      - Tags
+      parameters:
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tag record for a  note . The API will return the\
+        \ saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for\
+        \ the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n\
+        \ Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: array
+                  items:
+                    type: string
+                  example: '["123"]'
+              required:
+              - tag
+            example:
+              tag:
+              - '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                - id: 1234
+                  name: Tag one
+                  color: orange
+                - id: 123
+                  name: Tag two
+                  color: purple
+                - id: 12
+                  name: Tag three
+                  color: sky
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /notes/{note_id}/untag:
+    put:
+      operationId: untagNote
+      summary: Untag Note
+      tags:
+      - Tags
+      parameters:
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to unassign tag record from the note . The API will return the saved\
+        \ data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields\
+        \ are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"1234\"\
+        \ \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: string
+                  example: '"1234"'
+              required:
+              - tag
+            example:
+              tag: '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                - id: 123
+                  name: Tag two
+                  color: purple
+                - id: 12
+                  name: Tag three
+                  color: sky
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /notes/{note_id}/untag_all:
+    put:
+      operationId: untagAllNoteTags
+      summary: Untag All Note Tags
+      tags:
+      - Tags
+      parameters:
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: Use this endpoint to unassign all tags from a  note .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data: []
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /notes:
+    get:
+      operationId: listNotes
+      summary: List Notes
+      tags:
+      - Notes
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of  notes  .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 123
+                  content: Remember this note
+                  created_by:
+                    id: 123
+                    full_name: Ronnie Wilson
+                  last_edited_by:
+                    id: null
+                    full_name: null
+                  last_edited_date: '2020-05-28T11:57:56+01:00'
+                  tags: []
+                  property_id: 123
+                  unit_id: 123
+                  tenancy_id: 123
+                  created: '2020-05-28T11:57:55+01:00'
+                  modified: '2020-05-28T11:57:55+01:00'
+                - id: 1234
+                  content: Remember this note , please
+                  created_by:
+                    id: 123
+                    full_name: Ronnie Wilson
+                  last_edited_by:
+                    id: 123
+                    full_name: Ronnie Wilson
+                  last_edited_date: '2020-05-28T11:57:56+01:00'
+                  tags: []
+                  property_id: 123
+                  unit_id: 123
+                  tenancy_id: null
+                  created: '2020-05-28T11:57:55+01:00'
+                  modified: '2020-05-28T11:57:55+01:00'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 2
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /notes/{note_id}:
+    get:
+      operationId: viewNote
+      summary: View Note
+      tags:
+      - Notes
+      parameters:
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single  note , identified by its unique 
+        id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 123
+                  content: Remember this note
+                  created_by:
+                    id: 123
+                    full_name: Ronnie Wilson
+                  last_edited_by:
+                    id: 123
+                    full_name: Ronnie Wilson
+                  last_edited_date: '2020-05-28T11:57:56+01:00'
+                  tags: []
+                  property_id: 123
+                  unit_id: 123
+                  tenancy_id: 123
+                  created: '2020-05-28T11:57:55+01:00'
+                  modified: '2020-05-28T11:57:55+01:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateNote
+      summary: Update Note
+      tags:
+      - Notes
+      parameters:
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing note using the same fields. The API will return\
+        \ the updated data for the note in the response.\n\nSupported Fields \n The following fields are\
+        \ supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving\
+        \ away \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 123
+                  content: Remember this note
+                  created_by:
+                    id: 123
+                    full_name: Ronnie Wilson
+                  last_edited_by:
+                    id: null
+                    full_name: null
+                  last_edited_date: '2020-05-28T11:57:56+01:00'
+                  tags:
+                  - one
+                  - two
+                  property_id: 123
+                  unit_id: 123
+                  tenancy_id: null
+                  created: '2020-05-28T11:57:55+01:00'
+                  modified: '2020-05-28T11:57:55+01:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteNote
+      summary: Delete Note
+      tags:
+      - Notes
+      parameters:
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing note using the note  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data: []
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

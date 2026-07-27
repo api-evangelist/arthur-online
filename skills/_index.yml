@@ -1,0 +1,32 @@
+generated: '2026-07-26'
+method: generated
+source: >-
+  Grounded in openapi/ (16 documents, 317 operations derived from the Arthur public Postman
+  collection), conventions/arthur-online-conventions.yml, errors/arthur-online-problem-types.yml
+  and asyncapi/arthur-online-webhooks.yml. Arthur publishes no AGENTS.md or agent skills of its own.
+description: >-
+  Packaged operating instructions for the five marquee Arthur Online flows. Every step names a
+  real operationId verified against the specs in openapi/, and every skill repeats the three rules
+  that make Arthur dangerous for an unsupervised agent: no idempotency on writes, silent
+  Simple-type creation without strict=true, and entity-scoped ids that 404 rather than 403.
+skills:
+  - file: arthur-online-authorize-and-sync.md
+    name: Authorize an Arthur integration and keep it in sync
+    api: openapi/arthur-online-entities-openapi.yml
+    operations: [listEntities, viewEntity, listProperties, listUnits, listTenancies, listTasks, listTransactions]
+  - file: arthur-online-list-and-onboard-property.md
+    name: List a property and onboard its units in Arthur
+    api: openapi/arthur-online-properties-openapi.yml
+    operations: [listEntities, listProperties, addProperty, viewProperty, listUnitsOnProperty, addUnit, addCertificateOnProperty, addGeneralInfoForProperty, listAssetsOnProperty, createAssetOnProperty]
+  - file: arthur-online-applicant-to-tenancy.md
+    name: Take an applicant from enquiry to tenancy in Arthur
+    api: openapi/arthur-online-applicants-openapi.yml
+    operations: [listApplicants, addApplicant, viewApplicant, updateApplicantStatus, listCreditChecksOnApplicant, addViewingOnApplicant, addViewingOnUnit, listViewingsOnApplicant, updateViewingStatus, submitOfferOnViewing, addTenancyOnViewing, addTenantOnTenancy, inviteTenant, updateDepositOnTenancy]
+  - file: arthur-online-maintenance-to-workorder.md
+    name: Turn a maintenance issue into a completed work order in Arthur
+    api: openapi/arthur-online-maintenance-openapi.yml
+    operations: [listTasks, listTasksByStatus, addTaskOnProperty, addTaskOnTenancy, viewTask, updateTask, updateStatusOnTask, createSubtaskOnTask, createWorkorderOnTask, viewWorkorder, updateWorkorder, listQuotesOnWorkorder, viewQuoteOnWorkorder, listInvoicesOnWorkorder, listContractorsOnWorkorder, createAssetOnWorkorder, createConversationOnWorkorder, addNoteOnWorkorder]
+  - file: arthur-online-compliance-and-utilities.md
+    name: Track certificate compliance and utility readings in Arthur
+    api: openapi/arthur-online-certificates-openapi.yml
+    operations: [listCertificates, viewCertificate, updateCertificate, deleteCertificate, addCertificateOnProperty, addCertificateOnUnit, addCertificateOnTenancy, listCertificatesOnProperty, listUtilitiesOnProperty, createUtilityOnProperty, createUtilityOnUnit, listUtilities, viewUtility, updateUtility, listReadings, createReading, viewReading, updateReading]

@@ -1,0 +1,192 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://developer.arthuronline.co.uk/ - the Arthur API public Postman collection
+  ("Public Property Manager"), sections API > Useful Information (Request Structure,
+  Response Structure, Filters, Data Types, Simple Types, Custom Fields, Throttling, Security).
+  Captured verbatim from collections/arthur-online.postman_collection.json.
+description: >-
+  How the Arthur API v2 behaves across every operation: the mandatory entity header,
+  the three-part response envelope, pagination and sorting, filters, the Simple-type
+  auto-creation rule and its strict switch, custom fields, data types, throttling and
+  the error envelope. These are the cross-cutting runtime semantics that the OpenAPI
+  documents in openapi/ do not fully express.
+
+base_url: https://api.arthuronline.co.uk/v2
+api_style: REST over HTTPS, JSON request and response bodies, conventional HTTP verbs
+
+authentication:
+  scheme: OAuth 2.0 Authorization Code (RFC 6749 section 4.1) bearer token
+  authorization_url: https://auth.arthuronline.co.uk/oauth/authorize
+  token_url: https://auth.arthuronline.co.uk/oauth/token
+  access_token_lifetime: 14 days
+  refresh_token_lifetime: 21 days
+  authorization_code_lifetime: 15 minutes
+  detail: authentication/arthur-online-authentication.yml
+
+tenancy:
+  header: X-EntityID
+  required: true
+  description: >-
+    Every API call must name the Arthur entity (account) it is scoped to in the X-EntityID
+    request header. The entity is the account boundary; the Entities API returns the entities
+    an access token can address. Omitting the header fails the request.
+
+required_headers:
+  GET: [ 'Authorization: Bearer <token>', 'X-EntityID: <entity_id>' ]
+  POST: [ 'Authorization: Bearer <token>', 'X-EntityID: <entity_id>', 'Content-Type: application/json' ]
+  PUT: [ 'Authorization: Bearer <token>', 'X-EntityID: <entity_id>', 'Content-Type: application/json' ]
+  DELETE: [ 'Authorization: Bearer <token>', 'X-EntityID: <entity_id>' ]
+
+idempotency:
+  supported: false
+  mechanism: null
+  note: >-
+    Arthur documents no idempotency key, no request-replay semantics and no de-duplication
+    contract. Retrying a POST creates a second record. The only related control is the
+    `strict` query parameter, which governs Simple-type auto-creation rather than replay safety.
+
+response_envelope:
+  shape: Every response body carries up to three top-level objects.
+  fields:
+    status: The HTTP status code for the request, repeated in the body.
+    data: The payload relevant to the request - an object for single reads and writes, an array for list requests.
+    pagination: Present on list responses only.
+  example:
+    status: 200
+    data: []
+    pagination:
+      page: 1
+      current: 1
+      count: 1
+      pageCount: 1
+      limit: 20
+
+pagination:
+  style: page-number
+  request_params:
+    page: Current page, between 1 and the total number of pages.
+    limit: Items per page, between 1 and 100.
+    sort: Field to sort by.
+    direction: ASC or DESC.
+  response_fields:
+    page: Requested page.
+    current: Current page.
+    count: Number of records in this page.
+    pageCount: Total number of pages.
+    limit: Page size in effect (default observed in the published examples is 20).
+  auto_pagination: null
+
+filtering:
+  supported: true
+  applies_to: List requests only.
+  mechanism: >-
+    Query parameters. API v2 supports all filters available in the Arthur browser application;
+    the supported filter set is per-endpoint and documented on each request in the collection.
+  common_params: [ status, tags, _q, date_from, date_to, created_date_from, created_date_to, modified, type, assigned_to, city, county, postcode ]
+
+simple_types:
+  description: >-
+    Fields classified as Simple types are an id/name pair the user can extend - for example
+    `source`. If a Simple type is submitted with a name that does not exist, Arthur creates
+    it by default and assigns it to the object being created or updated.
+  strict_parameter:
+    name: strict
+    values: [ 'true', 'false' ]
+    applies_to: [ POST, PUT ]
+    effect: >-
+      strict=true aborts the request instead of silently creating the missing Simple type.
+      This is the closest thing Arthur has to a write-safety switch and agents should set it.
+
+custom_fields:
+  supported: true
+  resources: [ Properties, Units, Tenancies, Applicants, Tenants ]
+  read_shape: >-
+    On GET, custom_fields is returned as an array of {name, api_name, value} objects.
+  write_shape: >-
+    On PUT/POST, custom_fields is sent as an object keyed by api_name, e.g.
+    {"custom_fields": {"custom_field_1": "new value"}}. The value must match the type
+    configured for the custom field.
+
+data_types:
+  String: Free text, no restriction.
+  Enum: Predefined system values - the allowed set is served by the Types API.
+  Simple: An id/name pair the user can add to (see simple_types).
+  Integer: Positive whole numbers only.
+  Float: Numeric, rounded to two decimal places.
+  DateTime: ISO 8601, yyyy-MM-ddTHH:mm:ssZ.
+  Date: ISO 8601, yyyy-MM-dd.
+  Time: ISO 8601, HH:mm.
+  Array (type): Array of values conforming to the named type.
+  Email: Text validated as an email address.
+
+reference_data:
+  description: >-
+    Every enumerated field resolves against the read-only Types API (39 GET endpoints),
+    which is the machine-readable vocabulary for the whole platform.
+  detail: vocabulary/arthur-online-vocabulary.yml
+
+versioning:
+  scheme: uri-path
+  current: v2
+  base: https://api.arthuronline.co.uk/v2
+  detail: lifecycle/arthur-online-lifecycle.yml
+
+rate_limiting:
+  limit: 5000 requests per hour
+  scope: worldwide (platform-wide limit, not per-endpoint)
+  increase: Contact Arthur technical support to request a higher limit for an account.
+  response_headers: null
+  note: Arthur documents no rate-limit response headers and no 429 status in its published status table.
+  detail: rate-limits/arthur-online-rate-limits.yml
+
+error_envelope:
+  format: proprietary JSON (not RFC 9457 application/problem+json)
+  fields:
+    status: HTTP status code.
+    error: Machine-readable error code, e.g. expired_token.
+    message: Human-readable message.
+  documented_statuses: [ 200, 400, 401, 404 ]
+  detail: errors/arthur-online-problem-types.yml
+
+request_tracing:
+  request_id_header: null
+  note: Arthur documents no request-id or correlation header.
+
+webhooks:
+  supported: true
+  managed_in: Arthur web app (not the API)
+  detail: asyncapi/arthur-online-webhooks.yml
+
+derivation_notes:
+  description: >-
+    The OpenAPI documents in openapi/ preserve the published collection exactly, including
+    its inconsistencies. These are upstream documentation defects in Arthur's own reference,
+    not transcription errors, and an integrator will hit them.
+  upstream_inconsistencies:
+    - 'Path-segment plurality is inconsistent: /applicant/{applicant_id}/status and
+      /tenancy/{tenancy_id}/workorders/{workorder_id} are singular where every sibling path is plural.'
+    - 'Path parameter naming is inconsistent: mostly snake_case ({property_id}), but
+      /tenancies/{tenancyId}/recurrings and /recurrings/{recurringId} are camelCase, and
+      /tenancies/{id}/register_deposit is bare {id}.'
+    - 'The "Delete Task on Tenancy" request is documented against DELETE /tenancies/{tenancy_id}
+      with no task segment - as published it deletes against the tenancy path.'
+    - 'The "Create Conversation on Tenancy" request is documented against
+      POST /viewings/{viewing_id}/conversations - the viewings path, not the tenancy path.'
+    - 'GET /tasks/{status} (list tasks by status) shares its shape with GET /tasks/{task_id};
+      the server disambiguates by value, which no generated client will do safely.'
+    - 'One request ("List Recurrings" under Financials) is published with no URL at all and was
+      omitted; 324 published requests yield 317 addressable operations after that omission and
+      two duplicate method+path pairs.'
+    - 'Response bodies are documented by example only - the collection carries no response schemas,
+      so the derived specs type 200 payloads as the envelope plus a free-form data object.'
+
+security_guidance:
+  source: Arthur API collection > Useful Information > Security
+  expectations:
+    - Keep integration code in a secure repository and run risk analysis through the SDLC.
+    - Rotate passwords and tokens on a schedule; regenerate on suspected compromise.
+    - Store user access tokens encrypted, and do not decrypt them earlier than needed.
+    - Log and alert on critical exceptions; keep debugging flags and symbols out of builds.
+    - Create separate Manager accounts for third-party developers rather than sharing the main
+      account; Enterprise customers can set per-Manager permissions to scope what the API can reach.

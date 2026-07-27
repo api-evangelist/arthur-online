@@ -1,0 +1,123 @@
+arazzo: 1.0.1
+info:
+  title: Arthur Online - onboard a property
+  version: 1.0.0
+  description: >-
+    Bring a new building into Arthur Online: create the property, add a lettable unit, file the
+    compliance certificate, publish the information shared with occupants and attach the document.
+    Every operationId is verified against the derived Arthur API v2 specs.
+sourceDescriptions:
+  - name: entities
+    url: ../openapi/arthur-online-entities-openapi.yml
+    type: openapi
+  - name: properties
+    url: ../openapi/arthur-online-properties-openapi.yml
+    type: openapi
+  - name: units
+    url: ../openapi/arthur-online-units-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: onboardProperty
+    summary: Create a property, its first unit, a certificate, shared information and a document.
+    inputs:
+      type: object
+      required: [entityId, property]
+      properties:
+        entityId: {type: string, description: Sent as X-EntityID on every call.}
+        property: {type: object, description: Property fields as documented on Add Property.}
+        unit: {type: object, description: Unit fields as documented on Add Unit.}
+        certificate: {type: object, description: Certificate fields including type and expiry date.}
+        generalInfo: {type: object, description: 'title, description, faq_type and the share_* flags.'}
+        asset: {type: object, description: 'file (base64), mime_type, file_name and the share_* flags.'}
+    steps:
+      - stepId: confirmEntity
+        operationId: $sourceDescriptions.entities.listEntities
+        parameters:
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: checkForDuplicate
+        description: Look for an existing property at this address before creating one.
+        operationId: $sourceDescriptions.properties.listProperties
+        parameters:
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: limit, in: query, value: 100}
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          existing: $response.body#/data
+      - stepId: createProperty
+        operationId: $sourceDescriptions.properties.addProperty
+        parameters:
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.property
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          propertyId: $response.body#/data/id
+      - stepId: verifyProperty
+        operationId: $sourceDescriptions.properties.viewProperty
+        parameters:
+          - {name: property_id, in: path, value: $steps.createProperty.outputs.propertyId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: addUnit
+        description: Tenancies and viewings attach to units, so a property with no units cannot be let.
+        operationId: $sourceDescriptions.units.addUnit
+        parameters:
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.unit
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          unitId: $response.body#/data/id
+      - stepId: fileCertificate
+        operationId: $sourceDescriptions.properties.addCertificateOnProperty
+        parameters:
+          - {name: property_id, in: path, value: $steps.createProperty.outputs.propertyId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.certificate
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: publishGeneralInfo
+        operationId: $sourceDescriptions.properties.addGeneralInfoForProperty
+        parameters:
+          - {name: property_id, in: path, value: $steps.createProperty.outputs.propertyId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.generalInfo
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: attachDocument
+        operationId: $sourceDescriptions.properties.createAssetOnProperty
+        parameters:
+          - {name: property_id, in: path, value: $steps.createProperty.outputs.propertyId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.asset
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: confirmUnits
+        operationId: $sourceDescriptions.properties.listUnitsOnProperty
+        parameters:
+          - {name: property_id, in: path, value: $steps.createProperty.outputs.propertyId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+        successCriteria:
+          - condition: $statusCode == 200
+    outputs:
+      propertyId: $steps.createProperty.outputs.propertyId
+      unitId: $steps.addUnit.outputs.unitId

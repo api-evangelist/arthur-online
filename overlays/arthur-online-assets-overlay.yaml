@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Arthur Assets API
+  version: 1.0.0
+extends: openapi/arthur-online-assets-openapi.yml
+x-generated: '2026-07-26'
+x-method: generated
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: arthur-online
+    x-apievangelist-source: collections/arthur-online.postman_collection.json
+    x-apievangelist-artifacts:
+      conventions: conventions/arthur-online-conventions.yml
+      errors: errors/arthur-online-problem-types.yml
+      authentication: authentication/arthur-online-authentication.yml
+      rate_limits: rate-limits/arthur-online-rate-limits.yml
+      webhooks: asyncapi/arthur-online-webhooks.yml
+      data_model: data-model/arthur-online-data-model.yml
+      vocabulary: vocabulary/arthur-online-vocabulary.yml
+- target: $.info
+  update:
+    x-arthur-entity-header: X-EntityID
+    x-arthur-rate-limit: 5000 requests per hour, platform-wide
+    x-arthur-idempotency: none published - retried writes duplicate
+    x-arthur-access: credentials issued to paying accounts on request to Arthur support
+- target: $.components.parameters.Strict
+  update:
+    x-agent-guidance: Agents should send strict=true so an unknown Simple type fails the request instead of silently
+      creating reference data.

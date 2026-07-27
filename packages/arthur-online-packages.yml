@@ -1,0 +1,48 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  Registry searches on 2026-07-26 against npm, PyPI, Packagist, RubyGems, NuGet and
+  crates.io, plus the developer portal (https://developer.arthuronline.co.uk/),
+  the Arthur API marketing page (https://www.arthuronline.co.uk/connect/arthur-api)
+  and the provider GitHub organisation (https://github.com/arthur-crm).
+description: >-
+  Arthur Online ships no first-party client libraries in any public package registry.
+  Integrators call the v2 REST API directly, or drive it from the public Postman collection.
+  The only public code the provider publishes is infrastructure and integration plumbing
+  in github.com/arthur-crm, none of which is an Arthur API SDK.
+packages: []
+searched:
+  - {registry: npm, query: arthuronline, hits: 0}
+  - {registry: npm, query: 'arthur online api', hits: 0, note: 'only unrelated packages'}
+  - {registry: pypi, query: 'arthur-online / arthuronline / arthur-api', hits: 0, status: 404}
+  - {registry: packagist, query: arthuronline, hits: 0}
+  - {registry: rubygems, query: arthuronline, hits: 0}
+  - {registry: nuget, query: arthuronline, hits: 0}
+  - {registry: crates.io, query: arthuronline, hits: 0}
+provider_github:
+  org: https://github.com/arthur-crm
+  org_name: Arthur Online
+  public_repos: 10
+  api_relevant:
+    - name: webhookPayloadTemplates
+      url: https://github.com/arthur-crm/webhookPayloadTemplates
+      relevance: Official webhook payload templates referenced from the Arthur webhook documentation.
+      official: true
+      sdk: false
+    - name: elevate-quickbooks
+      url: https://github.com/arthur-crm/elevate-quickbooks
+      relevance: PHP library for connecting to QuickBooks - part of Arthur's accounting integration, not an Arthur API client.
+      official: true
+      sdk: false
+    - name: xero-php-custom
+      url: https://github.com/arthur-crm/xero-php-custom
+      relevance: Fork of xero-php-oauth2 carrying Arthur-specific changes for the Xero integration.
+      official: true
+      sdk: false
+  not_sdk_note: >-
+    The remaining repositories (terraform-aws-alb, customAtlantis, cachet, laravel-queue,
+    storybookNextJS, go-webhook, .github) are internal platform tooling.
+alternatives:
+  postman_collection: collections/arthur-online.postman_collection.json
+  postman_documenter: https://documenter.getpostman.com/view/22554870/2s93sZ5YeM
+  derived_openapi: openapi/ (16 documents, 317 operations - generate a client with openapi-generator)

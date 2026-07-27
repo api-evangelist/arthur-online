@@ -1,0 +1,2895 @@
+openapi: 3.1.0
+info:
+  title: Arthur Units API
+  version: 2.0.0
+  description: Arthur Units API - the units surface of the Arthur API v2, the UK property management platform
+    from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public
+    Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to
+    an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization
+    Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Property
+- name: Assets
+- name: Certificates
+- name: Conversations
+- name: General Information
+- name: Notes
+- name: Viewings
+- name: Tenancies
+- name: Tasks
+- name: Workorders
+- name: Utilities
+- name: Transactions
+- name: Tags
+- name: Units
+paths:
+  /units/{unit_id}/property:
+    get:
+      operationId: viewParentProperty
+      summary: View parent Property
+      tags:
+      - Property
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves the property associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/assets:
+    get:
+      operationId: listAssetsOnUnit
+      summary: List Assets On Unit
+      tags:
+      - Assets
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAssetOnUnit
+      summary: Create Asset On Unit
+      tags:
+      - Assets
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset related to a unit . The API will return the\
+        \ saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\
+        \nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory\
+        \ \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean\
+        \ \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No\
+        \ \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name\
+        \ \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/certificates:
+    get:
+      operationId: listCertificatesOnUnit
+      summary: List Certificates On Unit
+      tags:
+      - Certificates
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of certificates associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addCertificateOnUnit
+      summary: Add Certificate on Unit
+      tags:
+      - Certificates
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new certificate related to a  property . The API will\
+        \ return the saved data.\n\nSupported Fields \n The following fields are supported for the request\
+        \ body\n\nField \n Example \n Type \n Required? \n\ntype \n Boiler Service \n String \n Yes \n\
+        \nexpiry_date \n 2023-12-05 \n String \n No \n\nnotes \n Fully assessed \n String \n No \n\nfile\
+        \ \n Base64 \n String \n No \n\nmime_type \n application/pdf \n String \n No (Required if File\
+        \ field is present) \n\nfile_name \n Certificate Document \n string \n No (Required if File field\
+        \ is present)"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: Boiler Service
+                expiry_date:
+                  type: string
+                  example: '2023-12-05'
+                notes:
+                  type: string
+                  example: Fully assessed
+                file:
+                  type: string
+                  example: Base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: Certificate Document
+              required:
+              - type
+            example:
+              type: Boiler Service
+              expiry_date: '2022-02-28'
+              notes: Fully assessed
+              file: JVBERi0xLjMNCiXi48/TDQoNCjEgMCBvYmoNCjw8DQovVHlwZSAvQ2F0YWxvZw0KL091dGxpbmVzIDIgMCBSDQovUGFnZXMgMyAwIFINCj4+DQplbmRvYmoNCg0KMiAwIG9iag0KPDwNCi9UeXBlIC9PdXRsaW5lcw0KL0NvdW50IDANCj4+DQplbmRvYmoNCg0KMyAwIG9iag0KPDwNCi9UeXBlIC9QYWdlcw0KL0NvdW50IDINCi9LaWRzIFsgNCAwIFIgNiAwIFIgXSANCj4+DQplbmRvYmoNCg0KNCAwIG9iag0KPDwNCi9UeXBlIC9QYWdlDQovUGFyZW50IDMgMCBSDQovUmVzb3VyY2VzIDw8DQovRm9udCA8PA0KL0YxIDkgMCBSIA0KPj4NCi9Qcm9jU2V0IDggMCBSDQo+Pg0KL01lZGlhQm94IFswIDAgNjEyLjAwMDAgNzkyLjAwMDBdDQovQ29udGVudHMgNSAwIFINCj4+DQplbmRvYmoNCg0KNSAwIG9iag0KPDwgL0xlbmd0aCAxMDc0ID4+DQpzdHJlYW0NCjIgSg0KQlQNCjAgMCAwIHJnDQovRjEgMDAyNyBUZg0KNTcuMzc1MCA3MjIuMjgwMCBUZA0KKCBBIFNpbXBsZSBQREYgRmlsZSApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY4OC42MDgwIFRkDQooIFRoaXMgaXMgYSBzbWFsbCBkZW1vbnN0cmF0aW9uIC5wZGYgZmlsZSAtICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjY0LjcwNDAgVGQNCigganVzdCBmb3IgdXNlIGluIHRoZSBWaXJ0dWFsIE1lY2hhbmljcyB0dXRvcmlhbHMuIE1vcmUgdGV4dC4gQW5kIG1vcmUgKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NTIuNzUyMCBUZA0KKCB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDYyOC44NDgwIFRkDQooIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjE2Ljg5NjAgVGQNCiggdGV4dC4gQW5kIG1vcmUgdGV4dC4gQm9yaW5nLCB6enp6ei4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjA0Ljk0NDAgVGQNCiggbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDU5Mi45OTIwIFRkDQooIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNTY5LjA4ODAgVGQNCiggQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA1NTcuMTM2MCBUZA0KKCB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBFdmVuIG1vcmUuIENvbnRpbnVlZCBvbiBwYWdlIDIgLi4uKSBUag0KRVQNCmVuZHN0cmVhbQ0KZW5kb2JqDQoNCjYgMCBvYmoNCjw8DQovVHlwZSAvUGFnZQ0KL1BhcmVudCAzIDAgUg0KL1Jlc291cmNlcyA8PA0KL0ZvbnQgPDwNCi9GMSA5IDAgUiANCj4+DQovUHJvY1NldCA4IDAgUg0KPj4NCi9NZWRpYUJveCBbMCAwIDYxMi4wMDAwIDc5Mi4wMDAwXQ0KL0NvbnRlbnRzIDcgMCBSDQo+Pg0KZW5kb2JqDQoNCjcgMCBvYmoNCjw8IC9MZW5ndGggNjc2ID4+DQpzdHJlYW0NCjIgSg0KQlQNCjAgMCAwIHJnDQovRjEgMDAyNyBUZg0KNTcuMzc1MCA3MjIuMjgwMCBUZA0KKCBTaW1wbGUgUERGIEZpbGUgMiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY4OC42MDgwIFRkDQooIC4uLmNvbnRpbnVlZCBmcm9tIHBhZ2UgMS4gWWV0IG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NzYuNjU2MCBUZA0KKCBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY2NC43MDQwIFRkDQooIHRleHQuIE9oLCBob3cgYm9yaW5nIHR5cGluZyB0aGlzIHN0dWZmLiBCdXQgbm90IGFzIGJvcmluZyBhcyB3YXRjaGluZyApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY1Mi43NTIwIFRkDQooIHBhaW50IGRyeS4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NDAuODAwMCBUZA0KKCBCb3JpbmcuICBNb3JlLCBhIGxpdHRsZSBtb3JlIHRleHQuIFRoZSBlbmQsIGFuZCBqdXN0IGFzIHdlbGwuICkgVGoNCkVUDQplbmRzdHJlYW0NCmVuZG9iag0KDQo4IDAgb2JqDQpbL1BERiAvVGV4dF0NCmVuZG9iag0KDQo5IDAgb2JqDQo8PA0KL1R5cGUgL0ZvbnQNCi9TdWJ0eXBlIC9UeXBlMQ0KL05hbWUgL0YxDQovQmFzZUZvbnQgL0hlbHZldGljYQ0KL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcNCj4+DQplbmRvYmoNCg0KMTAgMCBvYmoNCjw8DQovQ3JlYXRvciAoUmF2ZSBcKGh0dHA6Ly93d3cubmV2cm9uYS5jb20vcmF2ZVwpKQ0KL1Byb2R1Y2VyIChOZXZyb25hIERlc2lnbnMpDQovQ3JlYXRpb25EYXRlIChEOjIwMDYwMzAxMDcyODI2KQ0KPj4NCmVuZG9iag0KDQp4cmVmDQowIDExDQowMDAwMDAwMDAwIDY1NTM1IGYNCjAwMDAwMDAwMTkgMDAwMDAgbg0KMDAwMDAwMDA5MyAwMDAwMCBuDQowMDAwMDAwMTQ3IDAwMDAwIG4NCjAwMDAwMDAyMjIgMDAwMDAgbg0KMDAwMDAwMDM5MCAwMDAwMCBuDQowMDAwMDAxNTIyIDAwMDAwIG4NCjAwMDAwMDE2OTAgMDAwMDAgbg0KMDAwMDAwMjQyMyAwMDAwMCBuDQowMDAwMDAyNDU2IDAwMDAwIG4NCjAwMDAwMDI1NzQgMDAwMDAgbg0KDQp0cmFpbGVyDQo8PA0KL1NpemUgMTENCi9Sb290IDEgMCBSDQovSW5mbyAxMCAwIFINCj4+DQoNCnN0YXJ0eHJlZg0KMjcxNA0KJSVFT0YNCg==
+              mime_type: application/pdf
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 875729
+                  type: 'Boiler Service '
+                  expiry_date: '2022-02-28'
+                  status: Expired
+                  missing: false
+                  file:
+                    id: 5740763
+                    download_url: https://asset.arthuronline.co.uk/download/e62146f5-53a0-41df-a31b-b0f7b99644b9
+                    mime_type: application/pdf
+                  property:
+                    id: 282789
+                    address: My big property, Arthur House, 123 Property Street, Stevenage, Hertfordshire,
+                      AB1 2CD
+                  unit:
+                    id: 0
+                    address: ''
+                  tenancy:
+                    id: null
+                    ref: null
+                    address: null
+                  notes: Fully assessed
+                  share_manager: true
+                  share_tenant: false
+                  share_contractor: false
+                  share_owner: false
+                  created: '2023-02-28T14:50:47'
+                  modified: '2023-02-28T14:50:47'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/conversation_recipients:
+    get:
+      operationId: getRecipientsForUnit
+      summary: Get Recipients for Unit
+      tags:
+      - Conversations
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves a list of conversation recipients on a unit record, identified
+        by its unique  unit_id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/conversations:
+    get:
+      operationId: listConversationOnUnit
+      summary: List Conversation On Unit
+      tags:
+      - Conversations
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of conversations associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createConversationOnUnit
+      summary: Create Conversation On Unit
+      tags:
+      - Conversations
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new conversation related to a unit . The API will return\
+        \ the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\
+        \nField \n Example \n Type \n Required? \n\nmessage \n It's done \n String \n Yes \n\nsubject\
+        \ \n Meeting tomorrow \n String \n Yes \n\nperson_ids \n ['1','2'] \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: It's done
+                subject:
+                  type: string
+                  example: Meeting tomorrow
+                person_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''1'',''2'']'
+              required:
+              - message
+              - subject
+              - person_ids
+            example:
+              message: Please clean the house on friday.
+              subject: House duties
+              person_ids:
+              - '21'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/faqs:
+    get:
+      operationId: listGeneralInfoForUnit
+      summary: List General Info for Unit
+      tags:
+      - General Information
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of general information records associated with the given
+        unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addGeneralInfoForUnit
+      summary: Add General Info for Unit
+      tags:
+      - General Information
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new general information record for the unit . The API\
+        \ will return the saved data and a unique general information ID.\n\nSupported Fields \n The following\
+        \ fields are supported for the request body\n\nField \n Example \n Type \n\ntitle \n Maintenance\
+        \ \n String \n\ndescription \n Weekly clean \n String \n\nfaq_type \n General \n String \n\nshare_owner\
+        \ \n true \n Boolean \n\nshare_tenant \n true \n Boolean \n\nshare_contractor \n false \n Boolean"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Maintenance
+                description:
+                  type: string
+                  example: Weekly clean
+                faq_type:
+                  type: string
+                  example: General
+                share_owner:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: true
+                share_contractor:
+                  type: boolean
+                  example: false
+            example:
+              title: Maintenance - Weekly Clean
+              description: Once a week the main hall will be cleaned
+              faq_type: General
+              share_owner: true
+              share_tenant: true
+              share_contractor: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 35767
+                  property_id: 282789
+                  unit_id: null
+                  title: Maintenance - Weekly Clean
+                  faq_type: General
+                  description: Once a week the main hall will be cleaned
+                  created_by:
+                    id: 1817080
+                    full_name: API Documentation
+                  share_owner: true
+                  share_contractor: true
+                  share_tenant: true
+                  modified: '2023-02-28T13:33:14'
+                  created: '2023-02-28T13:33:14'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/notes:
+    get:
+      operationId: listNotesOnUnit
+      summary: List Notes On Unit
+      tags:
+      - Notes
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of  notes  associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addNoteOnUnit
+      summary: Add Note On Unit
+      tags:
+      - Notes
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new note record for the unit . The API will return the\
+        \ saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for\
+        \ the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String\
+        \ \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+              required:
+              - content
+            example:
+              content: Remember this note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/notes/{note_id}:
+    get:
+      operationId: viewNoteOnUnit
+      summary: View Note On Unit
+      tags:
+      - Notes
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single  note , identified by its unique 
+        id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateNoteOnUnit
+      summary: Update Note On Unit
+      tags:
+      - Notes
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing note using the same fields as the 'Add Note' endpoint.\
+        \ The API will return the updated data for the unit in the response.\n\nSupported Fields \n The\
+        \ following fields are supported for the request body\n\nField \n Example \n Type \n Required?\
+        \ \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+            example:
+              content: Updated Note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteNoteOnUnit
+      summary: Delete Note On Unit
+      tags:
+      - Notes
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing note using the note  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/viewings:
+    get:
+      operationId: listViewingsOnUnit
+      summary: List Viewings on Unit
+      tags:
+      - Viewings
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by status.
+      - name: assignedTo
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by assigned to ID.
+      - name: viewingDate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by the date.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of viewings associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addViewingOnUnit
+      summary: Add Viewing on Unit
+      tags:
+      - Viewings
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of
+          creating a new value. E.g. source
+        example: 'true'
+      description: "Use this endpoint to create a new viewing record for the  unit . The API will return\
+        \ the saved data and a unique viewing ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_id \n\
+        \ 123 \n Integer \n\nYes \n\nviewing_date \n 2019-05-28 \n Date \n\nNo \n\nviewing_time \n 00:00\
+        \ \n Time \n\nNo \n\noffer_amount \n 250.00 \n Float \n\nNo \n\noffer_frequency \n Week \n Enum\
+        \ \n Month \n No \n\nmove_in_date \n 2019-07-01 \n Date \n\nNo \n\nassigned_to_ids \n [123,124]\
+        \ \n Array (Integer) \n\nNo \n\nsource \n My website \n Simple \n\nNo \n\nnotes \n Landlord will\
+        \ be present for this viewing. \n String \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                applicant_id:
+                  type: integer
+                  example: 123
+                viewing_date:
+                  type: string
+                  format: date
+                  example: '2019-05-28'
+                viewing_time:
+                  type: string
+                  example: 00:00
+                offer_amount:
+                  type: number
+                  example: 250.0
+                offer_frequency:
+                  type: string
+                  example: Week
+                  default: Month
+                  description: Enum - see the Types API for the allowed values
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-07-01'
+                assigned_to_ids:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,124]'
+                source:
+                  type: string
+                  example: My website
+                notes:
+                  type: string
+                  example: Landlord will be present for this viewing.
+              required:
+              - applicant_id
+            example:
+              applicant_id: '12345'
+              viewing_date: '2019-05-28'
+              viewing_time: '12:30'
+              offer_amount: '500.00'
+              offer_frequency: Weekly
+              move_in_date: '2019-07-01'
+              assigned_to_ids:
+              - '1234'
+              source: my website
+              notes: this is an applicant
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/tenancies:
+    get:
+      operationId: listTenanciesOnUnit
+      summary: List Tenancies on Unit
+      tags:
+      - Tenancies
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tenancies associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addTenancyOnUnit
+      summary: Add Tenancy On Unit
+      tags:
+      - Tenancies
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tenancy record for the  unit . The API will return\
+        \ the saved data and a unique tenancy ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nstatus \n Current\
+        \ \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer \n Residential \n\
+        \ No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company \n String \n\
+        \nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01 \n Date \n\
+        \nYes \n\nend_date \n 2020-01-01 \n Date \n\nNo \n\nbreak_clause_date \n 2019-06-01 \n Date \n\
+        \nNo \n\nfixed_break_date \n 2019-06-01 \n Date \n\nNo \n\nrolling_break_date \n 2019-09-18 \n\
+        \ Date \n\nNo \n\nnotice_period \n 2 months \n String \n 1 months \n No \n\nissue_break_clause_to\
+        \ \n landlord \n String \n\nNo \n\nmove_in_date \n 2019-01-01 \n Date \n\nNo \n\nmove_in_time\
+        \ \n 12:00 \n Time \n\nNo \n\nmove_out_date \n 2020-01-01 \n Date \n\nNo \n\nmove_out_time \n\
+        \ 12:00 \n Time \n\nNo \n\nrent_amount \n 875 \n Float \n\nYes \n\nrent_frequency \n Monthly \n\
+        \ String \n\nNo \n\ndeposit_held_by \n DPS \n String \n\nNo \n\nrent_payment_bank_id \n 1423 \n\
+        \ Integer \n\nNo \n\ndeposit_payment_bank_id \n 4132 \n Integer \n\nNo \n\ndefault_rent_payment_method\
+        \ \n Bank Transfer \n String \n\nNo \n\nrent_insured \n false \n Boolean \n\nNo \n\ntags \n [\"\
+        12 month contract\"] \n Array (String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                tenancy_type:
+                  type: integer
+                letting_agent_id:
+                  type: integer
+                  example: 90909
+                contract_type:
+                  type: string
+                  example: Company
+                renter_company:
+                  type: string
+                  example: Renter Ltd.
+                start_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                end_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                break_clause_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                fixed_break_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                rolling_break_date:
+                  type: string
+                  format: date
+                  example: '2019-09-18'
+                notice_period:
+                  type: string
+                  example: 2 months
+                  default: 1 months
+                issue_break_clause_to:
+                  type: string
+                  example: landlord
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                move_in_time:
+                  type: string
+                  example: '12:00'
+                move_out_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                move_out_time:
+                  type: string
+                  example: '12:00'
+                rent_amount:
+                  type: number
+                  example: 875.0
+                rent_frequency:
+                  type: string
+                  example: Monthly
+                deposit_held_by:
+                  type: string
+                  example: DPS
+                rent_payment_bank_id:
+                  type: integer
+                  example: 1423
+                deposit_payment_bank_id:
+                  type: integer
+                  example: 4132
+                default_rent_payment_method:
+                  type: string
+                  example: Bank Transfer
+                rent_insured:
+                  type: boolean
+                  example: false
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["12 month contract"]'
+              required:
+              - start_date
+              - rent_amount
+            example:
+              status: Current
+              tenancy_type: Commercial
+              start_date: '2019-01-01'
+              end_date: '2020-01-01'
+              break_clause_date: '2019-06-01'
+              fixed_break_date: '2019-06-01'
+              rolling_break_date: '2019-09-18'
+              move_in_date: '2019-01-01'
+              move_in_time: '12:00'
+              move_out_date: '2020-01-01'
+              move_out_time: '12:00'
+              deposit_held_by: ''
+              default_rent_payment_method: Bank Transfer
+              rent_insured: false
+              tags:
+              - 12 month contract
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/tasks:
+    get:
+      operationId: listTasksOnUnit
+      summary: List Tasks On Unit
+      tags:
+      - Tasks
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tasks associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addTaskOnUnit
+      summary: Add Task On Unit
+      tags:
+      - Tasks
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new task record for the unit . The API will return the\
+        \ saved data and a unique task ID.\n\nSupported Fields \n The following fields are supported for\
+        \ the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n String\
+        \ \n No \n\ndescription \n Radiator not working \n String \n Yes \n\ntags \n ['one','two'] \n\
+        \ Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time \n\
+        \ No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean\
+        \ \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String\
+        \ \n No \n\nfiles \n\n(each object must contain \"file_type\", \"file_name\", and \"file\") \n\
+        \ { \n\"file_type\":\"application/pdf\", \n\"file_name\":\"testing\", \n\"file\":\"(base 64)\"\
+        \ \n} \n [Array {Objects}] \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_type:
+                  type: string
+                  example: Inspection
+                description:
+                  type: string
+                  example: Radiator not working
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-10-11'
+                due_time:
+                  type: string
+                  example: '15:32'
+                assigned_managers:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                emergency:
+                  type: boolean
+                  example: true
+                private:
+                  type: boolean
+                  example: true
+                api_notes:
+                  type: string
+                  example: Landlord will be present
+              required:
+              - description
+            example:
+              description: Fix windows please
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/tasks/{task_id}:
+    get:
+      operationId: viewTaskOnUnit
+      summary: View Task On Unit
+      tags:
+      - Tasks
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single unit  task , identified by its
+        unique  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateTaskOnUnit
+      summary: Update Task On Unit
+      tags:
+      - Tasks
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing task using the same fields as the 'Add Task' endpoint.\
+        \ The API will return the updated data for the unit in the response.\n\nSupported Fields \n The\
+        \ following fields are supported for the request body\n\nField \n Example \n Type \n Required?\
+        \ \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String\
+        \ \n No \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n\
+        \ No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer)\
+        \ \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes\
+        \ \n Landlord will be present \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_type:
+                  type: string
+                  example: Inspection
+                description:
+                  type: string
+                  example: Radiator not working
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-10-11'
+                due_time:
+                  type: string
+                  example: '15:32'
+                assigned_managers:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                emergency:
+                  type: boolean
+                  example: true
+                private:
+                  type: boolean
+                  example: true
+                api_notes:
+                  type: string
+                  example: Landlord will be present
+            example:
+              description: Fix windows please updated
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTaskOnUnit
+      summary: Delete Task On Unit
+      tags:
+      - Tasks
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing asset record using the task  id , under a unit ID
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/workorders:
+    get:
+      operationId: listWorkordersOnUnit
+      summary: List Workorders On Unit
+      tags:
+      - Workorders
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of workorders associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createWorkordersOnUnit
+      summary: Create Workorders On Unit
+      tags:
+      - Workorders
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new workorder record for the unit . The API will return\
+        \ the saved data and a unique workorder ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ntitle \n workorder title \n\
+        \ String \n No \n\ndescription \n workorder description \n String \n No \n\ninvite_contractors\
+        \ \n [123,1234] \n Array(integer) \n No \n\nservice_type \n Carpet Layer \n String \n Yes \n\n\
+        start_date \n 2020-02-20 \n Date \n No \n\ndue_date \n 2020-02-20 \n Date \n No \n\nbudget \n\
+        \ 1000,00 \n Float \n No \n\nallocated_time_hours \n 20 \n Float \n No \n\nactual_time_hours \n\
+        \ 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float \n No \n\nemergency \n true \n Boolean\
+        \ \n No \n\nquote_required \n true \n Boolean \n No \n\nshare_assets \n false \n Boolean \n No\
+        \ \n\nhide_tenant_details \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: workorder title
+                description:
+                  type: string
+                  example: workorder description
+                invite_contractors:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                service_type:
+                  type: string
+                  example: Carpet Layer
+                start_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                budget:
+                  type: number
+                allocated_time_hours:
+                  type: number
+                  example: 20.0
+                actual_time_hours:
+                  type: number
+                  example: 20.0
+                price_per_hour:
+                  type: number
+                emergency:
+                  type: boolean
+                  example: true
+                quote_required:
+                  type: boolean
+                  example: true
+                share_assets:
+                  type: boolean
+                  example: false
+                hide_tenant_details:
+                  type: boolean
+                  example: true
+              required:
+              - service_type
+            example:
+              service_type: aerial network specialist
+              title: Workorder title
+              description: Workorder Description
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/workorders/{workorder_id}:
+    get:
+      operationId: viewWorkordersOnUnit
+      summary: View Workorders On Unit
+      tags:
+      - Workorders
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single unit  workorder , identified by
+        its unique  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateWorkordersOnUnit
+      summary: Update Workorders On Unit
+      tags:
+      - Workorders
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing workorder using the same fields as the 'Add Workorder'\
+        \ endpoint. The API will return the updated data for the unit in the response.\n\nSupported Fields\
+        \ \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required?\
+        \ \n\ntitle \n workorder title \n String \n No \n\ndescription \n workorder description \n String\
+        \ \n No \n\ninvite_contractors \n [123,1234] \n Array(integer) \n No \n\nservice_type \n Carpet\
+        \ Layer \n String \n No \n\nstart_date \n 2020-02-20 \n Date \n No \n\ndue_date \n 2020-02-20\
+        \ \n Date \n No \n\nbudget \n 1000,00 \n Float \n No \n\nallocated_time_hours \n 20 \n Float \n\
+        \ No \n\nactual_time_hours \n 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float \n No \n\n\
+        emergency \n true \n Boolean \n No \n\nquote_required \n true \n Boolean \n No \n\nshare_assets\
+        \ \n false \n Boolean \n No \n\nhide_tenant_details \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: workorder title
+                description:
+                  type: string
+                  example: workorder description
+                invite_contractors:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                service_type:
+                  type: string
+                  example: Carpet Layer
+                start_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                budget:
+                  type: number
+                allocated_time_hours:
+                  type: number
+                  example: 20.0
+                actual_time_hours:
+                  type: number
+                  example: 20.0
+                price_per_hour:
+                  type: number
+                emergency:
+                  type: boolean
+                  example: true
+                quote_required:
+                  type: boolean
+                  example: true
+                share_assets:
+                  type: boolean
+                  example: false
+                hide_tenant_details:
+                  type: boolean
+                  example: true
+            example:
+              title: Updated title
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/utilities:
+    get:
+      operationId: listUtilitiesOnUnit
+      summary: List Utilities On Unit
+      tags:
+      - Utilities
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of utilities associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createUtilityOnUnit
+      summary: Create Utility On Unit
+      tags:
+      - Utilities
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new utility record for the unit . The API will return\
+        \ the saved data and a unique utility ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ntype \n gas \n String \n Yes\
+        \ \n\nnotes \n behind back doors \n String \n No \n\nserial_number \n GA212FP21 \n String \n No\
+        \ \n\naccount_number \n 12344321 \n string \n No \n\nprovider \n company_name \n string \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: gas
+                notes:
+                  type: string
+                  example: behind back doors
+                serial_number:
+                  type: string
+                  example: GA212FP21
+                account_number:
+                  type: string
+                  example: '12344321'
+                provider:
+                  type: string
+                  example: company_name
+              required:
+              - type
+            example:
+              type: gas
+              serial_number: Created serial number
+              account_number: '12344321'
+              provider: ''
+              last_reading_value: null
+              last_reading_date: null
+              notes: ''
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/transactions:
+    get:
+      operationId: listTransactionsOnUnit
+      summary: List Transactions On Unit
+      tags:
+      - Transactions
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: statement
+        in: query
+        required: false
+        schema:
+          type: string
+        description: "Filters the transactions by statement. The available options are tenant , tenant-deposit\
+          \ , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement\
+          \ , late-rents , contingency-statement , invoices"
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The status of the transaction. The available options are paid , unpaid , partpaid
+          , outstanding , or overdue . Use this parameter to filter transactions based on their payment
+          status.
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters the transactions by the date, starting from the specified date. Use the format
+          yyyy-mm-dd to input the date.
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd
+          to input the date.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: "This retrieves a list of transactions for a Unit \n\nSee available filters below to\
+        \ customize the list of transactions returned."
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{id}/tags:
+    get:
+      operationId: getTagsOnUnit
+      summary: Get Tags on Unit
+      tags:
+      - Tags
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves a list of tags associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                - id: 33843
+                  name: 1000 spend limit
+                  color: blue
+                - id: 49572
+                  name: benefits lapsed
+                  color: blue
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/tags:
+    put:
+      operationId: tagUnit
+      summary: Tag Unit
+      tags:
+      - Tags
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tag record for the unit . The API will return the\
+        \ saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for\
+        \ the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n\
+        \ Default \n Required? \n\ntag \n [\"123\"] \n Array(String) \n\nYes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: array
+                  items:
+                    type: string
+                  example: '["123"]'
+              required:
+              - tag
+            example:
+              tag:
+              - '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/untag:
+    put:
+      operationId: untagUnit
+      summary: Untag Unit
+      tags:
+      - Tags
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to unassign tag record from the  unit . The API will return the\
+        \ saved data and a unique workorder ID. Tag field should be a valid tag ID or name.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\ntag \n 123 \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: string
+                  example: '123'
+              required:
+              - tag
+            example:
+              tag: '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}/untag_all:
+    put:
+      operationId: untagAllUnitTags
+      summary: Untag All Unit Tags
+      tags:
+      - Tags
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: Use this endpoint to unassign all tags from the  unit .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units:
+    get:
+      operationId: listUnits
+      summary: List Units
+      tags:
+      - Units
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: unit_ref
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the address name of the unit
+      - name: address_line_1
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the address 1 field of the unit
+      - name: address_line_2
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the address 2 field of the unit
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the city of the unit
+      - name: county
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the county of the unit
+      - name: area_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the area ID of the unit
+      - name: area
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the area name of the unit
+      - name: postcode
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the postcode of the unit
+      - name: portal
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by portal
+      - name: unit_vacant
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by unit vacancy (boolean)
+      - name: available_move_in_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by unit availability date range. Use the format yyyy-mm-dd to input the date
+      - name: available_move_out_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by unit avaiability date range. Use the format yyyy-mm-dd to input the date
+      - name: unit_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by unit type
+      - name: unit_status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter based on the current status of units, including Available To Let, Under Offer,
+          Let, and Unavailable to Let
+      - name: market_rent
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by market rent amount
+      - name: bedrooms
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by bedroom count
+      - name: floors
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by floor count
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the units, which should be provided as a comma-separated
+          list
+      - name: i_manage_this
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter based on the management status of the property (boolean)
+      - name: unit_owner_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the ID of the owner of the unit
+      - name: max_occupancy
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the max occupancy on a unit
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of units.
+
+
+        See available filters below to customize the list of units returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addUnit
+      summary: Add Unit
+      tags:
+      - Units
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new unit. The API will return the saved data and a unique\
+        \ Unit ID.\n\nSupported Fields \n The following fields are supported for the request body\n\n\
+        Field \n Example \n Type \n Default \n Required? \n\nproperty_id \n 12345 \n Integer \n\nYes \n\
+        \nunit_type \n Residential \n String \n\nNo \n\nunit_status \n Available to Let \n String \n Available\
+        \ to Let \n No \n\nunit_ref \n Unit 1 \n String \n\nYes \n\naddress_line_1 \n Arthur House \n\
+        \ String \n\nYes \n\naddress_line_2 \n 123 Property Street \n String \n\nNo \n\ncity \n Stevenage\
+        \ \n String \n\nYes \n\ncounty \n Hertfordshire \n String \n\nNo \n\ncountry \n United Kingdom\
+        \ \n String \n\nNo \n\narea \n South East \n String \n\nNo \n\npostcode \n AB1 2CD \n String \n\
+        \nYes \n\nmarket_rent \n 800.00 \n Float \n\nNo \n\nmarket_rent_frequency \n Monthly \n String\
+        \ \n\nNo \n\navailable_from \n 2019-01-01 \n Date \n\nNo \n\navailable_since \n 2019-01-01 \n\
+        \ Date \n\nNo \n\nunit_owner_id \n 3456 \n Integer \n\nNo \n\nletting_agent_id \n 4567 \n Integer\
+        \ \n\nNo \n\nportal_address \n Property Street, Stevenage, AB1 \n String \n\nNo \n\nshort_description\
+        \ \n Brand new furnished unit in the heart of the city center! \n String \n\nNo \n\ndescription\
+        \ \n This fabulous new property has been recently refurbished with close links to city center\
+        \ and nearby public transport. Please call now to book a viewing. \n String \n\nNo \n\nportal_unit_type\
+        \ \n Apartment \n String \n\nNo \n\nsize \n 500 \n String \n\nNo \n\nsize_unit \n Sq Meter \n\
+        \ String \n\nNo \n\nfurnished \n Part-Furnished \n String \n\nNo \n\nmax_occupancy \n 1 \n String\
+        \ \n\nNo \n\nbathrooms \n 1 \n String \n\nNo \n\nfloors \n 1 \n String \n\nNo \n\nbedrooms \n\
+        \ 1 \n String \n\nNo \n\nreceptions \n 1 \n String \n\nNo \n\nsmart_meters \n No \n String \n\n\
+        No \n\ndate_available \n 2019-01-01 \n Date \n\nNo \n\nrental_term \n Long \n String \n\nNo \n\
+        \ndeposit_amount \n 1600.00 \n Float \n\nNo \n\nservice_charge \n true \n Boolean \n\nNo \n\n\
+        service_charge_amount \n 75.00 \n Float \n\nNo \n\ncouncil_tax_band \n C \n String \n\nNo \n\n\
+        council_account_no \n ABC123 \n String \n\nNo \n\ncouncil_id \n 9874 \n Integer \n\nNo \n\nportal_market_rent\
+        \ \n 800.00 \n Float \n\nNo \n\nportal_market_rent_frequency \n Monthly \n String \n\nNo \n\n\
+        sharing_tenancies \n N/A \n String \n\nNo \n\ni_manage_this \n true \n Boolean \n\nNo \n\nfeatures\
+        \ \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n\nNo \n\n\
+        tags \n [ \"Cheap Rent\" ] \n Array (String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                property_id:
+                  type: integer
+                  example: 12345
+                unit_type:
+                  type: string
+                  example: Residential
+                unit_status:
+                  type: string
+                  example: Available to Let
+                  default: Available to Let
+                unit_ref:
+                  type: string
+                  example: Unit 1
+                address_line_1:
+                  type: string
+                  example: Arthur House
+                address_line_2:
+                  type: string
+                  example: 123 Property Street
+                city:
+                  type: string
+                  example: Stevenage
+                county:
+                  type: string
+                  example: Hertfordshire
+                country:
+                  type: string
+                  example: United Kingdom
+                area:
+                  type: string
+                  example: South East
+                postcode:
+                  type: string
+                  example: AB1 2CD
+                market_rent:
+                  type: number
+                  example: 800.0
+                market_rent_frequency:
+                  type: string
+                  example: Monthly
+                available_from:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                available_since:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                unit_owner_id:
+                  type: integer
+                  example: 3456
+                letting_agent_id:
+                  type: integer
+                  example: 4567
+                portal_address:
+                  type: string
+                  example: Property Street, Stevenage, AB1
+                short_description:
+                  type: string
+                  example: Brand new furnished unit in the heart of the city center!
+                description:
+                  type: string
+                  example: This fabulous new property has been recently refurbished with close links to
+                    city center and nearby public transport. Please call now to book a viewing.
+                portal_unit_type:
+                  type: string
+                  example: Apartment
+                size:
+                  type: string
+                  example: '500'
+                size_unit:
+                  type: string
+                  example: Sq Meter
+                furnished:
+                  type: string
+                  example: Part-Furnished
+                max_occupancy:
+                  type: string
+                  example: '1'
+                bathrooms:
+                  type: string
+                  example: '1'
+                floors:
+                  type: string
+                  example: '1'
+                bedrooms:
+                  type: string
+                  example: '1'
+                receptions:
+                  type: string
+                  example: '1'
+                smart_meters:
+                  type: string
+                  example: 'No'
+                date_available:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                rental_term:
+                  type: string
+                  example: Long
+                deposit_amount:
+                  type: number
+                  example: 1600.0
+                service_charge:
+                  type: boolean
+                  example: true
+                service_charge_amount:
+                  type: number
+                  example: 75.0
+                council_tax_band:
+                  type: string
+                  example: C
+                council_account_no:
+                  type: string
+                  example: ABC123
+                council_id:
+                  type: integer
+                  example: 9874
+                portal_market_rent:
+                  type: number
+                  example: 800.0
+                portal_market_rent_frequency:
+                  type: string
+                  example: Monthly
+                sharing_tenancies:
+                  type: string
+                  example: N/A
+                i_manage_this:
+                  type: boolean
+                  example: true
+                features:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Internet", "Fireplace", "Smart home integration" ]'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Cheap Rent" ]'
+              required:
+              - property_id
+              - unit_ref
+              - address_line_1
+              - city
+              - postcode
+            example:
+              property_id: 282789
+              unit_type: Residential
+              unit_status: Available To Let
+              unit_ref: Unit 1
+              address_line_1: Arthur House
+              address_line_2: 123 Property Street
+              city: Stevenage
+              county: Hertfordshire
+              country: United Kingdom
+              area: South East
+              postcode: AB1 2CD
+              market_rent: 800
+              market_rent_frequency: Monthly
+              available_from: '2019-01-01'
+              available_since: '2019-01-01'
+              portal_address: Property Street, Stevenage, AB1
+              short_description: Brand new furnished unit in the heart of the city center!
+              description: This fabulous new property has been recently refurbished with close links to
+                city center and nearby public transport. Please call now to book a viewing.
+              portal_unit_type: Apartment
+              size: '500'
+              size_unit: Sq Meter
+              furnished: Part-Furnished
+              max_occupancy: '1'
+              bathrooms: '1'
+              floors: '1'
+              bedrooms: '1'
+              receptions: '1'
+              smart_meters: 'No'
+              date_available: '2019-01-01'
+              rental_term: Long
+              deposit_amount: 1600
+              service_charge: true
+              service_charge_amount: 75
+              council_tax_band: C
+              council_account_no: ABC123
+              portal_market_rent: 800
+              portal_market_rent_frequency: Monthly
+              sharing_tenancies: N/A
+              i_manage_this: true
+              features:
+              - Internet
+              - Fireplace
+              - Smart home integration
+              tags:
+              - Cheap Rent
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 651669
+                  property_id: 282789
+                  unit_type: Residential
+                  unit_status: Available To Let
+                  unit_ref: Unit 1
+                  unit_vacant: true
+                  available_from: '2019-01-01'
+                  owner:
+                    id: null
+                    full_name: null
+                  assigned_managers: ''
+                  full_address: Unit 1, Arthur House, 123 Property Street, Stevenage, Hertfordshire, AB1
+                    2CD, United Kingdom (South East)
+                  address_line_1: Arthur House
+                  address_line_2: 123 Property Street
+                  city: Stevenage
+                  county: Hertfordshire
+                  country: United Kingdom
+                  area: South East
+                  postcode: AB1 2CD
+                  lat: 51.903761
+                  lng: -0.196612
+                  market_rent: 800
+                  market_rent_frequency: Monthly
+                  available_since: null
+                  letting_agent_id: null
+                  letting_agent:
+                    id: null
+                    full_name: null
+                  portal_address: Property Street, Stevenage, AB1
+                  short_description: Brand new furnished unit in the heart of the city center!
+                  description: This fabulous new property has been recently refurbished with close links
+                    to city center and nearby public transport. Please call now to book a viewing.
+                  portal_unit_type: Apartment
+                  size: '500'
+                  size_unit: Sq Meter
+                  furnished: Part-Furnished
+                  max_occupancy: '1'
+                  bathrooms: '1'
+                  floors: '1'
+                  bedrooms: '1'
+                  receptions: '1'
+                  smart_meters: 'No'
+                  date_available: '2019-01-01'
+                  rental_term: Long
+                  deposit_amount: 1600
+                  service_charge: true
+                  service_charge_amount: 75
+                  council_tax_band: C
+                  council_account_no: ABC123
+                  council_id: null
+                  portal_market_rent: 800
+                  portal_market_rent_frequency: Monthly
+                  sharing_tenancies: N/A
+                  virtual_tour_url: ''
+                  i_manage_this: true
+                  main_image_url: null
+                  epc_urls: []
+                  floor_plan_urls: []
+                  thumbnail_urls: []
+                  image_urls: []
+                  features:
+                  - Fireplace
+                  - Internet
+                  - Smart home integration
+                  unit_features:
+                  - Fireplace
+                  - Internet
+                  additional_features:
+                  - Smart home integration
+                  notes: []
+                  tags:
+                  - Cheap Rent
+                  custom_fields: []
+                  relationships:
+                  - model: Property
+                    model_id: '282789'
+                    ref: My big property
+                  days_vacant: 1520 days ago
+                  days_vacant_total: 1520
+                  modified: '2023-03-01T16:14:06'
+                  created: '2023-03-01T16:14:05'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /units/{unit_id}:
+    get:
+      operationId: viewUnit
+      summary: View Unit
+      tags:
+      - Units
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single unit, identified by its unique 
+        unit_id .
+
+
+        Use this endpoint to view the specific details of a unit.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateUnit
+      summary: Update Unit
+      tags:
+      - Units
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing unit using the same fields as the 'Add Unit' endpoint\
+        \ excluding the property_id . Any fields that are not provided will not be changed. The API will\
+        \ return the updated data for the unit in the response.\n\nSupported Fields \n The following fields\
+        \ are supported for the request body\n\nField \n Example \n Type \n Required? \n\nunit_type \n\
+        \ Residential \n String \n No \n\nunit_status \n Available to Let \n String \n No \n\nunit_ref\
+        \ \n Unit 1 \n String \n No \n\naddress_line_1 \n Arthur House \n String \n No \n\naddress_line_2\
+        \ \n 123 Property Street \n String \n No \n\ncity \n Stevenage \n String \n No \n\ncounty \n Hertfordshire\
+        \ \n String \n No \n\ncountry \n United Kingdom \n String \n No \n\narea \n South East \n String\
+        \ \n No \n\npostcode \n AB1 2CD \n String \n No \n\nmarket_rent \n 800.00 \n Float \n No \n\n\
+        market_rent_frequency \n Monthly \n String \n No \n\navailable_from \n 2019-01-01 \n Date \n No\
+        \ \n\navailable_since \n 2019-01-01 \n Date \n No \n\nunit_owner_id \n 3456 \n Integer \n No \n\
+        \nletting_agent_id \n 4567 \n Integer \n No \n\nportal_address \n Property Street, Stevenage,\
+        \ AB1 \n String \n No \n\nshort_description \n Brand new furnished unit in the heart of the city\
+        \ center! \n String \n No \n\ndescription \n This fabulous new property has been recently refurbished\
+        \ with close links to city center and nearby public transport. Please call now to book a viewing.\
+        \ \n String \n No \n\nportal_unit_type \n Apartment \n String \n No \n\nsize \n 500 \n String\
+        \ \n No \n\nsize_unit \n Sq Meter \n String \n No \n\nfurnished \n Part-Furnished \n String \n\
+        \ No \n\nmax_occupancy \n 1 \n String \n No \n\nbathrooms \n 1 \n String \n No \n\nfloors \n 1\
+        \ \n String \n No \n\nbedrooms \n 1 \n String \n No \n\nreceptions \n 1 \n String \n No \n\nsmart_meters\
+        \ \n No \n String \n No \n\ndate_available \n 2019-01-01 \n Date \n No \n\nrental_term \n Long\
+        \ \n String \n No \n\ndeposit_amount \n 1600.00 \n Float \n No \n\nservice_charge \n true \n Boolean\
+        \ \n No \n\nservice_charge_amount \n 75.00 \n Float \n No \n\ncouncil_tax_band \n C \n String\
+        \ \n No \n\ncouncil_account_no \n ABC123 \n String \n No \n\ncouncil_id \n 9874 \n Integer \n\
+        \ No \n\nportal_market_rent \n 800.00 \n Float \n No \n\nportal_market_rent_frequency \n Monthly\
+        \ \n String \n No \n\nsharing_tenancies \n N/A \n String \n No \n\ni_manage_this \n true \n Boolean\
+        \ \n No \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String)\
+        \ \n No \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit_type:
+                  type: string
+                  example: Residential
+                unit_status:
+                  type: string
+                  example: Available to Let
+                unit_ref:
+                  type: string
+                  example: Unit 1
+                address_line_1:
+                  type: string
+                  example: Arthur House
+                address_line_2:
+                  type: string
+                  example: 123 Property Street
+                city:
+                  type: string
+                  example: Stevenage
+                county:
+                  type: string
+                  example: Hertfordshire
+                country:
+                  type: string
+                  example: United Kingdom
+                area:
+                  type: string
+                  example: South East
+                postcode:
+                  type: string
+                  example: AB1 2CD
+                market_rent:
+                  type: number
+                  example: 800.0
+                market_rent_frequency:
+                  type: string
+                  example: Monthly
+                available_from:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                available_since:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                unit_owner_id:
+                  type: integer
+                  example: 3456
+                letting_agent_id:
+                  type: integer
+                  example: 4567
+                portal_address:
+                  type: string
+                  example: Property Street, Stevenage, AB1
+                short_description:
+                  type: string
+                  example: Brand new furnished unit in the heart of the city center!
+                description:
+                  type: string
+                  example: This fabulous new property has been recently refurbished with close links to
+                    city center and nearby public transport. Please call now to book a viewing.
+                portal_unit_type:
+                  type: string
+                  example: Apartment
+                size:
+                  type: string
+                  example: '500'
+                size_unit:
+                  type: string
+                  example: Sq Meter
+                furnished:
+                  type: string
+                  example: Part-Furnished
+                max_occupancy:
+                  type: string
+                  example: '1'
+                bathrooms:
+                  type: string
+                  example: '1'
+                floors:
+                  type: string
+                  example: '1'
+                bedrooms:
+                  type: string
+                  example: '1'
+                receptions:
+                  type: string
+                  example: '1'
+                smart_meters:
+                  type: string
+                  example: 'No'
+                date_available:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                rental_term:
+                  type: string
+                  example: Long
+                deposit_amount:
+                  type: number
+                  example: 1600.0
+                service_charge:
+                  type: boolean
+                  example: true
+                service_charge_amount:
+                  type: number
+                  example: 75.0
+                council_tax_band:
+                  type: string
+                  example: C
+                council_account_no:
+                  type: string
+                  example: ABC123
+                council_id:
+                  type: integer
+                  example: 9874
+                portal_market_rent:
+                  type: number
+                  example: 800.0
+                portal_market_rent_frequency:
+                  type: string
+                  example: Monthly
+                sharing_tenancies:
+                  type: string
+                  example: N/A
+                i_manage_this:
+                  type: boolean
+                  example: true
+                features:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Internet", "Fireplace", "Smart home integration" ]'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Cheap Rent" ]'
+            example:
+              property_id: 282789
+              unit_type: Residential
+              unit_status: Available To Let
+              unit_ref: Unit 1
+              address_line_1: Arthur House
+              address_line_2: 123 Property Street
+              city: Stevenage
+              county: Hertfordshire
+              country: United Kingdom
+              area: South East
+              postcode: AB1 2CD
+              market_rent: 800
+              market_rent_frequency: Monthly
+              available_from: '2019-01-01'
+              available_since: '2019-01-01'
+              portal_address: Property Street, Stevenage, AB1
+              short_description: Brand new furnished unit in the heart of the city center!
+              description: This fabulous new property has been recently refurbished with close links to
+                city center and nearby public transport. Please call now to book a viewing.
+              portal_unit_type: Apartment
+              size: '500'
+              size_unit: Sq Meter
+              furnished: Part-Furnished
+              max_occupancy: '1'
+              bathrooms: '1'
+              floors: '1'
+              bedrooms: '1'
+              receptions: '1'
+              smart_meters: 'No'
+              date_available: '2019-01-01'
+              rental_term: Long
+              deposit_amount: 1600
+              service_charge: true
+              service_charge_amount: 75
+              council_tax_band: C
+              council_account_no: ABC123
+              portal_market_rent: 800
+              portal_market_rent_frequency: Monthly
+              sharing_tenancies: N/A
+              i_manage_this: true
+              features:
+              - Internet
+              - Fireplace
+              - Smart home integration
+              tags:
+              - Cheap Rent
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 651669
+                  property_id: 282789
+                  unit_type: Residential
+                  unit_status: Available To Let
+                  unit_ref: Unit 1
+                  unit_vacant: true
+                  available_from: '2019-01-01'
+                  owner:
+                    id: null
+                    full_name: null
+                  assigned_managers: ''
+                  full_address: Unit 1, Arthur House, 123 Property Street, Stevenage, Hertfordshire, AB1
+                    2CD, United Kingdom (South East)
+                  address_line_1: Arthur House
+                  address_line_2: 123 Property Street
+                  city: Stevenage
+                  county: Hertfordshire
+                  country: United Kingdom
+                  area: South East
+                  postcode: AB1 2CD
+                  lat: 51.903761
+                  lng: -0.196612
+                  market_rent: 800
+                  market_rent_frequency: Monthly
+                  available_since: null
+                  letting_agent_id: null
+                  letting_agent:
+                    id: null
+                    full_name: null
+                  portal_address: Property Street, Stevenage, AB1
+                  short_description: Brand new furnished unit in the heart of the city center!
+                  description: This fabulous new property has been recently refurbished with close links
+                    to city center and nearby public transport. Please call now to book a viewing.
+                  portal_unit_type: Apartment
+                  size: '500'
+                  size_unit: Sq Meter
+                  furnished: Part-Furnished
+                  max_occupancy: '1'
+                  bathrooms: '1'
+                  floors: '1'
+                  bedrooms: '1'
+                  receptions: '1'
+                  smart_meters: 'No'
+                  date_available: '2019-01-01'
+                  rental_term: Long
+                  deposit_amount: 1600
+                  service_charge: true
+                  service_charge_amount: 75
+                  council_tax_band: C
+                  council_account_no: ABC123
+                  council_id: null
+                  portal_market_rent: 800
+                  portal_market_rent_frequency: Monthly
+                  sharing_tenancies: N/A
+                  virtual_tour_url: ''
+                  i_manage_this: true
+                  main_image_url: null
+                  epc_urls: []
+                  floor_plan_urls: []
+                  thumbnail_urls: []
+                  image_urls: []
+                  features:
+                  - Fireplace
+                  - Internet
+                  - Smart home integration
+                  unit_features:
+                  - Fireplace
+                  - Internet
+                  additional_features:
+                  - Smart home integration
+                  notes: []
+                  tags:
+                  - Cheap Rent
+                  custom_fields: []
+                  relationships:
+                  - model: Property
+                    model_id: '282789'
+                    ref: My big property
+                  days_vacant: 1520 days ago
+                  days_vacant_total: 1520
+                  modified: '2023-03-01T16:14:06'
+                  created: '2023-03-01T16:14:05'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

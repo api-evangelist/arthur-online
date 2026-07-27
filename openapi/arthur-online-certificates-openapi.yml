@@ -1,0 +1,409 @@
+openapi: 3.1.0
+info:
+  title: Arthur Certificates API
+  version: 2.0.0
+  description: Arthur Certificates API - the certificates surface of the Arthur API v2, the UK property
+    management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the
+    provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request
+    is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0
+    Authorization Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Certificates
+paths:
+  /certificates:
+    get:
+      operationId: listCertificates
+      summary: List Certificates
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This retrieves a list of certificates.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 12345
+                  type: Gas Safety
+                  expiry_date: '2021-06-06'
+                  status: Expired
+                  missing: false
+                  file:
+                    id: 12345
+                    download_url: https://asset.arthuronline.co.uk/download/{uuid}
+                    mime_type: image/jpeg
+                  property:
+                    id: 1234
+                    address: Multiple Unit Property, test, ABC 123
+                  unit:
+                    id: 123
+                    address: Unit 1, test, ABC 123
+                  tenancy:
+                    id: 123456
+                    ref: TE1000
+                    address: Unit 1, test, ABC 123
+                  notes: My Certificate Notes
+                  share_manager: true
+                  share_tenant: false
+                  share_contractor: true
+                  share_owner: false
+                  created: '2021-01-01T12:00:00'
+                  modified: '2021-01-01T12:00:00'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /certificates/{certificate_id}:
+    get:
+      operationId: viewCertificate
+      summary: View Certificate
+      tags:
+      - Certificates
+      parameters:
+      - name: certificate_id
+        in: path
+        required: true
+        description: Arthur certificate id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single certificate, identified by its
+        unique  certificate_id .
+
+
+        Use this endpoint to view the specific details of a certificate.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 12345
+                  type: Gas Safety
+                  expiry_date: '2021-06-06'
+                  status: Expired
+                  missing: false
+                  file:
+                    id: 12345
+                    download_url: https://asset.arthuronline.co.uk/download/{uuid}
+                    mime_type: image/jpeg
+                  property:
+                    id: 1234
+                    address: Multiple Unit Property, test, ABC 123
+                  unit:
+                    id: 123
+                    address: Unit 1, test, ABC 123
+                  tenancy:
+                    id: 123456
+                    ref: TE1000
+                    address: Unit 1, test, ABC 123
+                  notes: My Certificate Notes
+                  share_manager: true
+                  share_tenant: false
+                  share_contractor: true
+                  share_owner: false
+                  created: '2021-01-01T12:00:00'
+                  modified: '2021-01-01T12:00:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCertificate
+      summary: Update Certificate
+      tags:
+      - Certificates
+      parameters:
+      - name: certificate_id
+        in: path
+        required: true
+        description: Arthur certificate id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing certificate using the same fields as the 'Add Certificate'\
+        \ endpoint found under Properties, Units, Tenancies and Workorders. Any fields that are not provided\
+        \ will not be changed. The API will return the updated data for the asset in the response.\n\n\
+        Supported Fields \n The following fields are supported for the request body\n\nField \n Example\
+        \ \n Type \n Required? \n\ntype \n Boiler Service \n String \n Yes \n\nexpiry_date \n 2023-12-05\
+        \ \n String \n No \n\nnotes \n Fully assessed \n String \n No \n\nfile \n Base64 \n String \n\
+        \ No \n\nmime_type \n application/pdf \n String \n No (Required if File field is present) \n\n\
+        file_name \n Certificate Document \n string \n No (Required if File field is present)"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: Boiler Service
+                expiry_date:
+                  type: string
+                  example: '2023-12-05'
+                notes:
+                  type: string
+                  example: Fully assessed
+                file:
+                  type: string
+                  example: Base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: Certificate Document
+              required:
+              - type
+            example:
+              type: Boiler Service
+              expiry_date: '2022-02-28'
+              notes: Fully assessed
+              file: JVBERi0xLjMNCiXi48/TDQoNCjEgMCBvYmoNCjw8DQovVHlwZSAvQ2F0YWxvZw0KL091dGxpbmVzIDIgMCBSDQovUGFnZXMgMyAwIFINCj4+DQplbmRvYmoNCg0KMiAwIG9iag0KPDwNCi9UeXBlIC9PdXRsaW5lcw0KL0NvdW50IDANCj4+DQplbmRvYmoNCg0KMyAwIG9iag0KPDwNCi9UeXBlIC9QYWdlcw0KL0NvdW50IDINCi9LaWRzIFsgNCAwIFIgNiAwIFIgXSANCj4+DQplbmRvYmoNCg0KNCAwIG9iag0KPDwNCi9UeXBlIC9QYWdlDQovUGFyZW50IDMgMCBSDQovUmVzb3VyY2VzIDw8DQovRm9udCA8PA0KL0YxIDkgMCBSIA0KPj4NCi9Qcm9jU2V0IDggMCBSDQo+Pg0KL01lZGlhQm94IFswIDAgNjEyLjAwMDAgNzkyLjAwMDBdDQovQ29udGVudHMgNSAwIFINCj4+DQplbmRvYmoNCg0KNSAwIG9iag0KPDwgL0xlbmd0aCAxMDc0ID4+DQpzdHJlYW0NCjIgSg0KQlQNCjAgMCAwIHJnDQovRjEgMDAyNyBUZg0KNTcuMzc1MCA3MjIuMjgwMCBUZA0KKCBBIFNpbXBsZSBQREYgRmlsZSApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY4OC42MDgwIFRkDQooIFRoaXMgaXMgYSBzbWFsbCBkZW1vbnN0cmF0aW9uIC5wZGYgZmlsZSAtICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjY0LjcwNDAgVGQNCigganVzdCBmb3IgdXNlIGluIHRoZSBWaXJ0dWFsIE1lY2hhbmljcyB0dXRvcmlhbHMuIE1vcmUgdGV4dC4gQW5kIG1vcmUgKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NTIuNzUyMCBUZA0KKCB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDYyOC44NDgwIFRkDQooIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjE2Ljg5NjAgVGQNCiggdGV4dC4gQW5kIG1vcmUgdGV4dC4gQm9yaW5nLCB6enp6ei4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjA0Ljk0NDAgVGQNCiggbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDU5Mi45OTIwIFRkDQooIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNTY5LjA4ODAgVGQNCiggQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA1NTcuMTM2MCBUZA0KKCB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBFdmVuIG1vcmUuIENvbnRpbnVlZCBvbiBwYWdlIDIgLi4uKSBUag0KRVQNCmVuZHN0cmVhbQ0KZW5kb2JqDQoNCjYgMCBvYmoNCjw8DQovVHlwZSAvUGFnZQ0KL1BhcmVudCAzIDAgUg0KL1Jlc291cmNlcyA8PA0KL0ZvbnQgPDwNCi9GMSA5IDAgUiANCj4+DQovUHJvY1NldCA4IDAgUg0KPj4NCi9NZWRpYUJveCBbMCAwIDYxMi4wMDAwIDc5Mi4wMDAwXQ0KL0NvbnRlbnRzIDcgMCBSDQo+Pg0KZW5kb2JqDQoNCjcgMCBvYmoNCjw8IC9MZW5ndGggNjc2ID4+DQpzdHJlYW0NCjIgSg0KQlQNCjAgMCAwIHJnDQovRjEgMDAyNyBUZg0KNTcuMzc1MCA3MjIuMjgwMCBUZA0KKCBTaW1wbGUgUERGIEZpbGUgMiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY4OC42MDgwIFRkDQooIC4uLmNvbnRpbnVlZCBmcm9tIHBhZ2UgMS4gWWV0IG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NzYuNjU2MCBUZA0KKCBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY2NC43MDQwIFRkDQooIHRleHQuIE9oLCBob3cgYm9yaW5nIHR5cGluZyB0aGlzIHN0dWZmLiBCdXQgbm90IGFzIGJvcmluZyBhcyB3YXRjaGluZyApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY1Mi43NTIwIFRkDQooIHBhaW50IGRyeS4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NDAuODAwMCBUZA0KKCBCb3JpbmcuICBNb3JlLCBhIGxpdHRsZSBtb3JlIHRleHQuIFRoZSBlbmQsIGFuZCBqdXN0IGFzIHdlbGwuICkgVGoNCkVUDQplbmRzdHJlYW0NCmVuZG9iag0KDQo4IDAgb2JqDQpbL1BERiAvVGV4dF0NCmVuZG9iag0KDQo5IDAgb2JqDQo8PA0KL1R5cGUgL0ZvbnQNCi9TdWJ0eXBlIC9UeXBlMQ0KL05hbWUgL0YxDQovQmFzZUZvbnQgL0hlbHZldGljYQ0KL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcNCj4+DQplbmRvYmoNCg0KMTAgMCBvYmoNCjw8DQovQ3JlYXRvciAoUmF2ZSBcKGh0dHA6Ly93d3cubmV2cm9uYS5jb20vcmF2ZVwpKQ0KL1Byb2R1Y2VyIChOZXZyb25hIERlc2lnbnMpDQovQ3JlYXRpb25EYXRlIChEOjIwMDYwMzAxMDcyODI2KQ0KPj4NCmVuZG9iag0KDQp4cmVmDQowIDExDQowMDAwMDAwMDAwIDY1NTM1IGYNCjAwMDAwMDAwMTkgMDAwMDAgbg0KMDAwMDAwMDA5MyAwMDAwMCBuDQowMDAwMDAwMTQ3IDAwMDAwIG4NCjAwMDAwMDAyMjIgMDAwMDAgbg0KMDAwMDAwMDM5MCAwMDAwMCBuDQowMDAwMDAxNTIyIDAwMDAwIG4NCjAwMDAwMDE2OTAgMDAwMDAgbg0KMDAwMDAwMjQyMyAwMDAwMCBuDQowMDAwMDAyNDU2IDAwMDAwIG4NCjAwMDAwMDI1NzQgMDAwMDAgbg0KDQp0cmFpbGVyDQo8PA0KL1NpemUgMTENCi9Sb290IDEgMCBSDQovSW5mbyAxMCAwIFINCj4+DQoNCnN0YXJ0eHJlZg0KMjcxNA0KJSVFT0YNCg==
+              mime_type: application/pdf
+              file_name: Document name
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 714251
+                  type: 'Boiler Service '
+                  expiry_date: '2022-02-28'
+                  status: Expired
+                  missing: false
+                  file:
+                    id: 5758396
+                    download_url: https://asset.arthuronline.co.uk/download/5b339fad-59d0-412e-a4bb-5809802d6832
+                    mime_type: application/pdf
+                  property:
+                    id: 51784
+                    address: 2 Trainstation Road, London, WE14 6TR
+                  unit:
+                    id: 0
+                    address: ''
+                  tenancy:
+                    id: null
+                    ref: null
+                    address: null
+                  notes: Fully assessed
+                  share_manager: true
+                  share_tenant: false
+                  share_contractor: false
+                  share_owner: false
+                  created: '2022-10-05T12:09:45'
+                  modified: '2023-03-02T13:10:12'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCertificate
+      summary: Delete Certificate
+      tags:
+      - Certificates
+      parameters:
+      - name: certificate_id
+        in: path
+        required: true
+        description: Arthur certificate id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing ceriticate record using the certificate  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                message: Certificate deleted successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

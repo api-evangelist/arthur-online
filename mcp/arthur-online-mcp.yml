@@ -1,0 +1,1949 @@
+generated: '2026-07-26'
+method: derived
+status: candidate
+source: openapi/ (16 documents, 317 operations) derived from the Arthur public Postman collection
+description: Arthur Online publishes no MCP server. This is a CANDIDATE tool surface derived one-for-one from the
+  Arthur API v2 operations, so an agent builder can stand up a local MCP server over the REST API. Every tool inherits
+  its real input contract (path parameters, query parameters and request body) from the backing OpenAPI operation
+  named in source_operation. No hosted Arthur MCP endpoint exists - do not treat server.url as live.
+server:
+  name: arthur-online
+  transport: stdio
+  url: null
+  published: false
+  auth:
+    type: oauth2
+    flow: authorizationCode
+    authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+    tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+    required_header: X-EntityID
+    note: Every tool call must carry a bearer access token and the X-EntityID header naming the Arthur entity.
+guardrails:
+  read_only_default: 180 of the 317 operations are GET; expose those first.
+  write_operations: 137
+  strict_parameter: Set strict=true on every POST/PUT tool so an unrecognised Simple type fails instead of silently
+    creating reference data.
+  no_idempotency: Arthur has no idempotency key - a retried write creates a duplicate record. Agents must not auto-retry
+    writes.
+  rate_limit: 5,000 requests per hour, platform-wide.
+tool_count: 317
+tools_by_category:
+  applicants: 25
+  assets: 5
+  certificates: 4
+  conversations: 5
+  entities: 5
+  financials: 6
+  maintenance: 66
+  notes: 8
+  properties: 36
+  tags: 4
+  tenancies: 35
+  tenants: 5
+  types: 39
+  units: 39
+  utilities: 9
+  viewings: 26
+tools:
+- name: arthur_list_assets_on_applicant
+  description: List Assets On Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/assets
+  source_operation: openapi/arthur-online-applicants-openapi.yml#listAssetsOnApplicant
+- name: arthur_create_asset_on_applicant
+  description: Create Asset On Applicant
+  category: applicants
+  method: POST
+  path: /applicants/{applicant_id}/assets
+  source_operation: openapi/arthur-online-applicants-openapi.yml#createAssetOnApplicant
+- name: arthur_list_managers_on_applicant
+  description: List Managers on Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/managers/{manager_id}
+  source_operation: openapi/arthur-online-applicants-openapi.yml#listManagersOnApplicant
+- name: arthur_delete_manager_on_applicant
+  description: Delete Manager on Applicant
+  category: applicants
+  method: DELETE
+  path: /applicants/{applicant_id}/managers/{manager_id}
+  source_operation: openapi/arthur-online-applicants-openapi.yml#deleteManagerOnApplicant
+- name: arthur_add_manager_on_applicant
+  description: Add Manager on Applicant
+  category: applicants
+  method: POST
+  path: /applicants/{applicant_id}/managers
+  source_operation: openapi/arthur-online-applicants-openapi.yml#addManagerOnApplicant
+- name: arthur_list_credit_checks_on_applicant
+  description: List Credit Checks on Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/credit_checks
+  source_operation: openapi/arthur-online-applicants-openapi.yml#listCreditChecksOnApplicant
+- name: arthur_get_recipients_for_applicant
+  description: Get Recipients for Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/conversation_recipients
+  source_operation: openapi/arthur-online-applicants-openapi.yml#getRecipientsForApplicant
+- name: arthur_list_conversations_on_applicant
+  description: List Conversations On Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/conversations
+  source_operation: openapi/arthur-online-applicants-openapi.yml#listConversationsOnApplicant
+- name: arthur_create_conversation_on_applicant
+  description: Create Conversation On Applicant
+  category: applicants
+  method: POST
+  path: /applicants/{applicant_id}/conversations
+  source_operation: openapi/arthur-online-applicants-openapi.yml#createConversationOnApplicant
+- name: arthur_list_viewings_on_applicant
+  description: List Viewings On Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/viewings
+  source_operation: openapi/arthur-online-applicants-openapi.yml#listViewingsOnApplicant
+- name: arthur_add_viewing_on_applicant
+  description: Add Viewing On Applicant
+  category: applicants
+  method: POST
+  path: /applicants/{applicant_id}/viewings
+  source_operation: openapi/arthur-online-applicants-openapi.yml#addViewingOnApplicant
+- name: arthur_list_notes_on_applicant
+  description: List Notes On Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/notes
+  source_operation: openapi/arthur-online-applicants-openapi.yml#listNotesOnApplicant
+- name: arthur_add_note_on_applicant
+  description: Add Note On Applicant
+  category: applicants
+  method: POST
+  path: /applicants/{applicant_id}/notes
+  source_operation: openapi/arthur-online-applicants-openapi.yml#addNoteOnApplicant
+- name: arthur_view_note_on_applicant
+  description: View Note On Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-applicants-openapi.yml#viewNoteOnApplicant
+- name: arthur_update_note_on_applicant
+  description: Update Note On Applicant
+  category: applicants
+  method: PUT
+  path: /applicants/{applicant_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-applicants-openapi.yml#updateNoteOnApplicant
+- name: arthur_delete_note_on_applicant
+  description: Delete Note On Applicant
+  category: applicants
+  method: DELETE
+  path: /applicants/{applicant_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-applicants-openapi.yml#deleteNoteOnApplicant
+- name: arthur_list_tags_on_applicant
+  description: List Tags on Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}/tags
+  source_operation: openapi/arthur-online-applicants-openapi.yml#listTagsOnApplicant
+- name: arthur_tag_applicant
+  description: Tag Applicant
+  category: applicants
+  method: PUT
+  path: /applicants/{applicant_id}/tags
+  source_operation: openapi/arthur-online-applicants-openapi.yml#tagApplicant
+- name: arthur_untag_applicant
+  description: Untag Applicant
+  category: applicants
+  method: PUT
+  path: /applicants/{applicant_id}/untag
+  source_operation: openapi/arthur-online-applicants-openapi.yml#untagApplicant
+- name: arthur_untag_all_applicant_tags
+  description: Untag All Applicant Tags
+  category: applicants
+  method: PUT
+  path: /applicants/{applicant_id}/untag_all
+  source_operation: openapi/arthur-online-applicants-openapi.yml#untagAllApplicantTags
+- name: arthur_list_applicants
+  description: List Applicants
+  category: applicants
+  method: GET
+  path: /applicants
+  source_operation: openapi/arthur-online-applicants-openapi.yml#listApplicants
+- name: arthur_add_applicant
+  description: Add Applicant
+  category: applicants
+  method: POST
+  path: /applicants
+  source_operation: openapi/arthur-online-applicants-openapi.yml#addApplicant
+- name: arthur_view_applicant
+  description: View Applicant
+  category: applicants
+  method: GET
+  path: /applicants/{applicant_id}
+  source_operation: openapi/arthur-online-applicants-openapi.yml#viewApplicant
+- name: arthur_update_applicant
+  description: Update Applicant
+  category: applicants
+  method: PUT
+  path: /applicants/{applicant_id}
+  source_operation: openapi/arthur-online-applicants-openapi.yml#updateApplicant
+- name: arthur_update_applicant_status
+  description: Update Applicant Status
+  category: applicants
+  method: PUT
+  path: /applicant/{applicant_id}/status
+  source_operation: openapi/arthur-online-applicants-openapi.yml#updateApplicantStatus
+- name: arthur_list_assets
+  description: List Assets
+  category: assets
+  method: GET
+  path: /assets
+  source_operation: openapi/arthur-online-assets-openapi.yml#listAssets
+- name: arthur_create_asset
+  description: Create Asset
+  category: assets
+  method: POST
+  path: /assets
+  source_operation: openapi/arthur-online-assets-openapi.yml#createAsset
+- name: arthur_view_asset
+  description: View Asset
+  category: assets
+  method: GET
+  path: /assets/{asset_id}
+  source_operation: openapi/arthur-online-assets-openapi.yml#viewAsset
+- name: arthur_update_asset
+  description: Update Asset
+  category: assets
+  method: PUT
+  path: /assets/{asset_id}
+  source_operation: openapi/arthur-online-assets-openapi.yml#updateAsset
+- name: arthur_delete_asset
+  description: Delete Asset
+  category: assets
+  method: DELETE
+  path: /assets/{asset_id}
+  source_operation: openapi/arthur-online-assets-openapi.yml#deleteAsset
+- name: arthur_list_certificates
+  description: List Certificates
+  category: certificates
+  method: GET
+  path: /certificates
+  source_operation: openapi/arthur-online-certificates-openapi.yml#listCertificates
+- name: arthur_view_certificate
+  description: View Certificate
+  category: certificates
+  method: GET
+  path: /certificates/{certificate_id}
+  source_operation: openapi/arthur-online-certificates-openapi.yml#viewCertificate
+- name: arthur_update_certificate
+  description: Update Certificate
+  category: certificates
+  method: PUT
+  path: /certificates/{certificate_id}
+  source_operation: openapi/arthur-online-certificates-openapi.yml#updateCertificate
+- name: arthur_delete_certificate
+  description: Delete Certificate
+  category: certificates
+  method: DELETE
+  path: /certificates/{certificate_id}
+  source_operation: openapi/arthur-online-certificates-openapi.yml#deleteCertificate
+- name: arthur_list_assets_on_conversation
+  description: List Assets on Conversation
+  category: conversations
+  method: GET
+  path: /conversations/{conversation_id}/assets
+  source_operation: openapi/arthur-online-conversations-openapi.yml#listAssetsOnConversation
+- name: arthur_list_messages_related_to_conversation
+  description: List Messages Related To Conversation
+  category: conversations
+  method: GET
+  path: /conversations/{conversation_id}/messages
+  source_operation: openapi/arthur-online-conversations-openapi.yml#listMessagesRelatedToConversation
+- name: arthur_add_messages_related_to_conversation
+  description: Add Messages Related To Conversation
+  category: conversations
+  method: POST
+  path: /conversations/{conversation_id}/messages
+  source_operation: openapi/arthur-online-conversations-openapi.yml#addMessagesRelatedToConversation
+- name: arthur_view_message_related_to_conversation
+  description: View Message Related To Conversation
+  category: conversations
+  method: GET
+  path: /conversations/{conversation_id}/messages/{message_id}
+  source_operation: openapi/arthur-online-conversations-openapi.yml#viewMessageRelatedToConversation
+- name: arthur_list_conversations
+  description: List Conversations
+  category: conversations
+  method: GET
+  path: /conversations/{conversation_id}
+  source_operation: openapi/arthur-online-conversations-openapi.yml#listConversations
+- name: arthur_list_entities
+  description: List Entities
+  category: entities
+  method: GET
+  path: /entities
+  source_operation: openapi/arthur-online-entities-openapi.yml#listEntities
+- name: arthur_create_entity
+  description: Create Entity
+  category: entities
+  method: POST
+  path: /entities
+  source_operation: openapi/arthur-online-entities-openapi.yml#createEntity
+- name: arthur_view_entity
+  description: View Entity
+  category: entities
+  method: GET
+  path: /entities/{entity_id}
+  source_operation: openapi/arthur-online-entities-openapi.yml#viewEntity
+- name: arthur_update_entity
+  description: Update Entity
+  category: entities
+  method: PUT
+  path: /entities/{entity_id}
+  source_operation: openapi/arthur-online-entities-openapi.yml#updateEntity
+- name: arthur_delete_entity
+  description: Delete Entity
+  category: entities
+  method: DELETE
+  path: /entities/{entity_id}
+  source_operation: openapi/arthur-online-entities-openapi.yml#deleteEntity
+- name: arthur_view_recurring
+  description: View Recurring
+  category: financials
+  method: GET
+  path: /recurrings/{recurringId}
+  source_operation: openapi/arthur-online-financials-openapi.yml#viewRecurring
+- name: arthur_list_transactions
+  description: List Transactions
+  category: financials
+  method: GET
+  path: /transactions
+  source_operation: openapi/arthur-online-financials-openapi.yml#listTransactions
+- name: arthur_view_transaction
+  description: View Transaction
+  category: financials
+  method: GET
+  path: /transactions/{transaction_id}
+  source_operation: openapi/arthur-online-financials-openapi.yml#viewTransaction
+- name: arthur_payoff_transaction
+  description: Payoff Transaction
+  category: financials
+  method: PUT
+  path: /transactions/{transaction_id}/payoff
+  source_operation: openapi/arthur-online-financials-openapi.yml#payoffTransaction
+- name: arthur_list_invoices
+  description: List Invoices
+  category: financials
+  method: GET
+  path: /invoices
+  source_operation: openapi/arthur-online-financials-openapi.yml#listInvoices
+- name: arthur_view_invoices
+  description: View Invoices
+  category: financials
+  method: GET
+  path: /invoices/{invoice_id}
+  source_operation: openapi/arthur-online-financials-openapi.yml#viewInvoices
+- name: arthur_list_subtasks_on_task
+  description: List Subtasks on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/subtasks
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listSubtasksOnTask
+- name: arthur_create_subtask_on_task
+  description: Create Subtask on Task
+  category: maintenance
+  method: POST
+  path: /tasks/{task_id}/subtasks
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#createSubtaskOnTask
+- name: arthur_view_subtask_on_task
+  description: View Subtask On Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/subtasks/{subtask_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewSubtaskOnTask
+- name: arthur_update_subtask_on_task
+  description: Update Subtask On Task
+  category: maintenance
+  method: PUT
+  path: /tasks/{task_id}/subtasks/{subtask_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#updateSubtaskOnTask
+- name: arthur_delete_subtask_on_task
+  description: Delete Subtask On Task
+  category: maintenance
+  method: DELETE
+  path: /tasks/{task_id}/subtasks/{subtask_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#deleteSubtaskOnTask
+- name: arthur_list_workorders_on_task
+  description: List Workorders On Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/workorders
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listWorkordersOnTask
+- name: arthur_create_workorder_on_task
+  description: Create Workorder On Task
+  category: maintenance
+  method: POST
+  path: /tasks/{task_id}/workorders
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#createWorkorderOnTask
+- name: arthur_view_workorder_on_task
+  description: View Workorder On Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/workorders/{workorder_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewWorkorderOnTask
+- name: arthur_update_workorder_on_task
+  description: Update Workorder On Task
+  category: maintenance
+  method: PUT
+  path: /tasks/{task_id}/workorders/{workorder_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#updateWorkorderOnTask
+- name: arthur_list_tags_on_task
+  description: List Tags on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/tags
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listTagsOnTask
+- name: arthur_tag_task
+  description: Tag Task
+  category: maintenance
+  method: PUT
+  path: /tasks/{task_id}/tags
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#tagTask
+- name: arthur_untag_task
+  description: Untag Task
+  category: maintenance
+  method: PUT
+  path: /tasks/{task_id}/untag
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#untagTask
+- name: arthur_untag_all_task_tags
+  description: Untag All Task Tags
+  category: maintenance
+  method: PUT
+  path: /tasks/{task_id}/untag_all
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#untagAllTaskTags
+- name: arthur_list_notes_on_task
+  description: List Notes on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/notes
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listNotesOnTask
+- name: arthur_create_note_on_task
+  description: Create Note on Task
+  category: maintenance
+  method: POST
+  path: /tasks/{task_id}/notes
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#createNoteOnTask
+- name: arthur_view_note_on_task
+  description: View Note on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewNoteOnTask
+- name: arthur_update_note_on_task
+  description: Update Note on Task
+  category: maintenance
+  method: PUT
+  path: /tasks/{task_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#updateNoteOnTask
+- name: arthur_delete_note_on_task
+  description: Delete Note on Task
+  category: maintenance
+  method: DELETE
+  path: /tasks/{task_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#deleteNoteOnTask
+- name: arthur_get_recipients_for_task
+  description: Get Recipients for Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/conversation_recipients
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#getRecipientsForTask
+- name: arthur_list_conversations_on_task
+  description: List Conversations on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/conversations
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listConversationsOnTask
+- name: arthur_add_conversation_on_task
+  description: Add Conversation on Task
+  category: maintenance
+  method: POST
+  path: /tasks/{task_id}/conversations
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#addConversationOnTask
+- name: arthur_list_assets_on_task
+  description: List Assets on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/assets
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listAssetsOnTask
+- name: arthur_view_asset_on_task
+  description: View Asset on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/assets/{asset_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewAssetOnTask
+- name: arthur_list_tenants_on_task
+  description: List Tenants on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/tenants
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listTenantsOnTask
+- name: arthur_view_tenant_on_task
+  description: View Tenant on Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}/tenants/{tenant_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewTenantOnTask
+- name: arthur_list_tasks
+  description: List Tasks
+  category: maintenance
+  method: GET
+  path: /tasks
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listTasks
+- name: arthur_list_tasks_by_status
+  description: List Tasks By Status
+  category: maintenance
+  method: GET
+  path: /tasks/{status}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listTasksByStatus
+- name: arthur_view_task
+  description: View Task
+  category: maintenance
+  method: GET
+  path: /tasks/{task_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewTask
+- name: arthur_update_task
+  description: Update Task
+  category: maintenance
+  method: PUT
+  path: /tasks/{task_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#updateTask
+- name: arthur_delete_task
+  description: Delete Task
+  category: maintenance
+  method: DELETE
+  path: /tasks/{task_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#deleteTask
+- name: arthur_update_status_on_task
+  description: Update Status On Task
+  category: maintenance
+  method: PUT
+  path: /tasks/{task_id}/status
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#updateStatusOnTask
+- name: arthur_list_subtasks
+  description: List Subtasks
+  category: maintenance
+  method: GET
+  path: /subtasks
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listSubtasks
+- name: arthur_view_subtask
+  description: View Subtask
+  category: maintenance
+  method: GET
+  path: /subtasks/{subtask_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewSubtask
+- name: arthur_update_subtask
+  description: Update Subtask
+  category: maintenance
+  method: PUT
+  path: /subtasks/{subtask_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#updateSubtask
+- name: arthur_delete_subtask
+  description: Delete  Subtask
+  category: maintenance
+  method: DELETE
+  path: /subtasks/{subtask_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#deleteSubtask
+- name: arthur_list_transactions_on_workorder
+  description: List Transactions On Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/transactions
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listTransactionsOnWorkorder
+- name: arthur_list_certificates_on_workorder
+  description: List Certificates On Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/certificates
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listCertificatesOnWorkorder
+- name: arthur_list_quotes_on_workorder
+  description: List Quotes On Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/quotes
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listQuotesOnWorkorder
+- name: arthur_view_quote_on_workorder
+  description: View Quote On Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/quotes/{quote_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewQuoteOnWorkorder
+- name: arthur_list_invoices_on_workorder
+  description: List Invoices On Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/invoices
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listInvoicesOnWorkorder
+- name: arthur_view_invoice_on_workorder
+  description: View Invoice On Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/invoices/{invoice_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewInvoiceOnWorkorder
+- name: arthur_list_assets_on_workorder
+  description: List Assets on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/assets
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listAssetsOnWorkorder
+- name: arthur_create_asset_on_workorder
+  description: Create Asset on Workorder
+  category: maintenance
+  method: POST
+  path: /workorders/{workorder_id}/assets
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#createAssetOnWorkorder
+- name: arthur_view_asset_on_workorder
+  description: View Asset on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/assets/{edge_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewAssetOnWorkorder
+- name: arthur_get_recipients_for_workorder
+  description: Get Recipients for Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/conversation_recipients
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#getRecipientsForWorkorder
+- name: arthur_list_conversations_on_workorder
+  description: List Conversations on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/conversations
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listConversationsOnWorkorder
+- name: arthur_create_conversation_on_workorder
+  description: Create Conversation on Workorder
+  category: maintenance
+  method: POST
+  path: /workorders/{workorder_id}/conversations
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#createConversationOnWorkorder
+- name: arthur_list_notes_on_workorder
+  description: List Notes on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/notes
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listNotesOnWorkorder
+- name: arthur_add_note_on_workorder
+  description: Add Note on Workorder
+  category: maintenance
+  method: POST
+  path: /workorders/{workorder_id}/notes
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#addNoteOnWorkorder
+- name: arthur_view_note_on_workorder
+  description: View Note on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/notes/{edge_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewNoteOnWorkorder
+- name: arthur_update_note_on_workorder
+  description: Update Note on Workorder
+  category: maintenance
+  method: PUT
+  path: /workorders/{workorder_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#updateNoteOnWorkorder
+- name: arthur_delete_note_on_workorder
+  description: Delete Note on Workorder
+  category: maintenance
+  method: DELETE
+  path: /workorders/{workorder_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#deleteNoteOnWorkorder
+- name: arthur_list_tags_on_workorder
+  description: List Tags on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/tags
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listTagsOnWorkorder
+- name: arthur_tag_workorder
+  description: Tag Workorder
+  category: maintenance
+  method: PUT
+  path: /workorders/{workorder_id}/tags
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#tagWorkorder
+- name: arthur_untag_workorder
+  description: Untag Workorder
+  category: maintenance
+  method: PUT
+  path: /workorders/{workorder_id}/untag
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#untagWorkorder
+- name: arthur_untag_all_workorder_tags
+  description: Untag All Workorder Tags
+  category: maintenance
+  method: PUT
+  path: /workorders/{workorder_id}/untag_all
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#untagAllWorkorderTags
+- name: arthur_list_contractors_on_workorder
+  description: List Contractors on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/contractors
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listContractorsOnWorkorder
+- name: arthur_view_contractor_on_workorder
+  description: View Contractor on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/contractors/{contractor_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewContractorOnWorkorder
+- name: arthur_delete_contractor_on_workorder
+  description: Delete Contractor on Workorder
+  category: maintenance
+  method: DELETE
+  path: /workorders/{workorder_id}/contractors/{contractor_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#deleteContractorOnWorkorder
+- name: arthur_list_tenants_on_workorder
+  description: List Tenants on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/tenants
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listTenantsOnWorkorder
+- name: arthur_view_tenant_on_workorder
+  description: View Tenant on Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}/tenants/{tenant_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewTenantOnWorkorder
+- name: arthur_list_workorders
+  description: List Workorders
+  category: maintenance
+  method: GET
+  path: /workorders
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listWorkorders
+- name: arthur_view_workorder
+  description: View Workorder
+  category: maintenance
+  method: GET
+  path: /workorders/{workorder_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewWorkorder
+- name: arthur_update_workorder
+  description: Update Workorder
+  category: maintenance
+  method: PUT
+  path: /workorders/{workorder_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#updateWorkorder
+- name: arthur_list_quotes
+  description: List Quotes
+  category: maintenance
+  method: GET
+  path: /quotes
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#listQuotes
+- name: arthur_view_quote
+  description: View Quote
+  category: maintenance
+  method: GET
+  path: /quotes/{quote_id}
+  source_operation: openapi/arthur-online-maintenance-openapi.yml#viewQuote
+- name: arthur_list_tags_on_note
+  description: List Tags on Note
+  category: notes
+  method: GET
+  path: /notes/{note_id}/tags
+  source_operation: openapi/arthur-online-notes-openapi.yml#listTagsOnNote
+- name: arthur_tag_note
+  description: Tag Note
+  category: notes
+  method: PUT
+  path: /notes/{note_id}/tags
+  source_operation: openapi/arthur-online-notes-openapi.yml#tagNote
+- name: arthur_untag_note
+  description: Untag Note
+  category: notes
+  method: PUT
+  path: /notes/{note_id}/untag
+  source_operation: openapi/arthur-online-notes-openapi.yml#untagNote
+- name: arthur_untag_all_note_tags
+  description: Untag All Note Tags
+  category: notes
+  method: PUT
+  path: /notes/{note_id}/untag_all
+  source_operation: openapi/arthur-online-notes-openapi.yml#untagAllNoteTags
+- name: arthur_list_notes
+  description: List Notes
+  category: notes
+  method: GET
+  path: /notes
+  source_operation: openapi/arthur-online-notes-openapi.yml#listNotes
+- name: arthur_view_note
+  description: View Note
+  category: notes
+  method: GET
+  path: /notes/{note_id}
+  source_operation: openapi/arthur-online-notes-openapi.yml#viewNote
+- name: arthur_update_note
+  description: Update Note
+  category: notes
+  method: PUT
+  path: /notes/{note_id}
+  source_operation: openapi/arthur-online-notes-openapi.yml#updateNote
+- name: arthur_delete_note
+  description: Delete Note
+  category: notes
+  method: DELETE
+  path: /notes/{note_id}
+  source_operation: openapi/arthur-online-notes-openapi.yml#deleteNote
+- name: arthur_list_assets_on_property
+  description: List Assets On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/assets
+  source_operation: openapi/arthur-online-properties-openapi.yml#listAssetsOnProperty
+- name: arthur_create_asset_on_property
+  description: Create Asset On Property
+  category: properties
+  method: POST
+  path: /properties/{property_id}/assets
+  source_operation: openapi/arthur-online-properties-openapi.yml#createAssetOnProperty
+- name: arthur_list_certificates_on_property
+  description: List Certificates On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/certificates
+  source_operation: openapi/arthur-online-properties-openapi.yml#listCertificatesOnProperty
+- name: arthur_add_certificate_on_property
+  description: Add Certificate on Property
+  category: properties
+  method: POST
+  path: /properties/{property_id}/certificates
+  source_operation: openapi/arthur-online-properties-openapi.yml#addCertificateOnProperty
+- name: arthur_get_recipients_for_property
+  description: Get Recipients for Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/conversation_recipients
+  source_operation: openapi/arthur-online-properties-openapi.yml#getRecipientsForProperty
+- name: arthur_list_conversations_on_property
+  description: List Conversations On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/conversations
+  source_operation: openapi/arthur-online-properties-openapi.yml#listConversationsOnProperty
+- name: arthur_create_conversation_on_property
+  description: Create Conversation On Property
+  category: properties
+  method: POST
+  path: /properties/{property_id}/conversations
+  source_operation: openapi/arthur-online-properties-openapi.yml#createConversationOnProperty
+- name: arthur_list_general_info_for_property
+  description: List General Info for Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/faqs
+  source_operation: openapi/arthur-online-properties-openapi.yml#listGeneralInfoForProperty
+- name: arthur_add_general_info_for_property
+  description: Add General Info for Property
+  category: properties
+  method: POST
+  path: /properties/{property_id}/faqs
+  source_operation: openapi/arthur-online-properties-openapi.yml#addGeneralInfoForProperty
+- name: arthur_list_notes_on_property
+  description: List Notes On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/notes
+  source_operation: openapi/arthur-online-properties-openapi.yml#listNotesOnProperty
+- name: arthur_add_note_on_property
+  description: Add Note On Property
+  category: properties
+  method: POST
+  path: /properties/{property_id}/notes
+  source_operation: openapi/arthur-online-properties-openapi.yml#addNoteOnProperty
+- name: arthur_view_note_on_property
+  description: View Note On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#viewNoteOnProperty
+- name: arthur_update_note_on_property
+  description: Update Note On Property
+  category: properties
+  method: PUT
+  path: /properties/{property_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#updateNoteOnProperty
+- name: arthur_delete_note_on_property
+  description: Delete Note On Property
+  category: properties
+  method: DELETE
+  path: /properties/{property_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#deleteNoteOnProperty
+- name: arthur_list_units_on_property
+  description: List Units on Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/units
+  source_operation: openapi/arthur-online-properties-openapi.yml#listUnitsOnProperty
+- name: arthur_list_tenancies_on_property
+  description: List Tenancies on Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/tenancies
+  source_operation: openapi/arthur-online-properties-openapi.yml#listTenanciesOnProperty
+- name: arthur_list_tasks_on_property
+  description: List Tasks On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/tasks
+  source_operation: openapi/arthur-online-properties-openapi.yml#listTasksOnProperty
+- name: arthur_add_task_on_property
+  description: Add Task On Property
+  category: properties
+  method: POST
+  path: /properties/{property_id}/tasks
+  source_operation: openapi/arthur-online-properties-openapi.yml#addTaskOnProperty
+- name: arthur_view_task_on_property
+  description: View Task On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/tasks/{task_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#viewTaskOnProperty
+- name: arthur_update_task_on_property
+  description: Update Task On Property
+  category: properties
+  method: PUT
+  path: /properties/{property_id}/tasks/{task_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#updateTaskOnProperty
+- name: arthur_delete_task_on_property
+  description: Delete Task On Property
+  category: properties
+  method: DELETE
+  path: /properties/{property_id}/tasks/{task_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#deleteTaskOnProperty
+- name: arthur_list_workorders_on_property
+  description: List Workorders On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/workorders
+  source_operation: openapi/arthur-online-properties-openapi.yml#listWorkordersOnProperty
+- name: arthur_create_workorders_on_property
+  description: Create Workorders On Property
+  category: properties
+  method: POST
+  path: /properties/{property_id}/workorders
+  source_operation: openapi/arthur-online-properties-openapi.yml#createWorkordersOnProperty
+- name: arthur_view_workorders_on_property
+  description: View Workorders On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/workorders/{workorder_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#viewWorkordersOnProperty
+- name: arthur_update_workorders_on_property
+  description: Update Workorders On Property
+  category: properties
+  method: PUT
+  path: /properties/{property_id}/workorders/{workorder_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#updateWorkordersOnProperty
+- name: arthur_list_utilities_on_property
+  description: List Utilities On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/utilities
+  source_operation: openapi/arthur-online-properties-openapi.yml#listUtilitiesOnProperty
+- name: arthur_create_utility_on_property
+  description: Create Utility On Property
+  category: properties
+  method: POST
+  path: /properties/{property_id}/utilities
+  source_operation: openapi/arthur-online-properties-openapi.yml#createUtilityOnProperty
+- name: arthur_list_transactions_on_property
+  description: List Transactions On Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/transactions
+  source_operation: openapi/arthur-online-properties-openapi.yml#listTransactionsOnProperty
+- name: arthur_list_tags_on_property
+  description: List Tags on Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}/tags
+  source_operation: openapi/arthur-online-properties-openapi.yml#listTagsOnProperty
+- name: arthur_tag_property
+  description: Tag Property
+  category: properties
+  method: PUT
+  path: /properties/{property_id}/tags
+  source_operation: openapi/arthur-online-properties-openapi.yml#tagProperty
+- name: arthur_untag_property
+  description: Untag Property
+  category: properties
+  method: PUT
+  path: /properties/{property_id}/untag
+  source_operation: openapi/arthur-online-properties-openapi.yml#untagProperty
+- name: arthur_untag_all_property_tags
+  description: Untag All Property Tags
+  category: properties
+  method: PUT
+  path: /properties/{property_id}/untag_all
+  source_operation: openapi/arthur-online-properties-openapi.yml#untagAllPropertyTags
+- name: arthur_list_properties
+  description: List Properties
+  category: properties
+  method: GET
+  path: /properties
+  source_operation: openapi/arthur-online-properties-openapi.yml#listProperties
+- name: arthur_add_property
+  description: Add Property
+  category: properties
+  method: POST
+  path: /properties
+  source_operation: openapi/arthur-online-properties-openapi.yml#addProperty
+- name: arthur_view_property
+  description: View Property
+  category: properties
+  method: GET
+  path: /properties/{property_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#viewProperty
+- name: arthur_update_property
+  description: Update Property
+  category: properties
+  method: PUT
+  path: /properties/{property_id}
+  source_operation: openapi/arthur-online-properties-openapi.yml#updateProperty
+- name: arthur_list_tags_on_resource
+  description: List Tags On Resource
+  category: tags
+  method: GET
+  path: /tags/{resource}
+  source_operation: openapi/arthur-online-tags-openapi.yml#listTagsOnResource
+- name: arthur_add_tag_on_resource
+  description: Add Tag On Resource
+  category: tags
+  method: POST
+  path: /tags/{resource}
+  source_operation: openapi/arthur-online-tags-openapi.yml#addTagOnResource
+- name: arthur_view_tag
+  description: View Tag
+  category: tags
+  method: GET
+  path: /tags/{tag_id}
+  source_operation: openapi/arthur-online-tags-openapi.yml#viewTag
+- name: arthur_update_tag
+  description: Update Tag
+  category: tags
+  method: PUT
+  path: /tags/{tag_id}
+  source_operation: openapi/arthur-online-tags-openapi.yml#updateTag
+- name: arthur_list_tenants_on_tenancy
+  description: List Tenants On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/tenants
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listTenantsOnTenancy
+- name: arthur_add_tenant_on_tenancy
+  description: Add Tenant On Tenancy
+  category: tenancies
+  method: POST
+  path: /tenancies/{tenancy_id}/tenants
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#addTenantOnTenancy
+- name: arthur_list_assets_on_tenancy
+  description: List Assets On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/assets
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listAssetsOnTenancy
+- name: arthur_create_asset_on_tenancy
+  description: Create Asset On Tenancy
+  category: tenancies
+  method: POST
+  path: /tenancies/{tenancy_id}/assets
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#createAssetOnTenancy
+- name: arthur_list_certificates_on_tenancy
+  description: List Certificates On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/certificates
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listCertificatesOnTenancy
+- name: arthur_add_certificate_on_tenancy
+  description: Add Certificate on Tenancy
+  category: tenancies
+  method: POST
+  path: /tenancies/{tenancy_id}/certificates
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#addCertificateOnTenancy
+- name: arthur_register_deposit_on_tenancy
+  description: Register Deposit on Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{id}/register_deposit
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#registerDepositOnTenancy
+- name: arthur_update_deposit_on_tenancy
+  description: Update Deposit on Tenancy
+  category: tenancies
+  method: PUT
+  path: /tenancies/{id}/register_deposit
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#updateDepositOnTenancy
+- name: arthur_list_tasks_on_tenancy
+  description: List Tasks On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/tasks
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listTasksOnTenancy
+- name: arthur_add_task_on_tenancy
+  description: Add Task On Tenancy
+  category: tenancies
+  method: POST
+  path: /tenancies/{tenancy_id}/tasks
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#addTaskOnTenancy
+- name: arthur_view_task_on_tenancy
+  description: View Task On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/tasks/{task_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#viewTaskOnTenancy
+- name: arthur_update_task_on_tenancy
+  description: Update Task On Tenancy
+  category: tenancies
+  method: PUT
+  path: /tenancies/{tenancy_id}/tasks/{task_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#updateTaskOnTenancy
+- name: arthur_delete_task_on_tenancy
+  description: Delete Task On Tenancy
+  category: tenancies
+  method: DELETE
+  path: /tenancies/{tenancy_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#deleteTaskOnTenancy
+- name: arthur_view_tenancy
+  description: View Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#viewTenancy
+- name: arthur_update_tenancy
+  description: Update Tenancy
+  category: tenancies
+  method: PUT
+  path: /tenancies/{tenancy_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#updateTenancy
+- name: arthur_list_workorders_on_tenancy
+  description: List Workorders On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/workorders
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listWorkordersOnTenancy
+- name: arthur_create_workorder_on_tenancy
+  description: Create Workorder On Tenancy
+  category: tenancies
+  method: POST
+  path: /tenancies/{tenancy_id}/workorders
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#createWorkorderOnTenancy
+- name: arthur_view_workorder_on_tenancy
+  description: View Workorder On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/workorders/{workorder_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#viewWorkorderOnTenancy
+- name: arthur_update_workorder_on_tenancy
+  description: Update Workorder On Tenancy
+  category: tenancies
+  method: PUT
+  path: /tenancy/{tenancy_id}/workorders/{workorder_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#updateWorkorderOnTenancy
+- name: arthur_get_recipients_for_tenancy
+  description: Get Recipients for Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/conversation_recipients
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#getRecipientsForTenancy
+- name: arthur_list_conversation_on_tenancy
+  description: List Conversation On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/conversations
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listConversationOnTenancy
+- name: arthur_create_conversation_on_tenancy
+  description: Create Conversation On Tenancy
+  category: tenancies
+  method: POST
+  path: /viewings/{viewing_id}/conversations
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#createConversationOnTenancy
+- name: arthur_list_transactions_on_tenancy
+  description: List Transactions On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/transactions
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listTransactionsOnTenancy
+- name: arthur_list_notes_on_tenancy
+  description: List Notes On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/notes
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listNotesOnTenancy
+- name: arthur_add_note_on_tenancy
+  description: Add Note On Tenancy
+  category: tenancies
+  method: POST
+  path: /tenancies/{tenancy_id}/notes
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#addNoteOnTenancy
+- name: arthur_view_note_on_tenancy
+  description: View Note On Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#viewNoteOnTenancy
+- name: arthur_update_note_on_tenancy
+  description: Update Note On Tenancy
+  category: tenancies
+  method: PUT
+  path: /tenancies/{tenancy_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#updateNoteOnTenancy
+- name: arthur_delete_note_on_tenancy
+  description: Delete Note On Tenancy
+  category: tenancies
+  method: DELETE
+  path: /tenancies/{tenancy_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#deleteNoteOnTenancy
+- name: arthur_list_tags_on_tenancy
+  description: List Tags on Tenancy
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancy_id}/tags
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listTagsOnTenancy
+- name: arthur_tag_tenancy
+  description: Tag Tenancy
+  category: tenancies
+  method: PUT
+  path: /tenancies/{tenancy_id}/tags
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#tagTenancy
+- name: arthur_untag_tenancy
+  description: Untag Tenancy
+  category: tenancies
+  method: PUT
+  path: /tenancies/{tenancy_id}/untag
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#untagTenancy
+- name: arthur_untag_all_tenancy_tags
+  description: Untag All Tenancy Tags
+  category: tenancies
+  method: PUT
+  path: /tenancies/{tenancy_id}/untag_all
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#untagAllTenancyTags
+- name: arthur_list_recurrings
+  description: List Recurrings
+  category: tenancies
+  method: GET
+  path: /tenancies/{tenancyId}/recurrings
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listRecurrings
+- name: arthur_list_tenancies
+  description: List Tenancies
+  category: tenancies
+  method: GET
+  path: /tenancies
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#listTenancies
+- name: arthur_add_tenancy
+  description: Add Tenancy
+  category: tenancies
+  method: POST
+  path: /tenancies
+  source_operation: openapi/arthur-online-tenancies-openapi.yml#addTenancy
+- name: arthur_invite_tenant
+  description: Invite Tenant
+  category: tenants
+  method: PUT
+  path: /tenants/{tenant_id}/invite
+  source_operation: openapi/arthur-online-tenants-openapi.yml#inviteTenant
+- name: arthur_list_tenants
+  description: List Tenants
+  category: tenants
+  method: GET
+  path: /tenants
+  source_operation: openapi/arthur-online-tenants-openapi.yml#listTenants
+- name: arthur_add_tenant
+  description: Add Tenant
+  category: tenants
+  method: POST
+  path: /tenants
+  source_operation: openapi/arthur-online-tenants-openapi.yml#addTenant
+- name: arthur_view_tenant
+  description: View Tenant
+  category: tenants
+  method: GET
+  path: /tenants/{tenant_id}
+  source_operation: openapi/arthur-online-tenants-openapi.yml#viewTenant
+- name: arthur_update_tenant
+  description: Update Tenant
+  category: tenants
+  method: PUT
+  path: /tenants/{tenant_id}
+  source_operation: openapi/arthur-online-tenants-openapi.yml#updateTenant
+- name: arthur_applicant_types
+  description: Applicant types
+  category: types
+  method: GET
+  path: /applicant_types
+  source_operation: openapi/arthur-online-types-openapi.yml#applicantTypes
+- name: arthur_citizen_types
+  description: Citizen types
+  category: types
+  method: GET
+  path: /citizen_types
+  source_operation: openapi/arthur-online-types-openapi.yml#citizenTypes
+- name: arthur_applicant_statuses
+  description: Applicant statuses
+  category: types
+  method: GET
+  path: /applicant_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#applicantStatuses
+- name: arthur_visa_types
+  description: Visa types
+  category: types
+  method: GET
+  path: /visa_types
+  source_operation: openapi/arthur-online-types-openapi.yml#visaTypes
+- name: arthur_student_statuses
+  description: Student statuses
+  category: types
+  method: GET
+  path: /student_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#studentStatuses
+- name: arthur_task_types
+  description: Task types
+  category: types
+  method: GET
+  path: /task_types
+  source_operation: openapi/arthur-online-types-openapi.yml#taskTypes
+- name: arthur_subtask_templates
+  description: Subtask templates
+  category: types
+  method: GET
+  path: /subtask_templates
+  source_operation: openapi/arthur-online-types-openapi.yml#subtaskTemplates
+- name: arthur_task_statuses
+  description: Task statuses
+  category: types
+  method: GET
+  path: /task_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#taskStatuses
+- name: arthur_profession_types
+  description: Profession types
+  category: types
+  method: GET
+  path: /profession_types
+  source_operation: openapi/arthur-online-types-openapi.yml#professionTypes
+- name: arthur_access_details_types
+  description: Access details types
+  category: types
+  method: GET
+  path: /access_details_types
+  source_operation: openapi/arthur-online-types-openapi.yml#accessDetailsTypes
+- name: arthur_area_types
+  description: Area types
+  category: types
+  method: GET
+  path: /area_types
+  source_operation: openapi/arthur-online-types-openapi.yml#areaTypes
+- name: arthur_certificate_types
+  description: Certificate types
+  category: types
+  method: GET
+  path: /certificate_types
+  source_operation: openapi/arthur-online-types-openapi.yml#certificateTypes
+- name: arthur_contract_types
+  description: Contract types
+  category: types
+  method: GET
+  path: /contract_types
+  source_operation: openapi/arthur-online-types-openapi.yml#contractTypes
+- name: arthur_countries
+  description: Countries
+  category: types
+  method: GET
+  path: /countries
+  source_operation: openapi/arthur-online-types-openapi.yml#countries
+- name: arthur_faq_types
+  description: Faq types
+  category: types
+  method: GET
+  path: /faq_types
+  source_operation: openapi/arthur-online-types-openapi.yml#faqTypes
+- name: arthur_feature_types
+  description: Feature types
+  category: types
+  method: GET
+  path: /feature_types
+  source_operation: openapi/arthur-online-types-openapi.yml#featureTypes
+- name: arthur_genders
+  description: Genders
+  category: types
+  method: GET
+  path: /genders
+  source_operation: openapi/arthur-online-types-openapi.yml#genders
+- name: arthur_home_owner_statuses
+  description: Home owner statuses
+  category: types
+  method: GET
+  path: /home_owner_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#homeOwnerStatuses
+- name: arthur_offer_frequency_types
+  description: Offer frequency types
+  category: types
+  method: GET
+  path: /offer_frequencies
+  source_operation: openapi/arthur-online-types-openapi.yml#offerFrequencyTypes
+- name: arthur_payment_types
+  description: Payment types
+  category: types
+  method: GET
+  path: /payment_types
+  source_operation: openapi/arthur-online-types-openapi.yml#paymentTypes
+- name: arthur_property_types
+  description: Property types
+  category: types
+  method: GET
+  path: /property_types
+  source_operation: openapi/arthur-online-types-openapi.yml#propertyTypes
+- name: arthur_service_types
+  description: Service types
+  category: types
+  method: GET
+  path: /service_types
+  source_operation: openapi/arthur-online-types-openapi.yml#serviceTypes
+- name: arthur_tenancy_statuses
+  description: Tenancy  statuses
+  category: types
+  method: GET
+  path: /tenancy_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#tenancyStatuses
+- name: arthur_titles
+  description: Titles
+  category: types
+  method: GET
+  path: /titles
+  source_operation: openapi/arthur-online-types-openapi.yml#titles
+- name: arthur_transaction_description_formats
+  description: Transaction description formats
+  category: types
+  method: GET
+  path: /description_formats
+  source_operation: openapi/arthur-online-types-openapi.yml#transactionDescriptionFormats
+- name: arthur_unit_types
+  description: Unit types
+  category: types
+  method: GET
+  path: /unit_types
+  source_operation: openapi/arthur-online-types-openapi.yml#unitTypes
+- name: arthur_unit_status_types
+  description: Unit status types
+  category: types
+  method: GET
+  path: /unit_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#unitStatusTypes
+- name: arthur_utility_types
+  description: Utility types
+  category: types
+  method: GET
+  path: /utility_types
+  source_operation: openapi/arthur-online-types-openapi.yml#utilityTypes
+- name: arthur_vat_codes
+  description: Vat codes
+  category: types
+  method: GET
+  path: /vat_codes
+  source_operation: openapi/arthur-online-types-openapi.yml#vatCodes
+- name: arthur_asset_types
+  description: Asset types
+  category: types
+  method: GET
+  path: /asset_types
+  source_operation: openapi/arthur-online-types-openapi.yml#assetTypes
+- name: arthur_viewing_statuses
+  description: Viewing statuses
+  category: types
+  method: GET
+  path: /viewing_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#viewingStatuses
+- name: arthur_tenancy_types
+  description: Tenancy types
+  category: types
+  method: GET
+  path: /tenancy_types
+  source_operation: openapi/arthur-online-types-openapi.yml#tenancyTypes
+- name: arthur_tenancy_subtypes
+  description: Tenancy subtypes
+  category: types
+  method: GET
+  path: /tenancy_sub_types
+  source_operation: openapi/arthur-online-types-openapi.yml#tenancySubtypes
+- name: arthur_tenancy_subtypes_on_tenancy_type
+  description: Tenancy subtypes on Tenancy Type
+  category: types
+  method: GET
+  path: /tenancy_types/{id}/tenancy_sub_types
+  source_operation: openapi/arthur-online-types-openapi.yml#tenancySubtypesOnTenancyType
+- name: arthur_transaction_types
+  description: Transaction types
+  category: types
+  method: GET
+  path: /transaction_types
+  source_operation: openapi/arthur-online-types-openapi.yml#transactionTypes
+- name: arthur_conversation_statuses
+  description: Conversation statuses
+  category: types
+  method: GET
+  path: /conversation_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#conversationStatuses
+- name: arthur_rent_frequencies
+  description: Rent frequencies
+  category: types
+  method: GET
+  path: /rent_frequencies
+  source_operation: openapi/arthur-online-types-openapi.yml#rentFrequencies
+- name: arthur_workorder_statuses
+  description: Workorder statuses
+  category: types
+  method: GET
+  path: /workorder_statuses
+  source_operation: openapi/arthur-online-types-openapi.yml#workorderStatuses
+- name: arthur_recurring_frequencies
+  description: Recurring Frequencies
+  category: types
+  method: GET
+  path: /frequencies/recurring
+  source_operation: openapi/arthur-online-types-openapi.yml#recurringFrequencies
+- name: arthur_view_parent_property
+  description: View parent Property
+  category: units
+  method: GET
+  path: /units/{unit_id}/property
+  source_operation: openapi/arthur-online-units-openapi.yml#viewParentProperty
+- name: arthur_list_assets_on_unit
+  description: List Assets On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/assets
+  source_operation: openapi/arthur-online-units-openapi.yml#listAssetsOnUnit
+- name: arthur_create_asset_on_unit
+  description: Create Asset On Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/assets
+  source_operation: openapi/arthur-online-units-openapi.yml#createAssetOnUnit
+- name: arthur_list_certificates_on_unit
+  description: List Certificates On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/certificates
+  source_operation: openapi/arthur-online-units-openapi.yml#listCertificatesOnUnit
+- name: arthur_add_certificate_on_unit
+  description: Add Certificate on Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/certificates
+  source_operation: openapi/arthur-online-units-openapi.yml#addCertificateOnUnit
+- name: arthur_get_recipients_for_unit
+  description: Get Recipients for Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/conversation_recipients
+  source_operation: openapi/arthur-online-units-openapi.yml#getRecipientsForUnit
+- name: arthur_list_conversation_on_unit
+  description: List Conversation On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/conversations
+  source_operation: openapi/arthur-online-units-openapi.yml#listConversationOnUnit
+- name: arthur_create_conversation_on_unit
+  description: Create Conversation On Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/conversations
+  source_operation: openapi/arthur-online-units-openapi.yml#createConversationOnUnit
+- name: arthur_list_general_info_for_unit
+  description: List General Info for Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/faqs
+  source_operation: openapi/arthur-online-units-openapi.yml#listGeneralInfoForUnit
+- name: arthur_add_general_info_for_unit
+  description: Add General Info for Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/faqs
+  source_operation: openapi/arthur-online-units-openapi.yml#addGeneralInfoForUnit
+- name: arthur_list_notes_on_unit
+  description: List Notes On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/notes
+  source_operation: openapi/arthur-online-units-openapi.yml#listNotesOnUnit
+- name: arthur_add_note_on_unit
+  description: Add Note On Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/notes
+  source_operation: openapi/arthur-online-units-openapi.yml#addNoteOnUnit
+- name: arthur_view_note_on_unit
+  description: View Note On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#viewNoteOnUnit
+- name: arthur_update_note_on_unit
+  description: Update Note On Unit
+  category: units
+  method: PUT
+  path: /units/{unit_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#updateNoteOnUnit
+- name: arthur_delete_note_on_unit
+  description: Delete Note On Unit
+  category: units
+  method: DELETE
+  path: /units/{unit_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#deleteNoteOnUnit
+- name: arthur_list_viewings_on_unit
+  description: List Viewings on Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/viewings
+  source_operation: openapi/arthur-online-units-openapi.yml#listViewingsOnUnit
+- name: arthur_add_viewing_on_unit
+  description: Add Viewing on Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/viewings
+  source_operation: openapi/arthur-online-units-openapi.yml#addViewingOnUnit
+- name: arthur_list_tenancies_on_unit
+  description: List Tenancies on Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/tenancies
+  source_operation: openapi/arthur-online-units-openapi.yml#listTenanciesOnUnit
+- name: arthur_add_tenancy_on_unit
+  description: Add Tenancy On Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/tenancies
+  source_operation: openapi/arthur-online-units-openapi.yml#addTenancyOnUnit
+- name: arthur_list_tasks_on_unit
+  description: List Tasks On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/tasks
+  source_operation: openapi/arthur-online-units-openapi.yml#listTasksOnUnit
+- name: arthur_add_task_on_unit
+  description: Add Task On Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/tasks
+  source_operation: openapi/arthur-online-units-openapi.yml#addTaskOnUnit
+- name: arthur_view_task_on_unit
+  description: View Task On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/tasks/{task_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#viewTaskOnUnit
+- name: arthur_update_task_on_unit
+  description: Update Task On Unit
+  category: units
+  method: PUT
+  path: /units/{unit_id}/tasks/{task_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#updateTaskOnUnit
+- name: arthur_delete_task_on_unit
+  description: Delete Task On Unit
+  category: units
+  method: DELETE
+  path: /units/{unit_id}/tasks/{task_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#deleteTaskOnUnit
+- name: arthur_list_workorders_on_unit
+  description: List Workorders On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/workorders
+  source_operation: openapi/arthur-online-units-openapi.yml#listWorkordersOnUnit
+- name: arthur_create_workorders_on_unit
+  description: Create Workorders On Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/workorders
+  source_operation: openapi/arthur-online-units-openapi.yml#createWorkordersOnUnit
+- name: arthur_view_workorders_on_unit
+  description: View Workorders On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/workorders/{workorder_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#viewWorkordersOnUnit
+- name: arthur_update_workorders_on_unit
+  description: Update Workorders On Unit
+  category: units
+  method: PUT
+  path: /units/{unit_id}/workorders/{workorder_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#updateWorkordersOnUnit
+- name: arthur_list_utilities_on_unit
+  description: List Utilities On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/utilities
+  source_operation: openapi/arthur-online-units-openapi.yml#listUtilitiesOnUnit
+- name: arthur_create_utility_on_unit
+  description: Create Utility On Unit
+  category: units
+  method: POST
+  path: /units/{unit_id}/utilities
+  source_operation: openapi/arthur-online-units-openapi.yml#createUtilityOnUnit
+- name: arthur_list_transactions_on_unit
+  description: List Transactions On Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}/transactions
+  source_operation: openapi/arthur-online-units-openapi.yml#listTransactionsOnUnit
+- name: arthur_get_tags_on_unit
+  description: Get Tags on Unit
+  category: units
+  method: GET
+  path: /units/{id}/tags
+  source_operation: openapi/arthur-online-units-openapi.yml#getTagsOnUnit
+- name: arthur_tag_unit
+  description: Tag Unit
+  category: units
+  method: PUT
+  path: /units/{unit_id}/tags
+  source_operation: openapi/arthur-online-units-openapi.yml#tagUnit
+- name: arthur_untag_unit
+  description: Untag Unit
+  category: units
+  method: PUT
+  path: /units/{unit_id}/untag
+  source_operation: openapi/arthur-online-units-openapi.yml#untagUnit
+- name: arthur_untag_all_unit_tags
+  description: Untag All Unit Tags
+  category: units
+  method: PUT
+  path: /units/{unit_id}/untag_all
+  source_operation: openapi/arthur-online-units-openapi.yml#untagAllUnitTags
+- name: arthur_list_units
+  description: List Units
+  category: units
+  method: GET
+  path: /units
+  source_operation: openapi/arthur-online-units-openapi.yml#listUnits
+- name: arthur_add_unit
+  description: Add Unit
+  category: units
+  method: POST
+  path: /units
+  source_operation: openapi/arthur-online-units-openapi.yml#addUnit
+- name: arthur_view_unit
+  description: View Unit
+  category: units
+  method: GET
+  path: /units/{unit_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#viewUnit
+- name: arthur_update_unit
+  description: Update Unit
+  category: units
+  method: PUT
+  path: /units/{unit_id}
+  source_operation: openapi/arthur-online-units-openapi.yml#updateUnit
+- name: arthur_list_readings
+  description: List Readings
+  category: utilities
+  method: GET
+  path: /utilities/{utility_id}/readings
+  source_operation: openapi/arthur-online-utilities-openapi.yml#listReadings
+- name: arthur_create_reading
+  description: Create Reading
+  category: utilities
+  method: POST
+  path: /utilities/{utility_id}/readings
+  source_operation: openapi/arthur-online-utilities-openapi.yml#createReading
+- name: arthur_view_reading
+  description: View Reading
+  category: utilities
+  method: GET
+  path: /utilities/{utility_id}/readings/{reading_id}
+  source_operation: openapi/arthur-online-utilities-openapi.yml#viewReading
+- name: arthur_update_reading
+  description: Update Reading
+  category: utilities
+  method: PUT
+  path: /utilities/{utility_id}/readings/{reading_id}
+  source_operation: openapi/arthur-online-utilities-openapi.yml#updateReading
+- name: arthur_delete_reading
+  description: Delete Reading
+  category: utilities
+  method: DELETE
+  path: /utilities/{utility_id}/readings/{reading_id}
+  source_operation: openapi/arthur-online-utilities-openapi.yml#deleteReading
+- name: arthur_list_utilities
+  description: List Utilities
+  category: utilities
+  method: GET
+  path: /utilities
+  source_operation: openapi/arthur-online-utilities-openapi.yml#listUtilities
+- name: arthur_view_utility
+  description: View Utility
+  category: utilities
+  method: GET
+  path: /utilities/{utility_id}
+  source_operation: openapi/arthur-online-utilities-openapi.yml#viewUtility
+- name: arthur_update_utility
+  description: Update Utility
+  category: utilities
+  method: PUT
+  path: /utilities/{utility_id}
+  source_operation: openapi/arthur-online-utilities-openapi.yml#updateUtility
+- name: arthur_delete_utility
+  description: Delete Utility
+  category: utilities
+  method: DELETE
+  path: /utilities/{utility_id}
+  source_operation: openapi/arthur-online-utilities-openapi.yml#deleteUtility
+- name: arthur_list_applicants_on_viewing
+  description: List Applicants on Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/applicants
+  source_operation: openapi/arthur-online-viewings-openapi.yml#listApplicantsOnViewing
+- name: arthur_list_managers_on_viewing
+  description: List Managers on Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/managers
+  source_operation: openapi/arthur-online-viewings-openapi.yml#listManagersOnViewing
+- name: arthur_add_manager_on_viewing
+  description: Add Manager on Viewing
+  category: viewings
+  method: POST
+  path: /viewings/{viewing_id}/managers
+  source_operation: openapi/arthur-online-viewings-openapi.yml#addManagerOnViewing
+- name: arthur_view_manager_on_viewing
+  description: View Manager on Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/managers/{manager_id}
+  source_operation: openapi/arthur-online-viewings-openapi.yml#viewManagerOnViewing
+- name: arthur_delete_manager_on_viewing
+  description: Delete Manager on Viewing
+  category: viewings
+  method: DELETE
+  path: /viewings/{viewing_id}/managers/{manager_id}
+  source_operation: openapi/arthur-online-viewings-openapi.yml#deleteManagerOnViewing
+- name: arthur_get_recipients_for_viewing
+  description: Get Recipients for Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/conversation_recipients
+  source_operation: openapi/arthur-online-viewings-openapi.yml#getRecipientsForViewing
+- name: arthur_list_conversations_on_viewing
+  description: List Conversations On Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/conversations
+  source_operation: openapi/arthur-online-viewings-openapi.yml#listConversationsOnViewing
+- name: arthur_create_conversation_on_viewing
+  description: Create Conversation On Viewing
+  category: viewings
+  method: POST
+  path: /viewings/{viewing_id}/conversations
+  source_operation: openapi/arthur-online-viewings-openapi.yml#createConversationOnViewing
+- name: arthur_list_tags_on_viewing
+  description: List Tags on Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/tags
+  source_operation: openapi/arthur-online-viewings-openapi.yml#listTagsOnViewing
+- name: arthur_tag_viewing
+  description: Tag Viewing
+  category: viewings
+  method: PUT
+  path: /viewings/{viewing_id}/tags
+  source_operation: openapi/arthur-online-viewings-openapi.yml#tagViewing
+- name: arthur_untag_viewing
+  description: Untag Viewing
+  category: viewings
+  method: PUT
+  path: /viewings/{viewing_id}/untag
+  source_operation: openapi/arthur-online-viewings-openapi.yml#untagViewing
+- name: arthur_untag_all_viewing_tags
+  description: Untag All Viewing Tags
+  category: viewings
+  method: PUT
+  path: /viewings/{viewing_id}/untag_all
+  source_operation: openapi/arthur-online-viewings-openapi.yml#untagAllViewingTags
+- name: arthur_list_notes_on_viewing
+  description: List Notes On Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/notes
+  source_operation: openapi/arthur-online-viewings-openapi.yml#listNotesOnViewing
+- name: arthur_add_note_on_viewing
+  description: Add Note On Viewing
+  category: viewings
+  method: POST
+  path: /viewings/{viewing_id}/notes
+  source_operation: openapi/arthur-online-viewings-openapi.yml#addNoteOnViewing
+- name: arthur_view_note_on_viewing
+  description: View Note On Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-viewings-openapi.yml#viewNoteOnViewing
+- name: arthur_update_note_on_viewing
+  description: Update Note On Viewing
+  category: viewings
+  method: PUT
+  path: /viewings/{viewing_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-viewings-openapi.yml#updateNoteOnViewing
+- name: arthur_delete_note_on_viewing
+  description: Delete Note On Viewing
+  category: viewings
+  method: DELETE
+  path: /viewings/{viewing_id}/notes/{note_id}
+  source_operation: openapi/arthur-online-viewings-openapi.yml#deleteNoteOnViewing
+- name: arthur_list_tenancies_on_viewing
+  description: List Tenancies On Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}/tenancies
+  source_operation: openapi/arthur-online-viewings-openapi.yml#listTenanciesOnViewing
+- name: arthur_add_tenancy_on_viewing
+  description: Add Tenancy On Viewing
+  category: viewings
+  method: POST
+  path: /viewings/{viewing_id}/tenancies
+  source_operation: openapi/arthur-online-viewings-openapi.yml#addTenancyOnViewing
+- name: arthur_submit_offer_on_viewing
+  description: Submit Offer on Viewing
+  category: viewings
+  method: PUT
+  path: /viewings/{viewing_id}/submit_offer
+  source_operation: openapi/arthur-online-viewings-openapi.yml#submitOfferOnViewing
+- name: arthur_list_viewings
+  description: List Viewings
+  category: viewings
+  method: GET
+  path: /viewings
+  source_operation: openapi/arthur-online-viewings-openapi.yml#listViewings
+- name: arthur_add_viewing
+  description: Add Viewing
+  category: viewings
+  method: POST
+  path: /viewings
+  source_operation: openapi/arthur-online-viewings-openapi.yml#addViewing
+- name: arthur_view_viewing
+  description: View Viewing
+  category: viewings
+  method: GET
+  path: /viewings/{viewing_id}
+  source_operation: openapi/arthur-online-viewings-openapi.yml#viewViewing
+- name: arthur_update_viewing
+  description: Update Viewing
+  category: viewings
+  method: PUT
+  path: /viewings/{viewing_id}
+  source_operation: openapi/arthur-online-viewings-openapi.yml#updateViewing
+- name: arthur_delete_viewing
+  description: Delete Viewing
+  category: viewings
+  method: DELETE
+  path: /viewings/{viewing_id}
+  source_operation: openapi/arthur-online-viewings-openapi.yml#deleteViewing
+- name: arthur_update_viewing_status
+  description: Update Viewing Status
+  category: viewings
+  method: PUT
+  path: /viewings/{viewing_id}/status
+  source_operation: openapi/arthur-online-viewings-openapi.yml#updateViewingStatus

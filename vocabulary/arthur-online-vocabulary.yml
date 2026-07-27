@@ -1,0 +1,313 @@
+name: Arthur Online
+generated: '2026-07-26'
+method: derived
+source: openapi/arthur-online-types-openapi.yml, derived from the Arthur API public Postman collection
+description: 'Arthur''s controlled vocabulary is machine-readable: every enumerated field in the platform resolves
+  against the read-only Types API, 39 GET endpoints that serve the allowed values for applicant statuses, asset
+  types, certificate types, contract types, area types and the rest. This artifact indexes those vocabularies plus
+  the core domain terms of UK lettings that the API models.'
+version: '2.0'
+created: '2026-07-26'
+modified: '2026-07-26'
+tags:
+- Real Estate
+- Property Management
+- Lettings
+- United Kingdom
+- Reference Data
+reference_data_api:
+  base: https://api.arthuronline.co.uk/v2
+  endpoint_count: 39
+  access: OAuth 2.0 bearer token + X-EntityID header; not anonymously readable.
+core_terms:
+- term: Entity
+  definition: The Arthur account boundary. Every API call names an entity in the mandatory X-EntityID header, and
+    records are only visible within their entity.
+  category: Core Object
+- term: Property
+  definition: 'A building or address record. Everything else in Arthur hangs off a property: units, assets, certificates,
+    tasks, work orders, utilities and transactions.'
+  category: Core Object
+- term: Unit
+  definition: An individually lettable space beneath a property - a flat, a room, a commercial suite. Tenancies
+    and viewings attach to units, not to properties.
+  category: Core Object
+- term: Tenancy
+  definition: The agreement over a unit for a period, carrying the tenants on it, the deposit registration, recurring
+    charges and the rent review history.
+  category: Core Object
+- term: Tenant
+  definition: A person record occupying a unit under a tenancy; can be invited into the Arthur tenant portal.
+  category: Core Object
+- term: Applicant
+  definition: A prospective renter moving through the lettings funnel, with a status, credit checks and assigned
+    managers, before converting into a tenancy.
+  category: Core Object
+- term: Viewing
+  definition: A scheduled appointment to view a property or unit, with applicants attached, an optional offer, and
+    its own status lifecycle.
+  category: Core Object
+- term: Task
+  definition: A unit of maintenance or management work. Tasks carry subtasks and can be escalated into work orders.
+  category: Core Object
+- term: Work order
+  definition: Contractor-facing work dispatched from a task, with quotes, invoices, approvals and a completion workflow
+    across manager, owner and contractor.
+  category: Core Object
+- term: Certificate
+  definition: A compliance document with an expiry - gas safety, electrical, EPC. Expiry drives webhook events at
+    30 days, 7 days and on the day.
+  category: Core Object
+- term: Simple type
+  definition: An id/name pair the user can extend (for example 'source'). Submitting an unknown name creates it
+    unless strict=true is set.
+  category: Convention
+- term: Custom field
+  definition: A tenant-defined field on properties, units, tenancies, applicants and tenants, read as an array of
+    {name, api_name, value} and written as an api_name-keyed object.
+  category: Convention
+- term: Recurring
+  definition: A scheduled charge on a tenancy - rent and other repeating amounts - which generates transactions.
+  category: Core Object
+- term: Transaction
+  definition: A financial movement on a tenancy or property, settled against invoices and payoffs, and remitted
+    to property owners.
+  category: Core Object
+terms:
+- term: Access details types
+  definition: Read-only reference vocabulary served by /access_details_types.
+  category: Reference Data
+  endpoint: /access_details_types
+  operationId: accessDetailsTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Applicant statuses
+  definition: Read-only reference vocabulary served by /applicant_statuses.
+  category: Reference Data
+  endpoint: /applicant_statuses
+  operationId: applicantStatuses
+  source: openapi/arthur-online-types-openapi.yml
+- term: Applicant types
+  definition: Read-only reference vocabulary served by /applicant_types.
+  category: Reference Data
+  endpoint: /applicant_types
+  operationId: applicantTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Area types
+  definition: Read-only reference vocabulary served by /area_types.
+  category: Reference Data
+  endpoint: /area_types
+  operationId: areaTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Asset types
+  definition: Read-only reference vocabulary served by /asset_types.
+  category: Reference Data
+  endpoint: /asset_types
+  operationId: assetTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Certificate types
+  definition: Read-only reference vocabulary served by /certificate_types.
+  category: Reference Data
+  endpoint: /certificate_types
+  operationId: certificateTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Citizen types
+  definition: Read-only reference vocabulary served by /citizen_types.
+  category: Reference Data
+  endpoint: /citizen_types
+  operationId: citizenTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Contract types
+  definition: Read-only reference vocabulary served by /contract_types.
+  category: Reference Data
+  endpoint: /contract_types
+  operationId: contractTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Conversation statuses
+  definition: Read-only reference vocabulary served by /conversation_statuses.
+  category: Reference Data
+  endpoint: /conversation_statuses
+  operationId: conversationStatuses
+  source: openapi/arthur-online-types-openapi.yml
+- term: Countries
+  definition: Read-only reference vocabulary served by /countries.
+  category: Reference Data
+  endpoint: /countries
+  operationId: countries
+  source: openapi/arthur-online-types-openapi.yml
+- term: Transaction description formats
+  definition: Read-only reference vocabulary served by /description_formats.
+  category: Reference Data
+  endpoint: /description_formats
+  operationId: transactionDescriptionFormats
+  source: openapi/arthur-online-types-openapi.yml
+- term: Faq types
+  definition: Read-only reference vocabulary served by /faq_types.
+  category: Reference Data
+  endpoint: /faq_types
+  operationId: faqTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Feature types
+  definition: Read-only reference vocabulary served by /feature_types.
+  category: Reference Data
+  endpoint: /feature_types
+  operationId: featureTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Recurring Frequencies
+  definition: Read-only reference vocabulary served by /frequencies/recurring.
+  category: Reference Data
+  endpoint: /frequencies/recurring
+  operationId: recurringFrequencies
+  source: openapi/arthur-online-types-openapi.yml
+- term: Genders
+  definition: Read-only reference vocabulary served by /genders.
+  category: Reference Data
+  endpoint: /genders
+  operationId: genders
+  source: openapi/arthur-online-types-openapi.yml
+- term: Home owner statuses
+  definition: Read-only reference vocabulary served by /home_owner_statuses.
+  category: Reference Data
+  endpoint: /home_owner_statuses
+  operationId: homeOwnerStatuses
+  source: openapi/arthur-online-types-openapi.yml
+- term: Offer frequency types
+  definition: Read-only reference vocabulary served by /offer_frequencies.
+  category: Reference Data
+  endpoint: /offer_frequencies
+  operationId: offerFrequencyTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Payment types
+  definition: Read-only reference vocabulary served by /payment_types.
+  category: Reference Data
+  endpoint: /payment_types
+  operationId: paymentTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Profession types
+  definition: Read-only reference vocabulary served by /profession_types.
+  category: Reference Data
+  endpoint: /profession_types
+  operationId: professionTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Property types
+  definition: Read-only reference vocabulary served by /property_types.
+  category: Reference Data
+  endpoint: /property_types
+  operationId: propertyTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Rent frequencies
+  definition: Read-only reference vocabulary served by /rent_frequencies.
+  category: Reference Data
+  endpoint: /rent_frequencies
+  operationId: rentFrequencies
+  source: openapi/arthur-online-types-openapi.yml
+- term: Service types
+  definition: Read-only reference vocabulary served by /service_types.
+  category: Reference Data
+  endpoint: /service_types
+  operationId: serviceTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Student statuses
+  definition: Read-only reference vocabulary served by /student_statuses.
+  category: Reference Data
+  endpoint: /student_statuses
+  operationId: studentStatuses
+  source: openapi/arthur-online-types-openapi.yml
+- term: Subtask templates
+  definition: Read-only reference vocabulary served by /subtask_templates.
+  category: Reference Data
+  endpoint: /subtask_templates
+  operationId: subtaskTemplates
+  source: openapi/arthur-online-types-openapi.yml
+- term: Task statuses
+  definition: Read-only reference vocabulary served by /task_statuses.
+  category: Reference Data
+  endpoint: /task_statuses
+  operationId: taskStatuses
+  source: openapi/arthur-online-types-openapi.yml
+- term: Task types
+  definition: Read-only reference vocabulary served by /task_types.
+  category: Reference Data
+  endpoint: /task_types
+  operationId: taskTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Tenancy  statuses
+  definition: Read-only reference vocabulary served by /tenancy_statuses.
+  category: Reference Data
+  endpoint: /tenancy_statuses
+  operationId: tenancyStatuses
+  source: openapi/arthur-online-types-openapi.yml
+- term: Tenancy subtypes
+  definition: Read-only reference vocabulary served by /tenancy_sub_types.
+  category: Reference Data
+  endpoint: /tenancy_sub_types
+  operationId: tenancySubtypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Tenancy types
+  definition: Read-only reference vocabulary served by /tenancy_types.
+  category: Reference Data
+  endpoint: /tenancy_types
+  operationId: tenancyTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Tenancy subtypes on Tenancy Type
+  definition: Read-only reference vocabulary served by /tenancy_types/{id}/tenancy_sub_types.
+  category: Reference Data
+  endpoint: /tenancy_types/{id}/tenancy_sub_types
+  operationId: tenancySubtypesOnTenancyType
+  source: openapi/arthur-online-types-openapi.yml
+- term: Titles
+  definition: Read-only reference vocabulary served by /titles.
+  category: Reference Data
+  endpoint: /titles
+  operationId: titles
+  source: openapi/arthur-online-types-openapi.yml
+- term: Transaction types
+  definition: Read-only reference vocabulary served by /transaction_types.
+  category: Reference Data
+  endpoint: /transaction_types
+  operationId: transactionTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Unit status types
+  definition: Read-only reference vocabulary served by /unit_statuses.
+  category: Reference Data
+  endpoint: /unit_statuses
+  operationId: unitStatusTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Unit types
+  definition: 'We have an extra filter available on this endpoint to include just used unit_types.
+
+
+    https://api.arthuronline.co.uk/v2/unit_types?only_inclue_used=1'
+  category: Reference Data
+  endpoint: /unit_types
+  operationId: unitTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Utility types
+  definition: Read-only reference vocabulary served by /utility_types.
+  category: Reference Data
+  endpoint: /utility_types
+  operationId: utilityTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Vat codes
+  definition: Read-only reference vocabulary served by /vat_codes.
+  category: Reference Data
+  endpoint: /vat_codes
+  operationId: vatCodes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Viewing statuses
+  definition: Read-only reference vocabulary served by /viewing_statuses.
+  category: Reference Data
+  endpoint: /viewing_statuses
+  operationId: viewingStatuses
+  source: openapi/arthur-online-types-openapi.yml
+- term: Visa types
+  definition: Read-only reference vocabulary served by /visa_types.
+  category: Reference Data
+  endpoint: /visa_types
+  operationId: visaTypes
+  source: openapi/arthur-online-types-openapi.yml
+- term: Workorder statuses
+  definition: Read-only reference vocabulary served by /workorder_statuses.
+  category: Reference Data
+  endpoint: /workorder_statuses
+  operationId: workorderStatuses
+  source: openapi/arthur-online-types-openapi.yml

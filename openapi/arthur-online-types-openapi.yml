@@ -1,0 +1,960 @@
+openapi: 3.1.0
+info:
+  title: Arthur Types API
+  version: 2.0.0
+  description: Arthur Types API - the types surface of the Arthur API v2, the UK property management platform
+    from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public
+    Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to
+    an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization
+    Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Applicant
+- name: Task
+- name: Types
+paths:
+  /applicant_types:
+    get:
+      operationId: applicantTypes
+      summary: Applicant types
+      tags:
+      - Applicant
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /citizen_types:
+    get:
+      operationId: citizenTypes
+      summary: Citizen types
+      tags:
+      - Applicant
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicant_statuses:
+    get:
+      operationId: applicantStatuses
+      summary: Applicant statuses
+      tags:
+      - Applicant
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /visa_types:
+    get:
+      operationId: visaTypes
+      summary: Visa types
+      tags:
+      - Applicant
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /student_statuses:
+    get:
+      operationId: studentStatuses
+      summary: Student statuses
+      tags:
+      - Applicant
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /task_types:
+    get:
+      operationId: taskTypes
+      summary: Task types
+      tags:
+      - Task
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /subtask_templates:
+    get:
+      operationId: subtaskTemplates
+      summary: Subtask templates
+      tags:
+      - Task
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /task_statuses:
+    get:
+      operationId: taskStatuses
+      summary: Task statuses
+      tags:
+      - Task
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /profession_types:
+    get:
+      operationId: professionTypes
+      summary: Profession types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /access_details_types:
+    get:
+      operationId: accessDetailsTypes
+      summary: Access details types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /area_types:
+    get:
+      operationId: areaTypes
+      summary: Area types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /certificate_types:
+    get:
+      operationId: certificateTypes
+      summary: Certificate types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /contract_types:
+    get:
+      operationId: contractTypes
+      summary: Contract types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /countries:
+    get:
+      operationId: countries
+      summary: Countries
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /faq_types:
+    get:
+      operationId: faqTypes
+      summary: Faq types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /feature_types:
+    get:
+      operationId: featureTypes
+      summary: Feature types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /genders:
+    get:
+      operationId: genders
+      summary: Genders
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /home_owner_statuses:
+    get:
+      operationId: homeOwnerStatuses
+      summary: Home owner statuses
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /offer_frequencies:
+    get:
+      operationId: offerFrequencyTypes
+      summary: Offer frequency types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /payment_types:
+    get:
+      operationId: paymentTypes
+      summary: Payment types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /property_types:
+    get:
+      operationId: propertyTypes
+      summary: Property types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /service_types:
+    get:
+      operationId: serviceTypes
+      summary: Service types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancy_statuses:
+    get:
+      operationId: tenancyStatuses
+      summary: Tenancy  statuses
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /titles:
+    get:
+      operationId: titles
+      summary: Titles
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /description_formats:
+    get:
+      operationId: transactionDescriptionFormats
+      summary: Transaction description formats
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /unit_types:
+    get:
+      operationId: unitTypes
+      summary: Unit types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      description: 'We have an extra filter available on this endpoint to include just used unit_types.
+
+
+        https://api.arthuronline.co.uk/v2/unit_types?only_inclue_used=1'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /unit_statuses:
+    get:
+      operationId: unitStatusTypes
+      summary: Unit status types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /utility_types:
+    get:
+      operationId: utilityTypes
+      summary: Utility types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /vat_codes:
+    get:
+      operationId: vatCodes
+      summary: Vat codes
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /asset_types:
+    get:
+      operationId: assetTypes
+      summary: Asset types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /viewing_statuses:
+    get:
+      operationId: viewingStatuses
+      summary: Viewing statuses
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancy_types:
+    get:
+      operationId: tenancyTypes
+      summary: Tenancy types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancy_sub_types:
+    get:
+      operationId: tenancySubtypes
+      summary: Tenancy subtypes
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancy_types/{id}/tenancy_sub_types:
+    get:
+      operationId: tenancySubtypesOnTenancyType
+      summary: Tenancy subtypes on Tenancy Type
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /transaction_types:
+    get:
+      operationId: transactionTypes
+      summary: Transaction types
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /conversation_statuses:
+    get:
+      operationId: conversationStatuses
+      summary: Conversation statuses
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /rent_frequencies:
+    get:
+      operationId: rentFrequencies
+      summary: Rent frequencies
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorder_statuses:
+    get:
+      operationId: workorderStatuses
+      summary: Workorder statuses
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /frequencies/recurring:
+    get:
+      operationId: recurringFrequencies
+      summary: Recurring Frequencies
+      tags:
+      - Types
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

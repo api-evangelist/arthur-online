@@ -1,0 +1,107 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  Derived from openapi/ (16 documents, 317 operations), the published conventions in
+  collections/arthur-online.postman_collection.json, and live probes of the API, auth and
+  website hosts on 2026-07-26. Compliance claims cross-checked against
+  https://www.arthuronline.co.uk/legal/data-security and https://www.arthuronline.co.uk/legal/privacy-policy.
+description: >-
+  Which cross-cutting and sector standards the Arthur API v2 conforms to. Arthur is a
+  conventional OAuth 2.0 + JSON REST API with no adoption of the interoperability standards
+  that define its sector elsewhere in the world - which is the expected result for the UK,
+  where no MLS, NAR or RESO regime exists.
+
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      OAuth 2.0 Authorization Code flow (RFC 6749 section 4.1) explicitly cited in the
+      provider docs; authorize and token endpoints on auth.arthuronline.co.uk.
+  - id: oauth2-refresh-token
+    conforms: true
+    evidence: Documented refresh_token grant; access token 14 days, refresh token 21 days.
+  - id: oauth2-scopes
+    conforms: false
+    evidence: No scope surface is published; tokens carry entity-wide access constrained only by Arthur Manager-account permissions.
+  - id: oidc
+    conforms: false
+    evidence: 'No /.well-known/openid-configuration on auth.arthuronline.co.uk (404, probed 2026-07-26); no id_token documented.'
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: false
+    evidence: '/.well-known/oauth-authorization-server returns 404 on auth.arthuronline.co.uk.'
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: '/.well-known/security.txt returns 404 on www.arthuronline.co.uk and 401 on api.arthuronline.co.uk.'
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a proprietary {status, error, message} envelope; no application/problem+json.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation header, and no deprecation policy, is published.
+  - id: json-api
+    conforms: false
+    evidence: Responses use a proprietary {status, data, pagination} envelope, not JSON:API.
+  - id: odata
+    conforms: false
+    evidence: 'Plain JSON REST over /v2; https://api.arthuronline.co.uk/$metadata returns 401 and no service document exists.'
+  - id: openapi
+    conforms: partial
+    evidence: >-
+      Arthur publishes no OpenAPI. The 16 documents in openapi/ were derived operation-for-operation
+      by API Evangelist from the provider's own public Postman collection.
+  - id: asyncapi
+    conforms: partial
+    evidence: >-
+      Arthur publishes no AsyncAPI. asyncapi/arthur-online-webhooks-asyncapi.yml was derived from
+      the provider's published 125-event trigger table and official payload templates.
+  - id: webhooks
+    conforms: true
+    evidence: 125 subscribable webhook triggers across 30 models, with official payload templates at github.com/arthur-crm/webhookPayloadTemplates.
+  - id: webhook-signing
+    conforms: false
+    evidence: No signature header, signing secret or verification procedure is published; deliveries carry no authenticity proof.
+  - id: pagination
+    conforms: true
+    evidence: 'Documented page/limit/sort/direction parameters and a pagination response block (page, current, count, pageCount, limit).'
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency key or replay semantics are documented for POST/PUT.
+  - id: iso8601-dates
+    conforms: true
+    evidence: 'Published data types mandate ISO 8601 for DateTime (yyyy-MM-ddTHH:mm:ssZ), Date and Time fields.'
+  - id: tls-1-2-plus
+    conforms: true
+    evidence: 'TLSv1.3 on www, developer and api hosts (probed 2026-07-26); see security/arthur-online-domain-security.yml.'
+  - id: hsts
+    conforms: partial
+    evidence: HSTS with max-age 31536000 on www.arthuronline.co.uk; absent on api.arthuronline.co.uk and developer.arthuronline.co.uk.
+  - id: dnssec
+    conforms: false
+    evidence: No DNSSEC on arthuronline.co.uk.
+  - id: gdpr
+    conforms: true
+    evidence: >-
+      UK/EU GDPR posture published - data-removal on written request, five-year default retention,
+      named sub-processors in the privacy policy (https://www.arthuronline.co.uk/legal/privacy-policy).
+  - id: reso-web-api
+    conforms: false
+    evidence: >-
+      No RESO certification, Data Dictionary reference, OData endpoint or Universal Property
+      Identifier anywhere on the site, the developer portal, or in the 1,022,427-byte collection.
+      The UK has no MLS/NAR/RESO regime - see review.yml.
+  - id: reso-data-dictionary
+    conforms: false
+    evidence: Not applicable in the UK market; Arthur uses opaque entity-scoped numeric ids.
+  - id: soc2
+    conforms: unknown
+    evidence: No SOC 2 report or attestation is published on arthuronline.co.uk.
+  - id: iso27001
+    conforms: unknown
+    evidence: No ISO 27001 certificate is published by Arthur Online; parent company Aareon maintains a corporate compliance page at https://www.aareon.com/Compliance.952566.html.
+
+certifications_published: []
+compliance_program_published: false
+note: >-
+  No named security certification (SOC 2, ISO 27001, PCI DSS, Cyber Essentials) is published
+  by Arthur Online, so no Compliance pointer is emitted. What is published is a GDPR/data-security
+  FAQ and a privacy policy.

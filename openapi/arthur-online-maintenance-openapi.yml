@@ -1,0 +1,3762 @@
+openapi: 3.1.0
+info:
+  title: Arthur Maintenance API
+  version: 2.0.0
+  description: Arthur Maintenance API - the maintenance surface of the Arthur API v2, the UK property
+    management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the
+    provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request
+    is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0
+    Authorization Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Tasks
+- name: Subtasks
+- name: Workorders
+- name: Quotes
+paths:
+  /tasks/{task_id}/subtasks:
+    get:
+      operationId: listSubtasksOnTask
+      summary: List Subtasks on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of subtasks associated with the given task ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createSubtaskOnTask
+      summary: Create Subtask on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new subtask record for a  task . The API will return\
+        \ the saved data and a unique subtask ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ndescription \n subtask nb1\
+        \ \n String \n Yes \n\ndue_date \n 2020-09-22 \n Date \n No \n\ncompleted \n true \n Boolean \n\
+        \ No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: subtask nb1
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-09-22'
+                completed:
+                  type: boolean
+                  example: true
+              required:
+              - description
+            example:
+              description: new subtask
+              due_date: '2020-09-21'
+              completed: false
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/subtasks/{subtask_id}:
+    get:
+      operationId: viewSubtaskOnTask
+      summary: View Subtask On Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: subtask_id
+        in: path
+        required: true
+        description: Arthur subtask id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single subtask, identified by its unique 
+        subtask_id .
+
+
+        Use this endpoint to view the specific details of a subtask on a task.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSubtaskOnTask
+      summary: Update Subtask On Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: subtask_id
+        in: path
+        required: true
+        description: Arthur subtask id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing subtask on a task using the same fields as the 'Add\
+        \ Subtask' endpoint. The API will return the updated data for the note in the response.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\ndescription \n subtask nb1 \n String \n No \n\ndue_date \n 2020-09-22 \n Date\
+        \ \n No \n\ncompleted \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: subtask nb1
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-09-22'
+                completed:
+                  type: boolean
+                  example: true
+            example:
+              completed: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSubtaskOnTask
+      summary: Delete Subtask On Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: subtask_id
+        in: path
+        required: true
+        description: Arthur subtask id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing subtask note using the subtask  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/workorders:
+    get:
+      operationId: listWorkordersOnTask
+      summary: List Workorders On Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of workorders associated with the given task ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createWorkorderOnTask
+      summary: Create Workorder On Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new workorder record for a  task . The API will return\
+        \ the saved data and a unique workorder ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ntitle \n workorder title \n\
+        \ String \n No \n\ndescription \n workorder description \n String \n No \n\ninvite_contractors\
+        \ \n [123,1234] \n Array(integer) \n No \n\nservice_type \n Carpet Layer \n String \n Yes \n\n\
+        start_date \n 2020-02-20 \n Date \n No \n\ndue_date \n 2020-02-20 \n Date \n No \n\nbudget \n\
+        \ 1000,00 \n Float \n No \n\nallocated_time_hours \n 20 \n Float \n No \n\nactual_time_hours \n\
+        \ 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float \n No \n\nemergency \n true \n Boolean\
+        \ \n No \n\nquote_required \n true \n Boolean \n No \n\nshare_assets \n false \n Boolean \n No\
+        \ \n\nhide_tenant_details \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: workorder title
+                description:
+                  type: string
+                  example: workorder description
+                invite_contractors:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                service_type:
+                  type: string
+                  example: Carpet Layer
+                start_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                budget:
+                  type: number
+                allocated_time_hours:
+                  type: number
+                  example: 20.0
+                actual_time_hours:
+                  type: number
+                  example: 20.0
+                price_per_hour:
+                  type: number
+                emergency:
+                  type: boolean
+                  example: true
+                quote_required:
+                  type: boolean
+                  example: true
+                share_assets:
+                  type: boolean
+                  example: false
+                hide_tenant_details:
+                  type: boolean
+                  example: true
+              required:
+              - service_type
+            example:
+              service_type: aerial-network-specialist
+              title: Workorder title
+              description: Workorder Description
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/workorders/{workorder_id}:
+    get:
+      operationId: viewWorkorderOnTask
+      summary: View Workorder On Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single task  workorder , identified by
+        its unique  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateWorkorderOnTask
+      summary: Update Workorder On Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing workorder on a task using the same fields as the\
+        \ 'Add Workorder' endpoint. The API will return the updated data for the tenancy in the response.\n\
+        \nSupported Fields \n The following fields are supported for the request body\n\nField \n Example\
+        \ \n Type \n Required? \n\ntitle \n workorder title \n String \n No \n\ndescription \n workorder\
+        \ description \n String \n No \n\ninvite_contractors \n [123,1234] \n Array(integer) \n No \n\n\
+        service_type \n Carpet Layer \n String \n No \n\nstart_date \n 2020-02-20 \n Date \n No \n\ndue_date\
+        \ \n 2020-02-20 \n Date \n No \n\nbudget \n 1000,00 \n Float \n No \n\nallocated_time_hours \n\
+        \ 20 \n Float \n No \n\nactual_time_hours \n 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float\
+        \ \n No \n\nemergency \n true \n Boolean \n No \n\nquote_required \n true \n Boolean \n No \n\n\
+        share_assets \n false \n Boolean \n No \n\nhide_tenant_details \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: workorder title
+                description:
+                  type: string
+                  example: workorder description
+                invite_contractors:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                service_type:
+                  type: string
+                  example: Carpet Layer
+                start_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                budget:
+                  type: number
+                allocated_time_hours:
+                  type: number
+                  example: 20.0
+                actual_time_hours:
+                  type: number
+                  example: 20.0
+                price_per_hour:
+                  type: number
+                emergency:
+                  type: boolean
+                  example: true
+                quote_required:
+                  type: boolean
+                  example: true
+                share_assets:
+                  type: boolean
+                  example: false
+                hide_tenant_details:
+                  type: boolean
+                  example: true
+            example:
+              title: Updated title
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/tags:
+    get:
+      operationId: listTagsOnTask
+      summary: List Tags on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tags associated with the given Task ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                - id: 123
+                  name: tag one
+                  color: sky
+                - id: 123
+                  name: tag two
+                  color: lightgreen
+                - id: 123
+                  name: tag three
+                  color: purple
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: tagTask
+      summary: Tag Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tag record for a  task . The API will return the\
+        \ saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for\
+        \ the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n\
+        \ Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: array
+                  items:
+                    type: string
+                  example: '["123"]'
+              required:
+              - tag
+            example:
+              tag:
+              - '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/untag:
+    put:
+      operationId: untagTask
+      summary: Untag Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to unassign tag record from a  task . The API will return the saved\
+        \ data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields\
+        \ are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"123\"\
+        \ \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: string
+                  example: '"123"'
+              required:
+              - tag
+            example:
+              tag: '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/untag_all:
+    put:
+      operationId: untagAllTaskTags
+      summary: Untag All Task Tags
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: Use this endpoint to unassign all tags from the  task .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/notes:
+    get:
+      operationId: listNotesOnTask
+      summary: List Notes on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of  notes  associated with the given task ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createNoteOnTask
+      summary: Create Note on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new note record for a  task . The API will return the\
+        \ saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for\
+        \ the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String\
+        \ \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+              required:
+              - content
+            example:
+              content: Remember this note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/notes/{note_id}:
+    get:
+      operationId: viewNoteOnTask
+      summary: View Note on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single task  note , identified by its
+        unique  id
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateNoteOnTask
+      summary: Update Note on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing note on a task using the same fields as the 'Add\
+        \ Note' endpoint. The API will return the updated data for the note in the response.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n Array(String)\
+        \ \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+            example:
+              content: Updated Note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteNoteOnTask
+      summary: Delete Note on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing task note using the note  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/conversation_recipients:
+    get:
+      operationId: getRecipientsForTask
+      summary: Get Recipients for Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves a list of conversation recipients on a task record, identified
+        by its unique  task_id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/conversations:
+    get:
+      operationId: listConversationsOnTask
+      summary: List Conversations on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of conversations on a task, identified by its unique 
+        task_id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addConversationOnTask
+      summary: Add Conversation on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new conversation on a task record. The API will return\
+        \ the saved data and a unique Conversation ID.\n\nSupported Fields \n The following fields are\
+        \ supported for the request body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's\
+        \ done \n String \n Yes \n\nsubject \n Meeting tomorrow \n String \n Yes \n\nperson_ids \n ['1','2']\
+        \ \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: It's done
+                subject:
+                  type: string
+                  example: Meeting tomorrow
+                person_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''1'',''2'']'
+              required:
+              - message
+              - subject
+              - person_ids
+            example:
+              message: Please clean the house on friday.
+              subject: House duties
+              person_ids:
+              - '21'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/assets:
+    get:
+      operationId: listAssetsOnTask
+      summary: List Assets on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given task ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/assets/{asset_id}:
+    get:
+      operationId: viewAssetOnTask
+      summary: View Asset on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: asset_id
+        in: path
+        required: true
+        description: Arthur asset id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single task  asset , identified by its
+        unique  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/tenants:
+    get:
+      operationId: listTenantsOnTask
+      summary: List Tenants on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This retrieves a list of tenants related to a task
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 116731
+                  tenancy_id: 103430
+                  unit_id: 80048
+                  property_id: 36380
+                  full_address: orange way, 12 orange ways, London, BA2 3LH
+                  status: active
+                  invite_code: null
+                  reset_password_code: null
+                  main_tenant: true
+                  title: Mr
+                  first_name: API
+                  last_name: Support
+                  date_of_birth: '2002-07-02'
+                  gender: Male
+                  citizen: ''
+                  email: email-example@arthuronline.co.uk
+                  company_name: ''
+                  company_address_name: ''
+                  company_address1: 123 southwood
+                  company_address2: hampstead
+                  company_city: london
+                  company_county: hampstead
+                  company_postcode: n5 4rf
+                  company_country: United Kingdom
+                  phone_home: ''
+                  phone_work: ''
+                  mobile: ''
+                  passport_number: ''
+                  visa_number: ''
+                  visa_years: ''
+                  visa_type: ''
+                  country_of_origin: ''
+                  ni_number: ''
+                  kin_first_name: ''
+                  kin_last_name: ''
+                  kin_phone_work: ''
+                  kin_mobile: ''
+                  student_status: ''
+                  university: ''
+                  course_name: ''
+                  course_id: ''
+                  course_year: ''
+                  employment_company_name: ''
+                  employment_address1: ''
+                  employment_address2: ''
+                  employment_city: ''
+                  employment_county: ''
+                  employment_postcode: ''
+                  employment_contact_name: ''
+                  employment_contact_number: ''
+                  employment_salary: ''
+                  employment_length: ''
+                  housing_benefit_council: ''
+                  housing_benefit_number: ''
+                  has_guarantor: true
+                  guarantor_first_name: Arthur
+                  guarantor_last_name: Guarantor
+                  guarantor_date_of_birth: null
+                  guarantor_address1: 125 lookman
+                  guarantor_address2: tottenham
+                  guarantor_city: london
+                  guarantor_county: ''
+                  guarantor_postcode: ''
+                  guarantor_country: ''
+                  guarantor_phone_home: ''
+                  guarantor_phone_work: ''
+                  guarantor_mobile: ''
+                  guarantor_email: ''
+                  guarantor_relation: ''
+                  guarantor_profession: ''
+                  guarantor_home_owner: ''
+                  bank_name: ''
+                  bank_address1: ''
+                  bank_address2: ''
+                  bank_city: ''
+                  bank_county: ''
+                  bank_postcode: ''
+                  bank_account_name: ''
+                  bank_account_number: ''
+                  bank_sort_code: ''
+                  ref_name: ''
+                  ref_address1: ''
+                  ref_address2: ''
+                  ref_city: ''
+                  ref_county: ''
+                  ref_postcode: ''
+                  ref_contact_number: ''
+                  ref_relation: ''
+                  move_in_date: null
+                  move_out_date: null
+                  applicant_note: ''
+                  manager_note: ''
+                  custom_fields:
+                  - name: Name of House
+                    api_name: name_of_house
+                    value: ''
+                  - name: Company email
+                    api_name: company_email
+                    value: ''
+                  - name: Tenant Rating
+                    api_name: tenant_rating
+                    value: ''
+                  latest_credit_score: '0'
+                  latest_credit_description: ''
+                  modified: '2019-07-19T12:36:02'
+                  created: '2018-05-29T11:09:18'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/tenants/{tenant_id}:
+    get:
+      operationId: viewTenantOnTask
+      summary: View Tenant on Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - name: tenant_id
+        in: path
+        required: true
+        description: Arthur tenant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single tenant on a task, identified by
+        its unique  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 116731
+                  tenancy_id: 103430
+                  unit_id: 80048
+                  property_id: 36380
+                  full_address: orange way, 12 orange ways, London, BA2 3LH
+                  status: active
+                  invite_code: null
+                  reset_password_code: null
+                  main_tenant: true
+                  title: Mr
+                  first_name: API
+                  last_name: Support
+                  date_of_birth: '2002-07-02'
+                  gender: Male
+                  citizen: ''
+                  email: email-example@arthuronline.co.uk
+                  company_name: ''
+                  company_address_name: ''
+                  company_address1: 123 southwood
+                  company_address2: hampstead
+                  company_city: london
+                  company_county: hampstead
+                  company_postcode: n5 4rf
+                  company_country: United Kingdom
+                  phone_home: ''
+                  phone_work: ''
+                  mobile: ''
+                  passport_number: ''
+                  visa_number: ''
+                  visa_years: ''
+                  visa_type: ''
+                  country_of_origin: ''
+                  ni_number: ''
+                  kin_first_name: ''
+                  kin_last_name: ''
+                  kin_phone_work: ''
+                  kin_mobile: ''
+                  student_status: ''
+                  university: ''
+                  course_name: ''
+                  course_id: ''
+                  course_year: ''
+                  employment_company_name: ''
+                  employment_address1: ''
+                  employment_address2: ''
+                  employment_city: ''
+                  employment_county: ''
+                  employment_postcode: ''
+                  employment_contact_name: ''
+                  employment_contact_number: ''
+                  employment_salary: ''
+                  employment_length: ''
+                  housing_benefit_council: ''
+                  housing_benefit_number: ''
+                  has_guarantor: true
+                  guarantor_first_name: Arthur
+                  guarantor_last_name: Guarantor
+                  guarantor_date_of_birth: null
+                  guarantor_address1: 125 lookman
+                  guarantor_address2: tottenham
+                  guarantor_city: london
+                  guarantor_county: ''
+                  guarantor_postcode: ''
+                  guarantor_country: ''
+                  guarantor_phone_home: ''
+                  guarantor_phone_work: ''
+                  guarantor_mobile: ''
+                  guarantor_email: ''
+                  guarantor_relation: ''
+                  guarantor_profession: ''
+                  guarantor_home_owner: ''
+                  bank_name: ''
+                  bank_address1: ''
+                  bank_address2: ''
+                  bank_city: ''
+                  bank_county: ''
+                  bank_postcode: ''
+                  bank_account_name: ''
+                  bank_account_number: ''
+                  bank_sort_code: ''
+                  ref_name: ''
+                  ref_address1: ''
+                  ref_address2: ''
+                  ref_city: ''
+                  ref_county: ''
+                  ref_postcode: ''
+                  ref_contact_number: ''
+                  ref_relation: ''
+                  move_in_date: null
+                  move_out_date: null
+                  applicant_note: ''
+                  manager_note: ''
+                  custom_fields:
+                  - name: Name of House
+                    api_name: name_of_house
+                    value: ''
+                  - name: Company email
+                    api_name: company_email
+                    value: ''
+                  - name: Tenant Rating
+                    api_name: tenant_rating
+                    value: ''
+                  latest_credit_score: '0'
+                  latest_credit_description: ''
+                  modified: '2019-07-19T12:36:02'
+                  created: '2018-05-29T11:09:18'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks:
+    get:
+      operationId: listTasks
+      summary: List Tasks
+      tags:
+      - Tasks
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by task status, which should be provided as a comma-separated list
+      - name: assigned_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by assigned property manager name
+      - name: created_date_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters tasks by the due date, starting from the specified date. Use the format yyyy-mm-dd
+          to input the date
+      - name: created_date_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters tasks by the created date, up to the specified date. Use the format yyyy-mm-dd
+          to input the date
+      - name: due_date_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters tasks by the due date, starting from the specified date. Use the format yyyy-mm-dd
+          to input the date
+      - name: due_date_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters tasks by the due date, up to the specified date. Use the format yyyy-mm-dd
+          to input the date
+      - name: task_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter tasks by type
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the tasks, which should be provided as a comma-separated
+          list
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by a keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of tasks.
+
+
+        See available filters below to customize the list of tasks returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{status}:
+    get:
+      operationId: listTasksByStatus
+      summary: List Tasks By Status
+      tags:
+      - Tasks
+      parameters:
+      - name: status
+        in: path
+        required: true
+        description: Arthur status.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'List all Task with status provided: live, pending, cancelled or completed'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}:
+    get:
+      operationId: viewTask
+      summary: View Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single task, identified by its unique 
+        task_id .
+
+
+        Use this endpoint to view the specific details of a task.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateTask
+      summary: Update Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing task. Any fields that are not provided will not\
+        \ be changed. The API will return the updated data for the task in the response.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working\
+        \ \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11\
+        \ \n Date \n No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer)\
+        \ \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes\
+        \ \n Landlord will be present \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_type:
+                  type: string
+                  example: Inspection
+                description:
+                  type: string
+                  example: Radiator not working
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-10-11'
+                due_time:
+                  type: string
+                  example: '15:32'
+                assigned_managers:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                emergency:
+                  type: boolean
+                  example: true
+                private:
+                  type: boolean
+                  example: true
+                api_notes:
+                  type: string
+                  example: Landlord will be present
+            example:
+              description: Updated description
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTask
+      summary: Delete Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing task using the task  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tasks/{task_id}/status:
+    put:
+      operationId: updateStatusOnTask
+      summary: Update Status On Task
+      tags:
+      - Tasks
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing task status. The API will return the updated data\
+        \ for the task in the response.\n\nSupported Fields \n The following fields are supported for\
+        \ the request body\nStatus must be one of these: live, pending, cancelled, completed\n\nField\
+        \ \n Example \n Type \n Required? \n\nstatus \n live \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: live
+              required:
+              - status
+            example:
+              status: live
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /subtasks:
+    get:
+      operationId: listSubtasks
+      summary: List Subtasks
+      tags:
+      - Subtasks
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: Get all Subtasks
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /subtasks/{subtask_id}:
+    get:
+      operationId: viewSubtask
+      summary: View Subtask
+      tags:
+      - Subtasks
+      parameters:
+      - name: subtask_id
+        in: path
+        required: true
+        description: Arthur subtask id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: Get Subtask
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateSubtask
+      summary: Update Subtask
+      tags:
+      - Subtasks
+      parameters:
+      - name: subtask_id
+        in: path
+        required: true
+        description: Arthur subtask id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Update Subtask\n\nSupported Fields \n\nField \n Example \n Type \n Default \n Required?\
+        \ \n\ndescription \n subtask nb1 \n String \n\nNo \n\ndue_date \n 2020-09-22 \n Date \n\nNo \n\
+        \ncompleted \n true \n Boolean \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  example: subtask nb1
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-09-22'
+                completed:
+                  type: boolean
+                  example: true
+            example:
+              description: updated description
+              due_date: '2020-10-20'
+              completed: 'false'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSubtask
+      summary: Delete  Subtask
+      tags:
+      - Subtasks
+      parameters:
+      - name: subtask_id
+        in: path
+        required: true
+        description: Arthur subtask id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: Delete Subtask
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/transactions:
+    get:
+      operationId: listTransactionsOnWorkorder
+      summary: List Transactions On Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: statement
+        in: query
+        required: false
+        schema:
+          type: string
+        description: "Filters the transactions by statement. The available options are tenant , tenant-deposit\
+          \ , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement\
+          \ , late-rents , contingency-statement , invoices"
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The status of the transaction. The available options are paid , unpaid , partpaid
+          , outstanding , or overdue . Use this parameter to filter transactions based on their payment
+          status.
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters the transactions by the date, starting from the specified date. Use the format
+          yyyy-mm-dd to input the date.
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd
+          to input the date.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of transactions for a Workorder .
+
+
+        See available filters below to customize the list of transactions returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/certificates:
+    get:
+      operationId: listCertificatesOnWorkorder
+      summary: List Certificates On Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of certificates associated with the given workorder
+        ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/quotes:
+    get:
+      operationId: listQuotesOnWorkorder
+      summary: List Quotes On Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of quotes associated with the given Workorder ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/quotes/{quote_id}:
+    get:
+      operationId: viewQuoteOnWorkorder
+      summary: View Quote On Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - name: quote_id
+        in: path
+        required: true
+        description: Arthur quote id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single quote, identified by its unique
+        quote_id .
+
+
+        Use this endpoint to view the specific details of a quote on a workorder.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/invoices:
+    get:
+      operationId: listInvoicesOnWorkorder
+      summary: List Invoices On Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of contractor invoices associated with the given Workorder
+        ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/invoices/{invoice_id}:
+    get:
+      operationId: viewInvoiceOnWorkorder
+      summary: View Invoice On Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - name: invoice_id
+        in: path
+        required: true
+        description: Arthur invoice id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single invoice, identified by its unique 
+        invoice_id .
+
+
+        Use this endpoint to view the specific details of a contractor invoice on a workorder.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/assets:
+    get:
+      operationId: listAssetsOnWorkorder
+      summary: List Assets on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given workorder ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAssetOnWorkorder
+      summary: Create Asset on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset related to an  workorder . The API will return\
+        \ the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\
+        \nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory\
+        \ \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean\
+        \ \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No\
+        \ \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name\
+        \ \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/assets/{edge_id}:
+    get:
+      operationId: viewAssetOnWorkorder
+      summary: View Asset on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single asset, identified by its unique 
+        asset_id .
+
+
+        Use this endpoint to view the specific details of an asset on a workorder.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/conversation_recipients:
+    get:
+      operationId: getRecipientsForWorkorder
+      summary: Get Recipients for Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves a list of conversation recipients on a workorder record, identified
+        by its unique  workorder_id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/conversations:
+    get:
+      operationId: listConversationsOnWorkorder
+      summary: List Conversations on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of conversations on a workorder, identified by its unique 
+        workorder_id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createConversationOnWorkorder
+      summary: Create Conversation on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new conversation on a workorder record. The API will\
+        \ return the saved data and a unique Conversation ID.\n\nSupported Fields \n The following fields\
+        \ are supported for the request body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's\
+        \ done \n String \n Yes \n\nsubject \n Meeting tomorrow \n String \n Yes \n\nperson_ids \n ['1','2']\
+        \ \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: It's done
+                subject:
+                  type: string
+                  example: Meeting tomorrow
+                person_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''1'',''2'']'
+              required:
+              - message
+              - subject
+              - person_ids
+            example:
+              message: Please clean the house on friday.
+              subject: House duties
+              person_ids:
+              - '21'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/notes:
+    get:
+      operationId: listNotesOnWorkorder
+      summary: List Notes on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of  notes  associated with the given workorder ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addNoteOnWorkorder
+      summary: Add Note on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new note record for a  workorder . The API will return\
+        \ the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n\
+        \ String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+              required:
+              - content
+            example:
+              content: Remember this note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/notes/{edge_id}:
+    get:
+      operationId: viewNoteOnWorkorder
+      summary: View Note on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single workorder  note , identified by
+        its unique  id
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/notes/{note_id}:
+    put:
+      operationId: updateNoteOnWorkorder
+      summary: Update Note on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing note on a workorder using the same fields as the\
+        \ 'Add Note' endpoint. The API will return the updated data for the note in the response.\n\n\
+        Supported Fields \n The following fields are supported for the request body\n\nField \n Example\
+        \ \n Type \n Required? \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n\
+        \ Array(String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+            example:
+              content: Updated Note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteNoteOnWorkorder
+      summary: Delete Note on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing workorder note using the note  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/tags:
+    get:
+      operationId: listTagsOnWorkorder
+      summary: List Tags on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tags associated with the given Workorder ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                - id: 123
+                  name: tag one
+                  color: sky
+                - id: 123
+                  name: tag two
+                  color: lightgreen
+                - id: 123
+                  name: tag three
+                  color: purple
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: tagWorkorder
+      summary: Tag Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tag record for a  workorder . The API will return\
+        \ the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type\
+        \ \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: array
+                  items:
+                    type: string
+                  example: '["123"]'
+              required:
+              - tag
+            example:
+              tag:
+              - '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/untag:
+    put:
+      operationId: untagWorkorder
+      summary: Untag Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to unassign tag record from a  workorder . The API will return the\
+        \ saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following\
+        \ fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n\
+        \ \"1234\" \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: string
+                  example: '"1234"'
+              required:
+              - tag
+            example:
+              tag: '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/untag_all:
+    put:
+      operationId: untagAllWorkorderTags
+      summary: Untag All Workorder Tags
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: Use this endpoint to unassign all tags from the  workorder .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/contractors:
+    get:
+      operationId: listContractorsOnWorkorder
+      summary: List Contractors on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of  contractors  associated with the given workorder
+        ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 574490
+                  entity_id: 85085
+                  title: Mr
+                  name: API Support
+                  address: 32 Temple Fortune Lane, Picardy Road, London, Lancashire, SN4 7AB
+                  address_line_1: 32 Temple Fortune Lane
+                  address_line_2: Picardy Road
+                  city: London
+                  county: Lancashire
+                  country: ''
+                  postcode: SN4 7AB
+                  website: ''
+                  phone_home: ''
+                  phone_work: ''
+                  phone_mobile: ''
+                  email: email-example@arthuronline.co.uk
+                  status: pending
+                  company: API Support
+                  vat_no: ''
+                  contacts:
+                  - person_id: 437322
+                    title: Mr
+                    name: API Support
+                    main_contact: true
+                    phone_home: ''
+                    phone_work: ''
+                    mobile: ''
+                    email: email-example@arthuronline.co.uk
+                    registration_status: active
+                  tags: []
+                  modified: '2022-02-22T16:31:21'
+                  created: '2019-10-23T11:45:48'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/contractors/{contractor_id}:
+    get:
+      operationId: viewContractorOnWorkorder
+      summary: View Contractor on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - name: contractor_id
+        in: path
+        required: true
+        description: Arthur contractor id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single workorder, identified by its unique 
+        workorder_id .
+
+
+        Use this endpoint to view the specific details of a workorder.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 574490
+                  entity_id: 85085
+                  title: Mr
+                  name: API Support
+                  address: 32 Temple Fortune Lane, Picardy Road, London, Lancashire, SN4 7AB
+                  address_line_1: 32 Temple Fortune Lane
+                  address_line_2: Picardy Road
+                  city: London
+                  county: Lancashire
+                  country: ''
+                  postcode: SN4 7AB
+                  website: ''
+                  phone_home: ''
+                  phone_work: ''
+                  phone_mobile: ''
+                  email: email-example@arthuronline.co.uk
+                  status: pending
+                  company: API Support
+                  vat_no: ''
+                  contacts:
+                  - person_id: 437322
+                    title: Mr
+                    name: API Support
+                    main_contact: true
+                    phone_home: ''
+                    phone_work: ''
+                    mobile: ''
+                    email: email-example@arthuronline.co.uk
+                    registration_status: active
+                  tags: []
+                  modified: '2022-02-22T16:31:21'
+                  created: '2019-10-23T11:45:48'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteContractorOnWorkorder
+      summary: Delete Contractor on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - name: contractor_id
+        in: path
+        required: true
+        description: Arthur contractor id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing contractor related to the workorder using the contractor 
+        id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data: []
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/tenants:
+    get:
+      operationId: listTenantsOnWorkorder
+      summary: List Tenants on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of  tenants  associated with the given workorder ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 116731
+                  tenancy_id: 103430
+                  unit_id: 80048
+                  property_id: 36380
+                  full_address: orange way, 12 orange ways, London, BA2 3LH
+                  status: active
+                  invite_code: null
+                  reset_password_code: null
+                  main_tenant: true
+                  title: Mr
+                  first_name: API
+                  last_name: Support
+                  date_of_birth: '2002-07-02'
+                  gender: Male
+                  citizen: ''
+                  email: email-example@arthuronline.co.uk
+                  company_name: ''
+                  company_address_name: ''
+                  company_address1: 123 southwood
+                  company_address2: hampstead
+                  company_city: london
+                  company_county: hampstead
+                  company_postcode: n5 4rf
+                  company_country: United Kingdom
+                  phone_home: ''
+                  phone_work: ''
+                  mobile: ''
+                  passport_number: ''
+                  visa_number: ''
+                  visa_years: ''
+                  visa_type: ''
+                  country_of_origin: ''
+                  ni_number: ''
+                  kin_first_name: ''
+                  kin_last_name: ''
+                  kin_phone_work: ''
+                  kin_mobile: ''
+                  student_status: ''
+                  university: ''
+                  course_name: ''
+                  course_id: ''
+                  course_year: ''
+                  employment_company_name: ''
+                  employment_address1: ''
+                  employment_address2: ''
+                  employment_city: ''
+                  employment_county: ''
+                  employment_postcode: ''
+                  employment_contact_name: ''
+                  employment_contact_number: ''
+                  employment_salary: ''
+                  employment_length: ''
+                  housing_benefit_council: ''
+                  housing_benefit_number: ''
+                  has_guarantor: true
+                  guarantor_first_name: Arthur
+                  guarantor_last_name: Guarantor
+                  guarantor_date_of_birth: null
+                  guarantor_address1: 125 lookman
+                  guarantor_address2: tottenham
+                  guarantor_city: london
+                  guarantor_county: ''
+                  guarantor_postcode: ''
+                  guarantor_country: ''
+                  guarantor_phone_home: ''
+                  guarantor_phone_work: ''
+                  guarantor_mobile: ''
+                  guarantor_email: ''
+                  guarantor_relation: ''
+                  guarantor_profession: ''
+                  guarantor_home_owner: ''
+                  bank_name: ''
+                  bank_address1: ''
+                  bank_address2: ''
+                  bank_city: ''
+                  bank_county: ''
+                  bank_postcode: ''
+                  bank_account_name: ''
+                  bank_account_number: ''
+                  bank_sort_code: ''
+                  ref_name: ''
+                  ref_address1: ''
+                  ref_address2: ''
+                  ref_city: ''
+                  ref_county: ''
+                  ref_postcode: ''
+                  ref_contact_number: ''
+                  ref_relation: ''
+                  move_in_date: null
+                  move_out_date: null
+                  applicant_note: ''
+                  manager_note: ''
+                  custom_fields:
+                  - name: Name of House
+                    api_name: name_of_house
+                    value: ''
+                  - name: Company email
+                    api_name: company_email
+                    value: ''
+                  - name: Tenant Rating
+                    api_name: tenant_rating
+                    value: ''
+                  latest_credit_score: '0'
+                  latest_credit_description: ''
+                  modified: '2019-07-19T12:36:02'
+                  created: '2018-05-29T11:09:18'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}/tenants/{tenant_id}:
+    get:
+      operationId: viewTenantOnWorkorder
+      summary: View Tenant on Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - name: tenant_id
+        in: path
+        required: true
+        description: Arthur tenant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single tenant on a workorder, identified
+        by its unique  tenant_id .
+
+
+        Use this endpoint to view the specific details of a tenant on a workorder.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 116731
+                  tenancy_id: 103430
+                  unit_id: 80048
+                  property_id: 36380
+                  full_address: orange way, 12 orange ways, London, BA2 3LH
+                  status: active
+                  invite_code: null
+                  reset_password_code: null
+                  main_tenant: true
+                  title: Mr
+                  first_name: API
+                  last_name: Support
+                  date_of_birth: '2002-07-02'
+                  gender: Male
+                  citizen: ''
+                  email: email-example@arthuronline.co.uk
+                  company_name: ''
+                  company_address_name: ''
+                  company_address1: 123 southwood
+                  company_address2: hampstead
+                  company_city: london
+                  company_county: hampstead
+                  company_postcode: n5 4rf
+                  company_country: United Kingdom
+                  phone_home: ''
+                  phone_work: ''
+                  mobile: ''
+                  passport_number: ''
+                  visa_number: ''
+                  visa_years: ''
+                  visa_type: ''
+                  country_of_origin: ''
+                  ni_number: ''
+                  kin_first_name: ''
+                  kin_last_name: ''
+                  kin_phone_work: ''
+                  kin_mobile: ''
+                  student_status: ''
+                  university: ''
+                  course_name: ''
+                  course_id: ''
+                  course_year: ''
+                  employment_company_name: ''
+                  employment_address1: ''
+                  employment_address2: ''
+                  employment_city: ''
+                  employment_county: ''
+                  employment_postcode: ''
+                  employment_contact_name: ''
+                  employment_contact_number: ''
+                  employment_salary: ''
+                  employment_length: ''
+                  housing_benefit_council: ''
+                  housing_benefit_number: ''
+                  has_guarantor: true
+                  guarantor_first_name: Arthur
+                  guarantor_last_name: Guarantor
+                  guarantor_date_of_birth: null
+                  guarantor_address1: 125 lookman
+                  guarantor_address2: tottenham
+                  guarantor_city: london
+                  guarantor_county: ''
+                  guarantor_postcode: ''
+                  guarantor_country: ''
+                  guarantor_phone_home: ''
+                  guarantor_phone_work: ''
+                  guarantor_mobile: ''
+                  guarantor_email: ''
+                  guarantor_relation: ''
+                  guarantor_profession: ''
+                  guarantor_home_owner: ''
+                  bank_name: ''
+                  bank_address1: ''
+                  bank_address2: ''
+                  bank_city: ''
+                  bank_county: ''
+                  bank_postcode: ''
+                  bank_account_name: ''
+                  bank_account_number: ''
+                  bank_sort_code: ''
+                  ref_name: ''
+                  ref_address1: ''
+                  ref_address2: ''
+                  ref_city: ''
+                  ref_county: ''
+                  ref_postcode: ''
+                  ref_contact_number: ''
+                  ref_relation: ''
+                  move_in_date: null
+                  move_out_date: null
+                  applicant_note: ''
+                  manager_note: ''
+                  custom_fields:
+                  - name: Name of House
+                    api_name: name_of_house
+                    value: ''
+                  - name: Company email
+                    api_name: company_email
+                    value: ''
+                  - name: Tenant Rating
+                    api_name: tenant_rating
+                    value: ''
+                  latest_credit_score: '0'
+                  latest_credit_description: ''
+                  modified: '2019-07-19T12:36:02'
+                  created: '2018-05-29T11:09:18'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders:
+    get:
+      operationId: listWorkorders
+      summary: List Workorders
+      tags:
+      - Workorders
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter workorder by id
+      - name: ref
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter workorders by workorder reference number
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by workorder status (overdue, pending, live, completed, cancelled, onHold)
+      - name: title
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter workorders by title
+      - name: description
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter workorders by description
+      - name: service_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by workorder service type
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters workorders by the start date. Use the format yyyy-mm-dd to input the date
+      - name: due_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters workorders by the due date. Use the format yyyy-mm-dd to input the date
+      - name: contractor_accepted_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters workorders by the contractor accepted date. Use the format yyyy-mm-dd to
+          input the date
+      - name: emergency
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter status by emergency status (Boolean)
+      - name: budget
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter workorders by budget
+      - name: allocated_time_hours
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by allocated time
+      - name: actual_time_hours
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by actual time spent
+      - name: price_per_hour
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by workorder price per hour
+      - name: created
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters workorders by the created date. Use the format yyyy-mm-dd to input the date
+      - name: modified
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters workorders by the modified date. Use the format yyyy-mm-dd to input the date
+      - name: quote_required
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by quote required status (Boolean)
+      - name: contractor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by assigned contractor
+      - name: condition
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by conditions available on the web (emergency, related (brings back related
+          task), quoted, approvalContractor (brings back awaiting sign-off), recurring, quoteRequired)
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the workorder, which should be provided as a comma-separated
+          list
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by a keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of workorders.
+
+
+        See available filters below to customize the list of workorders returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /workorders/{workorder_id}:
+    get:
+      operationId: viewWorkorder
+      summary: View Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single workorder, identified by its unique 
+        workorder_id .
+
+
+        Use this endpoint to view the specific details of a workorder.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateWorkorder
+      summary: Update Workorder
+      tags:
+      - Workorders
+      parameters:
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing workorder. Any fields that are not provided will\
+        \ not be changed. The API will return the updated data for the unit in the response.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\ntitle \n workorder title \n String \n No \n\ndescription \n workorder description\
+        \ \n String \n No \n\ninvite_contractors \n [123,1234] \n Array(integer) \n No \n\nservice_type\
+        \ \n Carpet Layer \n String \n No \n\nstart_date \n 2020-02-20 \n Date \n No \n\ndue_date \n 2020-02-20\
+        \ \n Date \n No \n\nbudget \n 1000,00 \n Float \n No \n\nallocated_time_hours \n 20 \n Float \n\
+        \ No \n\nactual_time_hours \n 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float \n No \n\n\
+        emergency \n true \n Boolean \n No \n\nquote_required \n true \n Boolean \n No \n\nshare_assets\
+        \ \n false \n Boolean \n No \n\nhide_tenant_details \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: workorder title
+                description:
+                  type: string
+                  example: workorder description
+                invite_contractors:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                service_type:
+                  type: string
+                  example: Carpet Layer
+                start_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                budget:
+                  type: number
+                allocated_time_hours:
+                  type: number
+                  example: 20.0
+                actual_time_hours:
+                  type: number
+                  example: 20.0
+                price_per_hour:
+                  type: number
+                emergency:
+                  type: boolean
+                  example: true
+                quote_required:
+                  type: boolean
+                  example: true
+                share_assets:
+                  type: boolean
+                  example: false
+                hide_tenant_details:
+                  type: boolean
+                  example: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /quotes:
+    get:
+      operationId: listQuotes
+      summary: List Quotes
+      tags:
+      - Quotes
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of  quotes  .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 123
+                  workorder_id: 123
+                  description: Quote description
+                  amount: '150.00'
+                  status: accept
+                  quote_required: false
+                  owner_approval_required: false
+                  quote_accepted: true
+                  accepted_date: '2020-09-07'
+                  created_by:
+                    id: 123
+                    full_name: Ronnie Jackson
+                  workorder:
+                    id: 123
+                    ref: WO007
+                    title: Workorder title
+                  contractor:
+                    id: 123
+                    full_name: Ronnie Jackson
+                    status: live
+                  modified: '2020-09-07T15:38:18+01:00'
+                  created: '2020-09-07T15:09:55+01:00'
+                - id: 123
+                  workorder_id: 123
+                  description: Quote description
+                  amount: '1230.00'
+                  status: pending
+                  quote_required: true
+                  owner_approval_required: false
+                  quote_accepted: true
+                  accepted_date: null
+                  created_by:
+                    id: 123
+                    full_name: Michael Clifford
+                  workorder:
+                    id: 141166
+                    ref: WO1046
+                    title: awaiting quote
+                  contractor:
+                    id: 123
+                    full_name: Michael Clifford
+                    status: accepted
+                  modified: '2020-08-07T12:20:35+01:00'
+                  created: '2020-08-03T09:15:47+01:00'
+                pagination:
+                  page: 1
+                  current: 2
+                  count: 2
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /quotes/{quote_id}:
+    get:
+      operationId: viewQuote
+      summary: View Quote
+      tags:
+      - Quotes
+      parameters:
+      - name: quote_id
+        in: path
+        required: true
+        description: Arthur quote id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: View Quote related to your property manager account.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 123
+                  workorder_id: 123
+                  description: Quote description
+                  amount: '150.00'
+                  status: accept
+                  quote_required: false
+                  owner_approval_required: false
+                  quote_accepted: true
+                  accepted_date: '2020-09-07'
+                  created_by:
+                    id: 123
+                    full_name: Ronnie Jackson
+                  workorder:
+                    id: 123
+                    ref: WO007
+                    title: Workorder title
+                  contractor:
+                    id: 123
+                    full_name: Ronnie Jackson
+                    status: live
+                  modified: '2020-09-07T15:38:18+01:00'
+                  created: '2020-09-07T15:09:55+01:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

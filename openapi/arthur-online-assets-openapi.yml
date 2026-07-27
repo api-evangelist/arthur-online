@@ -1,0 +1,410 @@
+openapi: 3.1.0
+info:
+  title: Arthur Assets API
+  version: 2.0.0
+  description: Arthur Assets API - the assets surface of the Arthur API v2, the UK property management
+    platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's
+    public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped
+    to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization
+    Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Assets
+paths:
+  /assets:
+    get:
+      operationId: listAssets
+      summary: List Assets
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by asset type (image, notimage, document, other)
+      - name: main_image
+        in: query
+        required: false
+        schema:
+          type: string
+        description: To display only main images, set this to true
+      - name: created_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters assets by the created date, starting from the specified date. Use the format
+          yyyy-mm-dd to input the date
+      - name: created_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters assets by the created date, up to the specified date. Use the format yyyy-mm-dd
+          to input the date.
+      - name: model
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by attachment type (Property, Unit, Tenancy, Transaction)
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of assets.
+
+
+        See available filters below to customize the list of properties returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAsset
+      summary: Create Asset
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset. The API will return the saved data and a\
+        \ unique Asset ID.\n\nSupported Fields \n The following fields are supported for the request body\n\
+        \nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n Inventory\
+        \ \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean\
+        \ \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No\
+        \ \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name\
+        \ \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: Inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /assets/{asset_id}:
+    get:
+      operationId: viewAsset
+      summary: View Asset
+      tags:
+      - Assets
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        description: Arthur asset id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single asset, identified by its unique 
+        asset_id .
+
+
+        Use this endpoint to view the specific details of an asset.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateAsset
+      summary: Update Asset
+      tags:
+      - Assets
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        description: Arthur asset id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing asset using the same fields as the 'Add Asset' endpoint.\
+        \ Any fields that are not provided will not be changed. The API will return the updated data for\
+        \ the asset in the response.\n\nSupported Fields \n The following fields are supported for the\
+        \ request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No\
+        \ \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant\
+        \ \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true\
+        \ \n Boolean \n No \n\nfile \n base64 \n String \n No \n\nmime_type \n application/pdf \n String\
+        \ \n No \n\nfile_name \n inventory \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+            example:
+              asset_type: image
+              name: name of updated asset
+              share_manager: true
+              share_tenant: false
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAsset
+      summary: Delete Asset
+      tags:
+      - Assets
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        description: Arthur asset id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing asset record using the asset id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

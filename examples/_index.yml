@@ -1,0 +1,44 @@
+generated: '2026-07-26'
+method: searched
+source: https://github.com/arthur-crm/webhookPayloadTemplates
+description: >-
+  Real Arthur Online webhook payload templates, saved verbatim from the provider's own public
+  repository (linked from the Triggers table in the Arthur API documentation). Seven of the 125
+  published triggers ship a template; the header file documents the request headers every
+  delivery carries. In-spec request and response examples live inside the OpenAPI documents in
+  openapi/ (105 request bodies and 68 response bodies carry provider-published examples).
+examples:
+  - file: webhooks/arthur-online-header.json
+    kind: headers
+    description: The HTTP headers Arthur sends on every webhook delivery.
+  - file: webhooks/arthur-online-applicant-add.json
+    kind: webhook payload
+    event_alias: applicant-add
+    event: Applicant added
+  - file: webhooks/arthur-online-applicant-added-external.json
+    kind: webhook payload
+    event_alias: applicant-added-external
+    event: Applicant added via Middleware
+  - file: webhooks/arthur-online-applicant-updated-external.json
+    kind: webhook payload
+    event_alias: applicant-updated-external
+    event: Applicant updated via Middleware
+  - file: webhooks/arthur-online-viewing-add-manager.json
+    kind: webhook payload
+    event_alias: viewing-add-manager
+    event: Added Letting Viewing by Property Manager
+  - file: webhooks/arthur-online-viewing-applicant-add.json
+    kind: webhook payload
+    event_alias: viewing-applicant-add
+    event: Applicant added to viewing
+  - file: webhooks/arthur-online-viewing-cancelled.json
+    kind: webhook payload
+    event_alias: viewing-cancelled
+    event: Viewing Cancelled
+  - file: webhooks/arthur-online-viewing-offer.json
+    kind: webhook payload
+    event_alias: viewing-offer
+    event: Viewing offer entered
+related:
+  asyncapi: asyncapi/arthur-online-webhooks-asyncapi.yml
+  webhooks: asyncapi/arthur-online-webhooks.yml

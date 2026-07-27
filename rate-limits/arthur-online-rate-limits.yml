@@ -1,0 +1,44 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: Arthur Online
+providerId: arthur-online
+created: '2026-07-26'
+modified: '2026-07-26'
+generated: '2026-07-26'
+method: searched
+tags:
+  - Rate Limiting
+  - Property Management
+  - Real Estate
+description: >-
+  Arthur publishes a single flat throttle for the whole API - 5,000 requests per hour,
+  described as a worldwide limit - and invites accounts that need more to contact technical
+  support. No per-endpoint, per-plan or per-token limits are published, and no rate-limit
+  response headers or throttling status code are documented.
+sources:
+  - https://developer.arthuronline.co.uk/
+  - collections/arthur-online.postman_collection.json (API > Useful Information > Throttling)
+headers:
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+responseCodes:
+  throttled: null
+limits:
+  - name: All API requests
+    scope: worldwide
+    metric: requests_per_hour
+    limit: 5000
+    timeFrame: hour
+    note: >-
+      "In order to avoid misuse of the API, we have established a worldwide rate limit of
+      5,000 requests per hour. If you need a higher limit for your account, kindly reach out
+      to Arthur technical support."
+increase:
+  self_serve: false
+  process: Contact Arthur technical support.
+  contact: https://support.arthuronline.co.uk/support/home
+related:
+  conventions: conventions/arthur-online-conventions.yml
+  errors: errors/arthur-online-problem-types.yml

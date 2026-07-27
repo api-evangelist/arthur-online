@@ -1,0 +1,2469 @@
+openapi: 3.1.0
+info:
+  title: Arthur Tenancies API
+  version: 2.0.0
+  description: Arthur Tenancies API - the tenancies surface of the Arthur API v2, the UK property management
+    platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's
+    public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped
+    to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization
+    Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Tenants
+- name: Assets
+- name: Certificates
+- name: Register Deposit
+- name: Tasks
+- name: Workorders
+- name: Conversations
+- name: Transactions
+- name: Notes
+- name: Tags
+- name: Recurrings
+- name: Tenancies
+paths:
+  /tenancies/{tenancy_id}/tenants:
+    get:
+      operationId: listTenantsOnTenancy
+      summary: List Tenants On Tenancy
+      tags:
+      - Tenants
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This retrieves a list of tenants related to a tenancy
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addTenantOnTenancy
+      summary: Add Tenant On Tenancy
+      tags:
+      - Tenants
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tenant on a tenancy. The API will return the saved\
+        \ data and a unique tenant ID.\n\nSupported Fields \n The following fields are supported for the\
+        \ request body\n\nField \n Example \n Type \n Required? \n\nmain_tenant \n True \n Boolean \n\
+        \ No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No\
+        \ \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen\
+        \ \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No \n\ngender \n Male \n Enum \n\
+        \ No \n\ncitizen_type \n 1 \n Enum \n No \n\nemail \n email@gmail.com \n String \n No \n\ncompany_name\
+        \ \n MyCompany \n Strong \n No \n\ncompant_address_name \n Address \n String \n No \n\ncompany_address1\
+        \ \n Boundry Road \n String \n No \n\ncompany_address2 \n Wren Court \n String \n No \n\ncompany_city\
+        \ \n London \n String \n No \n\ncompany_postcode \n SW94DA \n String \n No \n\ncompany_county\
+        \ \n City of London \n String \n No \n\ncompany_country \n England \n String \n No \n\nphone_home\
+        \ \n 029302932 \n String \n No \n\nphone_work \n 029382928 \n String \n No \n\nmobile \n 020192029\
+        \ \n String \n No \n\nresidential_number \n 201 \n String \n No \n\nvisa_number \n 120-123 \n\
+        \ String \n No \n\nvisa_years \n 3 \n String \n No \n\nvisa_type \n Tier 2 \n Enum \n No \n\n\
+        country_of_origin \n Wales \n String \n No \n\nni_number \n KS 01 AK 11 F \n String \n No \n\n\
+        kin_mobile \n 029302991 \n String \n No \n\nkin_last_name \n Cullen \n String \n No \n\nkin_first_name\
+        \ \n Monica \n String \n No \n\nkin_phone_work \n 029320191 \n String \n No \n\nstudent_status\
+        \ \n Full-time \n String \n No \n\nuniversity \n Oxford \n String \n No \n\ncourse_name \n Doe\
+        \ Studies \n String \n No \n\ncourse_id \n 1 \n String \n No \n\ncourse_year \n 2 \n String \n\
+        \ No \n\nemployment_company_name \n Lorem \n String \n No \n\nemployment_address1 \n Address First\
+        \ Line \n String \n No \n\nemployment_address2 \n Address Second Line \n String \n No \n\nemployment_city\
+        \ \n Liverpool \n String \n No \n\nemployment_postcode \n LN91LS \n String \n No \n\nemployment_county\
+        \ \n Norfolk \n String \n No \n\nemployment_contact_name \n Grace \n String \n No \n\nemployment_contact_number\
+        \ \n 0239203900 \n String \n No \n\nemployment_salary \n 90000 \n String \n No \n\nemployment_length\
+        \ \n 5 years \n String \n No \n\nhousing_benefit_council \n Borought \n String \n No \n\nhousing_benefit_number\
+        \ \n 19203 \n String \n No \n\nguarantor_first_name \n Nicolas \n String \n No \n\nguarantor_last_name\
+        \ \n Cage \n String \n No \n\nguarantor_date_of_birth \n 1911-02-12 \n String \n No \n\nguarantor_address1\
+        \ \n Address first line \n String \n No \n\nguarantor_address2 \n Address second line \n String\
+        \ \n No \n\nguarantor_city \n London \n String \n No \n\nguarantor_postcode \n XP91AP \n String\
+        \ \n No \n\nguarantor_county \n Suffolk \n String \n No \n\nguarantor_country \n England \n String\
+        \ \n No \n\nguarantor_phone_home \n 028392871 \n String \n No \n\nguarantor_phone_work \n 028191282\
+        \ \n String \n No \n\nguarantor_mobile \n 029384383 \n String \n No \n\nguarantor_email \n guarantor@email.com\
+        \ \n String \n No \n\nguarantor_relation \n Brother \n String \n No \n\nguarantor_home_owner \n\
+        \ Yes \n String \n No \n\nguarantor_profession \n Teacher \n String \n No \n\nbank_name \n Barclays\
+        \ \n String \n No \n\nbank_address1 \n Address first line \n String \n No \n\nbank_address2 \n\
+        \ Address second line \n String \n No \n\nbank_city \n Romford \n String \n No \n\nbank_county\
+        \ \n Essex \n String \n No \n\nbank_postcode \n FS18LA \n String \n No \n\nref_name \n Ref Name\
+        \ \n String \n No \n\nref_address1 \n Ref First Line \n String \n No \n\nref_address2 \n Ref Second\
+        \ Line \n String \n No \n\nref_county \n Ref Hertfordshire \n String \n No \n\nref_city \n Ref\
+        \ City \n String \n No \n\nref_postcode \n Ref Postcode \n String \n No \n\nref_contact_number\
+        \ \n 029392832 \n String \n No \n\nref_relation \n Mother \n String \n No \n\napplicant_note \n\
+        \ Note to remember \n String \n No \n\nmanager_note \n Manager note \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                main_tenant:
+                  type: boolean
+                  example: true
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-05-28'
+                move_out_date:
+                  type: string
+                  example: '2019-06-28'
+                title:
+                  type: string
+                  example: Mr
+                  description: Enum - see the Types API for the allowed values
+                first_name:
+                  type: string
+                  example: Ryan
+                last_name:
+                  type: string
+                  example: Cullen
+                date_of_birth:
+                  type: string
+                  format: date
+                  example: '1995-01-21'
+                gender:
+                  type: string
+                  example: Male
+                  description: Enum - see the Types API for the allowed values
+                citizen_type:
+                  type: string
+                  example: '1'
+                  description: Enum - see the Types API for the allowed values
+                email:
+                  type: string
+                  example: email@gmail.com
+                company_name:
+                  type: string
+                  example: MyCompany
+                compant_address_name:
+                  type: string
+                  example: Address
+                company_address1:
+                  type: string
+                  example: Boundry Road
+                company_address2:
+                  type: string
+                  example: Wren Court
+                company_city:
+                  type: string
+                  example: London
+                company_postcode:
+                  type: string
+                  example: SW94DA
+                company_county:
+                  type: string
+                  example: City of London
+                company_country:
+                  type: string
+                  example: England
+                phone_home:
+                  type: string
+                  example: 029302932
+                phone_work:
+                  type: string
+                  example: 029382928
+                mobile:
+                  type: string
+                  example: 020192029
+                residential_number:
+                  type: string
+                  example: '201'
+                visa_number:
+                  type: string
+                  example: 120-123
+                visa_years:
+                  type: string
+                  example: '3'
+                visa_type:
+                  type: string
+                  example: Tier 2
+                  description: Enum - see the Types API for the allowed values
+                country_of_origin:
+                  type: string
+                  example: Wales
+                ni_number:
+                  type: string
+                  example: KS 01 AK 11 F
+                kin_mobile:
+                  type: string
+                  example: 029302991
+                kin_last_name:
+                  type: string
+                  example: Cullen
+                kin_first_name:
+                  type: string
+                  example: Monica
+                kin_phone_work:
+                  type: string
+                  example: 029320191
+                student_status:
+                  type: string
+                  example: Full-time
+                university:
+                  type: string
+                  example: Oxford
+                course_name:
+                  type: string
+                  example: Doe Studies
+                course_id:
+                  type: string
+                  example: '1'
+                course_year:
+                  type: string
+                  example: '2'
+                employment_company_name:
+                  type: string
+                  example: Lorem
+                employment_address1:
+                  type: string
+                  example: Address First Line
+                employment_address2:
+                  type: string
+                  example: Address Second Line
+                employment_city:
+                  type: string
+                  example: Liverpool
+                employment_postcode:
+                  type: string
+                  example: LN91LS
+                employment_county:
+                  type: string
+                  example: Norfolk
+                employment_contact_name:
+                  type: string
+                  example: Grace
+                employment_contact_number:
+                  type: string
+                  example: 0239203900
+                employment_salary:
+                  type: string
+                  example: '90000'
+                employment_length:
+                  type: string
+                  example: 5 years
+                housing_benefit_council:
+                  type: string
+                  example: Borought
+                housing_benefit_number:
+                  type: string
+                  example: '19203'
+                guarantor_first_name:
+                  type: string
+                  example: Nicolas
+                guarantor_last_name:
+                  type: string
+                  example: Cage
+                guarantor_date_of_birth:
+                  type: string
+                  example: '1911-02-12'
+                guarantor_address1:
+                  type: string
+                  example: Address first line
+                guarantor_address2:
+                  type: string
+                  example: Address second line
+                guarantor_city:
+                  type: string
+                  example: London
+                guarantor_postcode:
+                  type: string
+                  example: XP91AP
+                guarantor_county:
+                  type: string
+                  example: Suffolk
+                guarantor_country:
+                  type: string
+                  example: England
+                guarantor_phone_home:
+                  type: string
+                  example: 028392871
+                guarantor_phone_work:
+                  type: string
+                  example: 028191282
+                guarantor_mobile:
+                  type: string
+                  example: 029384383
+                guarantor_email:
+                  type: string
+                  example: guarantor@email.com
+                guarantor_relation:
+                  type: string
+                  example: Brother
+                guarantor_home_owner:
+                  type: string
+                  example: 'Yes'
+                guarantor_profession:
+                  type: string
+                  example: Teacher
+                bank_name:
+                  type: string
+                  example: Barclays
+                bank_address1:
+                  type: string
+                  example: Address first line
+                bank_address2:
+                  type: string
+                  example: Address second line
+                bank_city:
+                  type: string
+                  example: Romford
+                bank_county:
+                  type: string
+                  example: Essex
+                bank_postcode:
+                  type: string
+                  example: FS18LA
+                ref_name:
+                  type: string
+                  example: Ref Name
+                ref_address1:
+                  type: string
+                  example: Ref First Line
+                ref_address2:
+                  type: string
+                  example: Ref Second Line
+                ref_county:
+                  type: string
+                  example: Ref Hertfordshire
+                ref_city:
+                  type: string
+                  example: Ref City
+                ref_postcode:
+                  type: string
+                  example: Ref Postcode
+                ref_contact_number:
+                  type: string
+                  example: 029392832
+                ref_relation:
+                  type: string
+                  example: Mother
+                applicant_note:
+                  type: string
+                  example: Note to remember
+                manager_note:
+                  type: string
+                  example: Manager note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/assets:
+    get:
+      operationId: listAssetsOnTenancy
+      summary: List Assets On Tenancy
+      tags:
+      - Assets
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAssetOnTenancy
+      summary: Create Asset On Tenancy
+      tags:
+      - Assets
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset related to an  tenancy . The API will return\
+        \ the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\
+        \nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory\
+        \ \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean\
+        \ \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No\
+        \ \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name\
+        \ \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/certificates:
+    get:
+      operationId: listCertificatesOnTenancy
+      summary: List Certificates On Tenancy
+      tags:
+      - Certificates
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of certificates associated with the given tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addCertificateOnTenancy
+      summary: Add Certificate on Tenancy
+      tags:
+      - Certificates
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new certificate related to a  tenancy . The API will\
+        \ return the saved data.\n\nSupported Fields \n The following fields are supported for the request\
+        \ body\n\nField \n Example \n Type \n Required? \n\ntype \n Boiler Service \n String \n Yes \n\
+        \nexpiry_date \n 2023-12-05 \n String \n No \n\nnotes \n Fully assessed \n String \n No \n\nfile\
+        \ \n Base64 \n String \n No \n\nmime_type \n application/pdf \n String \n No (Required if File\
+        \ field is present) \n\nfile_name \n Certificate Document \n string \n No (Required if File field\
+        \ is present)"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: Boiler Service
+                expiry_date:
+                  type: string
+                  example: '2023-12-05'
+                notes:
+                  type: string
+                  example: Fully assessed
+                file:
+                  type: string
+                  example: Base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: Certificate Document
+              required:
+              - type
+            example:
+              type: Boiler Service
+              expiry_date: '2022-02-28'
+              notes: Fully assessed
+              file: JVBERi0xLjMNCiXi48/TDQoNCjEgMCBvYmoNCjw8DQovVHlwZSAvQ2F0YWxvZw0KL091dGxpbmVzIDIgMCBSDQovUGFnZXMgMyAwIFINCj4+DQplbmRvYmoNCg0KMiAwIG9iag0KPDwNCi9UeXBlIC9PdXRsaW5lcw0KL0NvdW50IDANCj4+DQplbmRvYmoNCg0KMyAwIG9iag0KPDwNCi9UeXBlIC9QYWdlcw0KL0NvdW50IDINCi9LaWRzIFsgNCAwIFIgNiAwIFIgXSANCj4+DQplbmRvYmoNCg0KNCAwIG9iag0KPDwNCi9UeXBlIC9QYWdlDQovUGFyZW50IDMgMCBSDQovUmVzb3VyY2VzIDw8DQovRm9udCA8PA0KL0YxIDkgMCBSIA0KPj4NCi9Qcm9jU2V0IDggMCBSDQo+Pg0KL01lZGlhQm94IFswIDAgNjEyLjAwMDAgNzkyLjAwMDBdDQovQ29udGVudHMgNSAwIFINCj4+DQplbmRvYmoNCg0KNSAwIG9iag0KPDwgL0xlbmd0aCAxMDc0ID4+DQpzdHJlYW0NCjIgSg0KQlQNCjAgMCAwIHJnDQovRjEgMDAyNyBUZg0KNTcuMzc1MCA3MjIuMjgwMCBUZA0KKCBBIFNpbXBsZSBQREYgRmlsZSApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY4OC42MDgwIFRkDQooIFRoaXMgaXMgYSBzbWFsbCBkZW1vbnN0cmF0aW9uIC5wZGYgZmlsZSAtICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjY0LjcwNDAgVGQNCigganVzdCBmb3IgdXNlIGluIHRoZSBWaXJ0dWFsIE1lY2hhbmljcyB0dXRvcmlhbHMuIE1vcmUgdGV4dC4gQW5kIG1vcmUgKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NTIuNzUyMCBUZA0KKCB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDYyOC44NDgwIFRkDQooIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjE2Ljg5NjAgVGQNCiggdGV4dC4gQW5kIG1vcmUgdGV4dC4gQm9yaW5nLCB6enp6ei4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNjA0Ljk0NDAgVGQNCiggbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDU5Mi45OTIwIFRkDQooIEFuZCBtb3JlIHRleHQuIEFuZCBtb3JlIHRleHQuICkgVGoNCkVUDQpCVA0KL0YxIDAwMTAgVGYNCjY5LjI1MDAgNTY5LjA4ODAgVGQNCiggQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA1NTcuMTM2MCBUZA0KKCB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBFdmVuIG1vcmUuIENvbnRpbnVlZCBvbiBwYWdlIDIgLi4uKSBUag0KRVQNCmVuZHN0cmVhbQ0KZW5kb2JqDQoNCjYgMCBvYmoNCjw8DQovVHlwZSAvUGFnZQ0KL1BhcmVudCAzIDAgUg0KL1Jlc291cmNlcyA8PA0KL0ZvbnQgPDwNCi9GMSA5IDAgUiANCj4+DQovUHJvY1NldCA4IDAgUg0KPj4NCi9NZWRpYUJveCBbMCAwIDYxMi4wMDAwIDc5Mi4wMDAwXQ0KL0NvbnRlbnRzIDcgMCBSDQo+Pg0KZW5kb2JqDQoNCjcgMCBvYmoNCjw8IC9MZW5ndGggNjc2ID4+DQpzdHJlYW0NCjIgSg0KQlQNCjAgMCAwIHJnDQovRjEgMDAyNyBUZg0KNTcuMzc1MCA3MjIuMjgwMCBUZA0KKCBTaW1wbGUgUERGIEZpbGUgMiApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY4OC42MDgwIFRkDQooIC4uLmNvbnRpbnVlZCBmcm9tIHBhZ2UgMS4gWWV0IG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NzYuNjU2MCBUZA0KKCBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSB0ZXh0LiBBbmQgbW9yZSApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY2NC43MDQwIFRkDQooIHRleHQuIE9oLCBob3cgYm9yaW5nIHR5cGluZyB0aGlzIHN0dWZmLiBCdXQgbm90IGFzIGJvcmluZyBhcyB3YXRjaGluZyApIFRqDQpFVA0KQlQNCi9GMSAwMDEwIFRmDQo2OS4yNTAwIDY1Mi43NTIwIFRkDQooIHBhaW50IGRyeS4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gQW5kIG1vcmUgdGV4dC4gKSBUag0KRVQNCkJUDQovRjEgMDAxMCBUZg0KNjkuMjUwMCA2NDAuODAwMCBUZA0KKCBCb3JpbmcuICBNb3JlLCBhIGxpdHRsZSBtb3JlIHRleHQuIFRoZSBlbmQsIGFuZCBqdXN0IGFzIHdlbGwuICkgVGoNCkVUDQplbmRzdHJlYW0NCmVuZG9iag0KDQo4IDAgb2JqDQpbL1BERiAvVGV4dF0NCmVuZG9iag0KDQo5IDAgb2JqDQo8PA0KL1R5cGUgL0ZvbnQNCi9TdWJ0eXBlIC9UeXBlMQ0KL05hbWUgL0YxDQovQmFzZUZvbnQgL0hlbHZldGljYQ0KL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcNCj4+DQplbmRvYmoNCg0KMTAgMCBvYmoNCjw8DQovQ3JlYXRvciAoUmF2ZSBcKGh0dHA6Ly93d3cubmV2cm9uYS5jb20vcmF2ZVwpKQ0KL1Byb2R1Y2VyIChOZXZyb25hIERlc2lnbnMpDQovQ3JlYXRpb25EYXRlIChEOjIwMDYwMzAxMDcyODI2KQ0KPj4NCmVuZG9iag0KDQp4cmVmDQowIDExDQowMDAwMDAwMDAwIDY1NTM1IGYNCjAwMDAwMDAwMTkgMDAwMDAgbg0KMDAwMDAwMDA5MyAwMDAwMCBuDQowMDAwMDAwMTQ3IDAwMDAwIG4NCjAwMDAwMDAyMjIgMDAwMDAgbg0KMDAwMDAwMDM5MCAwMDAwMCBuDQowMDAwMDAxNTIyIDAwMDAwIG4NCjAwMDAwMDE2OTAgMDAwMDAgbg0KMDAwMDAwMjQyMyAwMDAwMCBuDQowMDAwMDAyNDU2IDAwMDAwIG4NCjAwMDAwMDI1NzQgMDAwMDAgbg0KDQp0cmFpbGVyDQo8PA0KL1NpemUgMTENCi9Sb290IDEgMCBSDQovSW5mbyAxMCAwIFINCj4+DQoNCnN0YXJ0eHJlZg0KMjcxNA0KJSVFT0YNCg==
+              mime_type: application/pdf
+              file_name: file_name
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 878809
+                  type: 'Boiler Service '
+                  expiry_date: '2022-02-28'
+                  status: Expired
+                  missing: false
+                  file:
+                    id: 5779465
+                    download_url: https://asset.arthuronline.co.uk/download/27210b2b-896e-45fe-949f-171f90998f14
+                    mime_type: application/pdf
+                  property:
+                    id: 280736
+                    address: 5 marford close, northwich, Cheshire, CW9 8WW
+                  unit:
+                    id: 599238
+                    address: Unit 2 - B, 5 marford close, northwich, Cheshire, CW9 8WW
+                  tenancy:
+                    id: 709960
+                    ref: TE1197
+                    address: Unit 2 - B, 5 marford close, northwich, Cheshire, CW9 8WW
+                  notes: Fully assessed
+                  share_manager: true
+                  share_tenant: false
+                  share_contractor: false
+                  share_owner: false
+                  created: '2023-03-06T15:08:02'
+                  modified: '2023-03-06T15:08:02'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{id}/register_deposit:
+    get:
+      operationId: registerDepositOnTenancy
+      summary: Register Deposit on Tenancy
+      tags:
+      - Register Deposit
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves the registered deposit associated with the given tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  tenancy_id: 709960
+                  deposit_registered_not_needed: false
+                  date_registered: '2022-10-01'
+                  payment_id: ''
+                  certificate_no: ''
+                  deposit_scheme: LSDWUC
+                  deposit_held_by: TDS
+                  deposit_required: '1200.00'
+                  deposit_registered: true
+                  image_urls: []
+                  document_urls:
+                  - https://asset.arthuronline.co.uk/download/27210b2b-896e-45fe-949f-171f90998f14
+                  modified: '2023-03-06T09:08:27'
+                  created: '2023-03-06T09:08:26'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDepositOnTenancy
+      summary: Update Deposit on Tenancy
+      tags:
+      - Register Deposit
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to update the registered deposit related to a tenancy . The API\
+        \ will return the saved data.\n\nSupported Fields \n The following fields are supported for the\
+        \ request body\n\nField \n Example \n Type \n Required? \n\ndeposit_registered_not_needed \n true\
+        \ \n Boolean \n No \n\ndate_registered \n 2023-12-05 \n String \n No \n\ncertificate_no \n ABC\
+        \ \n String \n No \n\ndeposit_scheme \n Base64 \n String \n No \n\ndeposit_held_by \n TDS \n String\
+        \ \n No \n\ndeposit_required \n 1200 \n string \n No \n\ndeposit_registered \n true \n Boolean\
+        \ \n No \n\nThe \"deposit_scheme\" field is required to have one of the following values:\n\n\
+        Tenancy Deposit Scheme (TDS) \n Deposit Protection Service (DPS) \n MyDeposits \n Letting Protection\
+        \ Scotland \n Safe Deposits Scotland \n My Deposits Scotland \n Reposit \n N/A"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deposit_registered_not_needed:
+                  type: boolean
+                  example: true
+                date_registered:
+                  type: string
+                  example: '2023-12-05'
+                certificate_no:
+                  type: string
+                  example: ABC
+                deposit_scheme:
+                  type: string
+                  example: Base64
+                deposit_held_by:
+                  type: string
+                  example: TDS
+                deposit_required:
+                  type: string
+                  example: '1200'
+                deposit_registered:
+                  type: boolean
+                  example: true
+            example:
+              deposit_registered_not_needed: true
+              date_registered: '2022-01-20'
+              certificate_no: ABC123
+              deposit_scheme: Tenancy Deposit Scheme (TDS)
+              deposit_held_by: TDS
+              deposit_required: '1200'
+              deposit_registered: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  tenancy_id: 709960
+                  deposit_registered_not_needed: true
+                  date_registered: '2022-01-20'
+                  payment_id: ''
+                  certificate_no: ABC123
+                  deposit_scheme: Tenancy Deposit Scheme (TDS)
+                  deposit_held_by: TDS
+                  deposit_required: '1200.00'
+                  deposit_registered: true
+                  image_urls: []
+                  document_urls:
+                  - https://asset.arthuronline.co.uk/download/27210b2b-896e-45fe-949f-171f90998f14
+                  modified: '2023-03-06T15:43:07'
+                  created: '2023-03-06T09:08:26'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/tasks:
+    get:
+      operationId: listTasksOnTenancy
+      summary: List Tasks On Tenancy
+      tags:
+      - Tasks
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tasks associated with the given tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addTaskOnTenancy
+      summary: Add Task On Tenancy
+      tags:
+      - Tasks
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new task record for a tenancy . The API will return\
+        \ the saved data and a unique task ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n\
+        \ String \n No \n\ndescription \n Radiator not working \n String \n Yes \n\ntags \n ['one','two']\
+        \ \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time\
+        \ \n No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean\
+        \ \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String\
+        \ \n No \n\nfiles \n\n(each object must contain \"file_type\", \"file_name\", and \"file\") \n\
+        \ { \n\"file_type\":\"application/pdf\", \n\"file_name\":\"testing\", \n\"file\":\"(base 64)\"\
+        \ \n} \n\n[Array {Objects}] \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_type:
+                  type: string
+                  example: Inspection
+                description:
+                  type: string
+                  example: Radiator not working
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-10-11'
+                due_time:
+                  type: string
+                  example: '15:32'
+                assigned_managers:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                emergency:
+                  type: boolean
+                  example: true
+                private:
+                  type: boolean
+                  example: true
+                api_notes:
+                  type: string
+                  example: Landlord will be present
+              required:
+              - description
+            example:
+              description: Fix windows please
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/tasks/{task_id}:
+    get:
+      operationId: viewTaskOnTenancy
+      summary: View Task On Tenancy
+      tags:
+      - Tasks
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single tenancy  task , identified by its
+        unique  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateTaskOnTenancy
+      summary: Update Task On Tenancy
+      tags:
+      - Tasks
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - name: task_id
+        in: path
+        required: true
+        description: Arthur task id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing task using the same fields as the 'Add Task' endpoint.\
+        \ The API will return the updated data for the tenancy in the response.\n\nSupported Fields \n\
+        \ The following fields are supported for the request body\n\nField \n Example \n Type \n Required?\
+        \ \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String\
+        \ \n No \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n\
+        \ No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer)\
+        \ \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes\
+        \ \n Landlord will be present \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task_type:
+                  type: string
+                  example: Inspection
+                description:
+                  type: string
+                  example: Radiator not working
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-10-11'
+                due_time:
+                  type: string
+                  example: '15:32'
+                assigned_managers:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                emergency:
+                  type: boolean
+                  example: true
+                private:
+                  type: boolean
+                  example: true
+                api_notes:
+                  type: string
+                  example: Landlord will be present
+            example:
+              description: Fix windows please updated
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}:
+    delete:
+      operationId: deleteTaskOnTenancy
+      summary: Delete Task On Tenancy
+      tags:
+      - Tasks
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing asset record using the task  id , under a tenancy
+        ID
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    get:
+      operationId: viewTenancy
+      summary: View Tenancy
+      tags:
+      - Tenancies
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single tenancy, identified by its unique 
+        tenancy_id .
+
+
+        Use this endpoint to view the specific details of a tenancy.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateTenancy
+      summary: Update Tenancy
+      tags:
+      - Tenancies
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing tenancy using the same fields as the 'Add Tenancy'\
+        \ endpoint excluding the  unit_id . Any fields that are not provided will not be changed. The\
+        \ API will return the updated data for the unit in the response.\n\nSupported Fields \n The following\
+        \ fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus\
+        \ \n Current \n Integer \n No \n\ntenancy_type \n Commercial \n Integer \n No \n\nletting_agent_id\
+        \ \n 90909 \n Integer \n No \n\ncontract_type \n Company \n String \n No \n\nrenter_company \n\
+        \ Renter Ltd. \n String \n No \n\nstart_date \n 2019-01-01 \n Date \n No \n\nend_date \n 2020-01-01\
+        \ \n Date \n No \n\nbreak_clause_date \n 2019-06-01 \n Date \n No \n\nfixed_break_date \n 2019-06-01\
+        \ \n Date \n No \n\nrolling_break_date \n 2019-09-18 \n Date \n No \n\nnotice_period \n 2 months\
+        \ \n String \n No \n\nissue_break_clause_to \n landlord \n String \n No \n\nmove_in_date \n 2019-01-01\
+        \ \n Date \n No \n\nmove_in_time \n 12:00 \n Time \n No \n\nmove_out_date \n 2020-01-01 \n Date\
+        \ \n No \n\nmove_out_time \n 12:00 \n Time \n No \n\nrent_amount \n 875 \n Float \n No \n\nrent_frequency\
+        \ \n Monthly \n String \n No \n\ndeposit_held_by \n DPS \n String \n No \n\nrent_payment_bank_id\
+        \ \n 1423 \n Integer \n No \n\ndeposit_payment_bank_id \n 4132 \n Integer \n No \n\ndefault_rent_payment_method\
+        \ \n Bank Transfer \n String \n No \n\nrent_insured \n false \n Boolean \n No \n\ntags \n [\"\
+        12 month contract\"] \n Array (String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                tenancy_type:
+                  type: integer
+                letting_agent_id:
+                  type: integer
+                  example: 90909
+                contract_type:
+                  type: string
+                  example: Company
+                renter_company:
+                  type: string
+                  example: Renter Ltd.
+                start_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                end_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                break_clause_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                fixed_break_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                rolling_break_date:
+                  type: string
+                  format: date
+                  example: '2019-09-18'
+                notice_period:
+                  type: string
+                  example: 2 months
+                issue_break_clause_to:
+                  type: string
+                  example: landlord
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                move_in_time:
+                  type: string
+                  example: '12:00'
+                move_out_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                move_out_time:
+                  type: string
+                  example: '12:00'
+                rent_amount:
+                  type: number
+                  example: 875.0
+                rent_frequency:
+                  type: string
+                  example: Monthly
+                deposit_held_by:
+                  type: string
+                  example: DPS
+                rent_payment_bank_id:
+                  type: integer
+                  example: 1423
+                deposit_payment_bank_id:
+                  type: integer
+                  example: 4132
+                default_rent_payment_method:
+                  type: string
+                  example: Bank Transfer
+                rent_insured:
+                  type: boolean
+                  example: false
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["12 month contract"]'
+            example:
+              status: Current
+              tenancy_type: Commercial
+              start_date: '2019-01-01'
+              end_date: '2020-01-01'
+              break_clause_date: '2019-06-01'
+              fixed_break_date: '2019-06-01'
+              rolling_break_date: '2019-09-18'
+              move_in_date: '2019-01-01'
+              move_in_time: '12:00'
+              move_out_date: '2020-01-01'
+              move_out_time: '12:00'
+              deposit_held_by: ''
+              default_rent_payment_method: Bank Transfer
+              rent_insured: false
+              tags:
+              - 12 month contract
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/workorders:
+    get:
+      operationId: listWorkordersOnTenancy
+      summary: List Workorders On Tenancy
+      tags:
+      - Workorders
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of workorders associated with the given tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createWorkorderOnTenancy
+      summary: Create Workorder On Tenancy
+      tags:
+      - Workorders
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new workorder record for a  tenancy . The API will return\
+        \ the saved data and a unique workorder ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ntitle \n workorder title \n\
+        \ String \n No \n\ndescription \n workorder description \n String \n No \n\ninvite_contractors\
+        \ \n [123,1234] \n Array(integer) \n No \n\nservice_type \n Carpet Layer \n String \n Yes \n\n\
+        start_date \n 2020-02-20 \n Date \n No \n\ndue_date \n 2020-02-20 \n Date \n No \n\nbudget \n\
+        \ 1000,00 \n Float \n No \n\nallocated_time_hours \n 20 \n Float \n No \n\nactual_time_hours \n\
+        \ 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float \n No \n\nemergency \n true \n Boolean\
+        \ \n No \n\nquote_required \n true \n Boolean \n No \n\nshare_assets \n false \n Boolean \n No\
+        \ \n\nhide_tenant_details \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: workorder title
+                description:
+                  type: string
+                  example: workorder description
+                invite_contractors:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                service_type:
+                  type: string
+                  example: Carpet Layer
+                start_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                budget:
+                  type: number
+                allocated_time_hours:
+                  type: number
+                  example: 20.0
+                actual_time_hours:
+                  type: number
+                  example: 20.0
+                price_per_hour:
+                  type: number
+                emergency:
+                  type: boolean
+                  example: true
+                quote_required:
+                  type: boolean
+                  example: true
+                share_assets:
+                  type: boolean
+                  example: false
+                hide_tenant_details:
+                  type: boolean
+                  example: true
+              required:
+              - service_type
+            example:
+              service_type: aerial network specialist
+              title: Workorder title
+              description: Workorder Description
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/workorders/{workorder_id}:
+    get:
+      operationId: viewWorkorderOnTenancy
+      summary: View Workorder On Tenancy
+      tags:
+      - Workorders
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single tenancy  workorder , identified
+        by its unique  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancy/{tenancy_id}/workorders/{workorder_id}:
+    put:
+      operationId: updateWorkorderOnTenancy
+      summary: Update Workorder On Tenancy
+      tags:
+      - Workorders
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - name: workorder_id
+        in: path
+        required: true
+        description: Arthur workorder id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing workorder using the same fields as the 'Add Workorder'\
+        \ endpoint. The API will return the updated data for the tenancy in the response.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\ntitle \n workorder title \n String \n No \n\ndescription \n workorder description\
+        \ \n String \n No \n\ninvite_contractors \n [123,1234] \n Array(integer) \n No \n\nservice_type\
+        \ \n Carpet Layer \n String \n No \n\nstart_date \n 2020-02-20 \n Date \n No \n\ndue_date \n 2020-02-20\
+        \ \n Date \n No \n\nbudget \n 1000,00 \n Float \n No \n\nallocated_time_hours \n 20 \n Float \n\
+        \ No \n\nactual_time_hours \n 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float \n No \n\n\
+        emergency \n true \n Boolean \n No \n\nquote_required \n true \n Boolean \n No \n\nshare_assets\
+        \ \n false \n Boolean \n No \n\nhide_tenant_details \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: workorder title
+                description:
+                  type: string
+                  example: workorder description
+                invite_contractors:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,1234]'
+                service_type:
+                  type: string
+                  example: Carpet Layer
+                start_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                due_date:
+                  type: string
+                  format: date
+                  example: '2020-02-20'
+                budget:
+                  type: number
+                allocated_time_hours:
+                  type: number
+                  example: 20.0
+                actual_time_hours:
+                  type: number
+                  example: 20.0
+                price_per_hour:
+                  type: number
+                emergency:
+                  type: boolean
+                  example: true
+                quote_required:
+                  type: boolean
+                  example: true
+                share_assets:
+                  type: boolean
+                  example: false
+                hide_tenant_details:
+                  type: boolean
+                  example: true
+            example:
+              title: Updated title
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/conversation_recipients:
+    get:
+      operationId: getRecipientsForTenancy
+      summary: Get Recipients for Tenancy
+      tags:
+      - Conversations
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves a list of conversation recipients on a tenancy record, identified
+        by its unique  tenancy_id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/conversations:
+    get:
+      operationId: listConversationOnTenancy
+      summary: List Conversation On Tenancy
+      tags:
+      - Conversations
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of conversations on a tenancy, identified by its unique 
+        tenancy_id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /viewings/{viewing_id}/conversations:
+    post:
+      operationId: createConversationOnTenancy
+      summary: Create Conversation On Tenancy
+      tags:
+      - Conversations
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new conversation on a tenancy record. The API will return\
+        \ the saved data and a unique Conversation ID.\n\nSupported Fields \n The following fields are\
+        \ supported for the request body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's\
+        \ done \n String \n Yes \n\nsubject \n Meeting tomorrow \n String \n Yes \n\nperson_ids \n ['1','2']\
+        \ \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: It's done
+                subject:
+                  type: string
+                  example: Meeting tomorrow
+                person_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''1'',''2'']'
+              required:
+              - message
+              - subject
+              - person_ids
+            example:
+              message: Please clean the house on friday.
+              subject: House duties
+              person_ids:
+              - '21'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/transactions:
+    get:
+      operationId: listTransactionsOnTenancy
+      summary: List Transactions On Tenancy
+      tags:
+      - Transactions
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: statement
+        in: query
+        required: false
+        schema:
+          type: string
+        description: "Filters the transactions by statement. The available options are tenant , tenant-deposit\
+          \ , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement\
+          \ , late-rents , contingency-statement , invoices"
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The status of the transaction. The available options are paid , unpaid , partpaid
+          , outstanding , or overdue . Use this parameter to filter transactions based on their payment
+          status.
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters the transactions by the date, starting from the specified date. Use the format
+          yyyy-mm-dd to input the date.
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd
+          to input the date.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: "This retrieves a list of transactions for a Tenancy \n\nSee available filters below\
+        \ to customize the list of transactions returned."
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/notes:
+    get:
+      operationId: listNotesOnTenancy
+      summary: List Notes On Tenancy
+      tags:
+      - Notes
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of  notes  associated with the given tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addNoteOnTenancy
+      summary: Add Note On Tenancy
+      tags:
+      - Notes
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new note record for a  tenancy . The API will return\
+        \ the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n\
+        \ String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+              required:
+              - content
+            example:
+              content: Remember this note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/notes/{note_id}:
+    get:
+      operationId: viewNoteOnTenancy
+      summary: View Note On Tenancy
+      tags:
+      - Notes
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single tenancy  note , identified by its
+        unique  id
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateNoteOnTenancy
+      summary: Update Note On Tenancy
+      tags:
+      - Notes
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing note on a tenancy using the same fields as the 'Add\
+        \ Note' endpoint. The API will return the updated data for the note in the response.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n Array(String)\
+        \ \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''one'',''two'']'
+            example:
+              content: Updated Note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteNoteOnTenancy
+      summary: Delete Note On Tenancy
+      tags:
+      - Notes
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing tenancy note using the note  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/tags:
+    get:
+      operationId: listTagsOnTenancy
+      summary: List Tags on Tenancy
+      tags:
+      - Tags
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tags associated with the given Tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: tagTenancy
+      summary: Tag Tenancy
+      tags:
+      - Tags
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tag record for a  tenancy . The API will return\
+        \ the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type\
+        \ \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: array
+                  items:
+                    type: string
+                  example: '["123"]'
+              required:
+              - tag
+            example:
+              tag:
+              - '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/untag:
+    put:
+      operationId: untagTenancy
+      summary: Untag Tenancy
+      tags:
+      - Tags
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to unassign tag record from a  tenancy . The API will return the\
+        \ saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following\
+        \ fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n\
+        \ \"1234\" \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: string
+                  example: '"1234"'
+              required:
+              - tag
+            example:
+              tag: '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancy_id}/untag_all:
+    put:
+      operationId: untagAllTenancyTags
+      summary: Untag All Tenancy Tags
+      tags:
+      - Tags
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: Use this endpoint to unassign all tags from the  tenancy .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies/{tenancyId}/recurrings:
+    get:
+      operationId: listRecurrings
+      summary: List Recurrings
+      tags:
+      - Recurrings
+      parameters:
+      - name: tenancyId
+        in: path
+        required: true
+        description: Arthur tenancyId.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of recurrings associated to a specific tenancy
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 1481960
+                  tenancy_id: 966665
+                  property_id: 36378
+                  unit_id: 80046
+                  transaction_type: Direct Rent
+                  description: Rent
+                  description_format_id: 1
+                  at_remittance: false
+                  fee_type: fixed
+                  amount: '1000.00'
+                  currency: GBP
+                  vat_code_id: 4
+                  frequency_id: 1
+                  start_date: '2025-01-31'
+                  next_collection_date: null
+                  end_type: tenancy-end
+                  end_date: '2025-01-29T00:00:00'
+                  created_by:
+                    id: 100569
+                    full_name: Arthur Lettings
+                  active: false
+                  created: '2025-01-29T12:49:28'
+                  modified: '2025-01-29T12:59:49'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenancies:
+    get:
+      operationId: listTenancies
+      summary: List Tenancies
+      tags:
+      - Tenancies
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: assigned_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by unit manager ID
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the tenancy, which should be provided as a comma-separated
+          list
+      - name: moveInDate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tenancies move in date. Use the format yyyy-mm-dd to input the date
+      - name: moveOutDate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tenancy move out date. Use the format yyyy-mm-dd to input the date
+      - name: modified
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the last modified date. Use the format yyyy-mm-dd to input the date
+      - name: modifiedFrom
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters tenancies by the modified date, starting from the specified date. Use the
+          format yyyy-mm-dd to input the date.
+      - name: modifiedTo
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters tenancies by the modified date, up to the specified date. Use the format
+          yyyy-mm-dd to input the date.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the tenancy status
+      - name: full_address
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the full address of the property
+      - name: tenancy_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the tenancy type
+      - name: tenancy_sub_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the tenancy sub type
+      - name: unit_owner_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filer by the landlord ID
+      - name: letting_agent_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the letting agent ID
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by start date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by end date
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by a keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of tenancies.
+
+
+        See available filters below to customize the list of tenants returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addTenancy
+      summary: Add Tenancy
+      tags:
+      - Tenancies
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tenancy record. The API will return the saved data\
+        \ and a unique tenancy ID.\n\nSupported Fields \n The following fields are supported for the request\
+        \ body\n\nField \n Example \n Type \n Default \n Required? \n\nunit_id \n 12345 \n Integer \n\n\
+        Yes \n\nstatus \n Current \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer\
+        \ \n Residential \n No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company\
+        \ \n String \n\nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01\
+        \ \n Date \n\nYes \n\nend_date \n 2020-01-01 \n Date \n\nNo \n\nbreak_clause_date \n 2019-06-01\
+        \ \n Date \n\nNo \n\nfixed_break_date \n 2019-06-01 \n Date \n\nNo \n\nrolling_break_date \n 2019-09-18\
+        \ \n Date \n\nNo \n\nnotice_period \n 2 months \n String \n 1 months \n No \n\nissue_break_clause_to\
+        \ \n landlord \n String \n\nNo \n\nmove_in_date \n 2019-01-01 \n Date \n\nNo \n\nmove_in_time\
+        \ \n 12:00 \n Time \n\nNo \n\nmove_out_date \n 2020-01-01 \n Date \n\nNo \n\nmove_out_time \n\
+        \ 12:00 \n Time \n\nNo \n\nrent_amount \n 875 \n Float \n\nYes \n\nrent_frequency \n Monthly \n\
+        \ String \n\nNo \n\ndeposit_held_by \n DPS \n String \n\nNo \n\nrent_payment_bank_id \n 1423 \n\
+        \ Integer \n\nNo \n\ndeposit_payment_bank_id \n 4132 \n Integer \n\nNo \n\ndefault_rent_payment_method\
+        \ \n Bank Transfer \n String \n\nNo \n\nrent_insured \n false \n Boolean \n\nNo \n\ntags \n [\"\
+        12 month contract\"] \n Array (String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit_id:
+                  type: integer
+                  example: 12345
+                status:
+                  type: integer
+                tenancy_type:
+                  type: integer
+                letting_agent_id:
+                  type: integer
+                  example: 90909
+                contract_type:
+                  type: string
+                  example: Company
+                renter_company:
+                  type: string
+                  example: Renter Ltd.
+                start_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                end_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                break_clause_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                fixed_break_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                rolling_break_date:
+                  type: string
+                  format: date
+                  example: '2019-09-18'
+                notice_period:
+                  type: string
+                  example: 2 months
+                  default: 1 months
+                issue_break_clause_to:
+                  type: string
+                  example: landlord
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                move_in_time:
+                  type: string
+                  example: '12:00'
+                move_out_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                move_out_time:
+                  type: string
+                  example: '12:00'
+                rent_amount:
+                  type: number
+                  example: 875.0
+                rent_frequency:
+                  type: string
+                  example: Monthly
+                deposit_held_by:
+                  type: string
+                  example: DPS
+                rent_payment_bank_id:
+                  type: integer
+                  example: 1423
+                deposit_payment_bank_id:
+                  type: integer
+                  example: 4132
+                default_rent_payment_method:
+                  type: string
+                  example: Bank Transfer
+                rent_insured:
+                  type: boolean
+                  example: false
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["12 month contract"]'
+              required:
+              - unit_id
+              - start_date
+              - rent_amount
+            example:
+              unit_id: 3
+              status: Current
+              tenancy_type: Commercial
+              start_date: '2019-01-01'
+              end_date: '2020-01-01'
+              break_clause_date: '2019-06-01'
+              fixed_break_date: '2019-06-01'
+              rolling_break_date: '2019-09-18'
+              move_in_date: '2019-01-01'
+              move_in_time: '12:00'
+              move_out_date: '2020-01-01'
+              move_out_time: '12:00'
+              deposit_held_by: ''
+              default_rent_payment_method: Bank Transfer
+              rent_insured: false
+              tags:
+              - 12 month contract
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

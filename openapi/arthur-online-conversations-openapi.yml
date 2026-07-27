@@ -1,0 +1,507 @@
+openapi: 3.1.0
+info:
+  title: Arthur Conversations API
+  version: 2.0.0
+  description: Arthur Conversations API - the conversations surface of the Arthur API v2, the UK property
+    management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the
+    provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request
+    is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0
+    Authorization Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Assets
+- name: Messages
+- name: Conversations
+paths:
+  /conversations/{conversation_id}/assets:
+    get:
+      operationId: listAssetsOnConversation
+      summary: List Assets on Conversation
+      tags:
+      - Assets
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        description: Arthur conversation id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given conversation ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /conversations/{conversation_id}/messages:
+    get:
+      operationId: listMessagesRelatedToConversation
+      summary: List Messages Related To Conversation
+      tags:
+      - Messages
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        description: Arthur conversation id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This retrieves a list of messages related to a conversation id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 1
+                  conversation_id: 2
+                  title: subject
+                  message: Hello
+                  sent_by_me: true
+                  model: Property
+                  model_id: 3
+                  parent_id: 4
+                  is_group: false
+                  total_replies: 2
+                  created_by:
+                    id: 5
+                    name: Brian Acton
+                    group: manager
+                  recipients:
+                  - id: 6
+                    full_name: Dan Dudley
+                    is_read: false
+                  sent_by:
+                    id: 5
+                    name: Brian Acton
+                  created: '2020-06-04T14:29:14+01:00'
+                  modified: '2020-06-04T14:29:14+01:00'
+                - id: 12
+                  conversation_id: 2
+                  title: subject
+                  message: Hello
+                  sent_by_me: true
+                  model: Property
+                  model_id: 3
+                  parent_id: 1
+                  is_group: false
+                  total_replies: 2
+                  created_by:
+                    id: 5
+                    name: Brian Acton
+                    group: manager
+                  recipients:
+                  - id: 6
+                    full_name: Dan Dudley
+                    is_read: false
+                  sent_by:
+                    id: 6
+                    name: Dan Dudley
+                  created: '2020-06-04T14:22:13+01:00'
+                  modified: '2020-06-04T14:29:14+01:00'
+                pagination:
+                  page: 1
+                  current: 2
+                  count: 2
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addMessagesRelatedToConversation
+      summary: Add Messages Related To Conversation
+      tags:
+      - Messages
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        description: Arthur conversation id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to add a new message related to a  conversation . The API will return\
+        \ the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\
+        \nField \n Example \n Type \n Required? \n\nmessage \n It's done \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: It's done
+              required:
+              - message
+            example:
+              message: No problem
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 123
+                  conversation_id: 123
+                  title: Conversation Subject
+                  message: No problem
+                  model: Property
+                  model_id: 123
+                  parent_id: 1234
+                  is_group: false
+                  total_replies: 1234
+                  created_by:
+                    id: 123
+                    name: Ronnie Wilson
+                    group: manager
+                  recipients:
+                  - id: 123
+                    full_name: Ronnie Wilson
+                    entity_id: 123
+                    is_read: true
+                  - id: 123
+                    full_name: Ronnie Wilson
+                    entity_id: 123
+                    is_read: false
+                  sent_by:
+                    id: 123
+                    name: Ronnie Wilson
+                  created: '2020-06-02T14:29:14+01:00'
+                  modified: '2020-06-02T14:29:14+01:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /conversations/{conversation_id}/messages/{message_id}:
+    get:
+      operationId: viewMessageRelatedToConversation
+      summary: View Message Related To Conversation
+      tags:
+      - Messages
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        description: Arthur conversation id.
+        schema:
+          type: integer
+      - name: message_id
+        in: path
+        required: true
+        description: Arthur message id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single message, identified by its unique 
+        message_id .
+
+
+        Use this endpoint to view the specific details of a message within a conversation.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 1
+                  conversation_id: 2
+                  title: subject
+                  message: Hello
+                  sent_by_me: true
+                  model: Property
+                  model_id: 3
+                  parent_id: 4
+                  is_group: false
+                  total_replies: 2
+                  created_by:
+                    id: 5
+                    name: Brian Acton
+                    group: manager
+                  recipients:
+                  - id: 6
+                    full_name: Dan Dudley
+                    is_read: false
+                  sent_by:
+                    id: 5
+                    name: Brian Acton
+                  created: '2020-06-04T14:29:14+01:00'
+                  modified: '2020-06-04T14:29:14+01:00'
+                pagination:
+                  page: 1
+                  current: 2
+                  count: 2
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /conversations/{conversation_id}:
+    get:
+      operationId: listConversations
+      summary: List Conversations
+      tags:
+      - Conversations
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        description: Arthur conversation id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of conversations.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 123
+                  title: Subject 1
+                  message_count: 1
+                  model: ''
+                  model_id: null
+                  created_by:
+                    id: 123
+                    full_name: Ronnie Wilson
+                  recipients:
+                  - id: 123
+                    full_name: Kevin Wilson
+                  last_comment:
+                    message: Sure!
+                    created: '2020-04-22T12:03:28+01:00'
+                    full_name: Ronnie Wilson
+                  created: '2020-04-22T12:03:28+01:00'
+                  modified: '2020-04-22T12:03:28+01:00'
+                - id: 123
+                  title: Subject 2
+                  message_count: 1
+                  model: Property
+                  model_id: 1
+                  created_by:
+                    id: 123
+                    full_name: Ronnie Wilson
+                  recipients:
+                  - id: 123
+                    full_name: Kevin Wilson
+                  last_comment:
+                    message: Remember to clean on friday.
+                    created: '2020-04-23T11:49:54+01:00'
+                    full_name: Ronnie Wilson
+                  created: '2020-04-23T11:49:54+01:00'
+                  modified: '2020-04-30T11:49:54+01:00'
+                pagination:
+                  page: 1
+                  current: 3
+                  count: 2
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

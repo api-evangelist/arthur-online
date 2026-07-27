@@ -1,0 +1,2114 @@
+openapi: 3.1.0
+info:
+  title: Arthur Applicants API
+  version: 2.0.0
+  description: Arthur Applicants API - the applicants surface of the Arthur API v2, the UK property management
+    platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's
+    public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped
+    to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization
+    Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Assets
+- name: Assigned Managers
+- name: Credit Checks
+- name: Conversations
+- name: Viewings
+- name: Notes
+- name: Tags
+- name: Applicants
+paths:
+  /applicants/{applicant_id}/assets:
+    get:
+      operationId: listAssetsOnApplicant
+      summary: List Assets On Applicant
+      tags:
+      - Assets
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given applicant ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 123
+                  name: ' Inventory'
+                  description: ' Inventory'
+                  created_by:
+                    full_name: Brian Wiliams
+                    company: Superfarm
+                  file_type: PDF
+                  mime_type: PDF
+                  is_image: false
+                  main_image: false
+                  asset_type: Inventory
+                  share_manager: true
+                  share_owner: false
+                  share_tenant: false
+                  share_contractor: false
+                  download_url: https://api.arthuronline.co.uk/public/assets/download/123123
+                  view_url: https://api.arthuronline.co.uk/public/assets/view/123123
+                  attachments:
+                  - id: 123
+                    model: Applicant
+                    model_id: 123
+                  created: '2020-06-23T11:13:02+01:00'
+                  modified: '2020-06-23T11:13:02+01:00'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAssetOnApplicant
+      summary: Create Asset On Applicant
+      tags:
+      - Assets
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset related to an applicant . The API will return\
+        \ the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\
+        \nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory\
+        \ \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean\
+        \ \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No\
+        \ \n\nfile \n base64 \n String (base64) \n Yes \n\nmime_type \n application/pdf \n String \n Yes\
+        \ \n\nfile_name \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 123
+                  name: name of asset
+                  description: null
+                  created_by:
+                    full_name: API Documentation
+                    company: API
+                  file_type: PDF
+                  mime_type: application/pdf
+                  is_image: false
+                  main_image: false
+                  asset_type: Image
+                  share_manager: true
+                  share_owner: true
+                  share_tenant: true
+                  share_contractor: true
+                  download_url: https://api.arthuronline.co.uk/public/assets/download/123123
+                  view_url: https://api.arthuronline.co.uk/public/assets/view/123123
+                  attachments:
+                  - id: 123
+                    model: Property
+                    model_id: 123
+                  created: '2020-07-03T09:25:52+01:00'
+                  modified: '2020-07-03T09:25:52+01:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/managers/{manager_id}:
+    get:
+      operationId: listManagersOnApplicant
+      summary: List Managers on Applicant
+      tags:
+      - Assigned Managers
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - name: manager_id
+        in: path
+        required: true
+        description: Arthur manager id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assigned managers associated with the given applicant
+        ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 1869821
+                  first_name: API Support
+                  last_name: Team
+                  full_name: API Support Team
+                  group: Property Manager
+                  email: api.support@arthuronline.co.uk
+                  mobile: ''
+                  phone_work: ''
+                  phone_home: ''
+                  created: '2023-01-16T16:52:06'
+                  modified: '2023-01-16T16:52:42'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteManagerOnApplicant
+      summary: Delete Manager on Applicant
+      tags:
+      - Assigned Managers
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - name: manager_id
+        in: path
+        required: true
+        description: Arthur manager id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing assignee using the assigned manager  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                message: Assignee deleted successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/managers:
+    post:
+      operationId: addManagerOnApplicant
+      summary: Add Manager on Applicant
+      tags:
+      - Assigned Managers
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to assign managers to an applicant. The API will return the saved\
+        \ manager data.\n\nSupported Fields \n The following fields are supported for the request body\n\
+        \nField \n Example \n Type \n Required? \n\nperson_id \n 158674 \n Integer \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                person_id:
+                  type: integer
+                  example: 158674
+              required:
+              - person_id
+            example:
+              person_id: 1869821
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 1869821
+                  first_name: API Support
+                  last_name: Team
+                  full_name: API Support Team
+                  group: Property Manager
+                  email: api.support@arthuronline.co.uk
+                  mobile: ''
+                  phone_work: ''
+                  phone_home: ''
+                  created: '2023-01-16T16:52:06'
+                  modified: '2023-01-16T16:52:42'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/credit_checks:
+    get:
+      operationId: listCreditChecksOnApplicant
+      summary: List Credit Checks on Applicant
+      tags:
+      - Credit Checks
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of credit checks associated with the given applicant
+        ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 109
+                  credit_score: 800
+                  credit_description: Fair
+                  report_type: Individual report
+                  credit_check_status: Completed
+                  credit_check_provider: CallCredit
+                  related_tenancy_id: null
+                  draft: false
+                  date_submitted: '2019-02-14T15:02:56'
+                  created_by:
+                    id: 41082
+                    full_name: API Support
+                  created: '2019-02-14T15:02:46'
+                  modified: '2019-02-14T15:02:57'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/conversation_recipients:
+    get:
+      operationId: getRecipientsForApplicant
+      summary: Get Recipients for Applicant
+      tags:
+      - Conversations
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves a list of conversation recipients associated with the given
+        applicant ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/conversations:
+    get:
+      operationId: listConversationsOnApplicant
+      summary: List Conversations On Applicant
+      tags:
+      - Conversations
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of conversations associated with the given applicant
+        ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createConversationOnApplicant
+      summary: Create Conversation On Applicant
+      tags:
+      - Conversations
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new conversation related to a  applicant . The API will\
+        \ return the saved data.\n\nSupported Fields \n The following fields are supported for the request\
+        \ body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's done \n String \n Yes \n\n\
+        subject \n Meeting tomorrow \n String \n Yes \n\nperson_ids \n ['1','2'] \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: It's done
+                subject:
+                  type: string
+                  example: Meeting tomorrow
+                person_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: '[''1'',''2'']'
+              required:
+              - message
+              - subject
+              - person_ids
+            example:
+              message: Please clean the house on friday.
+              subject: House duties
+              person_ids:
+              - '21'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/viewings:
+    get:
+      operationId: listViewingsOnApplicant
+      summary: List Viewings On Applicant
+      tags:
+      - Viewings
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by status.
+      - name: assignedTo
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by assigned to ID.
+      - name: viewingDate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by the date.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of viewings associated with the given applicant ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - unit_id: '1'
+                  applicant_id: '11'
+                  viewing_status: Confirmed
+                  viewing_date: '2019-05-28'
+                  viewing_time: '12:30'
+                  offer_amount: '500.00'
+                  offer_frequency: Weekly
+                  move_in_date: '2019-07-01'
+                  assigned_to_ids:
+                  - '1234'
+                  source: my website
+                  notes: this is an applicant
+                  modified: '2019-05-28T12:00:00+00:00'
+                  created: '2019-05-28T12:00:00+00:00'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addViewingOnApplicant
+      summary: Add Viewing On Applicant
+      tags:
+      - Viewings
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new viewing record for the  applicant . The API will\
+        \ return the saved data and a unique applicant ID.\n\nSupported Fields \n The following fields\
+        \ are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\n\
+        unit_id \n 123 \n Integer \n\nYes \n\nviewing_date \n 2019-05-28 \n Date \n\nNo \n\nviewing_time\
+        \ \n 00:00 \n Time \n\nNo \n\noffer_amount \n 250.00 \n Float \n\nNo \n\noffer_frequency \n Week\
+        \ \n Enum \n Month \n No \n\nmove_in_date \n 2019-07-01 \n Date \n\nNo \n\nassigned_to_ids \n\
+        \ [123,124] \n Array (Integer) \n\nNo \n\nsource \n My website \n Simple \n\nNo \n\nnotes \n Landlord\
+        \ will be present for this viewing. \n String \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit_id:
+                  type: integer
+                  example: 123
+                viewing_date:
+                  type: string
+                  format: date
+                  example: '2019-05-28'
+                viewing_time:
+                  type: string
+                  example: 00:00
+                offer_amount:
+                  type: number
+                  example: 250.0
+                offer_frequency:
+                  type: string
+                  example: Week
+                  default: Month
+                  description: Enum - see the Types API for the allowed values
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-07-01'
+                assigned_to_ids:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,124]'
+                source:
+                  type: string
+                  example: My website
+                notes:
+                  type: string
+                  example: Landlord will be present for this viewing.
+              required:
+              - unit_id
+            example:
+              unit_id: '12'
+              viewing_date: '2021-10-10'
+              viewing_time: '14:23'
+              offer_amount: '1512'
+              offer_frequency: per week
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/notes:
+    get:
+      operationId: listNotesOnApplicant
+      summary: List Notes On Applicant
+      tags:
+      - Notes
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of notes associated with the given applicant ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addNoteOnApplicant
+      summary: Add Note On Applicant
+      tags:
+      - Notes
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new note record for the applicant . The API will return\
+        \ the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n\
+        \ String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+              required:
+              - content
+            example:
+              content: Remember this note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/notes/{note_id}:
+    get:
+      operationId: viewNoteOnApplicant
+      summary: View Note On Applicant
+      tags:
+      - Notes
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single note , identified by its unique
+        id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateNoteOnApplicant
+      summary: Update Note On Applicant
+      tags:
+      - Notes
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing note using the same fields as the 'Add Note' endpoint.\
+        \ The API will return the updated data for the note in the response.\n\nSupported Fields \n The\
+        \ following fields are supported for the request body\n\nField \n Example \n Type \n Required?\
+        \ \n\ncontent \n Moving away \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: Moving away
+            example:
+              content: Updated Note
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteNoteOnApplicant
+      summary: Delete Note On Applicant
+      tags:
+      - Notes
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - name: note_id
+        in: path
+        required: true
+        description: Arthur note id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing note using the note id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/tags:
+    get:
+      operationId: listTagsOnApplicant
+      summary: List Tags on Applicant
+      tags:
+      - Tags
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tags associated with the given applicant ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                - id: 33843
+                  name: 1000 spend limit
+                  color: blue
+                - id: 49572
+                  name: benefits lapsed
+                  color: blue
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: tagApplicant
+      summary: Tag Applicant
+      tags:
+      - Tags
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tag record for the applicant . The API will return\
+        \ the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type\
+        \ \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: array
+                  items:
+                    type: string
+                  example: '["123"]'
+              required:
+              - tag
+            example:
+              tag:
+              - '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/untag:
+    put:
+      operationId: untagApplicant
+      summary: Untag Applicant
+      tags:
+      - Tags
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to unassign tag record from the applicant . The API will return\
+        \ the saved data and a unique applicant ID. Tag field should be a valid tag ID or name.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\ntag \n \"1234\" \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: string
+                  example: '"1234"'
+              required:
+              - tag
+            example:
+              tag: '1234'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}/untag_all:
+    put:
+      operationId: untagAllApplicantTags
+      summary: Untag All Applicant Tags
+      tags:
+      - Tags
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: Use this endpoint to unassign all tags from the  applicant .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants:
+    get:
+      operationId: listApplicants
+      summary: List Applicants
+      tags:
+      - Applicants
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by applicant email
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by status (Tenant, Active, Inactive or custom created statuses)
+      - name: conditions
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by pre-defined conditions (with-viewing, without-viewing, empty)
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the applicant, which should be provided as a comma-separated
+          list
+      - name: created_date_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters applicants by the created date, starting from the specified date. Use the
+          format yyyy-mm-dd to input the date.
+      - name: created_date_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters applicants by the created date, up to the specified date. Use the format
+          yyyy-mm-dd to input the date.
+      - name: new_applicants_today
+        in: query
+        required: false
+        schema:
+          type: string
+        description: To display only recent applicants, set this to true
+      - name: number_of_sharers
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter applicants by the number of sharers
+      - name: source
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter list by applicant source name
+      - name: assign_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter list by Manager ID
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter list by a keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This endpoint retrieves a list of applicants. The enterprise package is required to
+        view/edit the matched_unit_ids array list.
+
+
+        See available filters below to customize the list of applicants returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addApplicant
+      summary: Add Applicant
+      tags:
+      - Applicants
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of
+          creating a new value. E.g. source
+        example: 'true'
+      description: "Use this endpoint to create a new applicant. The API will return the saved data and\
+        \ a unique Applicant ID.\n\nSupported Fields \n The following fields are supported for the request\
+        \ body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_status \n Active \n String\
+        \ \n\nNo \n\ntitle \n Mr \n Enum \n Mr \n No \n\nfirst_name \n Ryan \n String \n\nNo \n\nlast_name\
+        \ \n Cullen \n String \n\nNo \n\ndate_of_birth \n 1995-05-28 \n Date \n\nNo \n\ngender \n Other\
+        \ \n Enum \n Male \n No \n\ncitizen_type \n UK Citizen \n Enum \n\nNo \n\nemail \n myemail@example.com\
+        \ \n Email \n\nNo \n\ncompany_name \n Arthur Online \n String \n\nNo \n\ncompany_address_name\
+        \ \n Arthur Main Office \n String \n\nNo \n\ncompany_address1 \n comp line 1 \n String \n\nNo\
+        \ \n\ncompany_address2 \n comp line 2 \n String \n\nNo \n\ncompany_city \n compcity \n String\
+        \ \n\nNo \n\ncompany_postcode \n C0MP 123 \n String \n\nNo \n\ncompany_county \n comp hertfordshire\
+        \ \n String \n\nNo \n\ncompany_country \n 51 \n Enum \n\nNo \n\nphone_home \n 13597352 \n String\
+        \ \n\nNo \n\nphone_work \n 0159876589 \n String \n\nNo \n\nmobile \n 07726895134 \n String \n\n\
+        No \n\nresidential_number \n 11236659 \n String \n\nNo \n\nvisa_number \n 1346dq89 \n String \n\
+        \nNo \n\nvisa_years \n 3 \n String \n\nNo \n\nvisa_type \n Tier 2 \n Enum \n\nNo \n\ncountry_of_origin\
+        \ \n original country \n String \n\nNo \n\nni_number \n ab 12 34 5f \n String \n\nNo \n\nhousing_benefit_council\
+        \ \n herts council \n String \n\nNo \n\nhousing_benefit_number \n 1346 \n String \n\nNo \n\nbank_name\
+        \ \n bnk name \n String \n\nNo \n\nbank_address1 \n bank line 1 \n String \n\nNo \n\nbank_address2\
+        \ \n bank line 2 \n String \n\nNo \n\nbank_city \n bankcity \n String \n\nNo \n\nbank_county \n\
+        \ bank herts \n String \n\nNo \n\nbank_postcode \n B4N K12 \n String \n\nNo \n\nkin_first_name\
+        \ \n next-of \n String \n\nNo \n\nkin_last_name \n kin \n String \n\nNo \n\nkin_mobile \n 4512325178\
+        \ \n String \n\nNo \n\nkin_phone_work \n 996832145 \n String \n\nNo \n\nstudent_status \n full\
+        \ time \n Enum \n Full Time \n No \n\nuniversity \n viking university \n String \n\nNo \n\ncourse_name\
+        \ \n viking studies \n String \n\nNo \n\ncourse_id \n MC1685 \n String \n\nNo \n\ncourse_year\
+        \ \n 3 \n String \n\nNo \n\nemployment_company_name \n emp company name \n String \n\nNo \n\n\
+        employment_address1 \n emp line 1 \n String \n\nNo \n\nemployment_address2 \n emp line 2 \n String\
+        \ \n\nNo \n\nemployment_city \n emp city \n String \n\nNo \n\nemployment_postcode \n 3MP C0NT\
+        \ \n String \n\nNo \n\nemployment_county \n emp herts \n String \n\nNo \n\nemployment_contact_name\
+        \ \n employed contact \n String \n\nNo \n\nemployment_contact_number \n 968235174 \n String \n\
+        \nNo \n\nemployment_salary \n 21000 \n String \n\nNo \n\nemployment_length \n 3 years \n String\
+        \ \n\nNo \n\nguarantor_first_name \n Jason \n String \n\nNo \n\nguarantor_last_name \n Doe \n\
+        \ String \n\nNo \n\nguarantor_date_of_birth \n 1968-05-08 \n String \n\nNo \n\nguarantor_address1\
+        \ \n 123 Fake Street \n String \n\nNo \n\nguarantor_address2 \n 123 Fake Street \n String \n\n\
+        No \n\nguarantor_city \n Notreal \n String \n\nNo \n\nguarantor_postcode \n ABC 123 \n String\
+        \ \n\nNo \n\nguarantor_county \n Doeshire \n String \n\nNo \n\nguarantor_country \n United Kingdom\
+        \ \n String \n\nNo \n\nguarantor_phone_home \n 12345 678900 \n String \n\nNo \n\nguarantor_phone_work\
+        \ \n 01234 567890 \n String \n\nNo \n\nguarantor_mobile \n 07000 000000 \n String \n\nNo \n\n\
+        guarantor_email \n example@email.com \n String \n\nNo \n\nguarantor_relation \n Father \n String\
+        \ \n\nNo \n\nguarantor_home_owner \n Home Owner Outright \n String \n\nNo \n\nguarantor_profession\
+        \ \n Professional \n String \n\nNo \n\nref_name \n ref name \n String \n\nNo \n\nref_address1\
+        \ \n ref line 1 \n String \n\nNo \n\nref_address2 \n ref line 2 \n String \n\nNo \n\nref_city\
+        \ \n ref Stevenage \n String \n\nNo \n\nref_county \n ref Hertfordshire \n String \n\nNo \n\n\
+        ref_postcode \n R3F 8AW \n String \n\nNo \n\nref_contact_number \n 134679825 \n String \n\nNo\
+        \ \n\nref_relation \n mother \n String \n\nNo \n\nnumber_of_sharers \n 3 \n String \n\nNo \n\n\
+        source \n 3 \n Simple \n\nNo \n\nmanager_note \n MANAGER NOTES \n String \n\nNo \n\napplicant_note\
+        \ \n TEST NOTE \n String \n\nNo \n\ntags \n [\"tag1\"] \n Array(String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                applicant_status:
+                  type: string
+                  example: Active
+                title:
+                  type: string
+                  example: Mr
+                  default: Mr
+                  description: Enum - see the Types API for the allowed values
+                first_name:
+                  type: string
+                  example: Ryan
+                last_name:
+                  type: string
+                  example: Cullen
+                date_of_birth:
+                  type: string
+                  format: date
+                  example: '1995-05-28'
+                gender:
+                  type: string
+                  example: Other
+                  default: Male
+                  description: Enum - see the Types API for the allowed values
+                citizen_type:
+                  type: string
+                  example: UK Citizen
+                  description: Enum - see the Types API for the allowed values
+                email:
+                  type: string
+                  format: email
+                  example: myemail@example.com
+                company_name:
+                  type: string
+                  example: Arthur Online
+                company_address_name:
+                  type: string
+                  example: Arthur Main Office
+                company_address1:
+                  type: string
+                  example: comp line 1
+                company_address2:
+                  type: string
+                  example: comp line 2
+                company_city:
+                  type: string
+                  example: compcity
+                company_postcode:
+                  type: string
+                  example: C0MP 123
+                company_county:
+                  type: string
+                  example: comp hertfordshire
+                company_country:
+                  type: string
+                  example: '51'
+                  description: Enum - see the Types API for the allowed values
+                phone_home:
+                  type: string
+                  example: '13597352'
+                phone_work:
+                  type: string
+                  example: 0159876589
+                mobile:
+                  type: string
+                  example: 07726895134
+                residential_number:
+                  type: string
+                  example: '11236659'
+                visa_number:
+                  type: string
+                  example: 1346dq89
+                visa_years:
+                  type: string
+                  example: '3'
+                visa_type:
+                  type: string
+                  example: Tier 2
+                  description: Enum - see the Types API for the allowed values
+                country_of_origin:
+                  type: string
+                  example: original country
+                ni_number:
+                  type: string
+                  example: ab 12 34 5f
+                housing_benefit_council:
+                  type: string
+                  example: herts council
+                housing_benefit_number:
+                  type: string
+                  example: '1346'
+                bank_name:
+                  type: string
+                  example: bnk name
+                bank_address1:
+                  type: string
+                  example: bank line 1
+                bank_address2:
+                  type: string
+                  example: bank line 2
+                bank_city:
+                  type: string
+                  example: bankcity
+                bank_county:
+                  type: string
+                  example: bank herts
+                bank_postcode:
+                  type: string
+                  example: B4N K12
+                kin_first_name:
+                  type: string
+                  example: next-of
+                kin_last_name:
+                  type: string
+                  example: kin
+                kin_mobile:
+                  type: string
+                  example: '4512325178'
+                kin_phone_work:
+                  type: string
+                  example: '996832145'
+                student_status:
+                  type: string
+                  example: full time
+                  default: Full Time
+                  description: Enum - see the Types API for the allowed values
+                university:
+                  type: string
+                  example: viking university
+                course_name:
+                  type: string
+                  example: viking studies
+                course_id:
+                  type: string
+                  example: MC1685
+                course_year:
+                  type: string
+                  example: '3'
+                employment_company_name:
+                  type: string
+                  example: emp company name
+                employment_address1:
+                  type: string
+                  example: emp line 1
+                employment_address2:
+                  type: string
+                  example: emp line 2
+                employment_city:
+                  type: string
+                  example: emp city
+                employment_postcode:
+                  type: string
+                  example: 3MP C0NT
+                employment_county:
+                  type: string
+                  example: emp herts
+                employment_contact_name:
+                  type: string
+                  example: employed contact
+                employment_contact_number:
+                  type: string
+                  example: '968235174'
+                employment_salary:
+                  type: string
+                  example: '21000'
+                employment_length:
+                  type: string
+                  example: 3 years
+                guarantor_first_name:
+                  type: string
+                  example: Jason
+                guarantor_last_name:
+                  type: string
+                  example: Doe
+                guarantor_date_of_birth:
+                  type: string
+                  example: '1968-05-08'
+                guarantor_address1:
+                  type: string
+                  example: 123 Fake Street
+                guarantor_address2:
+                  type: string
+                  example: 123 Fake Street
+                guarantor_city:
+                  type: string
+                  example: Notreal
+                guarantor_postcode:
+                  type: string
+                  example: ABC 123
+                guarantor_county:
+                  type: string
+                  example: Doeshire
+                guarantor_country:
+                  type: string
+                  example: United Kingdom
+                guarantor_phone_home:
+                  type: string
+                  example: 12345 678900
+                guarantor_phone_work:
+                  type: string
+                  example: 01234 567890
+                guarantor_mobile:
+                  type: string
+                  example: 07000 000000
+                guarantor_email:
+                  type: string
+                  example: example@email.com
+                guarantor_relation:
+                  type: string
+                  example: Father
+                guarantor_home_owner:
+                  type: string
+                  example: Home Owner Outright
+                guarantor_profession:
+                  type: string
+                  example: Professional
+                ref_name:
+                  type: string
+                  example: ref name
+                ref_address1:
+                  type: string
+                  example: ref line 1
+                ref_address2:
+                  type: string
+                  example: ref line 2
+                ref_city:
+                  type: string
+                  example: ref Stevenage
+                ref_county:
+                  type: string
+                  example: ref Hertfordshire
+                ref_postcode:
+                  type: string
+                  example: R3F 8AW
+                ref_contact_number:
+                  type: string
+                  example: '134679825'
+                ref_relation:
+                  type: string
+                  example: mother
+                number_of_sharers:
+                  type: string
+                  example: '3'
+                source:
+                  type: string
+                  example: '3'
+                manager_note:
+                  type: string
+                  example: MANAGER NOTES
+                applicant_note:
+                  type: string
+                  example: TEST NOTE
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["tag1"]'
+            example:
+              title: Mr
+              first_name: John
+              last_name: Doe
+              date_of_birth: '1970-01-01'
+              gender: Male
+              citizen_type: UK Citizen
+              email: sales@arthuronline.co.uk
+              company_name: Doe Industries
+              company_address_name: Main Office
+              company_address1: Fake House
+              company_address2: 123 Fake Street
+              company_city: London
+              company_postcode: ABC 123
+              company_county: ''
+              company_country: United Kingdom
+              phone_home: 01234 567899
+              phone_work: 01234 567898
+              mobile: 07777 777777
+              residential_number: '1234567890'
+              visa_number: ''
+              visa_years: '5'
+              visa_type: Tier 1
+              country_of_origin: UK
+              ni_number: 12 34 56 78
+              kin_first_name: Jennifer
+              kin_last_name: Doe
+              kin_mobile: 0788 888888
+              kin_phone_work: 09876 543211
+              student_status: full time
+              university: University of Doe
+              course_name: Doe Studies
+              course_id: '1234'
+              course_year: '2'
+              employment_company_name: Arthur Online
+              employment_address1: Unit 2 Iron Bridge House
+              employment_address2: Bridge Approach
+              employment_city: London
+              employment_postcode: NW1 8BD
+              employment_county: Greater London
+              employment_contact_name: Alice Doe
+              employment_contact_number: +44(0)207 112 4860
+              employment_salary: '100000'
+              employment_length: 1 year
+              housing_benefit_council: Doe Council
+              housing_benefit_number: '1234567'
+              guarantor_first_name: Jason
+              guarantor_last_name: Doe
+              guarantor_date_of_birth: '1968-05-08'
+              guarantor_address1: 123 Fake Street
+              guarantor_address2: ''
+              guarantor_city: Notreal City
+              guarantor_postcode: ABC 123
+              guarantor_county: Doeshire
+              guarantor_country: United Kingdom
+              guarantor_phone_home: 12345 678900
+              guarantor_phone_work: 01234 567890
+              guarantor_mobile: 07000 000000
+              guarantor_email: example@email.com
+              guarantor_relation: Father
+              guarantor_home_owner: Home owner outright
+              guarantor_profession: Professional
+              bank_name: Doe Bank
+              bank_address1: 99 Bank Street
+              bank_address2: ''
+              bank_city: Bank City
+              bank_county: Bankshire
+              bank_postcode: B4N K99
+              ref_name: Referee Ali
+              ref_address1: Unit 3 Referee House
+              ref_address2: 123 Referee Street
+              ref_city: Ref City
+              ref_county: Refshire
+              ref_postcode: ZXY 987
+              ref_contact_number: 07788 888777
+              ref_relation: Friend
+              number_of_sharers: '3'
+              source: My website
+              applicant_note: I would like a brand new 1 bed flat somewhere within 1 mile of the station.
+              manager_note: This applicant has called 15 times this week!
+              tags:
+              - tag1
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicants/{applicant_id}:
+    get:
+      operationId: viewApplicant
+      summary: View Applicant
+      tags:
+      - Applicants
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single applicant, identified by its unique 
+        applicant_id .
+
+
+        Use this endpoint to view the specific details of a applicant.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateApplicant
+      summary: Update Applicant
+      tags:
+      - Applicants
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of
+          creating a new value. E.g. source
+        example: 'true'
+      description: "This endpoint updates an existing unit using the same fields as the 'Add Applicant'\
+        \ endpoint. Any fields that are not provided will not be changed. The API will return the updated\
+        \ data for the applicant in the response.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Default \n Required? \n\ntitle \n Mr \n\
+        \ Enum \n Mr \n No \n\nfirst_name \n Ryan \n String \n\nNo \n\nlast_name \n Cullen \n String \n\
+        \nNo \n\ndate_of_birth \n 1995-05-28 \n Date \n\nNo \n\ngender \n Other \n Enum \n Male \n No\
+        \ \n\ncitizen_type \n UK Citizen \n Enum \n\nNo \n\nemail \n myemail@example.com \n Email \n\n\
+        No \n\ncompany_name \n Arthur Online \n String \n\nNo \n\ncompany_address_name \n Arthur Main\
+        \ Office \n String \n\nNo \n\ncompany_address1 \n comp line 1 \n String \n\nNo \n\ncompany_address2\
+        \ \n comp line 2 \n String \n\nNo \n\ncompany_city \n compcity \n String \n\nNo \n\ncompany_postcode\
+        \ \n C0MP 123 \n String \n\nNo \n\ncompany_county \n comp hertfordshire \n String \n\nNo \n\n\
+        company_country \n 51 \n Enum \n\nNo \n\nphone_home \n 13597352 \n String \n\nNo \n\nphone_work\
+        \ \n 0159876589 \n String \n\nNo \n\nmobile \n 07726895134 \n String \n\nNo \n\nresidential_number\
+        \ \n 11236659 \n String \n\nNo \n\nvisa_number \n 1346dq89 \n String \n\nNo \n\nvisa_years \n\
+        \ 3 \n String \n\nNo \n\nvisa_type \n Tier 2 \n Enum \n\nNo \n\ncountry_of_origin \n original\
+        \ country \n String \n\nNo \n\nni_number \n ab 12 34 5f \n String \n\nNo \n\nhousing_benefit_council\
+        \ \n herts council \n String \n\nNo \n\nhousing_benefit_number \n 1346 \n String \n\nNo \n\nbank_name\
+        \ \n bnk name \n String \n\nNo \n\nbank_address1 \n bank line 1 \n String \n\nNo \n\nbank_address2\
+        \ \n bank line 2 \n String \n\nNo \n\nbank_city \n bankcity \n String \n\nNo \n\nbank_county \n\
+        \ bank herts \n String \n\nNo \n\nbank_postcode \n B4N K12 \n String \n\nNo \n\nkin_first_name\
+        \ \n next-of \n String \n\nNo \n\nkin_last_name \n kin \n String \n\nNo \n\nkin_mobile \n 4512325178\
+        \ \n String \n\nNo \n\nkin_phone_work \n 996832145 \n String \n\nNo \n\nstudent_status \n full\
+        \ time \n Enum \n Full Time \n No \n\nuniversity \n viking university \n String \n\nNo \n\ncourse_name\
+        \ \n viking studies \n String \n\nNo \n\ncourse_id \n MC1685 \n String \n\nNo \n\ncourse_year\
+        \ \n 3 \n String \n\nNo \n\nemployment_company_name \n emp company name \n String \n\nNo \n\n\
+        employment_address1 \n emp line 1 \n String \n\nNo \n\nemployment_address2 \n emp line 2 \n String\
+        \ \n\nNo \n\nemployment_city \n emp city \n String \n\nNo \n\nemployment_postcode \n 3MP C0NT\
+        \ \n String \n\nNo \n\nemployment_county \n emp herts \n String \n\nNo \n\nemployment_contact_name\
+        \ \n employed contact \n String \n\nNo \n\nemployment_contact_number \n 968235174 \n String \n\
+        \nNo \n\nemployment_salary \n 21000 \n String \n\nNo \n\nemployment_length \n 3 years \n String\
+        \ \n\nNo \n\nref_name \n ref name \n String \n\nNo \n\nref_address1 \n ref line 1 \n String \n\
+        \nNo \n\nref_address2 \n ref line 2 \n String \n\nNo \n\nref_city \n ref Stevenage \n String \n\
+        \nNo \n\nref_county \n ref Hertfordshire \n String \n\nNo \n\nref_postcode \n R3F 8AW \n String\
+        \ \n\nNo \n\nref_contact_number \n 134679825 \n String \n\nNo \n\nref_relation \n mother \n String\
+        \ \n\nNo \n\nnumber_of_sharers \n 3 \n String \n\nNo \n\nsource \n 3 \n Simple \n\nNo \n\nmanager_note\
+        \ \n MANAGER NOTES \n String \n\nNo \n\napplicant_note \n TEST NOTE \n String \n\nNo \n\ntags\
+        \ \n [\"tag1\"] \n Array(String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Mr
+                  default: Mr
+                  description: Enum - see the Types API for the allowed values
+                first_name:
+                  type: string
+                  example: Ryan
+                last_name:
+                  type: string
+                  example: Cullen
+                date_of_birth:
+                  type: string
+                  format: date
+                  example: '1995-05-28'
+                gender:
+                  type: string
+                  example: Other
+                  default: Male
+                  description: Enum - see the Types API for the allowed values
+                citizen_type:
+                  type: string
+                  example: UK Citizen
+                  description: Enum - see the Types API for the allowed values
+                email:
+                  type: string
+                  format: email
+                  example: myemail@example.com
+                company_name:
+                  type: string
+                  example: Arthur Online
+                company_address_name:
+                  type: string
+                  example: Arthur Main Office
+                company_address1:
+                  type: string
+                  example: comp line 1
+                company_address2:
+                  type: string
+                  example: comp line 2
+                company_city:
+                  type: string
+                  example: compcity
+                company_postcode:
+                  type: string
+                  example: C0MP 123
+                company_county:
+                  type: string
+                  example: comp hertfordshire
+                company_country:
+                  type: string
+                  example: '51'
+                  description: Enum - see the Types API for the allowed values
+                phone_home:
+                  type: string
+                  example: '13597352'
+                phone_work:
+                  type: string
+                  example: 0159876589
+                mobile:
+                  type: string
+                  example: 07726895134
+                residential_number:
+                  type: string
+                  example: '11236659'
+                visa_number:
+                  type: string
+                  example: 1346dq89
+                visa_years:
+                  type: string
+                  example: '3'
+                visa_type:
+                  type: string
+                  example: Tier 2
+                  description: Enum - see the Types API for the allowed values
+                country_of_origin:
+                  type: string
+                  example: original country
+                ni_number:
+                  type: string
+                  example: ab 12 34 5f
+                housing_benefit_council:
+                  type: string
+                  example: herts council
+                housing_benefit_number:
+                  type: string
+                  example: '1346'
+                bank_name:
+                  type: string
+                  example: bnk name
+                bank_address1:
+                  type: string
+                  example: bank line 1
+                bank_address2:
+                  type: string
+                  example: bank line 2
+                bank_city:
+                  type: string
+                  example: bankcity
+                bank_county:
+                  type: string
+                  example: bank herts
+                bank_postcode:
+                  type: string
+                  example: B4N K12
+                kin_first_name:
+                  type: string
+                  example: next-of
+                kin_last_name:
+                  type: string
+                  example: kin
+                kin_mobile:
+                  type: string
+                  example: '4512325178'
+                kin_phone_work:
+                  type: string
+                  example: '996832145'
+                student_status:
+                  type: string
+                  example: full time
+                  default: Full Time
+                  description: Enum - see the Types API for the allowed values
+                university:
+                  type: string
+                  example: viking university
+                course_name:
+                  type: string
+                  example: viking studies
+                course_id:
+                  type: string
+                  example: MC1685
+                course_year:
+                  type: string
+                  example: '3'
+                employment_company_name:
+                  type: string
+                  example: emp company name
+                employment_address1:
+                  type: string
+                  example: emp line 1
+                employment_address2:
+                  type: string
+                  example: emp line 2
+                employment_city:
+                  type: string
+                  example: emp city
+                employment_postcode:
+                  type: string
+                  example: 3MP C0NT
+                employment_county:
+                  type: string
+                  example: emp herts
+                employment_contact_name:
+                  type: string
+                  example: employed contact
+                employment_contact_number:
+                  type: string
+                  example: '968235174'
+                employment_salary:
+                  type: string
+                  example: '21000'
+                employment_length:
+                  type: string
+                  example: 3 years
+                ref_name:
+                  type: string
+                  example: ref name
+                ref_address1:
+                  type: string
+                  example: ref line 1
+                ref_address2:
+                  type: string
+                  example: ref line 2
+                ref_city:
+                  type: string
+                  example: ref Stevenage
+                ref_county:
+                  type: string
+                  example: ref Hertfordshire
+                ref_postcode:
+                  type: string
+                  example: R3F 8AW
+                ref_contact_number:
+                  type: string
+                  example: '134679825'
+                ref_relation:
+                  type: string
+                  example: mother
+                number_of_sharers:
+                  type: string
+                  example: '3'
+                source:
+                  type: string
+                  example: '3'
+                manager_note:
+                  type: string
+                  example: MANAGER NOTES
+                applicant_note:
+                  type: string
+                  example: TEST NOTE
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["tag1"]'
+            example:
+              email: sales@arthuronlineUpdated.co.uk
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applicant/{applicant_id}/status:
+    put:
+      operationId: updateApplicantStatus
+      summary: Update Applicant Status
+      tags:
+      - Applicants
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of
+          creating a new value. E.g. source
+        example: 'true'
+      description: "This endpoint updates an existing applicants status. The API will return the updated\
+        \ data for the applicant in the response.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n \"Tenant\" \n String\
+        \ \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: '"Tenant"'
+              required:
+              - status
+            example:
+              status: Undecided
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

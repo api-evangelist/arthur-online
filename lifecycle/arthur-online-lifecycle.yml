@@ -1,0 +1,83 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://developer.arthuronline.co.uk/ (Arthur API public Postman collection),
+  https://www.arthuronline.co.uk/legal/fair-usage-policy,
+  https://support.arthuronline.co.uk/support/solutions/articles/202000052217-api-work-providing-support,
+  plus live probes of status.arthuronline.co.uk and arthuronline.freshstatus.io on 2026-07-26.
+description: >-
+  Arthur runs a single, uniformly-versioned API (v2) with no published change log, no
+  deprecation policy, no status page and no API SLA. The lifecycle contract that does exist
+  is commercial rather than technical: broken endpoints are fixed free of charge, new
+  endpoints are quoted at an hourly rate, and support timeliness is governed by a Fair Usage
+  Policy rather than an uptime commitment.
+
+versioning:
+  scheme: uri-path
+  current: v2
+  base_url: https://api.arthuronline.co.uk/v2
+  previous_versions_documented: false
+  version_header: null
+  docs: https://developer.arthuronline.co.uk/
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  note: >-
+    No deprecation or sunset policy is published, and no operation in the 317 documented
+    v2 operations is marked deprecated. There is no announced end-of-life for any endpoint.
+
+change_log:
+  url: null
+  published: false
+  note: >-
+    Arthur publishes no dated API change log, release notes page or versioned diff. The
+    public Postman collection carries a single publish date (2023-06-06) and is the only
+    dated marker of the contract.
+
+status_page:
+  url: null
+  published: false
+  probes:
+    - {url: 'https://status.arthuronline.co.uk/', status: 503, date: '2026-07-26'}
+    - {url: 'https://arthuronline.freshstatus.io/', status: 200, result: 'Freshstatus account with that subdomain does not exist', date: '2026-07-26'}
+  note: No public API status or incident page could be found.
+
+sla:
+  api_sla_url: null
+  api_uptime_target: null
+  support_sla: >-
+    Arthur references an internal SLA governing support-ticket response times in its Fair
+    Usage Policy, but does not publish the document or any API availability commitment.
+  fair_usage_policy: https://www.arthuronline.co.uk/legal/fair-usage-policy
+  support_limits:
+    phone_support: 1 hour per calendar month per account
+    shared_screen_sessions: Professional 1/month, Enterprise 3/month, Standard none; extra sessions GBP 90 + VAT
+    ticket_support: unlimited tickets via https://support.arthuronline.co.uk/
+
+api_support_terms:
+  source: https://support.arthuronline.co.uk/support/solutions/articles/202000052217-api-work-providing-support
+  modified: '2024-10-15'
+  broken_endpoint_fixes: Free of charge.
+  bespoke_endpoint_development: Quoted at GBP 150 + VAT per hour (minimum three hours on first purchase).
+  prioritised_work: Chargeable at the same hourly rate, quoted before work starts.
+  access_request: Raise a ticket at https://support.arthuronline.co.uk/support/home
+
+data_lifecycle:
+  source: https://www.arthuronline.co.uk/legal/data-security
+  hosting: Amazon Web Services co-located servers
+  backups: Hourly on some servers, six-hourly on others, via AWS Backup.
+  recovery_targets:
+    database_recovery: 45 minutes
+    core_systems_rebuild_plus_recovery: up to 3 hours
+    secondary_systems: up to 12 hours
+  customer_export: Settings > Back up my data exports CSV (property, unit, tenancy, tenant, owner, contractor, inventory, certificate dates, viewings, work orders); documents download separately.
+  retention_after_cancellation: Data removed on written request from the account main contact; otherwise retained five years (GDPR).
+
+related:
+  conventions: conventions/arthur-online-conventions.yml
+  rate_limits: rate-limits/arthur-online-rate-limits.yml
+  errors: errors/arthur-online-problem-types.yml

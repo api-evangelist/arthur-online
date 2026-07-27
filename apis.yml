@@ -2,21 +2,20 @@ aid: arthur-online
 url: https://raw.githubusercontent.com/api-evangelist/arthur-online/refs/heads/main/apis.yml
 name: Arthur Online
 kind: company
-description: 'Arthur Online is a London-headquartered UK property management software platform,
-  founded in 2008 and acquired by Aareon in January 2021, that gives letting agents, self-managing
-  landlords, block and social housing managers, and student accommodation operators a cloud
-  system of record for properties, units, tenancies, tenants, applicants, viewings, maintenance
-  work orders, certificates, utilities and rental financials, with companion mobile apps for
-  managers, tenants, contractors and owners. It sits in the middle of the UK residential lettings
-  value chain: it is the agency-side operational system that pushes stock out to the Rightmove
-  and Zoopla portals and pulls accounting into Xero and QuickBooks, rather than a listings marketplace
-  or a data cooperative. Its API posture is unusually open for the sector but is not open data:
-  the full Arthur API v2 reference is published without a login as a public Postman collection
-  at developer.arthuronline.co.uk covering 324 documented requests across 16 resource areas,
-  yet every call is tenant-scoped OAuth 2.0 Authorization Code plus an X-EntityID header, credentials
-  are issued only from inside a paying Arthur account after contacting Arthur support, and no
-  data is readable anonymously. There is no RESO posture at all — the United Kingdom has no
-  MLS, no NAR, and no RESO Data Dictionary or Web API certification regime, so listings interoperability
+description: 'Arthur Online is a London-headquartered UK property management software platform, founded
+  in 2008 and acquired by Aareon in January 2021, that gives letting agents, self-managing landlords,
+  block and social housing managers, and student accommodation operators a cloud system of record for
+  properties, units, tenancies, tenants, applicants, viewings, maintenance work orders, certificates,
+  utilities and rental financials, with companion mobile apps for managers, tenants, contractors and
+  owners. It sits in the middle of the UK residential lettings value chain: it is the agency-side operational
+  system that pushes stock out to the Rightmove and Zoopla portals and pulls accounting into Xero and
+  QuickBooks, rather than a listings marketplace or a data cooperative. Its API posture is unusually
+  open for the sector but is not open data: the full Arthur API v2 reference is published without a
+  login as a public Postman collection at developer.arthuronline.co.uk covering 324 documented requests
+  across 16 resource areas, yet every call is tenant-scoped OAuth 2.0 Authorization Code plus an X-EntityID
+  header, credentials are issued only from inside a paying Arthur account after contacting Arthur support,
+  and no data is readable anonymously. There is no RESO posture at all — the United Kingdom has no MLS,
+  no NAR, and no RESO Data Dictionary or Web API certification regime, so listings interoperability
   here is portal-to-CRM feeds rather than a certified machine-readable standard.'
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/arthur-online.png
 tags:
@@ -39,8 +38,8 @@ apis:
 - aid: arthur-online:arthur-properties-api
   name: Arthur Properties API
   description: Property records and everything hung off a property in Arthur - assets, certificates,
-    conversations, general information, notes, units, tenancies, tasks, work orders, utilities,
-    transactions and tags. 20 documented paths across GET, POST, PUT and DELETE.
+    conversations, general information, notes, units, tenancies, tasks, work orders, utilities, transactions
+    and tags. 20 documented paths across GET, POST, PUT and DELETE.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -55,14 +54,20 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-properties-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-properties-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-units-api
   name: Arthur Units API
   description: Individual lettable units beneath a property, plus the unit-level assets, certificates,
-    conversations, notes, viewings, tenancies, tasks, work orders, utilities, transactions and
-    tags. 22 documented paths.
+    conversations, notes, viewings, tenancies, tasks, work orders, utilities, transactions and tags.
+    22 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -77,14 +82,20 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-units-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-units-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-tenancies-api
   name: Arthur Tenancies API
   description: Tenancy agreements over a unit, including tenants on the tenancy, deposit registration,
-    recurring charges, certificates, tasks, work orders, conversations, transactions, notes
-    and tags. 21 documented paths.
+    recurring charges, certificates, tasks, work orders, conversations, transactions, notes and tags.
+    21 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -99,13 +110,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-tenancies-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-tenancies-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-tenants-api
   name: Arthur Tenants API
-  description: Tenant people records - list, view, create and update tenants, and invite a tenant
-    into the Arthur tenant portal. 3 documented paths.
+  description: Tenant people records - list, view, create and update tenants, and invite a tenant into
+    the Arthur tenant portal. 3 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -120,13 +137,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-tenants-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-tenants-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-applicants-api
   name: Arthur Applicants API
-  description: Prospective renters moving through the lettings funnel, including applicant status,
-    credit checks, managers, assets, conversations, notes, tasks and tags. 15 documented paths.
+  description: Prospective renters moving through the lettings funnel, including applicant status, credit
+    checks, managers, assets, conversations, notes, tasks and tags. 15 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -141,13 +164,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-applicants-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-applicants-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-viewings-api
   name: Arthur Viewings API
-  description: Property and unit viewing appointments, the applicants attached to each viewing,
-    assigned managers, conversations, notes and tags. 15 documented paths.
+  description: Property and unit viewing appointments, the applicants attached to each viewing, assigned
+    managers, conversations, notes and tags. 15 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -162,13 +191,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-viewings-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-viewings-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-maintenance-api
   name: Arthur Maintenance API
-  description: The largest surface in the API - tasks, subtasks, work orders, quotes and the
-    contractor workflow around them. 45 documented paths.
+  description: The largest surface in the API - tasks, subtasks, work orders, quotes and the contractor
+    workflow around them. 45 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -183,13 +218,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-maintenance-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-maintenance-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-financials-api
   name: Arthur Financials API
-  description: Rental financials - invoices, transactions, transaction payoff and recurring
-    charges. Read and update only; no create operations are documented. 6 documented paths.
+  description: Rental financials - invoices, transactions, transaction payoff and recurring charges.
+    Read and update only; no create operations are documented. 6 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -204,9 +245,15 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-financials-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-financials-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-assets-api
   name: Arthur Assets API
   description: Files and documents stored in Arthur and shared with owners, tenants and contractors.
@@ -225,13 +272,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-assets-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-assets-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-utilities-api
   name: Arthur Utilities API
-  description: Utility accounts attached to properties and units, and the meter readings recorded
-    against them. 4 documented paths.
+  description: Utility accounts attached to properties and units, and the meter readings recorded against
+    them. 4 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -245,14 +298,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-utilities-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-utilities-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-certificates-api
   name: Arthur Certificates API
-  description: Compliance certificates - gas safety, electrical, EPC and similar - with expiry
-    tracking that also drives webhook events at 30 days, 7 days and on the day. 2 documented
-    paths.
+  description: Compliance certificates - gas safety, electrical, EPC and similar - with expiry tracking
+    that also drives webhook events at 30 days, 7 days and on the day. 2 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -267,9 +325,15 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-certificates-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-certificates-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-entities-api
   name: Arthur Entities API
   description: Arthur entities - the account boundary that every API call must name in the mandatory
@@ -288,9 +352,15 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-entities-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-entities-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-conversations-api
   name: Arthur Conversations API
   description: Threaded conversations and messages between managers, tenants, owners and contractors,
@@ -309,13 +379,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-conversations-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-conversations-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-tags-api
   name: Arthur Tags API
-  description: Cross-cutting tags applied to properties, units, tenancies, applicants, viewings
-    and notes, with tag and untag operations on each resource. 2 documented paths.
+  description: Cross-cutting tags applied to properties, units, tenancies, applicants, viewings and
+    notes, with tag and untag operations on each resource. 2 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -329,13 +405,19 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-tags-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-tags-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-notes-api
   name: Arthur Notes API
-  description: Free-text notes recorded against any Arthur resource, with their own tagging
-    operations. 5 documented paths.
+  description: Free-text notes recorded against any Arthur resource, with their own tagging operations.
+    5 documented paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -349,14 +431,20 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-notes-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-notes-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 - aid: arthur-online:arthur-types-api
   name: Arthur Types API
-  description: Read-only reference vocabularies backing every enumerated field in Arthur - access
-    detail types, applicant statuses and types, area types, asset types, certificate types,
-    citizen types, contract types and 32 more. 39 documented GET paths.
+  description: Read-only reference vocabularies backing every enumerated field in Arthur - access detail
+    types, applicant statuses and types, area types, asset types, certificate types, citizen types,
+    contract types and 32 more. 39 documented GET paths.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
@@ -371,10 +459,22 @@ apis:
   - type: PostmanCollection
     url: collections/arthur-online.postman_collection.json
   - type: Authentication
-    url: https://auth.arthuronline.co.uk/oauth/token
+    url: authentication/arthur-online-authentication.yml
   - type: Webhooks
-    url: https://developer.arthuronline.co.uk/
+    url: asyncapi/arthur-online-webhooks.yml
+  - type: OpenAPI
+    url: openapi/arthur-online-types-openapi.yml
+  - type: Overlay
+    url: overlays/arthur-online-types-overlay.yaml
+  - type: AsyncAPI
+    url: asyncapi/arthur-online-webhooks-asyncapi.yml
 common:
+- type: AgenticAccess
+  url: agentic-access/arthur-online-agentic-access.yml
+- type: DomainSecurity
+  url: security/arthur-online-domain-security.yml
+- type: Authentication
+  url: authentication/arthur-online-authentication.yml
 - type: Website
   url: https://www.arthuronline.co.uk/
 - type: Portal
@@ -390,13 +490,63 @@ common:
 - type: Support
   url: https://support.arthuronline.co.uk/
 - type: Blog
-  url: https://www.arthuronline.co.uk/blog/
+  url: https://www.arthuronline.co.uk/arthur-insight/blog
 - type: Integrations
   url: https://www.arthuronline.co.uk/connect/
 - type: PrivacyPolicy
-  url: https://www.arthuronline.co.uk/privacy-policy/
+  url: https://www.arthuronline.co.uk/legal/privacy-policy
 - type: TermsOfService
-  url: https://www.arthuronline.co.uk/terms-and-conditions/
+  url: https://www.arthuronline.co.uk/legal/terms-and-conditions
+- type: DeveloperPortal
+  url: https://developer.arthuronline.co.uk/
+- type: GettingStarted
+  url: https://www.arthuronline.co.uk/connect/arthur-api
+- type: Postman
+  url: https://documenter.getpostman.com/view/22554870/2s93sZ5YeM
+- type: SignUp
+  url: https://www.arthuronline.co.uk/connect/arthur-api
+- type: Login
+  url: https://login.arthuronline.co.uk/
+- type: HelpCenter
+  url: https://support.arthuronline.co.uk/support/solutions
+- type: Pricing
+  url: https://www.arthuronline.co.uk/pricing
+- type: GitHubOrganization
+  url: https://github.com/arthur-crm
+- type: Conventions
+  url: conventions/arthur-online-conventions.yml
+- type: ErrorCatalog
+  url: errors/arthur-online-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/arthur-online-lifecycle.yml
+- type: Conformance
+  url: conformance/arthur-online-conformance.yml
+- type: RateLimits
+  url: rate-limits/arthur-online-rate-limits.yml
+- type: Plans
+  url: plans/arthur-online-plans.yml
+- type: Packages
+  url: packages/arthur-online-packages.yml
+- type: DataModel
+  url: data-model/arthur-online-data-model.yml
+- type: Vocabulary
+  url: vocabulary/arthur-online-vocabulary.yml
+- type: LLMsTxt
+  url: llms/arthur-online-llms.txt
+- type: MCPServer
+  url: mcp/arthur-online-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/arthur-online-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  url: arazzo/_index.yml
+- type: Examples
+  url: examples/_index.yml
+- type: Webhooks
+  url: asyncapi/arthur-online-webhooks.yml
+- type: AsyncAPI
+  url: asyncapi/arthur-online-webhooks-asyncapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

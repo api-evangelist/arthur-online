@@ -1,0 +1,1608 @@
+asyncapi: 3.0.0
+info:
+  title: Arthur Online Webhooks
+  version: 1.0.0
+  description: The Arthur Online webhook event surface. A property manager subscribes a webhook URL to one or more
+    of the 125 published triggers on the Arthur webhook page; Arthur then POSTs a form-encoded payload to that URL
+    each time the corresponding event fires in the entity. Derived verbatim from the provider's published trigger
+    table in the public Arthur API Postman collection (https://developer.arthuronline.co.uk/) and the official payload
+    templates at https://github.com/arthur-crm/webhookPayloadTemplates. Arthur publishes no AsyncAPI of its own;
+    this document is the API Evangelist rendering of that published surface.
+  contact:
+    name: Arthur Online Support
+    url: https://support.arthuronline.co.uk/
+  x-derived-from:
+  - collections/arthur-online.postman_collection.json
+  - https://github.com/arthur-crm/webhookPayloadTemplates
+  x-derived-date: '2026-07-26'
+defaultContentType: application/x-www-form-urlencoded
+servers:
+  subscriber:
+    host: your-webhook-endpoint.example.com
+    protocol: https
+    description: The subscriber-supplied HTTPS endpoint registered on the Arthur webhook page. Arthur is the publisher;
+      the integrator's server is the subscriber.
+channels:
+  arthurWebhook:
+    address: /
+    title: Arthur webhook delivery
+    description: Arthur POSTs every subscribed event to the single webhook URL registered for that event. Delivery
+      attempts, timestamps, status and server response are recorded in the webhook logs in the Arthur UI (View logs).
+    servers:
+    - $ref: '#/servers/subscriber'
+    messages:
+      accesskeyAccessKeysIndividualExpired:
+        $ref: '#/components/messages/accesskeyAccessKeysIndividualExpired'
+      applicantApplicantAddedViaMiddleware:
+        $ref: '#/components/messages/applicantApplicantAddedViaMiddleware'
+      applicantApplicantAdded:
+        $ref: '#/components/messages/applicantApplicantAdded'
+      applicantApplicantUpdatedViaMiddleware:
+        $ref: '#/components/messages/applicantApplicantUpdatedViaMiddleware'
+      assetFileSharedWithAllOccupants:
+        $ref: '#/components/messages/assetFileSharedWithAllOccupants'
+      assetFileUploaded:
+        $ref: '#/components/messages/assetFileUploaded'
+      assetsharingpersonAssetSharing:
+        $ref: '#/components/messages/assetsharingpersonAssetSharing'
+      attachmentFileAttachmentShared:
+        $ref: '#/components/messages/attachmentFileAttachmentShared'
+      certificateCertificateAdded:
+        $ref: '#/components/messages/certificateCertificateAdded'
+      certificateCertificateExpiredToday:
+        $ref: '#/components/messages/certificateCertificateExpiredToday'
+      certificateCertificateExpiresIn30Days:
+        $ref: '#/components/messages/certificateCertificateExpiresIn30Days'
+      certificateCertificateExpiresIn7Days:
+        $ref: '#/components/messages/certificateCertificateExpiresIn7Days'
+      inventoryInventoryAdded:
+        $ref: '#/components/messages/inventoryInventoryAdded'
+      inventoryInventoryExpiredToday:
+        $ref: '#/components/messages/inventoryInventoryExpiredToday'
+      messageEmailSent:
+        $ref: '#/components/messages/messageEmailSent'
+      noticeNoticeAdded:
+        $ref: '#/components/messages/noticeNoticeAdded'
+      noticeNoticeExpiredToday:
+        $ref: '#/components/messages/noticeNoticeExpiredToday'
+      noticeNoticeExpiresIn30Days:
+        $ref: '#/components/messages/noticeNoticeExpiresIn30Days'
+      noticeNoticeExpiresIn7Days:
+        $ref: '#/components/messages/noticeNoticeExpiresIn7Days'
+      personAddContractor:
+        $ref: '#/components/messages/personAddContractor'
+      personAddPropertyManager:
+        $ref: '#/components/messages/personAddPropertyManager'
+      personAddPropertyOwner:
+        $ref: '#/components/messages/personAddPropertyOwner'
+      personInviteContractor:
+        $ref: '#/components/messages/personInviteContractor'
+      personInvitePropertyManager:
+        $ref: '#/components/messages/personInvitePropertyManager'
+      personInvitePropertyOwner:
+        $ref: '#/components/messages/personInvitePropertyOwner'
+      propertyPropertyCreated:
+        $ref: '#/components/messages/propertyPropertyCreated'
+      recurringRecurringEnded:
+        $ref: '#/components/messages/recurringRecurringEnded'
+      reminderPropertyManagerEmail:
+        $ref: '#/components/messages/reminderPropertyManagerEmail'
+      reminderPropertyManagerNotification:
+        $ref: '#/components/messages/reminderPropertyManagerNotification'
+      reminderPropertyManagerSMS:
+        $ref: '#/components/messages/reminderPropertyManagerSMS'
+      reminderPropertyOwnerEmail:
+        $ref: '#/components/messages/reminderPropertyOwnerEmail'
+      reminderPropertyOwnerNotification:
+        $ref: '#/components/messages/reminderPropertyOwnerNotification'
+      reminderPropertyOwnerSMS:
+        $ref: '#/components/messages/reminderPropertyOwnerSMS'
+      reminderTenantEmail:
+        $ref: '#/components/messages/reminderTenantEmail'
+      reminderTenantNotification:
+        $ref: '#/components/messages/reminderTenantNotification'
+      reminderTenantSMS:
+        $ref: '#/components/messages/reminderTenantSMS'
+      rentreviewRentReviewAdded:
+        $ref: '#/components/messages/rentreviewRentReviewAdded'
+      rentreviewRentReviewCompleted:
+        $ref: '#/components/messages/rentreviewRentReviewCompleted'
+      rentreviewRentReviewDueToday:
+        $ref: '#/components/messages/rentreviewRentReviewDueToday'
+      rentreviewRentReviewInProgress:
+        $ref: '#/components/messages/rentreviewRentReviewInProgress'
+      renterInviteTenant:
+        $ref: '#/components/messages/renterInviteTenant'
+      renterTenantAddedToTenancy:
+        $ref: '#/components/messages/renterTenantAddedToTenancy'
+      reportentitySharedReport:
+        $ref: '#/components/messages/reportentitySharedReport'
+      syncschedulerQuickbooksStartSync:
+        $ref: '#/components/messages/syncschedulerQuickbooksStartSync'
+      syncschedulerQuickbooksSyncDone:
+        $ref: '#/components/messages/syncschedulerQuickbooksSyncDone'
+      syncschedulerQuickbooksSyncFailed:
+        $ref: '#/components/messages/syncschedulerQuickbooksSyncFailed'
+      syncschedulerQuickbooksSyncSuccess:
+        $ref: '#/components/messages/syncschedulerQuickbooksSyncSuccess'
+      syncschedulerXeroStartSync:
+        $ref: '#/components/messages/syncschedulerXeroStartSync'
+      syncschedulerXeroSyncDone:
+        $ref: '#/components/messages/syncschedulerXeroSyncDone'
+      syncschedulerXeroSyncFailed:
+        $ref: '#/components/messages/syncschedulerXeroSyncFailed'
+      syncschedulerXeroSyncSuccess:
+        $ref: '#/components/messages/syncschedulerXeroSyncSuccess'
+      taskPropertyManagerSharedWorkorderWithTenants:
+        $ref: '#/components/messages/taskPropertyManagerSharedWorkorderWithTenants'
+      taskTaskAdded:
+        $ref: '#/components/messages/taskTaskAdded'
+      taskTaskCancelled:
+        $ref: '#/components/messages/taskTaskCancelled'
+      taskTaskSetBackToPending:
+        $ref: '#/components/messages/taskTaskSetBackToPending'
+      taskTaskSetToCancelled:
+        $ref: '#/components/messages/taskTaskSetToCancelled'
+      taskTaskSetToCompleted:
+        $ref: '#/components/messages/taskTaskSetToCompleted'
+      taskTaskSetToCompleted2:
+        $ref: '#/components/messages/taskTaskSetToCompleted2'
+      taskTaskSetToInProgress:
+        $ref: '#/components/messages/taskTaskSetToInProgress'
+      taskTaskSetToLive:
+        $ref: '#/components/messages/taskTaskSetToLive'
+      taskTaskSetToPending:
+        $ref: '#/components/messages/taskTaskSetToPending'
+      taskTaskUpdated:
+        $ref: '#/components/messages/taskTaskUpdated'
+      taskTenantRaisesAnIssue:
+        $ref: '#/components/messages/taskTenantRaisesAnIssue'
+      taskTenantUpdatedIssueDescription:
+        $ref: '#/components/messages/taskTenantUpdatedIssueDescription'
+      tenancyMovingInDateConfirmedByContractor:
+        $ref: '#/components/messages/tenancyMovingInDateConfirmedByContractor'
+      tenancyMovingInDateConfirmedByLettingAgent:
+        $ref: '#/components/messages/tenancyMovingInDateConfirmedByLettingAgent'
+      tenancyMovingOutDateConfirmedByContractor:
+        $ref: '#/components/messages/tenancyMovingOutDateConfirmedByContractor'
+      tenancyMovingOutDateConfirmedByLettingAgent:
+        $ref: '#/components/messages/tenancyMovingOutDateConfirmedByLettingAgent'
+      tenancyProspectiveTenancyAddedByLettingAgent:
+        $ref: '#/components/messages/tenancyProspectiveTenancyAddedByLettingAgent'
+      tenancyTenancyExpiring:
+        $ref: '#/components/messages/tenancyTenancyExpiring'
+      tenancyTenancyReferenceSetToFailedByLettingAgent:
+        $ref: '#/components/messages/tenancyTenancyReferenceSetToFailedByLettingAgent'
+      tenancyTenancyReferenceSetToFailedByPropertyManager:
+        $ref: '#/components/messages/tenancyTenancyReferenceSetToFailedByPropertyManager'
+      tenancyTenancyReferenceSetToPassedByLettingAgent:
+        $ref: '#/components/messages/tenancyTenancyReferenceSetToPassedByLettingAgent'
+      tenancyTenancyReferenceSetToPassedByPropertyManager:
+        $ref: '#/components/messages/tenancyTenancyReferenceSetToPassedByPropertyManager'
+      tenancyTenancyClosing:
+        $ref: '#/components/messages/tenancyTenancyClosing'
+      tenancyTenancyStatusSetToApproved:
+        $ref: '#/components/messages/tenancyTenancyStatusSetToApproved'
+      tenancyTenancyStatusSetToCurrent:
+        $ref: '#/components/messages/tenancyTenancyStatusSetToCurrent'
+      tenancyTenancyStatusSetToEnding:
+        $ref: '#/components/messages/tenancyTenancyStatusSetToEnding'
+      tenancyTenancyStatusSetToPast:
+        $ref: '#/components/messages/tenancyTenancyStatusSetToPast'
+      tenancyTenancyStatusSetToPeriodic:
+        $ref: '#/components/messages/tenancyTenancyStatusSetToPeriodic'
+      tenancyTenancyStatusSetToProspective:
+        $ref: '#/components/messages/tenancyTenancyStatusSetToProspective'
+      tenancyTenancyStatusSetToRejected:
+        $ref: '#/components/messages/tenancyTenancyStatusSetToRejected'
+      tenancyTenancyUpdated:
+        $ref: '#/components/messages/tenancyTenancyUpdated'
+      tenancyTenantRequestsEndingTenancy:
+        $ref: '#/components/messages/tenancyTenantRequestsEndingTenancy'
+      tenancyTenantRequestsExtendingTenancy:
+        $ref: '#/components/messages/tenancyTenantRequestsExtendingTenancy'
+      tenancychangeChangeTenancy:
+        $ref: '#/components/messages/tenancychangeChangeTenancy'
+      transactionHoldingDepositReceiptAddedByPropertyManager:
+        $ref: '#/components/messages/transactionHoldingDepositReceiptAddedByPropertyManager'
+      transactionLateRent14Days:
+        $ref: '#/components/messages/transactionLateRent14Days'
+      transactionLateRent21Days:
+        $ref: '#/components/messages/transactionLateRent21Days'
+      transactionLateRent7Days:
+        $ref: '#/components/messages/transactionLateRent7Days'
+      transactionRemittedToPropertyOwnerSplit:
+        $ref: '#/components/messages/transactionRemittedToPropertyOwnerSplit'
+      transactionRemittedToPropertyOwner:
+        $ref: '#/components/messages/transactionRemittedToPropertyOwner'
+      unitUnitAdded:
+        $ref: '#/components/messages/unitUnitAdded'
+      unitUnitSetToAvailableToLet:
+        $ref: '#/components/messages/unitUnitSetToAvailableToLet'
+      unitUnitUpdated:
+        $ref: '#/components/messages/unitUnitUpdated'
+      utilityreadingUtilityReadingAdded:
+        $ref: '#/components/messages/utilityreadingUtilityReadingAdded'
+      viewingAddedLettingViewingByPropertyManager:
+        $ref: '#/components/messages/viewingAddedLettingViewingByPropertyManager'
+      viewingAddedSaleViewingByPropertyManager:
+        $ref: '#/components/messages/viewingAddedSaleViewingByPropertyManager'
+      viewingAddedViewingByLettingAgent:
+        $ref: '#/components/messages/viewingAddedViewingByLettingAgent'
+      viewingUpdatedSaleViewingByPropertyManager:
+        $ref: '#/components/messages/viewingUpdatedSaleViewingByPropertyManager'
+      viewingUpdatedStatusSaleViewingByPropertyManager:
+        $ref: '#/components/messages/viewingUpdatedStatusSaleViewingByPropertyManager'
+      viewingViewingCancelled:
+        $ref: '#/components/messages/viewingViewingCancelled'
+      viewingViewingOfferEntered:
+        $ref: '#/components/messages/viewingViewingOfferEntered'
+      viewingViewingUpdatedByLettingAgent:
+        $ref: '#/components/messages/viewingViewingUpdatedByLettingAgent'
+      viewingViewingUpdatedByPropertyManager:
+        $ref: '#/components/messages/viewingViewingUpdatedByPropertyManager'
+      viewingapplicantApplicantAddedToViewing:
+        $ref: '#/components/messages/viewingapplicantApplicantAddedToViewing'
+      vulnerabilityprofileTenantCOVIDProfileUpdated:
+        $ref: '#/components/messages/vulnerabilityprofileTenantCOVIDProfileUpdated'
+      workorderNewWorkorderAdded:
+        $ref: '#/components/messages/workorderNewWorkorderAdded'
+      workorderPropertyManagerApprovesCompletedWorkorder:
+        $ref: '#/components/messages/workorderPropertyManagerApprovesCompletedWorkorder'
+      workorderRequireApprovalFromPropertyOwner:
+        $ref: '#/components/messages/workorderRequireApprovalFromPropertyOwner'
+      workorderWorkorderAssignedToContractor:
+        $ref: '#/components/messages/workorderWorkorderAssignedToContractor'
+      workorderWorkorderCancelled:
+        $ref: '#/components/messages/workorderWorkorderCancelled'
+      workorderWorkorderOnHold:
+        $ref: '#/components/messages/workorderWorkorderOnHold'
+      workorderWorkorderReallocated:
+        $ref: '#/components/messages/workorderWorkorderReallocated'
+      workorderWorkorderResumed:
+        $ref: '#/components/messages/workorderWorkorderResumed'
+      workorderentityContractorInvitedToWorkorder:
+        $ref: '#/components/messages/workorderentityContractorInvitedToWorkorder'
+      workorderentityContractorSetWorkorderToCompleted:
+        $ref: '#/components/messages/workorderentityContractorSetWorkorderToCompleted'
+      workorderentityWorkorderDeclinedByContractor:
+        $ref: '#/components/messages/workorderentityWorkorderDeclinedByContractor'
+      workorderinvoiceContractorCreatesInvoice:
+        $ref: '#/components/messages/workorderinvoiceContractorCreatesInvoice'
+      workorderinvoicePropertyManagerSetWorkorderInvoiceToPaid:
+        $ref: '#/components/messages/workorderinvoicePropertyManagerSetWorkorderInvoiceToPaid'
+      workorderquoteContractorProvidedWorkorderQuote:
+        $ref: '#/components/messages/workorderquoteContractorProvidedWorkorderQuote'
+      workorderquotePropertyManagerAcceptedQuote:
+        $ref: '#/components/messages/workorderquotePropertyManagerAcceptedQuote'
+      workorderquotePropertyOwnerAcceptedQuote:
+        $ref: '#/components/messages/workorderquotePropertyOwnerAcceptedQuote'
+      workorderquotePropertyOwnerRejectedQuote:
+        $ref: '#/components/messages/workorderquotePropertyOwnerRejectedQuote'
+      workorderquoteWorkorderAcceptedByContractorToQuote:
+        $ref: '#/components/messages/workorderquoteWorkorderAcceptedByContractorToQuote'
+operations:
+  receiveArthurEvent:
+    action: receive
+    channel:
+      $ref: '#/channels/arthurWebhook'
+    title: Receive an Arthur event
+    summary: Receive a form-encoded Arthur webhook delivery on the subscribed URL.
+    messages:
+    - $ref: '#/channels/arthurWebhook/messages/accesskeyAccessKeysIndividualExpired'
+    - $ref: '#/channels/arthurWebhook/messages/applicantApplicantAddedViaMiddleware'
+    - $ref: '#/channels/arthurWebhook/messages/applicantApplicantAdded'
+    - $ref: '#/channels/arthurWebhook/messages/applicantApplicantUpdatedViaMiddleware'
+    - $ref: '#/channels/arthurWebhook/messages/assetFileSharedWithAllOccupants'
+    - $ref: '#/channels/arthurWebhook/messages/assetFileUploaded'
+    - $ref: '#/channels/arthurWebhook/messages/assetsharingpersonAssetSharing'
+    - $ref: '#/channels/arthurWebhook/messages/attachmentFileAttachmentShared'
+    - $ref: '#/channels/arthurWebhook/messages/certificateCertificateAdded'
+    - $ref: '#/channels/arthurWebhook/messages/certificateCertificateExpiredToday'
+    - $ref: '#/channels/arthurWebhook/messages/certificateCertificateExpiresIn30Days'
+    - $ref: '#/channels/arthurWebhook/messages/certificateCertificateExpiresIn7Days'
+    - $ref: '#/channels/arthurWebhook/messages/inventoryInventoryAdded'
+    - $ref: '#/channels/arthurWebhook/messages/inventoryInventoryExpiredToday'
+    - $ref: '#/channels/arthurWebhook/messages/messageEmailSent'
+    - $ref: '#/channels/arthurWebhook/messages/noticeNoticeAdded'
+    - $ref: '#/channels/arthurWebhook/messages/noticeNoticeExpiredToday'
+    - $ref: '#/channels/arthurWebhook/messages/noticeNoticeExpiresIn30Days'
+    - $ref: '#/channels/arthurWebhook/messages/noticeNoticeExpiresIn7Days'
+    - $ref: '#/channels/arthurWebhook/messages/personAddContractor'
+    - $ref: '#/channels/arthurWebhook/messages/personAddPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/personAddPropertyOwner'
+    - $ref: '#/channels/arthurWebhook/messages/personInviteContractor'
+    - $ref: '#/channels/arthurWebhook/messages/personInvitePropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/personInvitePropertyOwner'
+    - $ref: '#/channels/arthurWebhook/messages/propertyPropertyCreated'
+    - $ref: '#/channels/arthurWebhook/messages/recurringRecurringEnded'
+    - $ref: '#/channels/arthurWebhook/messages/reminderPropertyManagerEmail'
+    - $ref: '#/channels/arthurWebhook/messages/reminderPropertyManagerNotification'
+    - $ref: '#/channels/arthurWebhook/messages/reminderPropertyManagerSMS'
+    - $ref: '#/channels/arthurWebhook/messages/reminderPropertyOwnerEmail'
+    - $ref: '#/channels/arthurWebhook/messages/reminderPropertyOwnerNotification'
+    - $ref: '#/channels/arthurWebhook/messages/reminderPropertyOwnerSMS'
+    - $ref: '#/channels/arthurWebhook/messages/reminderTenantEmail'
+    - $ref: '#/channels/arthurWebhook/messages/reminderTenantNotification'
+    - $ref: '#/channels/arthurWebhook/messages/reminderTenantSMS'
+    - $ref: '#/channels/arthurWebhook/messages/rentreviewRentReviewAdded'
+    - $ref: '#/channels/arthurWebhook/messages/rentreviewRentReviewCompleted'
+    - $ref: '#/channels/arthurWebhook/messages/rentreviewRentReviewDueToday'
+    - $ref: '#/channels/arthurWebhook/messages/rentreviewRentReviewInProgress'
+    - $ref: '#/channels/arthurWebhook/messages/renterInviteTenant'
+    - $ref: '#/channels/arthurWebhook/messages/renterTenantAddedToTenancy'
+    - $ref: '#/channels/arthurWebhook/messages/reportentitySharedReport'
+    - $ref: '#/channels/arthurWebhook/messages/syncschedulerQuickbooksStartSync'
+    - $ref: '#/channels/arthurWebhook/messages/syncschedulerQuickbooksSyncDone'
+    - $ref: '#/channels/arthurWebhook/messages/syncschedulerQuickbooksSyncFailed'
+    - $ref: '#/channels/arthurWebhook/messages/syncschedulerQuickbooksSyncSuccess'
+    - $ref: '#/channels/arthurWebhook/messages/syncschedulerXeroStartSync'
+    - $ref: '#/channels/arthurWebhook/messages/syncschedulerXeroSyncDone'
+    - $ref: '#/channels/arthurWebhook/messages/syncschedulerXeroSyncFailed'
+    - $ref: '#/channels/arthurWebhook/messages/syncschedulerXeroSyncSuccess'
+    - $ref: '#/channels/arthurWebhook/messages/taskPropertyManagerSharedWorkorderWithTenants'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskAdded'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskCancelled'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskSetBackToPending'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskSetToCancelled'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskSetToCompleted'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskSetToCompleted2'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskSetToInProgress'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskSetToLive'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskSetToPending'
+    - $ref: '#/channels/arthurWebhook/messages/taskTaskUpdated'
+    - $ref: '#/channels/arthurWebhook/messages/taskTenantRaisesAnIssue'
+    - $ref: '#/channels/arthurWebhook/messages/taskTenantUpdatedIssueDescription'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyMovingInDateConfirmedByContractor'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyMovingInDateConfirmedByLettingAgent'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyMovingOutDateConfirmedByContractor'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyMovingOutDateConfirmedByLettingAgent'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyProspectiveTenancyAddedByLettingAgent'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyExpiring'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyReferenceSetToFailedByLettingAgent'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyReferenceSetToFailedByPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyReferenceSetToPassedByLettingAgent'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyReferenceSetToPassedByPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyClosing'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyStatusSetToApproved'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyStatusSetToCurrent'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyStatusSetToEnding'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyStatusSetToPast'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyStatusSetToPeriodic'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyStatusSetToProspective'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyStatusSetToRejected'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenancyUpdated'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenantRequestsEndingTenancy'
+    - $ref: '#/channels/arthurWebhook/messages/tenancyTenantRequestsExtendingTenancy'
+    - $ref: '#/channels/arthurWebhook/messages/tenancychangeChangeTenancy'
+    - $ref: '#/channels/arthurWebhook/messages/transactionHoldingDepositReceiptAddedByPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/transactionLateRent14Days'
+    - $ref: '#/channels/arthurWebhook/messages/transactionLateRent21Days'
+    - $ref: '#/channels/arthurWebhook/messages/transactionLateRent7Days'
+    - $ref: '#/channels/arthurWebhook/messages/transactionRemittedToPropertyOwnerSplit'
+    - $ref: '#/channels/arthurWebhook/messages/transactionRemittedToPropertyOwner'
+    - $ref: '#/channels/arthurWebhook/messages/unitUnitAdded'
+    - $ref: '#/channels/arthurWebhook/messages/unitUnitSetToAvailableToLet'
+    - $ref: '#/channels/arthurWebhook/messages/unitUnitUpdated'
+    - $ref: '#/channels/arthurWebhook/messages/utilityreadingUtilityReadingAdded'
+    - $ref: '#/channels/arthurWebhook/messages/viewingAddedLettingViewingByPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/viewingAddedSaleViewingByPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/viewingAddedViewingByLettingAgent'
+    - $ref: '#/channels/arthurWebhook/messages/viewingUpdatedSaleViewingByPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/viewingUpdatedStatusSaleViewingByPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/viewingViewingCancelled'
+    - $ref: '#/channels/arthurWebhook/messages/viewingViewingOfferEntered'
+    - $ref: '#/channels/arthurWebhook/messages/viewingViewingUpdatedByLettingAgent'
+    - $ref: '#/channels/arthurWebhook/messages/viewingViewingUpdatedByPropertyManager'
+    - $ref: '#/channels/arthurWebhook/messages/viewingapplicantApplicantAddedToViewing'
+    - $ref: '#/channels/arthurWebhook/messages/vulnerabilityprofileTenantCOVIDProfileUpdated'
+    - $ref: '#/channels/arthurWebhook/messages/workorderNewWorkorderAdded'
+    - $ref: '#/channels/arthurWebhook/messages/workorderPropertyManagerApprovesCompletedWorkorder'
+    - $ref: '#/channels/arthurWebhook/messages/workorderRequireApprovalFromPropertyOwner'
+    - $ref: '#/channels/arthurWebhook/messages/workorderWorkorderAssignedToContractor'
+    - $ref: '#/channels/arthurWebhook/messages/workorderWorkorderCancelled'
+    - $ref: '#/channels/arthurWebhook/messages/workorderWorkorderOnHold'
+    - $ref: '#/channels/arthurWebhook/messages/workorderWorkorderReallocated'
+    - $ref: '#/channels/arthurWebhook/messages/workorderWorkorderResumed'
+    - $ref: '#/channels/arthurWebhook/messages/workorderentityContractorInvitedToWorkorder'
+    - $ref: '#/channels/arthurWebhook/messages/workorderentityContractorSetWorkorderToCompleted'
+    - $ref: '#/channels/arthurWebhook/messages/workorderentityWorkorderDeclinedByContractor'
+    - $ref: '#/channels/arthurWebhook/messages/workorderinvoiceContractorCreatesInvoice'
+    - $ref: '#/channels/arthurWebhook/messages/workorderinvoicePropertyManagerSetWorkorderInvoiceToPaid'
+    - $ref: '#/channels/arthurWebhook/messages/workorderquoteContractorProvidedWorkorderQuote'
+    - $ref: '#/channels/arthurWebhook/messages/workorderquotePropertyManagerAcceptedQuote'
+    - $ref: '#/channels/arthurWebhook/messages/workorderquotePropertyOwnerAcceptedQuote'
+    - $ref: '#/channels/arthurWebhook/messages/workorderquotePropertyOwnerRejectedQuote'
+    - $ref: '#/channels/arthurWebhook/messages/workorderquoteWorkorderAcceptedByContractorToQuote'
+components:
+  messages:
+    accesskeyAccessKeysIndividualExpired:
+      name: Access Keys (Individual) Expired
+      title: 'AccessKey: Access Keys (Individual) Expired'
+      summary: Arthur fires this webhook when the AccessKey event "Access Keys (Individual) Expired" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: AccessKey
+    applicantApplicantAddedViaMiddleware:
+      name: Applicant added via Middleware
+      title: 'Applicant: Applicant added via Middleware'
+      summary: Arthur fires this webhook when the Applicant event "Applicant added via Middleware" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Applicant
+      x-arthur-event-alias: applicant-added-external
+      externalDocs:
+        description: Official payload template
+        url: https://github.com/arthur-crm/webhookPayloadTemplates/blob/1796c50663f90bfb67dee043b87b721a6aea78c4/events/applicant/applicant-added-external/payload.json
+      examples:
+      - name: applicant-added-external
+        summary: Provider-published payload template for applicant-added-external
+    applicantApplicantAdded:
+      name: Applicant added
+      title: 'Applicant: Applicant added'
+      summary: Arthur fires this webhook when the Applicant event "Applicant added" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Applicant
+      x-arthur-event-alias: applicant-add
+      externalDocs:
+        description: Official payload template
+        url: https://github.com/arthur-crm/webhookPayloadTemplates/blob/1796c50663f90bfb67dee043b87b721a6aea78c4/events/applicant/applicant-add/payload.json
+      examples:
+      - name: applicant-add
+        summary: Provider-published payload template for applicant-add
+    applicantApplicantUpdatedViaMiddleware:
+      name: Applicant updated via Middleware
+      title: 'Applicant: Applicant updated via Middleware'
+      summary: Arthur fires this webhook when the Applicant event "Applicant updated via Middleware" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Applicant
+      x-arthur-event-alias: applicant-updated-external
+      externalDocs:
+        description: Official payload template
+        url: https://github.com/arthur-crm/webhookPayloadTemplates/blob/1796c50663f90bfb67dee043b87b721a6aea78c4/events/applicant/applicant-updated-external/payload.json
+      examples:
+      - name: applicant-updated-external
+        summary: Provider-published payload template for applicant-updated-external
+    assetFileSharedWithAllOccupants:
+      name: File shared with all occupants
+      title: 'Asset: File shared with all occupants'
+      summary: Arthur fires this webhook when the Asset event "File shared with all occupants" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Asset
+    assetFileUploaded:
+      name: File uploaded
+      title: 'Asset: File uploaded'
+      summary: Arthur fires this webhook when the Asset event "File uploaded" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Asset
+    assetsharingpersonAssetSharing:
+      name: Asset sharing
+      title: 'AssetSharingPerson: Asset sharing'
+      summary: Arthur fires this webhook when the AssetSharingPerson event "Asset sharing" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: AssetSharingPerson
+    attachmentFileAttachmentShared:
+      name: File attachment shared
+      title: 'Attachment: File attachment shared'
+      summary: Arthur fires this webhook when the Attachment event "File attachment shared" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Attachment
+    certificateCertificateAdded:
+      name: Certificate Added
+      title: 'Certificate: Certificate Added'
+      summary: Arthur fires this webhook when the Certificate event "Certificate Added" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Certificate
+    certificateCertificateExpiredToday:
+      name: Certificate Expired Today
+      title: 'Certificate: Certificate Expired Today'
+      summary: Arthur fires this webhook when the Certificate event "Certificate Expired Today" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Certificate
+    certificateCertificateExpiresIn30Days:
+      name: Certificate Expires in 30 Days
+      title: 'Certificate: Certificate Expires in 30 Days'
+      summary: Arthur fires this webhook when the Certificate event "Certificate Expires in 30 Days" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Certificate
+    certificateCertificateExpiresIn7Days:
+      name: Certificate Expires in 7 Days
+      title: 'Certificate: Certificate Expires in 7 Days'
+      summary: Arthur fires this webhook when the Certificate event "Certificate Expires in 7 Days" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Certificate
+    inventoryInventoryAdded:
+      name: Inventory added
+      title: 'Inventory: Inventory added'
+      summary: Arthur fires this webhook when the Inventory event "Inventory added" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Inventory
+    inventoryInventoryExpiredToday:
+      name: Inventory expired today
+      title: 'Inventory: Inventory expired today'
+      summary: Arthur fires this webhook when the Inventory event "Inventory expired today" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Inventory
+    messageEmailSent:
+      name: Email sent
+      title: 'Message: Email sent'
+      summary: Arthur fires this webhook when the Message event "Email sent" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Message
+    noticeNoticeAdded:
+      name: Notice Added
+      title: 'Notice: Notice Added'
+      summary: Arthur fires this webhook when the Notice event "Notice Added" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Notice
+    noticeNoticeExpiredToday:
+      name: Notice expired today
+      title: 'Notice: Notice expired today'
+      summary: Arthur fires this webhook when the Notice event "Notice expired today" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Notice
+    noticeNoticeExpiresIn30Days:
+      name: Notice expires in 30 days
+      title: 'Notice: Notice expires in 30 days'
+      summary: Arthur fires this webhook when the Notice event "Notice expires in 30 days" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Notice
+    noticeNoticeExpiresIn7Days:
+      name: Notice expires in 7 days
+      title: 'Notice: Notice expires in 7 days'
+      summary: Arthur fires this webhook when the Notice event "Notice expires in 7 days" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Notice
+    personAddContractor:
+      name: Add Contractor
+      title: 'Person: Add Contractor'
+      summary: Arthur fires this webhook when the Person event "Add Contractor" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Person
+    personAddPropertyManager:
+      name: Add Property Manager
+      title: 'Person: Add Property Manager'
+      summary: Arthur fires this webhook when the Person event "Add Property Manager" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Person
+    personAddPropertyOwner:
+      name: Add Property Owner
+      title: 'Person: Add Property Owner'
+      summary: Arthur fires this webhook when the Person event "Add Property Owner" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Person
+    personInviteContractor:
+      name: Invite Contractor
+      title: 'Person: Invite Contractor'
+      summary: Arthur fires this webhook when the Person event "Invite Contractor" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Person
+    personInvitePropertyManager:
+      name: Invite Property Manager
+      title: 'Person: Invite Property Manager'
+      summary: Arthur fires this webhook when the Person event "Invite Property Manager" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Person
+    personInvitePropertyOwner:
+      name: Invite Property Owner
+      title: 'Person: Invite Property Owner'
+      summary: Arthur fires this webhook when the Person event "Invite Property Owner" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Person
+    propertyPropertyCreated:
+      name: Property created
+      title: 'Property: Property created'
+      summary: Arthur fires this webhook when the Property event "Property created" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Property
+    recurringRecurringEnded:
+      name: Recurring Ended
+      title: 'Recurring: Recurring Ended'
+      summary: Arthur fires this webhook when the Recurring event "Recurring Ended" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Recurring
+    reminderPropertyManagerEmail:
+      name: Property Manager Email
+      title: 'Reminder: Property Manager Email'
+      summary: Arthur fires this webhook when the Reminder event "Property Manager Email" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    reminderPropertyManagerNotification:
+      name: Property Manager Notification
+      title: 'Reminder: Property Manager Notification'
+      summary: Arthur fires this webhook when the Reminder event "Property Manager Notification" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    reminderPropertyManagerSMS:
+      name: Property Manager SMS
+      title: 'Reminder: Property Manager SMS'
+      summary: Arthur fires this webhook when the Reminder event "Property Manager SMS" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    reminderPropertyOwnerEmail:
+      name: Property Owner Email
+      title: 'Reminder: Property Owner Email'
+      summary: Arthur fires this webhook when the Reminder event "Property Owner Email" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    reminderPropertyOwnerNotification:
+      name: Property Owner Notification
+      title: 'Reminder: Property Owner Notification'
+      summary: Arthur fires this webhook when the Reminder event "Property Owner Notification" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    reminderPropertyOwnerSMS:
+      name: Property Owner SMS
+      title: 'Reminder: Property Owner SMS'
+      summary: Arthur fires this webhook when the Reminder event "Property Owner SMS" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    reminderTenantEmail:
+      name: Tenant Email
+      title: 'Reminder: Tenant Email'
+      summary: Arthur fires this webhook when the Reminder event "Tenant Email" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    reminderTenantNotification:
+      name: Tenant Notification
+      title: 'Reminder: Tenant Notification'
+      summary: Arthur fires this webhook when the Reminder event "Tenant Notification" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    reminderTenantSMS:
+      name: Tenant SMS
+      title: 'Reminder: Tenant SMS'
+      summary: Arthur fires this webhook when the Reminder event "Tenant SMS" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Reminder
+    rentreviewRentReviewAdded:
+      name: Rent Review added
+      title: 'RentReview: Rent Review added'
+      summary: Arthur fires this webhook when the RentReview event "Rent Review added" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: RentReview
+    rentreviewRentReviewCompleted:
+      name: Rent Review completed
+      title: 'RentReview: Rent Review completed'
+      summary: Arthur fires this webhook when the RentReview event "Rent Review completed" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: RentReview
+    rentreviewRentReviewDueToday:
+      name: Rent Review due today
+      title: 'RentReview: Rent Review due today'
+      summary: Arthur fires this webhook when the RentReview event "Rent Review due today" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: RentReview
+    rentreviewRentReviewInProgress:
+      name: Rent Review in progress
+      title: 'RentReview: Rent Review in progress'
+      summary: Arthur fires this webhook when the RentReview event "Rent Review in progress" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: RentReview
+    renterInviteTenant:
+      name: Invite Tenant
+      title: 'Renter: Invite Tenant'
+      summary: Arthur fires this webhook when the Renter event "Invite Tenant" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Renter
+    renterTenantAddedToTenancy:
+      name: Tenant added to tenancy
+      title: 'Renter: Tenant added to tenancy'
+      summary: Arthur fires this webhook when the Renter event "Tenant added to tenancy" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Renter
+    reportentitySharedReport:
+      name: Shared Report
+      title: 'ReportEntity: Shared Report'
+      summary: Arthur fires this webhook when the ReportEntity event "Shared Report" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: ReportEntity
+    syncschedulerQuickbooksStartSync:
+      name: Quickbooks Start Sync
+      title: 'SyncScheduler: Quickbooks Start Sync'
+      summary: Arthur fires this webhook when the SyncScheduler event "Quickbooks Start Sync" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: SyncScheduler
+    syncschedulerQuickbooksSyncDone:
+      name: Quickbooks Sync Done
+      title: 'SyncScheduler: Quickbooks Sync Done'
+      summary: Arthur fires this webhook when the SyncScheduler event "Quickbooks Sync Done" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: SyncScheduler
+    syncschedulerQuickbooksSyncFailed:
+      name: Quickbooks Sync Failed
+      title: 'SyncScheduler: Quickbooks Sync Failed'
+      summary: Arthur fires this webhook when the SyncScheduler event "Quickbooks Sync Failed" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: SyncScheduler
+    syncschedulerQuickbooksSyncSuccess:
+      name: Quickbooks Sync Success
+      title: 'SyncScheduler: Quickbooks Sync Success'
+      summary: Arthur fires this webhook when the SyncScheduler event "Quickbooks Sync Success" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: SyncScheduler
+    syncschedulerXeroStartSync:
+      name: Xero Start Sync
+      title: 'SyncScheduler: Xero Start Sync'
+      summary: Arthur fires this webhook when the SyncScheduler event "Xero Start Sync" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: SyncScheduler
+    syncschedulerXeroSyncDone:
+      name: Xero Sync Done
+      title: 'SyncScheduler: Xero Sync Done'
+      summary: Arthur fires this webhook when the SyncScheduler event "Xero Sync Done" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: SyncScheduler
+    syncschedulerXeroSyncFailed:
+      name: Xero Sync Failed
+      title: 'SyncScheduler: Xero Sync Failed'
+      summary: Arthur fires this webhook when the SyncScheduler event "Xero Sync Failed" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: SyncScheduler
+    syncschedulerXeroSyncSuccess:
+      name: Xero Sync Success
+      title: 'SyncScheduler: Xero Sync Success'
+      summary: Arthur fires this webhook when the SyncScheduler event "Xero Sync Success" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: SyncScheduler
+    taskPropertyManagerSharedWorkorderWithTenants:
+      name: Property Manager shared workorder with tenants
+      title: 'Task: Property Manager shared workorder with tenants'
+      summary: Arthur fires this webhook when the Task event "Property Manager shared workorder with tenants" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskAdded:
+      name: Task added
+      title: 'Task: Task added'
+      summary: Arthur fires this webhook when the Task event "Task added" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskCancelled:
+      name: Task cancelled
+      title: 'Task: Task cancelled'
+      summary: Arthur fires this webhook when the Task event "Task cancelled" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskSetBackToPending:
+      name: Task set back to pending
+      title: 'Task: Task set back to pending'
+      summary: Arthur fires this webhook when the Task event "Task set back to pending" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskSetToCancelled:
+      name: Task set to cancelled
+      title: 'Task: Task set to cancelled'
+      summary: Arthur fires this webhook when the Task event "Task set to cancelled" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskSetToCompleted:
+      name: Task set to completed
+      title: 'Task: Task set to completed'
+      summary: Arthur fires this webhook when the Task event "Task set to completed" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskSetToCompleted2:
+      name: Task set to completed
+      title: 'Task: Task set to completed'
+      summary: Arthur fires this webhook when the Task event "Task set to completed" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskSetToInProgress:
+      name: Task set to in progress
+      title: 'Task: Task set to in progress'
+      summary: Arthur fires this webhook when the Task event "Task set to in progress" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskSetToLive:
+      name: Task set to live
+      title: 'Task: Task set to live'
+      summary: Arthur fires this webhook when the Task event "Task set to live" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskSetToPending:
+      name: Task set to pending
+      title: 'Task: Task set to pending'
+      summary: Arthur fires this webhook when the Task event "Task set to pending" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTaskUpdated:
+      name: Task updated
+      title: 'Task: Task updated'
+      summary: Arthur fires this webhook when the Task event "Task updated" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTenantRaisesAnIssue:
+      name: Tenant raises an issue
+      title: 'Task: Tenant raises an issue'
+      summary: Arthur fires this webhook when the Task event "Tenant raises an issue" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    taskTenantUpdatedIssueDescription:
+      name: Tenant updated issue description
+      title: 'Task: Tenant updated issue description'
+      summary: Arthur fires this webhook when the Task event "Tenant updated issue description" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Task
+    tenancyMovingInDateConfirmedByContractor:
+      name: Moving in date confirmed by Contractor
+      title: 'Tenancy: Moving in date confirmed by Contractor'
+      summary: Arthur fires this webhook when the Tenancy event "Moving in date confirmed by Contractor" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyMovingInDateConfirmedByLettingAgent:
+      name: Moving in date confirmed by Letting Agent
+      title: 'Tenancy: Moving in date confirmed by Letting Agent'
+      summary: Arthur fires this webhook when the Tenancy event "Moving in date confirmed by Letting Agent" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyMovingOutDateConfirmedByContractor:
+      name: Moving out date confirmed by Contractor
+      title: 'Tenancy: Moving out date confirmed by Contractor'
+      summary: Arthur fires this webhook when the Tenancy event "Moving out date confirmed by Contractor" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyMovingOutDateConfirmedByLettingAgent:
+      name: Moving out date confirmed by Letting Agent
+      title: 'Tenancy: Moving out date confirmed by Letting Agent'
+      summary: Arthur fires this webhook when the Tenancy event "Moving out date confirmed by Letting Agent" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyProspectiveTenancyAddedByLettingAgent:
+      name: Prospective tenancy added by Letting Agent
+      title: 'Tenancy: Prospective tenancy added by Letting Agent'
+      summary: Arthur fires this webhook when the Tenancy event "Prospective tenancy added by Letting Agent" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyExpiring:
+      name: Tenancy Expiring
+      title: 'Tenancy: Tenancy Expiring'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy Expiring" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyReferenceSetToFailedByLettingAgent:
+      name: Tenancy Reference set to Failed by Letting Agent
+      title: 'Tenancy: Tenancy Reference set to Failed by Letting Agent'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy Reference set to Failed by Letting Agent"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyReferenceSetToFailedByPropertyManager:
+      name: Tenancy Reference set to Failed by Property Manager
+      title: 'Tenancy: Tenancy Reference set to Failed by Property Manager'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy Reference set to Failed by Property Manager"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyReferenceSetToPassedByLettingAgent:
+      name: Tenancy Reference set to Passed by Letting Agent
+      title: 'Tenancy: Tenancy Reference set to Passed by Letting Agent'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy Reference set to Passed by Letting Agent"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyReferenceSetToPassedByPropertyManager:
+      name: Tenancy Reference set to Passed by Property Manager
+      title: 'Tenancy: Tenancy Reference set to Passed by Property Manager'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy Reference set to Passed by Property Manager"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyClosing:
+      name: Tenancy closing
+      title: 'Tenancy: Tenancy closing'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy closing" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyStatusSetToApproved:
+      name: Tenancy status set to approved
+      title: 'Tenancy: Tenancy status set to approved'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy status set to approved" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyStatusSetToCurrent:
+      name: Tenancy status set to current
+      title: 'Tenancy: Tenancy status set to current'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy status set to current" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyStatusSetToEnding:
+      name: Tenancy status set to ending
+      title: 'Tenancy: Tenancy status set to ending'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy status set to ending" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyStatusSetToPast:
+      name: Tenancy status set to past
+      title: 'Tenancy: Tenancy status set to past'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy status set to past" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyStatusSetToPeriodic:
+      name: Tenancy status set to periodic
+      title: 'Tenancy: Tenancy status set to periodic'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy status set to periodic" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyStatusSetToProspective:
+      name: Tenancy status set to prospective
+      title: 'Tenancy: Tenancy status set to prospective'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy status set to prospective" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyStatusSetToRejected:
+      name: Tenancy status set to rejected
+      title: 'Tenancy: Tenancy status set to rejected'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy status set to rejected" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenancyUpdated:
+      name: Tenancy updated
+      title: 'Tenancy: Tenancy updated'
+      summary: Arthur fires this webhook when the Tenancy event "Tenancy updated" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenantRequestsEndingTenancy:
+      name: Tenant requests ending tenancy
+      title: 'Tenancy: Tenant requests ending tenancy'
+      summary: Arthur fires this webhook when the Tenancy event "Tenant requests ending tenancy" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancyTenantRequestsExtendingTenancy:
+      name: Tenant requests extending tenancy
+      title: 'Tenancy: Tenant requests extending tenancy'
+      summary: Arthur fires this webhook when the Tenancy event "Tenant requests extending tenancy" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Tenancy
+    tenancychangeChangeTenancy:
+      name: Change Tenancy
+      title: 'TenancyChange: Change Tenancy'
+      summary: Arthur fires this webhook when the TenancyChange event "Change Tenancy" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: TenancyChange
+    transactionHoldingDepositReceiptAddedByPropertyManager:
+      name: Holding Deposit Receipt added by Property Manager
+      title: 'Transaction: Holding Deposit Receipt added by Property Manager'
+      summary: Arthur fires this webhook when the Transaction event "Holding Deposit Receipt added by Property Manager"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Transaction
+    transactionLateRent14Days:
+      name: Late rent 14 days
+      title: 'Transaction: Late rent 14 days'
+      summary: Arthur fires this webhook when the Transaction event "Late rent 14 days" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Transaction
+    transactionLateRent21Days:
+      name: Late rent 21 days
+      title: 'Transaction: Late rent 21 days'
+      summary: Arthur fires this webhook when the Transaction event "Late rent 21 days" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Transaction
+    transactionLateRent7Days:
+      name: Late rent 7 days
+      title: 'Transaction: Late rent 7 days'
+      summary: Arthur fires this webhook when the Transaction event "Late rent 7 days" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Transaction
+    transactionRemittedToPropertyOwnerSplit:
+      name: Remitted to Property Owner Split
+      title: 'Transaction: Remitted to Property Owner Split'
+      summary: Arthur fires this webhook when the Transaction event "Remitted to Property Owner Split" occurs in
+        the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Transaction
+    transactionRemittedToPropertyOwner:
+      name: Remitted to Property Owner
+      title: 'Transaction: Remitted to Property Owner'
+      summary: Arthur fires this webhook when the Transaction event "Remitted to Property Owner" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Transaction
+    unitUnitAdded:
+      name: Unit Added
+      title: 'Unit: Unit Added'
+      summary: Arthur fires this webhook when the Unit event "Unit Added" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Unit
+    unitUnitSetToAvailableToLet:
+      name: Unit set to available to let
+      title: 'Unit: Unit set to available to let'
+      summary: Arthur fires this webhook when the Unit event "Unit set to available to let" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Unit
+    unitUnitUpdated:
+      name: Unit updated
+      title: 'Unit: Unit updated'
+      summary: Arthur fires this webhook when the Unit event "Unit updated" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Unit
+    utilityreadingUtilityReadingAdded:
+      name: Utility Reading Added
+      title: 'UtilityReading: Utility Reading Added'
+      summary: Arthur fires this webhook when the UtilityReading event "Utility Reading Added" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: UtilityReading
+    viewingAddedLettingViewingByPropertyManager:
+      name: Added Letting Viewing by Property Manager
+      title: 'Viewing: Added Letting Viewing by Property Manager'
+      summary: Arthur fires this webhook when the Viewing event "Added Letting Viewing by Property Manager" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+      x-arthur-event-alias: viewing-add-manager
+      externalDocs:
+        description: Official payload template
+        url: https://github.com/arthur-crm/webhookPayloadTemplates/blob/main/events/viewing/viewing-add-manager/payload.json
+      examples:
+      - name: viewing-add-manager
+        summary: Provider-published payload template for viewing-add-manager
+    viewingAddedSaleViewingByPropertyManager:
+      name: Added Sale Viewing by Property Manager
+      title: 'Viewing: Added Sale Viewing by Property Manager'
+      summary: Arthur fires this webhook when the Viewing event "Added Sale Viewing by Property Manager" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+    viewingAddedViewingByLettingAgent:
+      name: Added Viewing by Letting Agent
+      title: 'Viewing: Added Viewing by Letting Agent'
+      summary: Arthur fires this webhook when the Viewing event "Added Viewing by Letting Agent" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+    viewingUpdatedSaleViewingByPropertyManager:
+      name: Updated Sale Viewing by Property Manager
+      title: 'Viewing: Updated Sale Viewing by Property Manager'
+      summary: Arthur fires this webhook when the Viewing event "Updated Sale Viewing by Property Manager" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+    viewingUpdatedStatusSaleViewingByPropertyManager:
+      name: Updated status Sale Viewing by Property Manager
+      title: 'Viewing: Updated status Sale Viewing by Property Manager'
+      summary: Arthur fires this webhook when the Viewing event "Updated status Sale Viewing by Property Manager"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+    viewingViewingCancelled:
+      name: Viewing Cancelled
+      title: 'Viewing: Viewing Cancelled'
+      summary: Arthur fires this webhook when the Viewing event "Viewing Cancelled" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+      x-arthur-event-alias: viewing-cancelled
+      externalDocs:
+        description: Official payload template
+        url: https://github.com/arthur-crm/webhookPayloadTemplates/blob/main/events/viewing/viewing-cancelled/payload.json
+      examples:
+      - name: viewing-cancelled
+        summary: Provider-published payload template for viewing-cancelled
+    viewingViewingOfferEntered:
+      name: Viewing offer entered
+      title: 'Viewing: Viewing offer entered'
+      summary: Arthur fires this webhook when the Viewing event "Viewing offer entered" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+      x-arthur-event-alias: viewing-offer
+      externalDocs:
+        description: Official payload template
+        url: https://github.com/arthur-crm/webhookPayloadTemplates/blob/main/events/viewing/viewing-offer/payload.json
+      examples:
+      - name: viewing-offer
+        summary: Provider-published payload template for viewing-offer
+    viewingViewingUpdatedByLettingAgent:
+      name: Viewing updated by Letting Agent
+      title: 'Viewing: Viewing updated by Letting Agent'
+      summary: Arthur fires this webhook when the Viewing event "Viewing updated by Letting Agent" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+    viewingViewingUpdatedByPropertyManager:
+      name: Viewing updated by Property Manager
+      title: 'Viewing: Viewing updated by Property Manager'
+      summary: Arthur fires this webhook when the Viewing event "Viewing updated by Property Manager" occurs in
+        the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Viewing
+    viewingapplicantApplicantAddedToViewing:
+      name: Applicant added to viewing
+      title: 'ViewingApplicant: Applicant added to viewing'
+      summary: Arthur fires this webhook when the ViewingApplicant event "Applicant added to viewing" occurs in
+        the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: ViewingApplicant
+      x-arthur-event-alias: viewing-applicant-add
+      externalDocs:
+        description: Official payload template
+        url: https://github.com/arthur-crm/webhookPayloadTemplates/blob/1796c50663f90bfb67dee043b87b721a6aea78c4/events/viewing/viewing-applicant-add/payload.json
+      examples:
+      - name: viewing-applicant-add
+        summary: Provider-published payload template for viewing-applicant-add
+    vulnerabilityprofileTenantCOVIDProfileUpdated:
+      name: Tenant COVID Profile updated
+      title: 'VulnerabilityProfile: Tenant COVID Profile updated'
+      summary: Arthur fires this webhook when the VulnerabilityProfile event "Tenant COVID Profile updated" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: VulnerabilityProfile
+    workorderNewWorkorderAdded:
+      name: New Workorder added
+      title: 'Workorder: New Workorder added'
+      summary: Arthur fires this webhook when the Workorder event "New Workorder added" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Workorder
+    workorderPropertyManagerApprovesCompletedWorkorder:
+      name: Property Manager approves completed workorder
+      title: 'Workorder: Property Manager approves completed workorder'
+      summary: Arthur fires this webhook when the Workorder event "Property Manager approves completed workorder"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Workorder
+    workorderRequireApprovalFromPropertyOwner:
+      name: Require approval from Property Owner
+      title: 'Workorder: Require approval from Property Owner'
+      summary: Arthur fires this webhook when the Workorder event "Require approval from Property Owner" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Workorder
+    workorderWorkorderAssignedToContractor:
+      name: Workorder Assigned to Contractor
+      title: 'Workorder: Workorder Assigned to Contractor'
+      summary: Arthur fires this webhook when the Workorder event "Workorder Assigned to Contractor" occurs in the
+        subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Workorder
+    workorderWorkorderCancelled:
+      name: Workorder Cancelled
+      title: 'Workorder: Workorder Cancelled'
+      summary: Arthur fires this webhook when the Workorder event "Workorder Cancelled" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Workorder
+    workorderWorkorderOnHold:
+      name: Workorder On Hold
+      title: 'Workorder: Workorder On Hold'
+      summary: Arthur fires this webhook when the Workorder event "Workorder On Hold" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Workorder
+    workorderWorkorderReallocated:
+      name: Workorder Reallocated
+      title: 'Workorder: Workorder Reallocated'
+      summary: Arthur fires this webhook when the Workorder event "Workorder Reallocated" occurs in the subscribed
+        entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Workorder
+    workorderWorkorderResumed:
+      name: Workorder Resumed
+      title: 'Workorder: Workorder Resumed'
+      summary: Arthur fires this webhook when the Workorder event "Workorder Resumed" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: Workorder
+    workorderentityContractorInvitedToWorkorder:
+      name: Contractor Invited to Workorder
+      title: 'WorkorderEntity: Contractor Invited to Workorder'
+      summary: Arthur fires this webhook when the WorkorderEntity event "Contractor Invited to Workorder" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderEntity
+    workorderentityContractorSetWorkorderToCompleted:
+      name: Contractor set workorder to completed
+      title: 'WorkorderEntity: Contractor set workorder to completed'
+      summary: Arthur fires this webhook when the WorkorderEntity event "Contractor set workorder to completed"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderEntity
+    workorderentityWorkorderDeclinedByContractor:
+      name: Workorder Declined by Contractor
+      title: 'WorkorderEntity: Workorder Declined by Contractor'
+      summary: Arthur fires this webhook when the WorkorderEntity event "Workorder Declined by Contractor" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderEntity
+    workorderinvoiceContractorCreatesInvoice:
+      name: Contractor creates invoice
+      title: 'WorkorderInvoice: Contractor creates invoice'
+      summary: Arthur fires this webhook when the WorkorderInvoice event "Contractor creates invoice" occurs in
+        the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderInvoice
+    workorderinvoicePropertyManagerSetWorkorderInvoiceToPaid:
+      name: Property Manager set workorder invoice to Paid
+      title: 'WorkorderInvoice: Property Manager set workorder invoice to Paid'
+      summary: Arthur fires this webhook when the WorkorderInvoice event "Property Manager set workorder invoice
+        to Paid" occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderInvoice
+    workorderquoteContractorProvidedWorkorderQuote:
+      name: Contractor provided workorder quote
+      title: 'WorkorderQuote: Contractor provided workorder quote'
+      summary: Arthur fires this webhook when the WorkorderQuote event "Contractor provided workorder quote" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderQuote
+    workorderquotePropertyManagerAcceptedQuote:
+      name: Property Manager Accepted Quote
+      title: 'WorkorderQuote: Property Manager Accepted Quote'
+      summary: Arthur fires this webhook when the WorkorderQuote event "Property Manager Accepted Quote" occurs
+        in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderQuote
+    workorderquotePropertyOwnerAcceptedQuote:
+      name: Property Owner Accepted Quote
+      title: 'WorkorderQuote: Property Owner Accepted Quote'
+      summary: Arthur fires this webhook when the WorkorderQuote event "Property Owner Accepted Quote" occurs in
+        the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderQuote
+    workorderquotePropertyOwnerRejectedQuote:
+      name: Property Owner Rejected Quote
+      title: 'WorkorderQuote: Property Owner Rejected Quote'
+      summary: Arthur fires this webhook when the WorkorderQuote event "Property Owner Rejected Quote" occurs in
+        the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderQuote
+    workorderquoteWorkorderAcceptedByContractorToQuote:
+      name: Workorder Accepted by Contractor to Quote
+      title: 'WorkorderQuote: Workorder Accepted by Contractor to Quote'
+      summary: Arthur fires this webhook when the WorkorderQuote event "Workorder Accepted by Contractor to Quote"
+        occurs in the subscribed entity.
+      contentType: application/x-www-form-urlencoded
+      payload:
+        $ref: '#/components/schemas/WebhookEnvelope'
+      x-arthur-model: WorkorderQuote
+  schemas:
+    WebhookEnvelope:
+      type: object
+      description: Every Arthur webhook delivery carries the same three-part envelope.
+      required:
+      - event
+      - webhook
+      - data
+      properties:
+        event:
+          type: object
+          properties:
+            alias:
+              type: string
+              description: Machine name of the event, e.g. viewing-offer.
+            name:
+              type: string
+              description: Human name of the event as shown on the webhook page.
+            created:
+              type: string
+              description: When the event occurred.
+            sent:
+              type: string
+              description: When Arthur dispatched the delivery.
+        webhook:
+          type: object
+          properties:
+            id:
+              type: string
+            url:
+              type: string
+              description: The subscribed endpoint.
+            status:
+              type: string
+              example: subscribed
+            event_alias:
+              type: string
+            subscribe_url:
+              type: string
+            unsubscribe_url:
+              type: string
+            delete_url:
+              type: string
+        data:
+          type: object
+          description: Flat map of the changed record. Keys are Arthur field names, dotted where they cross a related
+            model (Profile.first_name, unit.postcode, Unit.OwnerEntity.id). All values are delivered as strings.
+            The exact key set differs per event - see the payload templates in examples/webhooks/.
+          additionalProperties:
+            type: string

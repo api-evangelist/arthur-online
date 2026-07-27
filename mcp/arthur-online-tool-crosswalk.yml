@@ -1,0 +1,1942 @@
+generated: '2026-07-26'
+method: derived
+source: mcp/arthur-online-mcp.yml + openapi/
+description: Crosswalk binding each candidate MCP tool to its backing Arthur API v2 operation. Because the candidate
+  tool surface was derived FROM the OpenAPI, the binding is 1:1 and exact - every tool's real inputSchema is that
+  operation's parameters plus requestBody. There is no GraphQL surface and no hosted MCP server, so there are no
+  mcp_only or graphql_only rows; this file will need re-deriving if Arthur ever publishes its own server.
+surfaces:
+  openapi:
+    path: openapi/
+    documents: 16
+    operations: 317
+    gated: false
+    note: Derived by API Evangelist from the provider's public Postman collection; the live API host is 401 to anonymous
+      callers.
+  graphql: null
+  mcp:
+    url: null
+    published: false
+    tools_list_probe: n/a - no server exists
+  webhooks:
+    path: asyncapi/arthur-online-webhooks.yml
+    events: 125
+    note: Event surface has no REST or MCP equivalent - subscriptions are managed in the Arthur UI only.
+coverage:
+  tools_named: 317
+  tools_bound: 317
+  mcp_only: 0
+  rest_operations_total: 317
+  rest_operations_with_a_tool: 317
+crosswalk:
+- tool: arthur_list_assets_on_applicant
+  category: applicants
+  rest:
+  - listAssetsOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_create_asset_on_applicant
+  category: applicants
+  rest:
+  - createAssetOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_list_managers_on_applicant
+  category: applicants
+  rest:
+  - listManagersOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_delete_manager_on_applicant
+  category: applicants
+  rest:
+  - deleteManagerOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_add_manager_on_applicant
+  category: applicants
+  rest:
+  - addManagerOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_list_credit_checks_on_applicant
+  category: applicants
+  rest:
+  - listCreditChecksOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_get_recipients_for_applicant
+  category: applicants
+  rest:
+  - getRecipientsForApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_list_conversations_on_applicant
+  category: applicants
+  rest:
+  - listConversationsOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_create_conversation_on_applicant
+  category: applicants
+  rest:
+  - createConversationOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_list_viewings_on_applicant
+  category: applicants
+  rest:
+  - listViewingsOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_add_viewing_on_applicant
+  category: applicants
+  rest:
+  - addViewingOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_list_notes_on_applicant
+  category: applicants
+  rest:
+  - listNotesOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_add_note_on_applicant
+  category: applicants
+  rest:
+  - addNoteOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_view_note_on_applicant
+  category: applicants
+  rest:
+  - viewNoteOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_update_note_on_applicant
+  category: applicants
+  rest:
+  - updateNoteOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_delete_note_on_applicant
+  category: applicants
+  rest:
+  - deleteNoteOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_list_tags_on_applicant
+  category: applicants
+  rest:
+  - listTagsOnApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_tag_applicant
+  category: applicants
+  rest:
+  - tagApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_untag_applicant
+  category: applicants
+  rest:
+  - untagApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_untag_all_applicant_tags
+  category: applicants
+  rest:
+  - untagAllApplicantTags
+  binding: rest
+  confidence: high
+- tool: arthur_list_applicants
+  category: applicants
+  rest:
+  - listApplicants
+  binding: rest
+  confidence: high
+- tool: arthur_add_applicant
+  category: applicants
+  rest:
+  - addApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_view_applicant
+  category: applicants
+  rest:
+  - viewApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_update_applicant
+  category: applicants
+  rest:
+  - updateApplicant
+  binding: rest
+  confidence: high
+- tool: arthur_update_applicant_status
+  category: applicants
+  rest:
+  - updateApplicantStatus
+  binding: rest
+  confidence: high
+- tool: arthur_list_assets
+  category: assets
+  rest:
+  - listAssets
+  binding: rest
+  confidence: high
+- tool: arthur_create_asset
+  category: assets
+  rest:
+  - createAsset
+  binding: rest
+  confidence: high
+- tool: arthur_view_asset
+  category: assets
+  rest:
+  - viewAsset
+  binding: rest
+  confidence: high
+- tool: arthur_update_asset
+  category: assets
+  rest:
+  - updateAsset
+  binding: rest
+  confidence: high
+- tool: arthur_delete_asset
+  category: assets
+  rest:
+  - deleteAsset
+  binding: rest
+  confidence: high
+- tool: arthur_list_certificates
+  category: certificates
+  rest:
+  - listCertificates
+  binding: rest
+  confidence: high
+- tool: arthur_view_certificate
+  category: certificates
+  rest:
+  - viewCertificate
+  binding: rest
+  confidence: high
+- tool: arthur_update_certificate
+  category: certificates
+  rest:
+  - updateCertificate
+  binding: rest
+  confidence: high
+- tool: arthur_delete_certificate
+  category: certificates
+  rest:
+  - deleteCertificate
+  binding: rest
+  confidence: high
+- tool: arthur_list_assets_on_conversation
+  category: conversations
+  rest:
+  - listAssetsOnConversation
+  binding: rest
+  confidence: high
+- tool: arthur_list_messages_related_to_conversation
+  category: conversations
+  rest:
+  - listMessagesRelatedToConversation
+  binding: rest
+  confidence: high
+- tool: arthur_add_messages_related_to_conversation
+  category: conversations
+  rest:
+  - addMessagesRelatedToConversation
+  binding: rest
+  confidence: high
+- tool: arthur_view_message_related_to_conversation
+  category: conversations
+  rest:
+  - viewMessageRelatedToConversation
+  binding: rest
+  confidence: high
+- tool: arthur_list_conversations
+  category: conversations
+  rest:
+  - listConversations
+  binding: rest
+  confidence: high
+- tool: arthur_list_entities
+  category: entities
+  rest:
+  - listEntities
+  binding: rest
+  confidence: high
+- tool: arthur_create_entity
+  category: entities
+  rest:
+  - createEntity
+  binding: rest
+  confidence: high
+- tool: arthur_view_entity
+  category: entities
+  rest:
+  - viewEntity
+  binding: rest
+  confidence: high
+- tool: arthur_update_entity
+  category: entities
+  rest:
+  - updateEntity
+  binding: rest
+  confidence: high
+- tool: arthur_delete_entity
+  category: entities
+  rest:
+  - deleteEntity
+  binding: rest
+  confidence: high
+- tool: arthur_view_recurring
+  category: financials
+  rest:
+  - viewRecurring
+  binding: rest
+  confidence: high
+- tool: arthur_list_transactions
+  category: financials
+  rest:
+  - listTransactions
+  binding: rest
+  confidence: high
+- tool: arthur_view_transaction
+  category: financials
+  rest:
+  - viewTransaction
+  binding: rest
+  confidence: high
+- tool: arthur_payoff_transaction
+  category: financials
+  rest:
+  - payoffTransaction
+  binding: rest
+  confidence: high
+- tool: arthur_list_invoices
+  category: financials
+  rest:
+  - listInvoices
+  binding: rest
+  confidence: high
+- tool: arthur_view_invoices
+  category: financials
+  rest:
+  - viewInvoices
+  binding: rest
+  confidence: high
+- tool: arthur_list_subtasks_on_task
+  category: maintenance
+  rest:
+  - listSubtasksOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_create_subtask_on_task
+  category: maintenance
+  rest:
+  - createSubtaskOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_view_subtask_on_task
+  category: maintenance
+  rest:
+  - viewSubtaskOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_update_subtask_on_task
+  category: maintenance
+  rest:
+  - updateSubtaskOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_delete_subtask_on_task
+  category: maintenance
+  rest:
+  - deleteSubtaskOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_list_workorders_on_task
+  category: maintenance
+  rest:
+  - listWorkordersOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_create_workorder_on_task
+  category: maintenance
+  rest:
+  - createWorkorderOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_view_workorder_on_task
+  category: maintenance
+  rest:
+  - viewWorkorderOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_update_workorder_on_task
+  category: maintenance
+  rest:
+  - updateWorkorderOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_list_tags_on_task
+  category: maintenance
+  rest:
+  - listTagsOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_tag_task
+  category: maintenance
+  rest:
+  - tagTask
+  binding: rest
+  confidence: high
+- tool: arthur_untag_task
+  category: maintenance
+  rest:
+  - untagTask
+  binding: rest
+  confidence: high
+- tool: arthur_untag_all_task_tags
+  category: maintenance
+  rest:
+  - untagAllTaskTags
+  binding: rest
+  confidence: high
+- tool: arthur_list_notes_on_task
+  category: maintenance
+  rest:
+  - listNotesOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_create_note_on_task
+  category: maintenance
+  rest:
+  - createNoteOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_view_note_on_task
+  category: maintenance
+  rest:
+  - viewNoteOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_update_note_on_task
+  category: maintenance
+  rest:
+  - updateNoteOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_delete_note_on_task
+  category: maintenance
+  rest:
+  - deleteNoteOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_get_recipients_for_task
+  category: maintenance
+  rest:
+  - getRecipientsForTask
+  binding: rest
+  confidence: high
+- tool: arthur_list_conversations_on_task
+  category: maintenance
+  rest:
+  - listConversationsOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_add_conversation_on_task
+  category: maintenance
+  rest:
+  - addConversationOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_list_assets_on_task
+  category: maintenance
+  rest:
+  - listAssetsOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_view_asset_on_task
+  category: maintenance
+  rest:
+  - viewAssetOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_list_tenants_on_task
+  category: maintenance
+  rest:
+  - listTenantsOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_view_tenant_on_task
+  category: maintenance
+  rest:
+  - viewTenantOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_list_tasks
+  category: maintenance
+  rest:
+  - listTasks
+  binding: rest
+  confidence: high
+- tool: arthur_list_tasks_by_status
+  category: maintenance
+  rest:
+  - listTasksByStatus
+  binding: rest
+  confidence: high
+- tool: arthur_view_task
+  category: maintenance
+  rest:
+  - viewTask
+  binding: rest
+  confidence: high
+- tool: arthur_update_task
+  category: maintenance
+  rest:
+  - updateTask
+  binding: rest
+  confidence: high
+- tool: arthur_delete_task
+  category: maintenance
+  rest:
+  - deleteTask
+  binding: rest
+  confidence: high
+- tool: arthur_update_status_on_task
+  category: maintenance
+  rest:
+  - updateStatusOnTask
+  binding: rest
+  confidence: high
+- tool: arthur_list_subtasks
+  category: maintenance
+  rest:
+  - listSubtasks
+  binding: rest
+  confidence: high
+- tool: arthur_view_subtask
+  category: maintenance
+  rest:
+  - viewSubtask
+  binding: rest
+  confidence: high
+- tool: arthur_update_subtask
+  category: maintenance
+  rest:
+  - updateSubtask
+  binding: rest
+  confidence: high
+- tool: arthur_delete_subtask
+  category: maintenance
+  rest:
+  - deleteSubtask
+  binding: rest
+  confidence: high
+- tool: arthur_list_transactions_on_workorder
+  category: maintenance
+  rest:
+  - listTransactionsOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_certificates_on_workorder
+  category: maintenance
+  rest:
+  - listCertificatesOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_quotes_on_workorder
+  category: maintenance
+  rest:
+  - listQuotesOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_view_quote_on_workorder
+  category: maintenance
+  rest:
+  - viewQuoteOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_invoices_on_workorder
+  category: maintenance
+  rest:
+  - listInvoicesOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_view_invoice_on_workorder
+  category: maintenance
+  rest:
+  - viewInvoiceOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_assets_on_workorder
+  category: maintenance
+  rest:
+  - listAssetsOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_create_asset_on_workorder
+  category: maintenance
+  rest:
+  - createAssetOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_view_asset_on_workorder
+  category: maintenance
+  rest:
+  - viewAssetOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_get_recipients_for_workorder
+  category: maintenance
+  rest:
+  - getRecipientsForWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_conversations_on_workorder
+  category: maintenance
+  rest:
+  - listConversationsOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_create_conversation_on_workorder
+  category: maintenance
+  rest:
+  - createConversationOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_notes_on_workorder
+  category: maintenance
+  rest:
+  - listNotesOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_add_note_on_workorder
+  category: maintenance
+  rest:
+  - addNoteOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_view_note_on_workorder
+  category: maintenance
+  rest:
+  - viewNoteOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_update_note_on_workorder
+  category: maintenance
+  rest:
+  - updateNoteOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_delete_note_on_workorder
+  category: maintenance
+  rest:
+  - deleteNoteOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_tags_on_workorder
+  category: maintenance
+  rest:
+  - listTagsOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_tag_workorder
+  category: maintenance
+  rest:
+  - tagWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_untag_workorder
+  category: maintenance
+  rest:
+  - untagWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_untag_all_workorder_tags
+  category: maintenance
+  rest:
+  - untagAllWorkorderTags
+  binding: rest
+  confidence: high
+- tool: arthur_list_contractors_on_workorder
+  category: maintenance
+  rest:
+  - listContractorsOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_view_contractor_on_workorder
+  category: maintenance
+  rest:
+  - viewContractorOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_delete_contractor_on_workorder
+  category: maintenance
+  rest:
+  - deleteContractorOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_tenants_on_workorder
+  category: maintenance
+  rest:
+  - listTenantsOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_view_tenant_on_workorder
+  category: maintenance
+  rest:
+  - viewTenantOnWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_workorders
+  category: maintenance
+  rest:
+  - listWorkorders
+  binding: rest
+  confidence: high
+- tool: arthur_view_workorder
+  category: maintenance
+  rest:
+  - viewWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_update_workorder
+  category: maintenance
+  rest:
+  - updateWorkorder
+  binding: rest
+  confidence: high
+- tool: arthur_list_quotes
+  category: maintenance
+  rest:
+  - listQuotes
+  binding: rest
+  confidence: high
+- tool: arthur_view_quote
+  category: maintenance
+  rest:
+  - viewQuote
+  binding: rest
+  confidence: high
+- tool: arthur_list_tags_on_note
+  category: notes
+  rest:
+  - listTagsOnNote
+  binding: rest
+  confidence: high
+- tool: arthur_tag_note
+  category: notes
+  rest:
+  - tagNote
+  binding: rest
+  confidence: high
+- tool: arthur_untag_note
+  category: notes
+  rest:
+  - untagNote
+  binding: rest
+  confidence: high
+- tool: arthur_untag_all_note_tags
+  category: notes
+  rest:
+  - untagAllNoteTags
+  binding: rest
+  confidence: high
+- tool: arthur_list_notes
+  category: notes
+  rest:
+  - listNotes
+  binding: rest
+  confidence: high
+- tool: arthur_view_note
+  category: notes
+  rest:
+  - viewNote
+  binding: rest
+  confidence: high
+- tool: arthur_update_note
+  category: notes
+  rest:
+  - updateNote
+  binding: rest
+  confidence: high
+- tool: arthur_delete_note
+  category: notes
+  rest:
+  - deleteNote
+  binding: rest
+  confidence: high
+- tool: arthur_list_assets_on_property
+  category: properties
+  rest:
+  - listAssetsOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_create_asset_on_property
+  category: properties
+  rest:
+  - createAssetOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_certificates_on_property
+  category: properties
+  rest:
+  - listCertificatesOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_add_certificate_on_property
+  category: properties
+  rest:
+  - addCertificateOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_get_recipients_for_property
+  category: properties
+  rest:
+  - getRecipientsForProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_conversations_on_property
+  category: properties
+  rest:
+  - listConversationsOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_create_conversation_on_property
+  category: properties
+  rest:
+  - createConversationOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_general_info_for_property
+  category: properties
+  rest:
+  - listGeneralInfoForProperty
+  binding: rest
+  confidence: high
+- tool: arthur_add_general_info_for_property
+  category: properties
+  rest:
+  - addGeneralInfoForProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_notes_on_property
+  category: properties
+  rest:
+  - listNotesOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_add_note_on_property
+  category: properties
+  rest:
+  - addNoteOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_view_note_on_property
+  category: properties
+  rest:
+  - viewNoteOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_update_note_on_property
+  category: properties
+  rest:
+  - updateNoteOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_delete_note_on_property
+  category: properties
+  rest:
+  - deleteNoteOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_units_on_property
+  category: properties
+  rest:
+  - listUnitsOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_tenancies_on_property
+  category: properties
+  rest:
+  - listTenanciesOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_tasks_on_property
+  category: properties
+  rest:
+  - listTasksOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_add_task_on_property
+  category: properties
+  rest:
+  - addTaskOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_view_task_on_property
+  category: properties
+  rest:
+  - viewTaskOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_update_task_on_property
+  category: properties
+  rest:
+  - updateTaskOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_delete_task_on_property
+  category: properties
+  rest:
+  - deleteTaskOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_workorders_on_property
+  category: properties
+  rest:
+  - listWorkordersOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_create_workorders_on_property
+  category: properties
+  rest:
+  - createWorkordersOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_view_workorders_on_property
+  category: properties
+  rest:
+  - viewWorkordersOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_update_workorders_on_property
+  category: properties
+  rest:
+  - updateWorkordersOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_utilities_on_property
+  category: properties
+  rest:
+  - listUtilitiesOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_create_utility_on_property
+  category: properties
+  rest:
+  - createUtilityOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_transactions_on_property
+  category: properties
+  rest:
+  - listTransactionsOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_tags_on_property
+  category: properties
+  rest:
+  - listTagsOnProperty
+  binding: rest
+  confidence: high
+- tool: arthur_tag_property
+  category: properties
+  rest:
+  - tagProperty
+  binding: rest
+  confidence: high
+- tool: arthur_untag_property
+  category: properties
+  rest:
+  - untagProperty
+  binding: rest
+  confidence: high
+- tool: arthur_untag_all_property_tags
+  category: properties
+  rest:
+  - untagAllPropertyTags
+  binding: rest
+  confidence: high
+- tool: arthur_list_properties
+  category: properties
+  rest:
+  - listProperties
+  binding: rest
+  confidence: high
+- tool: arthur_add_property
+  category: properties
+  rest:
+  - addProperty
+  binding: rest
+  confidence: high
+- tool: arthur_view_property
+  category: properties
+  rest:
+  - viewProperty
+  binding: rest
+  confidence: high
+- tool: arthur_update_property
+  category: properties
+  rest:
+  - updateProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_tags_on_resource
+  category: tags
+  rest:
+  - listTagsOnResource
+  binding: rest
+  confidence: high
+- tool: arthur_add_tag_on_resource
+  category: tags
+  rest:
+  - addTagOnResource
+  binding: rest
+  confidence: high
+- tool: arthur_view_tag
+  category: tags
+  rest:
+  - viewTag
+  binding: rest
+  confidence: high
+- tool: arthur_update_tag
+  category: tags
+  rest:
+  - updateTag
+  binding: rest
+  confidence: high
+- tool: arthur_list_tenants_on_tenancy
+  category: tenancies
+  rest:
+  - listTenantsOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_add_tenant_on_tenancy
+  category: tenancies
+  rest:
+  - addTenantOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_list_assets_on_tenancy
+  category: tenancies
+  rest:
+  - listAssetsOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_create_asset_on_tenancy
+  category: tenancies
+  rest:
+  - createAssetOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_list_certificates_on_tenancy
+  category: tenancies
+  rest:
+  - listCertificatesOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_add_certificate_on_tenancy
+  category: tenancies
+  rest:
+  - addCertificateOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_register_deposit_on_tenancy
+  category: tenancies
+  rest:
+  - registerDepositOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_update_deposit_on_tenancy
+  category: tenancies
+  rest:
+  - updateDepositOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_list_tasks_on_tenancy
+  category: tenancies
+  rest:
+  - listTasksOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_add_task_on_tenancy
+  category: tenancies
+  rest:
+  - addTaskOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_view_task_on_tenancy
+  category: tenancies
+  rest:
+  - viewTaskOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_update_task_on_tenancy
+  category: tenancies
+  rest:
+  - updateTaskOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_delete_task_on_tenancy
+  category: tenancies
+  rest:
+  - deleteTaskOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_view_tenancy
+  category: tenancies
+  rest:
+  - viewTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_update_tenancy
+  category: tenancies
+  rest:
+  - updateTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_list_workorders_on_tenancy
+  category: tenancies
+  rest:
+  - listWorkordersOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_create_workorder_on_tenancy
+  category: tenancies
+  rest:
+  - createWorkorderOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_view_workorder_on_tenancy
+  category: tenancies
+  rest:
+  - viewWorkorderOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_update_workorder_on_tenancy
+  category: tenancies
+  rest:
+  - updateWorkorderOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_get_recipients_for_tenancy
+  category: tenancies
+  rest:
+  - getRecipientsForTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_list_conversation_on_tenancy
+  category: tenancies
+  rest:
+  - listConversationOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_create_conversation_on_tenancy
+  category: tenancies
+  rest:
+  - createConversationOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_list_transactions_on_tenancy
+  category: tenancies
+  rest:
+  - listTransactionsOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_list_notes_on_tenancy
+  category: tenancies
+  rest:
+  - listNotesOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_add_note_on_tenancy
+  category: tenancies
+  rest:
+  - addNoteOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_view_note_on_tenancy
+  category: tenancies
+  rest:
+  - viewNoteOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_update_note_on_tenancy
+  category: tenancies
+  rest:
+  - updateNoteOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_delete_note_on_tenancy
+  category: tenancies
+  rest:
+  - deleteNoteOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_list_tags_on_tenancy
+  category: tenancies
+  rest:
+  - listTagsOnTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_tag_tenancy
+  category: tenancies
+  rest:
+  - tagTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_untag_tenancy
+  category: tenancies
+  rest:
+  - untagTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_untag_all_tenancy_tags
+  category: tenancies
+  rest:
+  - untagAllTenancyTags
+  binding: rest
+  confidence: high
+- tool: arthur_list_recurrings
+  category: tenancies
+  rest:
+  - listRecurrings
+  binding: rest
+  confidence: high
+- tool: arthur_list_tenancies
+  category: tenancies
+  rest:
+  - listTenancies
+  binding: rest
+  confidence: high
+- tool: arthur_add_tenancy
+  category: tenancies
+  rest:
+  - addTenancy
+  binding: rest
+  confidence: high
+- tool: arthur_invite_tenant
+  category: tenants
+  rest:
+  - inviteTenant
+  binding: rest
+  confidence: high
+- tool: arthur_list_tenants
+  category: tenants
+  rest:
+  - listTenants
+  binding: rest
+  confidence: high
+- tool: arthur_add_tenant
+  category: tenants
+  rest:
+  - addTenant
+  binding: rest
+  confidence: high
+- tool: arthur_view_tenant
+  category: tenants
+  rest:
+  - viewTenant
+  binding: rest
+  confidence: high
+- tool: arthur_update_tenant
+  category: tenants
+  rest:
+  - updateTenant
+  binding: rest
+  confidence: high
+- tool: arthur_applicant_types
+  category: types
+  rest:
+  - applicantTypes
+  binding: rest
+  confidence: high
+- tool: arthur_citizen_types
+  category: types
+  rest:
+  - citizenTypes
+  binding: rest
+  confidence: high
+- tool: arthur_applicant_statuses
+  category: types
+  rest:
+  - applicantStatuses
+  binding: rest
+  confidence: high
+- tool: arthur_visa_types
+  category: types
+  rest:
+  - visaTypes
+  binding: rest
+  confidence: high
+- tool: arthur_student_statuses
+  category: types
+  rest:
+  - studentStatuses
+  binding: rest
+  confidence: high
+- tool: arthur_task_types
+  category: types
+  rest:
+  - taskTypes
+  binding: rest
+  confidence: high
+- tool: arthur_subtask_templates
+  category: types
+  rest:
+  - subtaskTemplates
+  binding: rest
+  confidence: high
+- tool: arthur_task_statuses
+  category: types
+  rest:
+  - taskStatuses
+  binding: rest
+  confidence: high
+- tool: arthur_profession_types
+  category: types
+  rest:
+  - professionTypes
+  binding: rest
+  confidence: high
+- tool: arthur_access_details_types
+  category: types
+  rest:
+  - accessDetailsTypes
+  binding: rest
+  confidence: high
+- tool: arthur_area_types
+  category: types
+  rest:
+  - areaTypes
+  binding: rest
+  confidence: high
+- tool: arthur_certificate_types
+  category: types
+  rest:
+  - certificateTypes
+  binding: rest
+  confidence: high
+- tool: arthur_contract_types
+  category: types
+  rest:
+  - contractTypes
+  binding: rest
+  confidence: high
+- tool: arthur_countries
+  category: types
+  rest:
+  - countries
+  binding: rest
+  confidence: high
+- tool: arthur_faq_types
+  category: types
+  rest:
+  - faqTypes
+  binding: rest
+  confidence: high
+- tool: arthur_feature_types
+  category: types
+  rest:
+  - featureTypes
+  binding: rest
+  confidence: high
+- tool: arthur_genders
+  category: types
+  rest:
+  - genders
+  binding: rest
+  confidence: high
+- tool: arthur_home_owner_statuses
+  category: types
+  rest:
+  - homeOwnerStatuses
+  binding: rest
+  confidence: high
+- tool: arthur_offer_frequency_types
+  category: types
+  rest:
+  - offerFrequencyTypes
+  binding: rest
+  confidence: high
+- tool: arthur_payment_types
+  category: types
+  rest:
+  - paymentTypes
+  binding: rest
+  confidence: high
+- tool: arthur_property_types
+  category: types
+  rest:
+  - propertyTypes
+  binding: rest
+  confidence: high
+- tool: arthur_service_types
+  category: types
+  rest:
+  - serviceTypes
+  binding: rest
+  confidence: high
+- tool: arthur_tenancy_statuses
+  category: types
+  rest:
+  - tenancyStatuses
+  binding: rest
+  confidence: high
+- tool: arthur_titles
+  category: types
+  rest:
+  - titles
+  binding: rest
+  confidence: high
+- tool: arthur_transaction_description_formats
+  category: types
+  rest:
+  - transactionDescriptionFormats
+  binding: rest
+  confidence: high
+- tool: arthur_unit_types
+  category: types
+  rest:
+  - unitTypes
+  binding: rest
+  confidence: high
+- tool: arthur_unit_status_types
+  category: types
+  rest:
+  - unitStatusTypes
+  binding: rest
+  confidence: high
+- tool: arthur_utility_types
+  category: types
+  rest:
+  - utilityTypes
+  binding: rest
+  confidence: high
+- tool: arthur_vat_codes
+  category: types
+  rest:
+  - vatCodes
+  binding: rest
+  confidence: high
+- tool: arthur_asset_types
+  category: types
+  rest:
+  - assetTypes
+  binding: rest
+  confidence: high
+- tool: arthur_viewing_statuses
+  category: types
+  rest:
+  - viewingStatuses
+  binding: rest
+  confidence: high
+- tool: arthur_tenancy_types
+  category: types
+  rest:
+  - tenancyTypes
+  binding: rest
+  confidence: high
+- tool: arthur_tenancy_subtypes
+  category: types
+  rest:
+  - tenancySubtypes
+  binding: rest
+  confidence: high
+- tool: arthur_tenancy_subtypes_on_tenancy_type
+  category: types
+  rest:
+  - tenancySubtypesOnTenancyType
+  binding: rest
+  confidence: high
+- tool: arthur_transaction_types
+  category: types
+  rest:
+  - transactionTypes
+  binding: rest
+  confidence: high
+- tool: arthur_conversation_statuses
+  category: types
+  rest:
+  - conversationStatuses
+  binding: rest
+  confidence: high
+- tool: arthur_rent_frequencies
+  category: types
+  rest:
+  - rentFrequencies
+  binding: rest
+  confidence: high
+- tool: arthur_workorder_statuses
+  category: types
+  rest:
+  - workorderStatuses
+  binding: rest
+  confidence: high
+- tool: arthur_recurring_frequencies
+  category: types
+  rest:
+  - recurringFrequencies
+  binding: rest
+  confidence: high
+- tool: arthur_view_parent_property
+  category: units
+  rest:
+  - viewParentProperty
+  binding: rest
+  confidence: high
+- tool: arthur_list_assets_on_unit
+  category: units
+  rest:
+  - listAssetsOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_create_asset_on_unit
+  category: units
+  rest:
+  - createAssetOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_certificates_on_unit
+  category: units
+  rest:
+  - listCertificatesOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_add_certificate_on_unit
+  category: units
+  rest:
+  - addCertificateOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_get_recipients_for_unit
+  category: units
+  rest:
+  - getRecipientsForUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_conversation_on_unit
+  category: units
+  rest:
+  - listConversationOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_create_conversation_on_unit
+  category: units
+  rest:
+  - createConversationOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_general_info_for_unit
+  category: units
+  rest:
+  - listGeneralInfoForUnit
+  binding: rest
+  confidence: high
+- tool: arthur_add_general_info_for_unit
+  category: units
+  rest:
+  - addGeneralInfoForUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_notes_on_unit
+  category: units
+  rest:
+  - listNotesOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_add_note_on_unit
+  category: units
+  rest:
+  - addNoteOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_view_note_on_unit
+  category: units
+  rest:
+  - viewNoteOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_update_note_on_unit
+  category: units
+  rest:
+  - updateNoteOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_delete_note_on_unit
+  category: units
+  rest:
+  - deleteNoteOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_viewings_on_unit
+  category: units
+  rest:
+  - listViewingsOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_add_viewing_on_unit
+  category: units
+  rest:
+  - addViewingOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_tenancies_on_unit
+  category: units
+  rest:
+  - listTenanciesOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_add_tenancy_on_unit
+  category: units
+  rest:
+  - addTenancyOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_tasks_on_unit
+  category: units
+  rest:
+  - listTasksOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_add_task_on_unit
+  category: units
+  rest:
+  - addTaskOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_view_task_on_unit
+  category: units
+  rest:
+  - viewTaskOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_update_task_on_unit
+  category: units
+  rest:
+  - updateTaskOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_delete_task_on_unit
+  category: units
+  rest:
+  - deleteTaskOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_workorders_on_unit
+  category: units
+  rest:
+  - listWorkordersOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_create_workorders_on_unit
+  category: units
+  rest:
+  - createWorkordersOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_view_workorders_on_unit
+  category: units
+  rest:
+  - viewWorkordersOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_update_workorders_on_unit
+  category: units
+  rest:
+  - updateWorkordersOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_utilities_on_unit
+  category: units
+  rest:
+  - listUtilitiesOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_create_utility_on_unit
+  category: units
+  rest:
+  - createUtilityOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_transactions_on_unit
+  category: units
+  rest:
+  - listTransactionsOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_get_tags_on_unit
+  category: units
+  rest:
+  - getTagsOnUnit
+  binding: rest
+  confidence: high
+- tool: arthur_tag_unit
+  category: units
+  rest:
+  - tagUnit
+  binding: rest
+  confidence: high
+- tool: arthur_untag_unit
+  category: units
+  rest:
+  - untagUnit
+  binding: rest
+  confidence: high
+- tool: arthur_untag_all_unit_tags
+  category: units
+  rest:
+  - untagAllUnitTags
+  binding: rest
+  confidence: high
+- tool: arthur_list_units
+  category: units
+  rest:
+  - listUnits
+  binding: rest
+  confidence: high
+- tool: arthur_add_unit
+  category: units
+  rest:
+  - addUnit
+  binding: rest
+  confidence: high
+- tool: arthur_view_unit
+  category: units
+  rest:
+  - viewUnit
+  binding: rest
+  confidence: high
+- tool: arthur_update_unit
+  category: units
+  rest:
+  - updateUnit
+  binding: rest
+  confidence: high
+- tool: arthur_list_readings
+  category: utilities
+  rest:
+  - listReadings
+  binding: rest
+  confidence: high
+- tool: arthur_create_reading
+  category: utilities
+  rest:
+  - createReading
+  binding: rest
+  confidence: high
+- tool: arthur_view_reading
+  category: utilities
+  rest:
+  - viewReading
+  binding: rest
+  confidence: high
+- tool: arthur_update_reading
+  category: utilities
+  rest:
+  - updateReading
+  binding: rest
+  confidence: high
+- tool: arthur_delete_reading
+  category: utilities
+  rest:
+  - deleteReading
+  binding: rest
+  confidence: high
+- tool: arthur_list_utilities
+  category: utilities
+  rest:
+  - listUtilities
+  binding: rest
+  confidence: high
+- tool: arthur_view_utility
+  category: utilities
+  rest:
+  - viewUtility
+  binding: rest
+  confidence: high
+- tool: arthur_update_utility
+  category: utilities
+  rest:
+  - updateUtility
+  binding: rest
+  confidence: high
+- tool: arthur_delete_utility
+  category: utilities
+  rest:
+  - deleteUtility
+  binding: rest
+  confidence: high
+- tool: arthur_list_applicants_on_viewing
+  category: viewings
+  rest:
+  - listApplicantsOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_list_managers_on_viewing
+  category: viewings
+  rest:
+  - listManagersOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_add_manager_on_viewing
+  category: viewings
+  rest:
+  - addManagerOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_view_manager_on_viewing
+  category: viewings
+  rest:
+  - viewManagerOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_delete_manager_on_viewing
+  category: viewings
+  rest:
+  - deleteManagerOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_get_recipients_for_viewing
+  category: viewings
+  rest:
+  - getRecipientsForViewing
+  binding: rest
+  confidence: high
+- tool: arthur_list_conversations_on_viewing
+  category: viewings
+  rest:
+  - listConversationsOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_create_conversation_on_viewing
+  category: viewings
+  rest:
+  - createConversationOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_list_tags_on_viewing
+  category: viewings
+  rest:
+  - listTagsOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_tag_viewing
+  category: viewings
+  rest:
+  - tagViewing
+  binding: rest
+  confidence: high
+- tool: arthur_untag_viewing
+  category: viewings
+  rest:
+  - untagViewing
+  binding: rest
+  confidence: high
+- tool: arthur_untag_all_viewing_tags
+  category: viewings
+  rest:
+  - untagAllViewingTags
+  binding: rest
+  confidence: high
+- tool: arthur_list_notes_on_viewing
+  category: viewings
+  rest:
+  - listNotesOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_add_note_on_viewing
+  category: viewings
+  rest:
+  - addNoteOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_view_note_on_viewing
+  category: viewings
+  rest:
+  - viewNoteOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_update_note_on_viewing
+  category: viewings
+  rest:
+  - updateNoteOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_delete_note_on_viewing
+  category: viewings
+  rest:
+  - deleteNoteOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_list_tenancies_on_viewing
+  category: viewings
+  rest:
+  - listTenanciesOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_add_tenancy_on_viewing
+  category: viewings
+  rest:
+  - addTenancyOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_submit_offer_on_viewing
+  category: viewings
+  rest:
+  - submitOfferOnViewing
+  binding: rest
+  confidence: high
+- tool: arthur_list_viewings
+  category: viewings
+  rest:
+  - listViewings
+  binding: rest
+  confidence: high
+- tool: arthur_add_viewing
+  category: viewings
+  rest:
+  - addViewing
+  binding: rest
+  confidence: high
+- tool: arthur_view_viewing
+  category: viewings
+  rest:
+  - viewViewing
+  binding: rest
+  confidence: high
+- tool: arthur_update_viewing
+  category: viewings
+  rest:
+  - updateViewing
+  binding: rest
+  confidence: high
+- tool: arthur_delete_viewing
+  category: viewings
+  rest:
+  - deleteViewing
+  binding: rest
+  confidence: high
+- tool: arthur_update_viewing_status
+  category: viewings
+  rest:
+  - updateViewingStatus
+  binding: rest
+  confidence: high
+mcp_only: []
+rest_only: []
+ui_only:
+- capability: Webhook subscription management
+  reason: Subscribe/unsubscribe is done on the Arthur webhook page; no API operation exists.
+- capability: OAuth application registration
+  reason: Client id/secret are issued in Arthur Settings > OAuth Applications, not via API.
+- capability: Bulk data export
+  reason: Settings > Back up my data produces CSV exports; no export endpoint is published.

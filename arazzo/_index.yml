@@ -1,0 +1,21 @@
+generated: '2026-07-26'
+method: derived
+source: openapi/ (317 operations derived from the Arthur Online public Postman collection)
+description: >-
+  Native Arazzo 1.0.1 workflows stitching Arthur API v2 operations into the platform's real
+  multi-step use cases. Every step names an operationId verified verbatim in the referenced spec.
+  Arthur publishes no sandbox, so these run against a live entity - each write carries strict=true
+  and none should be auto-retried.
+workflows:
+  - file: arthur-online-applicant-to-tenancy.yml
+    workflowId: applicantToTenancy
+    title: Applicant to tenancy
+    summary: Create an applicant, book a viewing on a unit, record the offer, convert to a tenancy, add and invite the tenant, read the deposit registration.
+  - file: arthur-online-onboard-property.yml
+    workflowId: onboardProperty
+    title: Onboard a property
+    summary: Create a property and its first lettable unit, file a compliance certificate, publish shared information and attach a document.
+  - file: arthur-online-maintenance-dispatch.yml
+    workflowId: maintenanceDispatch
+    title: Maintenance dispatch
+    summary: Raise a task on a property, add a subtask, move it live, dispatch a work order to a contractor, open the conversation and read quotes and invoices.

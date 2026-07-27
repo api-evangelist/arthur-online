@@ -1,0 +1,673 @@
+generated: '2026-07-26'
+method: searched
+source:
+- https://developer.arthuronline.co.uk/ (Arthur API public Postman collection, Webhook > Useful Information > Triggers)
+- https://github.com/arthur-crm/webhookPayloadTemplates
+description: 'Arthur Online''s webhook catalogue: 125 subscribable triggers across 30 domain models. Subscriptions
+  are created in the Arthur UI (Webhook page > Subscribe New Webhook), not through the API - there is no webhook
+  management endpoint in the Arthur API v2.'
+subscription:
+  self_serve: true
+  managed_in: Arthur web app > Webhook page
+  api_managed: false
+  steps:
+  - Go to the webhook page in Arthur.
+  - Click "Subscribe New Webhook".
+  - Select the event to subscribe to and enter your webhook URL.
+  - Click "Save Changes".
+delivery:
+  method: POST
+  content_type: application/x-www-form-urlencoded
+  user_agent: CakePHP
+  headers_template: examples/webhooks/arthur-online-header.json
+  signature: null
+  signature_note: Arthur publishes no webhook signing secret or signature header; the documented headers carry no
+    authenticity proof.
+  retries: null
+  logs: Webhook page > View Logs shows every triggered delivery with timestamp, status and server response.
+  testing_tool: https://pipedream.com/requestbin (recommended by Arthur for inspecting deliveries)
+envelope:
+  event:
+  - alias
+  - name
+  - created
+  - sent
+  webhook:
+  - id
+  - url
+  - status
+  - event_alias
+  - subscribe_url
+  - unsubscribe_url
+  - delete_url
+  data: flat string map of the changed record; dotted keys for related models
+asyncapi: asyncapi/arthur-online-webhooks-asyncapi.yml
+event_count: 125
+model_count: 30
+payload_templates_published: 7
+events:
+- model: AccessKey
+  event: Access Keys (Individual) Expired
+  alias: null
+  payload_template: null
+  example: null
+- model: Applicant
+  event: Applicant added via Middleware
+  alias: applicant-added-external
+  payload_template: https://github.com/arthur-crm/webhookPayloadTemplates/blob/1796c50663f90bfb67dee043b87b721a6aea78c4/events/applicant/applicant-added-external/payload.json
+  example: examples/webhooks/arthur-online-applicant-added-external.json
+- model: Applicant
+  event: Applicant added
+  alias: applicant-add
+  payload_template: https://github.com/arthur-crm/webhookPayloadTemplates/blob/1796c50663f90bfb67dee043b87b721a6aea78c4/events/applicant/applicant-add/payload.json
+  example: examples/webhooks/arthur-online-applicant-add.json
+- model: Applicant
+  event: Applicant updated via Middleware
+  alias: applicant-updated-external
+  payload_template: https://github.com/arthur-crm/webhookPayloadTemplates/blob/1796c50663f90bfb67dee043b87b721a6aea78c4/events/applicant/applicant-updated-external/payload.json
+  example: examples/webhooks/arthur-online-applicant-updated-external.json
+- model: Asset
+  event: File shared with all occupants
+  alias: null
+  payload_template: null
+  example: null
+- model: Asset
+  event: File uploaded
+  alias: null
+  payload_template: null
+  example: null
+- model: AssetSharingPerson
+  event: Asset sharing
+  alias: null
+  payload_template: null
+  example: null
+- model: Attachment
+  event: File attachment shared
+  alias: null
+  payload_template: null
+  example: null
+- model: Certificate
+  event: Certificate Added
+  alias: null
+  payload_template: null
+  example: null
+- model: Certificate
+  event: Certificate Expired Today
+  alias: null
+  payload_template: null
+  example: null
+- model: Certificate
+  event: Certificate Expires in 30 Days
+  alias: null
+  payload_template: null
+  example: null
+- model: Certificate
+  event: Certificate Expires in 7 Days
+  alias: null
+  payload_template: null
+  example: null
+- model: Inventory
+  event: Inventory added
+  alias: null
+  payload_template: null
+  example: null
+- model: Inventory
+  event: Inventory expired today
+  alias: null
+  payload_template: null
+  example: null
+- model: Message
+  event: Email sent
+  alias: null
+  payload_template: null
+  example: null
+- model: Notice
+  event: Notice Added
+  alias: null
+  payload_template: null
+  example: null
+- model: Notice
+  event: Notice expired today
+  alias: null
+  payload_template: null
+  example: null
+- model: Notice
+  event: Notice expires in 30 days
+  alias: null
+  payload_template: null
+  example: null
+- model: Notice
+  event: Notice expires in 7 days
+  alias: null
+  payload_template: null
+  example: null
+- model: Person
+  event: Add Contractor
+  alias: null
+  payload_template: null
+  example: null
+- model: Person
+  event: Add Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: Person
+  event: Add Property Owner
+  alias: null
+  payload_template: null
+  example: null
+- model: Person
+  event: Invite Contractor
+  alias: null
+  payload_template: null
+  example: null
+- model: Person
+  event: Invite Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: Person
+  event: Invite Property Owner
+  alias: null
+  payload_template: null
+  example: null
+- model: Property
+  event: Property created
+  alias: null
+  payload_template: null
+  example: null
+- model: Recurring
+  event: Recurring Ended
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Property Manager Email
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Property Manager Notification
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Property Manager SMS
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Property Owner Email
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Property Owner Notification
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Property Owner SMS
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Tenant Email
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Tenant Notification
+  alias: null
+  payload_template: null
+  example: null
+- model: Reminder
+  event: Tenant SMS
+  alias: null
+  payload_template: null
+  example: null
+- model: RentReview
+  event: Rent Review added
+  alias: null
+  payload_template: null
+  example: null
+- model: RentReview
+  event: Rent Review completed
+  alias: null
+  payload_template: null
+  example: null
+- model: RentReview
+  event: Rent Review due today
+  alias: null
+  payload_template: null
+  example: null
+- model: RentReview
+  event: Rent Review in progress
+  alias: null
+  payload_template: null
+  example: null
+- model: Renter
+  event: Invite Tenant
+  alias: null
+  payload_template: null
+  example: null
+- model: Renter
+  event: Tenant added to tenancy
+  alias: null
+  payload_template: null
+  example: null
+- model: ReportEntity
+  event: Shared Report
+  alias: null
+  payload_template: null
+  example: null
+- model: SyncScheduler
+  event: Quickbooks Start Sync
+  alias: null
+  payload_template: null
+  example: null
+- model: SyncScheduler
+  event: Quickbooks Sync Done
+  alias: null
+  payload_template: null
+  example: null
+- model: SyncScheduler
+  event: Quickbooks Sync Failed
+  alias: null
+  payload_template: null
+  example: null
+- model: SyncScheduler
+  event: Quickbooks Sync Success
+  alias: null
+  payload_template: null
+  example: null
+- model: SyncScheduler
+  event: Xero Start Sync
+  alias: null
+  payload_template: null
+  example: null
+- model: SyncScheduler
+  event: Xero Sync Done
+  alias: null
+  payload_template: null
+  example: null
+- model: SyncScheduler
+  event: Xero Sync Failed
+  alias: null
+  payload_template: null
+  example: null
+- model: SyncScheduler
+  event: Xero Sync Success
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Property Manager shared workorder with tenants
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task added
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task cancelled
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task set back to pending
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task set to cancelled
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task set to completed
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task set to completed
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task set to in progress
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task set to live
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task set to pending
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Task updated
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Tenant raises an issue
+  alias: null
+  payload_template: null
+  example: null
+- model: Task
+  event: Tenant updated issue description
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Moving in date confirmed by Contractor
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Moving in date confirmed by Letting Agent
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Moving out date confirmed by Contractor
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Moving out date confirmed by Letting Agent
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Prospective tenancy added by Letting Agent
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy Expiring
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy Reference set to Failed by Letting Agent
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy Reference set to Failed by Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy Reference set to Passed by Letting Agent
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy Reference set to Passed by Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy closing
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy status set to approved
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy status set to current
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy status set to ending
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy status set to past
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy status set to periodic
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy status set to prospective
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy status set to rejected
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenancy updated
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenant requests ending tenancy
+  alias: null
+  payload_template: null
+  example: null
+- model: Tenancy
+  event: Tenant requests extending tenancy
+  alias: null
+  payload_template: null
+  example: null
+- model: TenancyChange
+  event: Change Tenancy
+  alias: null
+  payload_template: null
+  example: null
+- model: Transaction
+  event: Holding Deposit Receipt added by Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: Transaction
+  event: Late rent 14 days
+  alias: null
+  payload_template: null
+  example: null
+- model: Transaction
+  event: Late rent 21 days
+  alias: null
+  payload_template: null
+  example: null
+- model: Transaction
+  event: Late rent 7 days
+  alias: null
+  payload_template: null
+  example: null
+- model: Transaction
+  event: Remitted to Property Owner Split
+  alias: null
+  payload_template: null
+  example: null
+- model: Transaction
+  event: Remitted to Property Owner
+  alias: null
+  payload_template: null
+  example: null
+- model: Unit
+  event: Unit Added
+  alias: null
+  payload_template: null
+  example: null
+- model: Unit
+  event: Unit set to available to let
+  alias: null
+  payload_template: null
+  example: null
+- model: Unit
+  event: Unit updated
+  alias: null
+  payload_template: null
+  example: null
+- model: UtilityReading
+  event: Utility Reading Added
+  alias: null
+  payload_template: null
+  example: null
+- model: Viewing
+  event: Added Letting Viewing by Property Manager
+  alias: viewing-add-manager
+  payload_template: https://github.com/arthur-crm/webhookPayloadTemplates/blob/main/events/viewing/viewing-add-manager/payload.json
+  example: examples/webhooks/arthur-online-viewing-add-manager.json
+- model: Viewing
+  event: Added Sale Viewing by Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: Viewing
+  event: Added Viewing by Letting Agent
+  alias: null
+  payload_template: null
+  example: null
+- model: Viewing
+  event: Updated Sale Viewing by Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: Viewing
+  event: Updated status Sale Viewing by Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: Viewing
+  event: Viewing Cancelled
+  alias: viewing-cancelled
+  payload_template: https://github.com/arthur-crm/webhookPayloadTemplates/blob/main/events/viewing/viewing-cancelled/payload.json
+  example: examples/webhooks/arthur-online-viewing-cancelled.json
+- model: Viewing
+  event: Viewing offer entered
+  alias: viewing-offer
+  payload_template: https://github.com/arthur-crm/webhookPayloadTemplates/blob/main/events/viewing/viewing-offer/payload.json
+  example: examples/webhooks/arthur-online-viewing-offer.json
+- model: Viewing
+  event: Viewing updated by Letting Agent
+  alias: null
+  payload_template: null
+  example: null
+- model: Viewing
+  event: Viewing updated by Property Manager
+  alias: null
+  payload_template: null
+  example: null
+- model: ViewingApplicant
+  event: Applicant added to viewing
+  alias: viewing-applicant-add
+  payload_template: https://github.com/arthur-crm/webhookPayloadTemplates/blob/1796c50663f90bfb67dee043b87b721a6aea78c4/events/viewing/viewing-applicant-add/payload.json
+  example: examples/webhooks/arthur-online-viewing-applicant-add.json
+- model: VulnerabilityProfile
+  event: Tenant COVID Profile updated
+  alias: null
+  payload_template: null
+  example: null
+- model: Workorder
+  event: New Workorder added
+  alias: null
+  payload_template: null
+  example: null
+- model: Workorder
+  event: Property Manager approves completed workorder
+  alias: null
+  payload_template: null
+  example: null
+- model: Workorder
+  event: Require approval from Property Owner
+  alias: null
+  payload_template: null
+  example: null
+- model: Workorder
+  event: Workorder Assigned to Contractor
+  alias: null
+  payload_template: null
+  example: null
+- model: Workorder
+  event: Workorder Cancelled
+  alias: null
+  payload_template: null
+  example: null
+- model: Workorder
+  event: Workorder On Hold
+  alias: null
+  payload_template: null
+  example: null
+- model: Workorder
+  event: Workorder Reallocated
+  alias: null
+  payload_template: null
+  example: null
+- model: Workorder
+  event: Workorder Resumed
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderEntity
+  event: Contractor Invited to Workorder
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderEntity
+  event: Contractor set workorder to completed
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderEntity
+  event: Workorder Declined by Contractor
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderInvoice
+  event: Contractor creates invoice
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderInvoice
+  event: Property Manager set workorder invoice to Paid
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderQuote
+  event: Contractor provided workorder quote
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderQuote
+  event: Property Manager Accepted Quote
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderQuote
+  event: Property Owner Accepted Quote
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderQuote
+  event: Property Owner Rejected Quote
+  alias: null
+  payload_template: null
+  example: null
+- model: WorkorderQuote
+  event: Workorder Accepted by Contractor to Quote
+  alias: null
+  payload_template: null
+  example: null

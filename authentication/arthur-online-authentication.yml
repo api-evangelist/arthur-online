@@ -1,0 +1,103 @@
+generated: '2026-07-26'
+method: searched
+source: openapi/ (16 documents) - derived security schemes, upgraded from the provider docs
+docs: https://developer.arthuronline.co.uk/
+docs_detail: >-
+  Arthur API public Postman collection, API > Getting Started > 1. Create Application,
+  2. Authentication, 3. Refresh Token; and API > Useful Information > Request Structure and Security.
+description: >-
+  Arthur API v2 uses a single security model: OAuth 2.0 Authorization Code with a bearer access
+  token, plus a mandatory X-EntityID header naming the Arthur account the call is scoped to.
+  There are no API keys, no scopes and no client-credentials flow. Credentials are not self-serve -
+  a developer must be inside a paying Arthur account and ask Arthur support for API access before
+  an OAuth application can be registered.
+
+summary:
+  types: [oauth2]
+  oauth2_flows: [authorizationCode]
+  api_key_in: []
+  scopes_published: false
+  mandatory_headers: [Authorization, X-EntityID]
+
+schemes:
+  - name: arthurOAuth
+    type: oauth2
+    description: >-
+      OAuth 2.0 Authorization Code flow (RFC 6749 section 4.1), cited explicitly in the Arthur
+      documentation. Access tokens last 14 days, refresh tokens 21 days, authorization codes 15 minutes.
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+        tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+        refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+        scopes: 0
+    sources:
+      - openapi/arthur-online-applicants-openapi.yml
+      - openapi/arthur-online-assets-openapi.yml
+      - openapi/arthur-online-certificates-openapi.yml
+      - openapi/arthur-online-conversations-openapi.yml
+      - openapi/arthur-online-entities-openapi.yml
+      - openapi/arthur-online-financials-openapi.yml
+      - openapi/arthur-online-maintenance-openapi.yml
+      - openapi/arthur-online-notes-openapi.yml
+      - openapi/arthur-online-properties-openapi.yml
+      - openapi/arthur-online-tags-openapi.yml
+      - openapi/arthur-online-tenancies-openapi.yml
+      - openapi/arthur-online-tenants-openapi.yml
+      - openapi/arthur-online-types-openapi.yml
+      - openapi/arthur-online-units-openapi.yml
+      - openapi/arthur-online-utilities-openapi.yml
+      - openapi/arthur-online-viewings-openapi.yml
+
+tenancy_header:
+  name: X-EntityID
+  required: true
+  description: >-
+    The Arthur entity (account) the call is scoped to. Every request must carry it, including
+    reads. Records are only addressable inside their entity; an id from another entity returns 404.
+  discovery: 'GET /entities (operationId listEntities) returns the entities a token can address.'
+
+onboarding:
+  self_serve: false
+  steps:
+    - Be an authorised user inside a paying Arthur account.
+    - Contact Arthur support to be granted API access (https://support.arthuronline.co.uk/support/home).
+    - In Arthur go to Settings > Your Account > OAuth Applications > Add Application.
+    - Supply name, description, website and an HTTPS callback URL.
+    - Arthur issues a client id and client secret.
+  signup_page: https://www.arthuronline.co.uk/connect/arthur-api
+
+token_lifecycle:
+  authorization_code_ttl: 15 minutes
+  access_token_ttl: 14 days
+  refresh_token_ttl: 21 days
+  token_request_encoding: application/x-www-form-urlencoded
+  grants: [authorization_code, refresh_token]
+  expiry_error:
+    status: 401
+    body: '{"error": "expired_token", "message": "This token has expired."}'
+
+scopes:
+  published: false
+  note: >-
+    Arthur publishes no OAuth scopes. A token carries whatever the authorising Arthur user can see.
+    The real access control is organisational: Arthur recommends creating a separate Manager account
+    for third-party developers, and Enterprise accounts can set per-Manager permissions to narrow
+    what an integration can reach.
+
+discovery:
+  openid_configuration: 'https://auth.arthuronline.co.uk/.well-known/openid-configuration - 404 (probed 2026-07-26)'
+  oauth_authorization_server: 'https://auth.arthuronline.co.uk/.well-known/oauth-authorization-server - 404 (probed 2026-07-26)'
+
+token_handling_guidance:
+  source: Arthur API collection > Useful Information > Security > Securing API Tokens
+  practices:
+    - Establish a system for rotating passwords and tokens.
+    - Encrypt sensitive data and avoid decrypting it early in the process.
+    - Store user access tokens in a secure, encrypted location.
+    - Regenerate keys and tokens on any suspicion of compromise.
+
+related:
+  conventions: conventions/arthur-online-conventions.yml
+  errors: errors/arthur-online-problem-types.yml
+  conformance: conformance/arthur-online-conformance.yml

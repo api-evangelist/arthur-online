@@ -1,0 +1,207 @@
+arazzo: 1.0.1
+info:
+  title: Arthur Online - applicant to tenancy
+  version: 1.0.0
+  description: >-
+    The UK lettings funnel in Arthur Online: confirm the entity, create an applicant, book a
+    viewing on a unit, record the offer, convert the viewing into a tenancy, add the tenant and
+    register the deposit. Every operationId is verified against the derived Arthur API v2 specs.
+    Arthur has no sandbox - run this against a real entity you control, with strict=true on writes.
+sourceDescriptions:
+  - name: entities
+    url: ../openapi/arthur-online-entities-openapi.yml
+    type: openapi
+  - name: applicants
+    url: ../openapi/arthur-online-applicants-openapi.yml
+    type: openapi
+  - name: viewings
+    url: ../openapi/arthur-online-viewings-openapi.yml
+    type: openapi
+  - name: units
+    url: ../openapi/arthur-online-units-openapi.yml
+    type: openapi
+  - name: tenancies
+    url: ../openapi/arthur-online-tenancies-openapi.yml
+    type: openapi
+  - name: tenants
+    url: ../openapi/arthur-online-tenants-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: applicantToTenancy
+    summary: Create an applicant, view a unit, take the offer and open the tenancy.
+    description: >-
+      Runs the full lettings funnel. Steps 2 and later all require the entity id resolved in
+      step 1 in the X-EntityID header.
+    inputs:
+      type: object
+      required: [entityId, unitId, applicant]
+      properties:
+        entityId:
+          type: string
+          description: The Arthur entity to operate in, sent as X-EntityID on every call.
+        unitId:
+          type: integer
+          description: The lettable unit being viewed.
+        applicant:
+          type: object
+          description: Applicant fields as documented on the Add Applicant operation.
+        viewing:
+          type: object
+          description: Viewing fields - viewing_date, viewing_time, duration, notes.
+        offer:
+          type: object
+          description: Offer fields - offer amount and offer_frequency.
+        tenancy:
+          type: object
+          description: Tenancy fields - start_date, end_date, rent and frequency.
+        tenant:
+          type: object
+          description: Tenant person fields.
+    steps:
+      - stepId: confirmEntity
+        description: Confirm which Arthur entity this token can address.
+        operationId: $sourceDescriptions.entities.listEntities
+        parameters:
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          entities: $response.body#/data
+      - stepId: createApplicant
+        description: Create the applicant. strict=true so an unknown source is rejected, not created.
+        operationId: $sourceDescriptions.applicants.addApplicant
+        parameters:
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+          - name: strict
+            in: query
+            value: true
+        requestBody:
+          contentType: application/json
+          payload: $inputs.applicant
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          applicantId: $response.body#/data/id
+      - stepId: bookViewing
+        description: Book a viewing of the unit for this applicant.
+        operationId: $sourceDescriptions.units.addViewingOnUnit
+        parameters:
+          - name: unit_id
+            in: path
+            value: $inputs.unitId
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+          - name: strict
+            in: query
+            value: true
+        requestBody:
+          contentType: application/json
+          payload: $inputs.viewing
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          viewingId: $response.body#/data/id
+      - stepId: attachApplicantToViewing
+        description: Confirm the applicant is attached to the viewing.
+        operationId: $sourceDescriptions.viewings.listApplicantsOnViewing
+        parameters:
+          - name: viewing_id
+            in: path
+            value: $steps.bookViewing.outputs.viewingId
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: submitOffer
+        description: Record the applicant's offer against the viewing.
+        operationId: $sourceDescriptions.viewings.submitOfferOnViewing
+        parameters:
+          - name: viewing_id
+            in: path
+            value: $steps.bookViewing.outputs.viewingId
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+          - name: strict
+            in: query
+            value: true
+        requestBody:
+          contentType: application/json
+          payload: $inputs.offer
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: convertToTenancy
+        description: Convert the accepted viewing into a tenancy. Not idempotent - never auto-retry.
+        operationId: $sourceDescriptions.viewings.addTenancyOnViewing
+        parameters:
+          - name: viewing_id
+            in: path
+            value: $steps.bookViewing.outputs.viewingId
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+          - name: strict
+            in: query
+            value: true
+        requestBody:
+          contentType: application/json
+          payload: $inputs.tenancy
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          tenancyId: $response.body#/data/id
+      - stepId: addTenant
+        description: Add the tenant to the tenancy.
+        operationId: $sourceDescriptions.tenancies.addTenantOnTenancy
+        parameters:
+          - name: tenancy_id
+            in: path
+            value: $steps.convertToTenancy.outputs.tenancyId
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+          - name: strict
+            in: query
+            value: true
+        requestBody:
+          contentType: application/json
+          payload: $inputs.tenant
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          tenantId: $response.body#/data/id
+      - stepId: inviteTenantToPortal
+        description: Invite the tenant into the Arthur tenant portal.
+        operationId: $sourceDescriptions.tenants.inviteTenant
+        parameters:
+          - name: tenant_id
+            in: path
+            value: $steps.addTenant.outputs.tenantId
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: registerDeposit
+        description: Read the deposit registration state on the new tenancy.
+        operationId: $sourceDescriptions.tenancies.registerDepositOnTenancy
+        parameters:
+          - name: id
+            in: path
+            value: $steps.convertToTenancy.outputs.tenancyId
+          - name: X-EntityID
+            in: header
+            value: $inputs.entityId
+        successCriteria:
+          - condition: $statusCode == 200
+    outputs:
+      applicantId: $steps.createApplicant.outputs.applicantId
+      viewingId: $steps.bookViewing.outputs.viewingId
+      tenancyId: $steps.convertToTenancy.outputs.tenancyId
+      tenantId: $steps.addTenant.outputs.tenantId

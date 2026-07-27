@@ -1,0 +1,535 @@
+openapi: 3.1.0
+info:
+  title: Arthur Utilities API
+  version: 2.0.0
+  description: Arthur Utilities API - the utilities surface of the Arthur API v2, the UK property management
+    platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's
+    public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped
+    to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization
+    Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Readings
+- name: Utilities
+paths:
+  /utilities/{utility_id}/readings:
+    get:
+      operationId: listReadings
+      summary: List Readings
+      tags:
+      - Readings
+      parameters:
+      - name: utility_id
+        in: path
+        required: true
+        description: Arthur utility id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of readings associated with the given utility ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createReading
+      summary: Create Reading
+      tags:
+      - Readings
+      parameters:
+      - name: utility_id
+        in: path
+        required: true
+        description: Arthur utility id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new reading record for the  utility . The API will return\
+        \ the saved data and a unique reading ID.\n\nSupported Fields \n The following fields are supported\
+        \ for the request body\n\nField \n Example \n Type \n Required? \n\nreading_value \n 21021 \n\
+        \ String \n Yes \n\nreading_date \n 2020-10-21 \n Date \n Yes \n\ntaken_by \n Brian Smith \n String\
+        \ \n No \n\nnotes \n reading notes \n string \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reading_value:
+                  type: string
+                  example: '21021'
+                reading_date:
+                  type: string
+                  format: date
+                  example: '2020-10-21'
+                taken_by:
+                  type: string
+                  example: Brian Smith
+                notes:
+                  type: string
+                  example: reading notes
+              required:
+              - reading_value
+              - reading_date
+            example:
+              reading_value: '123'
+              reading_date: '2020-10-21'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /utilities/{utility_id}/readings/{reading_id}:
+    get:
+      operationId: viewReading
+      summary: View Reading
+      tags:
+      - Readings
+      parameters:
+      - name: utility_id
+        in: path
+        required: true
+        description: Arthur utility id.
+        schema:
+          type: integer
+      - name: reading_id
+        in: path
+        required: true
+        description: Arthur reading id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This API endpoint retrieves the details of a single  reading , identified by its unique 
+        id related to a reading .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateReading
+      summary: Update Reading
+      tags:
+      - Readings
+      parameters:
+      - name: utility_id
+        in: path
+        required: true
+        description: Arthur utility id.
+        schema:
+          type: integer
+      - name: reading_id
+        in: path
+        required: true
+        description: Arthur reading id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing reading using the same fields as the 'Add Reading'\
+        \ endpoint. The API will return the updated data for the reading in the response.\n\nSupported\
+        \ Fields \n The following fields are supported for the request body\n\nField \n Example \n Type\
+        \ \n Required? \n\nreading_value \n 21021 \n String \n No \n\nreading_date \n 2020-10-21 \n Date\
+        \ \n No \n\ntaken_by \n Brian Smith \n String \n No \n\nnotes \n reading notes \n string \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reading_value:
+                  type: string
+                  example: '21021'
+                reading_date:
+                  type: string
+                  format: date
+                  example: '2020-10-21'
+                taken_by:
+                  type: string
+                  example: Brian Smith
+                notes:
+                  type: string
+                  example: reading notes
+            example:
+              reading_value: '12345'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteReading
+      summary: Delete Reading
+      tags:
+      - Readings
+      parameters:
+      - name: utility_id
+        in: path
+        required: true
+        description: Arthur utility id.
+        schema:
+          type: integer
+      - name: reading_id
+        in: path
+        required: true
+        description: Arthur reading id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing reading using the reading id related to a utility
+        .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /utilities:
+    get:
+      operationId: listUtilities
+      summary: List Utilities
+      tags:
+      - Utilities
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by type (e.g. gas, water, eletric)
+      - name: serial_number
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by serial number
+      - name: account_number
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by account number
+      - name: provider
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by provider
+      - name: created
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the created date. Use the format yyyy-mm-dd to input the date.
+      - name: modified
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the modified date. Use the format yyyy-mm-dd to input the date.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of utilities.
+
+
+        See available filters below to customize the list of utilities returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /utilities/{utility_id}:
+    get:
+      operationId: viewUtility
+      summary: View Utility
+      tags:
+      - Utilities
+      parameters:
+      - name: utility_id
+        in: path
+        required: true
+        description: Arthur utility id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single utility, identified by its unique 
+        utility_id .
+
+
+        Use this endpoint to view the specific details of a utility record.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateUtility
+      summary: Update Utility
+      tags:
+      - Utilities
+      parameters:
+      - name: utility_id
+        in: path
+        required: true
+        description: Arthur utility id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing utility. The API will return the updated data for\
+        \ the utility in the response.\n\nSupported Fields \n The following fields are supported for the\
+        \ request body\n\nField \n Example \n Type \n Required? \n\ntype \n gas \n String \n No \n\nnotes\
+        \ \n behind back doors \n String \n No \n\nserial_number \n GA212FP21 \n String \n No \n\naccount_number\
+        \ \n 12344321 \n string \n No \n\nprovider \n company_name \n string \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  example: gas
+                notes:
+                  type: string
+                  example: behind back doors
+                serial_number:
+                  type: string
+                  example: GA212FP21
+                account_number:
+                  type: string
+                  example: '12344321'
+                provider:
+                  type: string
+                  example: company_name
+            example:
+              serial_number: Updated serial number
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteUtility
+      summary: Delete Utility
+      tags:
+      - Utilities
+      parameters:
+      - name: utility_id
+        in: path
+        required: true
+        description: Arthur utility id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing utility using the utility  id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens
+        for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id
+        and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST
+        and PUT only.
+      schema:
+        type: boolean
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

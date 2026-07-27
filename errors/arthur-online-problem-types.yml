@@ -1,0 +1,74 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://developer.arthuronline.co.uk/ - Arthur API collection, API > Useful Information >
+  Response Structure > Status, and Getting Started > 3. Refresh Token (expired token body);
+  cross-checked against the 4xx responses in openapi/.
+format: proprietary
+format_note: >-
+  Arthur does not use RFC 9457 application/problem+json. Errors are returned as a plain JSON
+  object with a `status` (repeating the HTTP code) and, for authentication failures, an
+  `error` machine code plus a human `message`.
+envelope:
+  media_type: application/json
+  fields:
+    status: HTTP status code, repeated in the body.
+    error: Machine-readable error code (observed on auth failures, e.g. expired_token).
+    message: Human-readable explanation.
+problems:
+  - status: 200
+    code: OK
+    title: Request completed
+    description: The request was completed successfully without errors.
+    published: true
+  - status: 400
+    code: ERROR
+    title: Bad request
+    description: The request was invalid or malformed.
+    remediation: >-
+      Check required headers (Authorization, X-EntityID, and Content-Type on POST/PUT),
+      the JSON body shape against the supported fields for the operation, and that every
+      Enum value exists in the matching Types endpoint. When creating or updating records
+      with Simple types, `strict=true` turns a silent auto-create into an explicit failure.
+    published: true
+  - status: 401
+    code: expired_token
+    title: Access token has expired
+    description: 'The supplied bearer token is no longer valid. Body: {"error": "expired_token", "message": "This token has expired."}'
+    remediation: >-
+      Exchange the refresh token at https://auth.arthuronline.co.uk/oauth/token for a new
+      access token (access tokens last 14 days, refresh tokens 21 days) and retry.
+    published: true
+    source_operation: 'Getting Started > 3. Refresh Token'
+  - status: 401
+    code: unauthorized
+    title: Missing or invalid credentials
+    description: >-
+      Every host path under api.arthuronline.co.uk returns 401 to anonymous requests -
+      probed 2026-07-26 across /v2, /openapi.json, /swagger.json, /docs and /.well-known/*.
+      There is no anonymous surface on the API host.
+    remediation: Send a valid Bearer access token and the X-EntityID header for the account.
+    published: partially
+  - status: 404
+    code: ERROR
+    title: Not found
+    description: The request was sent to a location that does not exist in the API.
+    remediation: >-
+      Verify the path against the resource area in openapi/ and confirm the record id
+      belongs to the entity named in X-EntityID - records outside the entity are not visible.
+    published: true
+not_published:
+  - status: 429
+    note: >-
+      Arthur enforces a documented 5,000 requests per hour limit but publishes no throttling
+      status code, no Retry-After and no rate-limit response headers.
+  - status: 5xx
+    note: No server-error taxonomy is published.
+derived_from:
+  - openapi/arthur-online-properties-openapi.yml
+  - openapi/arthur-online-maintenance-openapi.yml
+  - openapi/arthur-online-tenancies-openapi.yml
+related:
+  conventions: conventions/arthur-online-conventions.yml
+  authentication: authentication/arthur-online-authentication.yml
+  rate_limits: rate-limits/arthur-online-rate-limits.yml

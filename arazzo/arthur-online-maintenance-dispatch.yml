@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: Arthur Online - maintenance dispatch
+  version: 1.0.0
+  description: >-
+    Raise a maintenance task against a property, break it into subtasks, dispatch it to a
+    contractor as a work order, open the conversation and read back quotes and invoices.
+    Approval steps (manager approves completion, owner accepts a quote) are UI-only in Arthur
+    and appear here as read-backs rather than calls.
+sourceDescriptions:
+  - name: properties
+    url: ../openapi/arthur-online-properties-openapi.yml
+    type: openapi
+  - name: maintenance
+    url: ../openapi/arthur-online-maintenance-openapi.yml
+    type: openapi
+workflows:
+  - workflowId: maintenanceDispatch
+    summary: Task to work order to quote to invoice.
+    inputs:
+      type: object
+      required: [entityId, propertyId, task]
+      properties:
+        entityId: {type: string, description: Sent as X-EntityID on every call.}
+        propertyId: {type: integer, description: The property the issue belongs to.}
+        task: {type: object, description: Task fields as documented on Add Task on Property.}
+        subtask: {type: object, description: Subtask fields.}
+        workorder: {type: object, description: Work order fields including the contractor assignment.}
+        message: {type: object, description: Conversation fields for the contractor thread.}
+        statusUpdate: {type: object, description: The task status transition payload.}
+    steps:
+      - stepId: raiseTask
+        description: Raise the task against the property. Not idempotent - never auto-retry.
+        operationId: $sourceDescriptions.properties.addTaskOnProperty
+        parameters:
+          - {name: property_id, in: path, value: $inputs.propertyId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.task
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          taskId: $response.body#/data/id
+      - stepId: addSubtask
+        operationId: $sourceDescriptions.maintenance.createSubtaskOnTask
+        parameters:
+          - {name: task_id, in: path, value: $steps.raiseTask.outputs.taskId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.subtask
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: moveTaskLive
+        operationId: $sourceDescriptions.maintenance.updateStatusOnTask
+        parameters:
+          - {name: task_id, in: path, value: $steps.raiseTask.outputs.taskId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.statusUpdate
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: dispatchWorkorder
+        description: Create the work order from the task and assign the contractor.
+        operationId: $sourceDescriptions.maintenance.createWorkorderOnTask
+        parameters:
+          - {name: task_id, in: path, value: $steps.raiseTask.outputs.taskId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.workorder
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          workorderId: $response.body#/data/id
+      - stepId: confirmContractor
+        operationId: $sourceDescriptions.maintenance.listContractorsOnWorkorder
+        parameters:
+          - {name: workorder_id, in: path, value: $steps.dispatchWorkorder.outputs.workorderId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: whoCanBeMessaged
+        operationId: $sourceDescriptions.maintenance.getRecipientsForWorkorder
+        parameters:
+          - {name: workorder_id, in: path, value: $steps.dispatchWorkorder.outputs.workorderId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: openConversation
+        operationId: $sourceDescriptions.maintenance.createConversationOnWorkorder
+        parameters:
+          - {name: workorder_id, in: path, value: $steps.dispatchWorkorder.outputs.workorderId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+          - {name: strict, in: query, value: true}
+        requestBody:
+          contentType: application/json
+          payload: $inputs.message
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: readQuotes
+        description: Quote acceptance happens in the Arthur apps; read the state back here.
+        operationId: $sourceDescriptions.maintenance.listQuotesOnWorkorder
+        parameters:
+          - {name: workorder_id, in: path, value: $steps.dispatchWorkorder.outputs.workorderId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: readInvoices
+        operationId: $sourceDescriptions.maintenance.listInvoicesOnWorkorder
+        parameters:
+          - {name: workorder_id, in: path, value: $steps.dispatchWorkorder.outputs.workorderId}
+          - {name: X-EntityID, in: header, value: $inputs.entityId}
+        successCriteria:
+          - condition: $statusCode == 200
+    outputs:
+      taskId: $steps.raiseTask.outputs.taskId
+      workorderId: $steps.dispatchWorkorder.outputs.workorderId

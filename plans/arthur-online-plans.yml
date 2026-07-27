@@ -1,0 +1,72 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+provider: Arthur Online
+providerId: arthur-online
+generated: '2026-07-26'
+method: searched
+created: '2026-07-26'
+modified: '2026-07-26'
+source: https://www.arthuronline.co.uk/pricing
+description: >-
+  Arthur is sold as seat-and-unit priced property management software, not as an API product.
+  The API carries no separate price, no metered tier and no free developer tier - it is included
+  with every plan ("use our API to integrate your systems with Arthur at no extra cost"), but is
+  only reachable from inside a paying account after Arthur support grants access. Billing is
+  annual, by direct debit or card, with invoicing available to high-volume Enterprise customers.
+currency: GBP
+billing_period: month (billed annually)
+api_access: included in all plans; credentials issued by Arthur support on request
+api_metering: none published
+plans:
+  - name: Standard
+    price: 82.50
+    currency: GBP
+    period: month
+    included_units: 55
+    price_per_unit: 1.50
+    api_access: true
+    shared_screen_sessions_included: 0
+    features:
+      - Unlimited storage
+      - Maintenance module
+      - Finance module
+      - Compliance tracking
+  - name: Professional
+    price: 96.00
+    currency: GBP
+    period: month
+    included_units: 60
+    price_per_unit: 1.60
+    api_access: true
+    shared_screen_sessions_included: 1
+    features:
+      - Unlimited storage
+      - Maintenance module
+      - Finance module
+      - Compliance tracking
+      - Minimum spend waived on linked additional accounts
+  - name: Enterprise
+    price: 126.00
+    currency: GBP
+    period: month
+    included_units: 70
+    price_per_unit: 1.80
+    api_access: true
+    shared_screen_sessions_included: 3
+    features:
+      - Unlimited storage
+      - Maintenance module
+      - Finance module
+      - Compliance tracking
+      - Per-Manager-account permissions (used to scope what a third-party integration can reach)
+      - Minimum spend waived on linked additional accounts
+      - Invoicing available
+professional_services:
+  api_support: Broken endpoints fixed free of charge.
+  bespoke_endpoints: GBP 150 + VAT per hour, minimum three hours on first purchase.
+  training_overage: GBP 90 + VAT per hour.
+  extra_shared_screen_session: GBP 90 + VAT per session.
+  source: https://support.arthuronline.co.uk/support/solutions/articles/202000052217-api-work-providing-support
+related:
+  rate_limits: rate-limits/arthur-online-rate-limits.yml
+  lifecycle: lifecycle/arthur-online-lifecycle.yml

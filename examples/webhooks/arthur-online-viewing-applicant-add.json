@@ -1,0 +1,24 @@
+{
+  "event":{
+    "alias":"viewing-applicant-add",
+    "name":"Applicant added to viewing",
+    "created":"{{timestamp}}",
+    "sent":"{{timestamp}}"
+  },
+  "webhook":{
+    "id":"2471",
+    "url":"webhook-url",
+    "status":"subscribed",
+    "event_alias":"viewing-applicant-add",
+    "subscribe_url":"subscribe-url",
+    "unsubscribe_url":"unsubscribe-url",
+    "delete_url":"delete-url"
+  },
+  "data":{
+    "id":"656866",
+    "Viewing.applicants":"Webhook Support, API Support",
+    "viewing_datetime":"2023-03-08 14:20:00",
+    "offer":"1000.00",
+    "multiple_assign_to_person_name":"Arthur Manager"
+  }
+}

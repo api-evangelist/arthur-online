@@ -1,0 +1,36 @@
+generated: '2026-07-26'
+method: probed
+source: Live HTTP probes on 2026-07-26.
+description: >-
+  Arthur Online publishes no /.well-known/ discovery surface. The API host answers 401 to
+  every anonymous request, including well-known paths; the marketing host 404s them; and the
+  OAuth server publishes neither RFC 8414 authorization-server metadata nor OpenID Connect
+  discovery. No document was retrieved, so no WellKnown or SecurityTxt pointer is wired.
+hosts:
+  - host: https://api.arthuronline.co.uk
+    documents:
+      - {path: /.well-known/security.txt, status: 401}
+      - {path: /.well-known/openid-configuration, status: 401}
+      - {path: /.well-known/api-catalog, status: 401}
+      - {path: /openapi.json, status: 401}
+      - {path: /swagger.json, status: 401}
+      - {path: /v2/openapi.json, status: 401}
+      - {path: /api-docs, status: 401}
+      - {path: /docs, status: 401}
+      - {path: /v2, status: 401}
+    note: The whole host is authenticated - there is no anonymous surface at all.
+  - host: https://auth.arthuronline.co.uk
+    documents:
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+    note: Host serves an OAuth2 UI but publishes no discovery metadata.
+  - host: https://www.arthuronline.co.uk
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://developer.arthuronline.co.uk
+    documents:
+      - {path: /openapi.json, status: 404, note: 'Postman Documenter HTML shell, not a spec'}
+      - {path: /llms.txt, status: 404}
+retrieved: []
