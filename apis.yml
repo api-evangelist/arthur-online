@@ -469,6 +469,8 @@ apis:
   - type: AsyncAPI
     url: asyncapi/arthur-online-webhooks-asyncapi.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/arthur-online/overview
 - type: AgenticAccess
   url: agentic-access/arthur-online-agentic-access.yml
 - type: DomainSecurity
