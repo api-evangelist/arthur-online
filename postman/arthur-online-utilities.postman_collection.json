@@ -1,0 +1,3140 @@
+{
+  "info": {
+    "_postman_id": "a909eb8f-8d93-40fb-ac9e-f62f9717ca91",
+    "name": "Arthur Utilities API",
+    "description": "Arthur Utilities API - the utilities surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:33.000Z",
+    "updatedAt": "2026-07-28T01:05:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a909eb8f-8d93-40fb-ac9e-f62f9717ca91"
+  },
+  "item": [
+    {
+      "name": "utilities",
+      "item": [
+        {
+          "name": "{utility_id}",
+          "item": [
+            {
+              "name": "readings",
+              "item": [
+                {
+                  "name": "{reading_id}",
+                  "item": [
+                    {
+                      "name": "View Reading",
+                      "id": "912e0de9-9544-4626-819e-4231f0231435",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings",
+                            ":reading_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "51b6f7e4-89fb-4268-8f25-6e725bad4120",
+                              "key": "utility_id",
+                              "value": "<integer>",
+                              "description": "(Required) Arthur utility id."
+                            },
+                            {
+                              "id": "6c3538fb-c32c-4733-9ec6-3ba121b8d065",
+                              "key": "reading_id",
+                              "value": "<integer>",
+                              "description": "(Required) Arthur reading id."
+                            }
+                          ]
+                        },
+                        "description": "This API endpoint retrieves the details of a single\u00a0 reading , identified by its unique\u00a0 id related to a reading ."
+                      },
+                      "response": [
+                        {
+                          "id": "e2acdd71-342f-4d88-b0d6-016aebef2a94",
+                          "name": "The request was completed successfully without errors.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-e2acdd71-342f-4d88-b0d6-016aebef2a94"
+                        },
+                        {
+                          "id": "1c30d0c8-64bc-4a9b-8132-ccfb93fa202b",
+                          "name": "The request was invalid or malformed.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-1c30d0c8-64bc-4a9b-8132-ccfb93fa202b"
+                        },
+                        {
+                          "id": "3688245e-c54c-4890-b654-1a6360a8fa4a",
+                          "name": "Missing, invalid or expired access token.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-3688245e-c54c-4890-b654-1a6360a8fa4a"
+                        },
+                        {
+                          "id": "1ad46fe7-51c8-49ca-9789-20b2743b3761",
+                          "name": "The request was sent to a location that does not exist in the API.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-1ad46fe7-51c8-49ca-9789-20b2743b3761"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-912e0de9-9544-4626-819e-4231f0231435"
+                    },
+                    {
+                      "name": "Update Reading",
+                      "id": "bd3df0b4-36d6-4d96-a2c2-ee02e322a6f5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings",
+                            ":reading_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "beab8cd7-4ffd-4a06-ac55-24fbd80d3098",
+                              "key": "utility_id",
+                              "value": "<integer>",
+                              "description": "(Required) Arthur utility id."
+                            },
+                            {
+                              "id": "bf0def94-25e9-4ef1-a9bf-4926bfd27ff7",
+                              "key": "reading_id",
+                              "value": "<integer>",
+                              "description": "(Required) Arthur reading id."
+                            }
+                          ]
+                        },
+                        "description": "This endpoint updates an existing reading using the same fields as the 'Add Reading' endpoint. The API will return the updated data for the reading in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nreading_value \n 21021 \n String \n No \n\nreading_date \n 2020-10-21 \n Date \n No \n\ntaken_by \n Brian Smith \n String \n No \n\nnotes \n reading notes \n string \n No"
+                      },
+                      "response": [
+                        {
+                          "id": "369f4bc1-55fe-4fa3-a4a9-e75a4a1ca6a3",
+                          "name": "The request was completed successfully without errors.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id?strict=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                                  "key": "strict",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-369f4bc1-55fe-4fa3-a4a9-e75a4a1ca6a3"
+                        },
+                        {
+                          "id": "10294c71-6c75-4f43-a6d9-dde01f992a5d",
+                          "name": "The request was invalid or malformed.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id?strict=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                                  "key": "strict",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-10294c71-6c75-4f43-a6d9-dde01f992a5d"
+                        },
+                        {
+                          "id": "5c3efa7b-6010-446d-af75-879e3debb2a9",
+                          "name": "Missing, invalid or expired access token.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id?strict=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                                  "key": "strict",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-5c3efa7b-6010-446d-af75-879e3debb2a9"
+                        },
+                        {
+                          "id": "f54c7ca3-678c-449d-9bfd-031e384f123c",
+                          "name": "The request was sent to a location that does not exist in the API.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id?strict=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                                  "key": "strict",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-f54c7ca3-678c-449d-9bfd-031e384f123c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-bd3df0b4-36d6-4d96-a2c2-ee02e322a6f5"
+                    },
+                    {
+                      "name": "Delete Reading",
+                      "id": "b8844024-a919-4c56-b886-05f237ef75bd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings",
+                            ":reading_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "197b11a5-7a36-479b-95e1-faf903b71f2f",
+                              "key": "utility_id",
+                              "value": "<integer>",
+                              "description": "(Required) Arthur utility id."
+                            },
+                            {
+                              "id": "96445b94-9d8e-444c-a35a-d5300ccbb91e",
+                              "key": "reading_id",
+                              "value": "<integer>",
+                              "description": "(Required) Arthur reading id."
+                            }
+                          ]
+                        },
+                        "description": "This endpoint deletes an existing reading using the reading id related to a utility ."
+                      },
+                      "response": [
+                        {
+                          "id": "5698f879-e7fb-491b-99db-2014ea7779a4",
+                          "name": "The request was completed successfully without errors.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-5698f879-e7fb-491b-99db-2014ea7779a4"
+                        },
+                        {
+                          "id": "f53afd55-74a7-451e-98e4-08574e7540f7",
+                          "name": "The request was invalid or malformed.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-f53afd55-74a7-451e-98e4-08574e7540f7"
+                        },
+                        {
+                          "id": "47a25f3d-044a-4759-9a2e-e1d5355d9c9f",
+                          "name": "Missing, invalid or expired access token.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-47a25f3d-044a-4759-9a2e-e1d5355d9c9f"
+                        },
+                        {
+                          "id": "b2c69ce5-5dda-48eb-bf45-8a6640851436",
+                          "name": "The request was sent to a location that does not exist in the API.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/:utility_id/readings/:reading_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                ":utility_id",
+                                "readings",
+                                ":reading_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "utility_id"
+                                },
+                                {
+                                  "key": "reading_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:33.000Z",
+                          "updatedAt": "2026-07-28T01:05:33.000Z",
+                          "uid": "35240-b2c69ce5-5dda-48eb-bf45-8a6640851436"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-b8844024-a919-4c56-b886-05f237ef75bd"
+                    }
+                  ],
+                  "id": "fbd5a483-78ed-45d5-bfc8-413e4401b52e",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-fbd5a483-78ed-45d5-bfc8-413e4401b52e"
+                },
+                {
+                  "name": "List Readings",
+                  "id": "178d38bb-0a6d-4b20-b928-b3443dc99d34",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id/readings?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id",
+                        "readings"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "DESC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8222c4fb-e701-4b12-a3d8-978f690913b7",
+                          "key": "utility_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur utility id."
+                        }
+                      ]
+                    },
+                    "description": "This endpoint retrieves a list of readings associated with the given utility ID."
+                  },
+                  "response": [
+                    {
+                      "id": "1720b992-8688-4342-bde7-28e88a0b48b0",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "utility_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-1720b992-8688-4342-bde7-28e88a0b48b0"
+                    },
+                    {
+                      "id": "fded7b7c-fcf1-42af-a3cb-528bd3374fb3",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "utility_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-fded7b7c-fcf1-42af-a3cb-528bd3374fb3"
+                    },
+                    {
+                      "id": "4aacd508-cb2f-4d16-97b3-d3fa76fc8db6",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "utility_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-4aacd508-cb2f-4d16-97b3-d3fa76fc8db6"
+                    },
+                    {
+                      "id": "85b31fcc-ce27-42b3-927a-6b676202c9d1",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "utility_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-85b31fcc-ce27-42b3-927a-6b676202c9d1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-178d38bb-0a6d-4b20-b928-b3443dc99d34"
+                },
+                {
+                  "name": "Create Reading",
+                  "id": "bd03e300-75fe-4fd5-8f4a-86fe7009a688",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id/readings?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id",
+                        "readings"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "3835274a-95b8-4c79-9ded-3934d2a0c220",
+                          "key": "utility_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur utility id."
+                        }
+                      ]
+                    },
+                    "description": "Use this endpoint to create a new reading record for the\u00a0 utility . The API will return the saved data and a unique reading ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nreading_value \n 21021 \n String \n Yes \n\nreading_date \n 2020-10-21 \n Date \n Yes \n\ntaken_by \n Brian Smith \n String \n No \n\nnotes \n reading notes \n string \n No"
+                  },
+                  "response": [
+                    {
+                      "id": "09df9225-708f-4e70-b8dc-a326da844709",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "utility_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-09df9225-708f-4e70-b8dc-a326da844709"
+                    },
+                    {
+                      "id": "d4dc8f36-d489-4723-9a79-2f9487bf5d6f",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "utility_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-d4dc8f36-d489-4723-9a79-2f9487bf5d6f"
+                    },
+                    {
+                      "id": "ea3ac1fa-a99c-4251-b996-5283d3d8af8e",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "utility_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-ea3ac1fa-a99c-4251-b996-5283d3d8af8e"
+                    },
+                    {
+                      "id": "01f20818-c99e-4d26-9ce9-29e30f432dd3",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reading_value\": \"<string>\",\n  \"reading_date\": \"<date>\",\n  \"taken_by\": \"<string>\",\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/:utility_id/readings?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            ":utility_id",
+                            "readings"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "utility_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:33.000Z",
+                      "updatedAt": "2026-07-28T01:05:33.000Z",
+                      "uid": "35240-01f20818-c99e-4d26-9ce9-29e30f432dd3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-bd03e300-75fe-4fd5-8f4a-86fe7009a688"
+                }
+              ],
+              "id": "50c5ac2b-7a9e-4425-9072-4be0112e1189",
+              "createdAt": "2026-07-28T01:05:33.000Z",
+              "updatedAt": "2026-07-28T01:05:33.000Z",
+              "uid": "35240-50c5ac2b-7a9e-4425-9072-4be0112e1189"
+            },
+            {
+              "name": "View Utility",
+              "id": "d2886450-42a2-4952-a883-c9b5ff557e02",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/utilities/:utility_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "utilities",
+                    ":utility_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "633f9285-da76-4eed-b32e-464e5ea4e285",
+                      "key": "utility_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur utility id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single utility, identified by its unique\u00a0 utility_id .\n\nUse this endpoint to view the specific details of a utility record."
+              },
+              "response": [
+                {
+                  "id": "b004a947-df1c-4783-a283-9e2547802cf3",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-b004a947-df1c-4783-a283-9e2547802cf3"
+                },
+                {
+                  "id": "feda2adf-c755-4ec1-940d-899c5693c4f5",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-feda2adf-c755-4ec1-940d-899c5693c4f5"
+                },
+                {
+                  "id": "9ffbff63-326a-472c-8200-93d53fb08e9a",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-9ffbff63-326a-472c-8200-93d53fb08e9a"
+                },
+                {
+                  "id": "361643b5-0820-478c-8108-c63d6f64cf8e",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-361643b5-0820-478c-8108-c63d6f64cf8e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:33.000Z",
+              "updatedAt": "2026-07-28T01:05:33.000Z",
+              "uid": "35240-d2886450-42a2-4952-a883-c9b5ff557e02"
+            },
+            {
+              "name": "Update Utility",
+              "id": "29f92352-76ab-41c7-acc1-2e4688d3cec5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"serial_number\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/utilities/:utility_id?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "utilities",
+                    ":utility_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "6213f0e7-0bb4-41e0-a2ac-29da8e92fc21",
+                      "key": "utility_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur utility id."
+                    }
+                  ]
+                },
+                "description": "This endpoint updates an existing utility. The API will return the updated data for the utility in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntype \n gas \n String \n No \n\nnotes \n behind back doors \n String \n No \n\nserial_number \n GA212FP21 \n String \n No \n\naccount_number \n 12344321 \n string \n No \n\nprovider \n company_name \n string \n No"
+              },
+              "response": [
+                {
+                  "id": "75128d93-395a-4a54-ace2-b03afe17582e",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"serial_number\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-75128d93-395a-4a54-ace2-b03afe17582e"
+                },
+                {
+                  "id": "48f94019-8e33-44af-867e-6a201c73c166",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"serial_number\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-48f94019-8e33-44af-867e-6a201c73c166"
+                },
+                {
+                  "id": "d889dff1-2932-4339-95e7-c0c57a04f088",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"serial_number\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-d889dff1-2932-4339-95e7-c0c57a04f088"
+                },
+                {
+                  "id": "0f8effbd-6435-4bc8-b4de-69e2c5602c85",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"serial_number\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"provider\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-0f8effbd-6435-4bc8-b4de-69e2c5602c85"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:33.000Z",
+              "updatedAt": "2026-07-28T01:05:33.000Z",
+              "uid": "35240-29f92352-76ab-41c7-acc1-2e4688d3cec5"
+            },
+            {
+              "name": "Delete Utility",
+              "id": "f34ecd26-af32-4cc2-9a37-5a0249fa0a32",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/utilities/:utility_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "utilities",
+                    ":utility_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1efec427-65c6-4665-a11d-0f4425cfde97",
+                      "key": "utility_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur utility id."
+                    }
+                  ]
+                },
+                "description": "This endpoint deletes an existing utility using the utility\u00a0 id ."
+              },
+              "response": [
+                {
+                  "id": "09c22f9e-266e-41e3-8e81-94f0c06f6f22",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-09c22f9e-266e-41e3-8e81-94f0c06f6f22"
+                },
+                {
+                  "id": "b6d4a460-e506-428e-bbc8-869e1f41b498",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-b6d4a460-e506-428e-bbc8-869e1f41b498"
+                },
+                {
+                  "id": "7c05ce77-bef3-493c-b933-d04197396d99",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-7c05ce77-bef3-493c-b933-d04197396d99"
+                },
+                {
+                  "id": "05b42cc3-95b3-4b52-a548-7a9e1792f4ef",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/:utility_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        ":utility_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "utility_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:33.000Z",
+                  "updatedAt": "2026-07-28T01:05:33.000Z",
+                  "uid": "35240-05b42cc3-95b3-4b52-a548-7a9e1792f4ef"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:33.000Z",
+              "updatedAt": "2026-07-28T01:05:33.000Z",
+              "uid": "35240-f34ecd26-af32-4cc2-9a37-5a0249fa0a32"
+            }
+          ],
+          "id": "8e05d1e3-9646-4435-a09c-e03c6f0977ba",
+          "createdAt": "2026-07-28T01:05:33.000Z",
+          "updatedAt": "2026-07-28T01:05:33.000Z",
+          "uid": "35240-8e05d1e3-9646-4435-a09c-e03c6f0977ba"
+        },
+        {
+          "name": "List Utilities",
+          "id": "664aac58-5ce5-4903-9949-c65b63e22db0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/utilities?type=<string>&serial_number=<string>&account_number=<string>&provider=<string>&created=<string>&modified=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "utilities"
+              ],
+              "query": [
+                {
+                  "description": "Filter by type (e.g. gas, water, eletric)",
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by serial number",
+                  "key": "serial_number",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by account number",
+                  "key": "account_number",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by provider",
+                  "key": "provider",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by the created date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "created",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by the modified date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "modified",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Page number, between 1 and the total number of pages.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Items per page, between 1 and 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Field to sort the collection by.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort direction.",
+                  "key": "direction",
+                  "value": "DESC"
+                }
+              ]
+            },
+            "description": "This retrieves a list of utilities.\n\nSee available filters below to customize the list of utilities returned."
+          },
+          "response": [
+            {
+              "id": "eb325ef7-2065-4ee7-8f0b-a1ab2403c22d",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/utilities?type=<string>&serial_number=<string>&account_number=<string>&provider=<string>&created=<string>&modified=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "utilities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by type (e.g. gas, water, eletric)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by serial number",
+                      "key": "serial_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by account number",
+                      "key": "account_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by provider",
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the created date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "created",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the modified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modified",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T01:05:33.000Z",
+              "updatedAt": "2026-07-28T01:05:33.000Z",
+              "uid": "35240-eb325ef7-2065-4ee7-8f0b-a1ab2403c22d"
+            },
+            {
+              "id": "245375df-52ff-4cca-8d8b-d2b9b2b7024e",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/utilities?type=<string>&serial_number=<string>&account_number=<string>&provider=<string>&created=<string>&modified=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "utilities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by type (e.g. gas, water, eletric)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by serial number",
+                      "key": "serial_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by account number",
+                      "key": "account_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by provider",
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the created date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "created",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the modified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modified",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:33.000Z",
+              "updatedAt": "2026-07-28T01:05:33.000Z",
+              "uid": "35240-245375df-52ff-4cca-8d8b-d2b9b2b7024e"
+            },
+            {
+              "id": "482cf437-3cc4-45b9-9524-d91d114bb6a5",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/utilities?type=<string>&serial_number=<string>&account_number=<string>&provider=<string>&created=<string>&modified=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "utilities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by type (e.g. gas, water, eletric)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by serial number",
+                      "key": "serial_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by account number",
+                      "key": "account_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by provider",
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the created date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "created",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the modified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modified",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:33.000Z",
+              "updatedAt": "2026-07-28T01:05:33.000Z",
+              "uid": "35240-482cf437-3cc4-45b9-9524-d91d114bb6a5"
+            },
+            {
+              "id": "4f8fe326-a31c-4271-b9e4-7b948dac70ae",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/utilities?type=<string>&serial_number=<string>&account_number=<string>&provider=<string>&created=<string>&modified=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "utilities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by type (e.g. gas, water, eletric)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by serial number",
+                      "key": "serial_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by account number",
+                      "key": "account_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by provider",
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the created date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "created",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the modified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modified",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:33.000Z",
+              "updatedAt": "2026-07-28T01:05:33.000Z",
+              "uid": "35240-4f8fe326-a31c-4271-b9e4-7b948dac70ae"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:33.000Z",
+          "updatedAt": "2026-07-28T01:05:33.000Z",
+          "uid": "35240-664aac58-5ce5-4903-9949-c65b63e22db0"
+        }
+      ],
+      "id": "bb658fb4-97d2-4b5d-bacb-792e3c173ed5",
+      "createdAt": "2026-07-28T01:05:33.000Z",
+      "updatedAt": "2026-07-28T01:05:33.000Z",
+      "uid": "35240-bb658fb4-97d2-4b5d-bacb-792e3c173ed5"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}

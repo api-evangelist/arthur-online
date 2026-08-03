@@ -1,0 +1,2388 @@
+{
+  "info": {
+    "_postman_id": "9ec14e28-58e7-497d-843f-5475a7d2011b",
+    "name": "Arthur Financials API",
+    "description": "Arthur Financials API - the financials surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:10.000Z",
+    "updatedAt": "2026-07-28T01:05:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9ec14e28-58e7-497d-843f-5475a7d2011b"
+  },
+  "item": [
+    {
+      "name": "recurrings",
+      "item": [
+        {
+          "name": "{recurringId}",
+          "item": [
+            {
+              "name": "View Recurring",
+              "id": "03aafabd-26e7-4a0c-bc0a-692c69c2cd39",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recurrings/:recurringId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recurrings",
+                    ":recurringId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a3588821-504c-4a28-b18d-e7b8fa2ecc3d",
+                      "key": "recurringId",
+                      "value": "<string>",
+                      "description": "(Required) Arthur recurringId."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2975f3cb-4aef-42e2-a516-eac906422295",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recurrings/:recurringId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recurrings",
+                        ":recurringId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recurringId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"current\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"pageCount\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-2975f3cb-4aef-42e2-a516-eac906422295"
+                },
+                {
+                  "id": "e5e28582-b974-4d60-a339-d372d0a1734a",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recurrings/:recurringId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recurrings",
+                        ":recurringId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recurringId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-e5e28582-b974-4d60-a339-d372d0a1734a"
+                },
+                {
+                  "id": "3d80da4a-92d5-4360-81d8-f21cf3b895ed",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recurrings/:recurringId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recurrings",
+                        ":recurringId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recurringId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-3d80da4a-92d5-4360-81d8-f21cf3b895ed"
+                },
+                {
+                  "id": "1e81eb3e-a97c-42e6-8224-838951350582",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recurrings/:recurringId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recurrings",
+                        ":recurringId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "recurringId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-1e81eb3e-a97c-42e6-8224-838951350582"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-03aafabd-26e7-4a0c-bc0a-692c69c2cd39"
+            }
+          ],
+          "id": "8f9d39d1-f0f5-45d0-af20-44eb1537ab21",
+          "createdAt": "2026-07-28T01:05:11.000Z",
+          "updatedAt": "2026-07-28T01:05:11.000Z",
+          "uid": "35240-8f9d39d1-f0f5-45d0-af20-44eb1537ab21"
+        }
+      ],
+      "id": "3ee60d9d-95cd-495f-99a5-f19df49a6861",
+      "createdAt": "2026-07-28T01:05:11.000Z",
+      "updatedAt": "2026-07-28T01:05:11.000Z",
+      "uid": "35240-3ee60d9d-95cd-495f-99a5-f19df49a6861"
+    },
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "{transaction_id}",
+          "item": [
+            {
+              "name": "payoff",
+              "item": [
+                {
+                  "name": "Payoff Transaction",
+                  "id": "ca581615-867f-4db4-b283-06e8f8382b33",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"payment_method_id\": \"<integer>\",\n  \"amount\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transaction_id/payoff?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transaction_id",
+                        "payoff"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "393d4b45-f8aa-47a0-818a-edab2821c53d",
+                          "key": "transaction_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur transaction id."
+                        }
+                      ]
+                    },
+                    "description": "This API endpoint allows the user to payoff a transaction with a payment. The transaction is identified by its unique transaction_id and the payment details are included in the optional request body.\n\nIf no request body is included, the endpoint will pay off the full charge.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Data Type \n Description \n\ndescription \n string \n A description of the payoff receipt. \n\npayment_method_id \n integer \n The ID of the payment method used to pay off the transaction. \n\namount \n float \n The amount paid towards the transaction."
+                  },
+                  "response": [
+                    {
+                      "id": "68240249-1761-4ee4-b13d-2f7cdb4f44d3",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"payment_method_id\": \"<integer>\",\n  \"amount\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/:transaction_id/payoff?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            ":transaction_id",
+                            "payoff"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:05:11.000Z",
+                      "updatedAt": "2026-07-28T01:05:11.000Z",
+                      "uid": "35240-68240249-1761-4ee4-b13d-2f7cdb4f44d3"
+                    },
+                    {
+                      "id": "852062a4-ff71-43d8-b437-50ff21fbf767",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"payment_method_id\": \"<integer>\",\n  \"amount\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/:transaction_id/payoff?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            ":transaction_id",
+                            "payoff"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:11.000Z",
+                      "updatedAt": "2026-07-28T01:05:11.000Z",
+                      "uid": "35240-852062a4-ff71-43d8-b437-50ff21fbf767"
+                    },
+                    {
+                      "id": "fa871f92-ba2a-4649-9bcc-cf091780d65e",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"payment_method_id\": \"<integer>\",\n  \"amount\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/:transaction_id/payoff?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            ":transaction_id",
+                            "payoff"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:11.000Z",
+                      "updatedAt": "2026-07-28T01:05:11.000Z",
+                      "uid": "35240-fa871f92-ba2a-4649-9bcc-cf091780d65e"
+                    },
+                    {
+                      "id": "f7ff7d29-8671-458f-bf6b-2139a65917e6",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"<string>\",\n  \"payment_method_id\": \"<integer>\",\n  \"amount\": \"<number>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/:transaction_id/payoff?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            ":transaction_id",
+                            "payoff"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:11.000Z",
+                      "updatedAt": "2026-07-28T01:05:11.000Z",
+                      "uid": "35240-f7ff7d29-8671-458f-bf6b-2139a65917e6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-ca581615-867f-4db4-b283-06e8f8382b33"
+                }
+              ],
+              "id": "9ef96bcf-0da8-43d6-9a9e-80895d783bfe",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-9ef96bcf-0da8-43d6-9a9e-80895d783bfe"
+            },
+            {
+              "name": "View Transaction",
+              "id": "d7361c54-324f-4127-b78e-44a8c82274ae",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/:transaction_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    ":transaction_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "07f83c07-40fa-4ff6-956f-0f9145048b32",
+                      "key": "transaction_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur transaction id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single transaction, identified by its unique transaction_id .\n\nUse this endpoint to view the specific details of a transaction."
+              },
+              "response": [
+                {
+                  "id": "d292aabc-4115-48a8-869c-072de7d9a6df",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-d292aabc-4115-48a8-869c-072de7d9a6df"
+                },
+                {
+                  "id": "2ed6ada9-c2c6-4d35-a29d-593e70cf8ce9",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-2ed6ada9-c2c6-4d35-a29d-593e70cf8ce9"
+                },
+                {
+                  "id": "ea4cc2b4-0e0a-46bc-8e55-b36e5ed46eb6",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-ea4cc2b4-0e0a-46bc-8e55-b36e5ed46eb6"
+                },
+                {
+                  "id": "739c9861-5ce9-4a14-8621-b6cdab26d73c",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-739c9861-5ce9-4a14-8621-b6cdab26d73c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-d7361c54-324f-4127-b78e-44a8c82274ae"
+            }
+          ],
+          "id": "30f0bece-5f2b-476c-b6b9-4973a62b3535",
+          "createdAt": "2026-07-28T01:05:11.000Z",
+          "updatedAt": "2026-07-28T01:05:11.000Z",
+          "uid": "35240-30f0bece-5f2b-476c-b6b9-4973a62b3535"
+        },
+        {
+          "name": "List Transactions",
+          "id": "a3ca8d3b-8575-45be-942a-0d585e4e6647",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transactions?statement=<string>&allocated_from=<string>&status=<string>&transaction_type=<string>&date_from=<string>&date_to=<string>&modifiedFrom=<string>&modifiedTo=<string>&transaction_date_from=<string>&transaction_date_to=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "description": "Filters the transactions by statement. The available options are tenant , tenant-deposit , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement , late-rents , contingency-statement , invoices",
+                  "key": "statement",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by transaction allocated from ID",
+                  "key": "allocated_from",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The status of the transaction. The available options are paid , unpaid , partpaid , outstanding , overdue , or voided . Use this parameter to filter transactions based on their payment status.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by the ID of the transaction type or by its alias name (Obtained from the v2/transaction_types endpoint)",
+                  "key": "transaction_type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters the transactions by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "date_from",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters the transactions by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "date_to",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters the transactions by the modified date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "modifiedFrom",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters the transactions by the modified date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "modifiedTo",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters the transactions by the date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "transaction_date_from",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "transaction_date_to",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Page number, between 1 and the total number of pages.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Items per page, between 1 and 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Field to sort the collection by.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort direction.",
+                  "key": "direction",
+                  "value": "ASC"
+                }
+              ]
+            },
+            "description": "This retrieves a list of transactions.\n\nSee available filters below to customize the list of transactions returned."
+          },
+          "response": [
+            {
+              "id": "270885aa-366a-4f92-b93c-24836abbd435",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?statement=<string>&allocated_from=<string>&status=<string>&transaction_type=<string>&date_from=<string>&date_to=<string>&modifiedFrom=<string>&modifiedTo=<string>&transaction_date_from=<string>&transaction_date_to=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters the transactions by statement. The available options are tenant , tenant-deposit , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement , late-rents , contingency-statement , invoices",
+                      "key": "statement",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by transaction allocated from ID",
+                      "key": "allocated_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The status of the transaction. The available options are paid , unpaid , partpaid , outstanding , overdue , or voided . Use this parameter to filter transactions based on their payment status.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the ID of the transaction type or by its alias name (Obtained from the v2/transaction_types endpoint)",
+                      "key": "transaction_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the modified date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modifiedFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the modified date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modifiedTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "transaction_date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "transaction_date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-270885aa-366a-4f92-b93c-24836abbd435"
+            },
+            {
+              "id": "6b8c319f-54ef-4d8f-acb8-f14db28509ea",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?statement=<string>&allocated_from=<string>&status=<string>&transaction_type=<string>&date_from=<string>&date_to=<string>&modifiedFrom=<string>&modifiedTo=<string>&transaction_date_from=<string>&transaction_date_to=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters the transactions by statement. The available options are tenant , tenant-deposit , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement , late-rents , contingency-statement , invoices",
+                      "key": "statement",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by transaction allocated from ID",
+                      "key": "allocated_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The status of the transaction. The available options are paid , unpaid , partpaid , outstanding , overdue , or voided . Use this parameter to filter transactions based on their payment status.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the ID of the transaction type or by its alias name (Obtained from the v2/transaction_types endpoint)",
+                      "key": "transaction_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the modified date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modifiedFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the modified date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modifiedTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "transaction_date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "transaction_date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-6b8c319f-54ef-4d8f-acb8-f14db28509ea"
+            },
+            {
+              "id": "34808bc5-9621-4d2b-90b1-2489ad44bb7a",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?statement=<string>&allocated_from=<string>&status=<string>&transaction_type=<string>&date_from=<string>&date_to=<string>&modifiedFrom=<string>&modifiedTo=<string>&transaction_date_from=<string>&transaction_date_to=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters the transactions by statement. The available options are tenant , tenant-deposit , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement , late-rents , contingency-statement , invoices",
+                      "key": "statement",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by transaction allocated from ID",
+                      "key": "allocated_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The status of the transaction. The available options are paid , unpaid , partpaid , outstanding , overdue , or voided . Use this parameter to filter transactions based on their payment status.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the ID of the transaction type or by its alias name (Obtained from the v2/transaction_types endpoint)",
+                      "key": "transaction_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the modified date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modifiedFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the modified date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modifiedTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "transaction_date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "transaction_date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-34808bc5-9621-4d2b-90b1-2489ad44bb7a"
+            },
+            {
+              "id": "37e5c925-ca52-4cb3-a598-427913174db3",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?statement=<string>&allocated_from=<string>&status=<string>&transaction_type=<string>&date_from=<string>&date_to=<string>&modifiedFrom=<string>&modifiedTo=<string>&transaction_date_from=<string>&transaction_date_to=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filters the transactions by statement. The available options are tenant , tenant-deposit , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement , late-rents , contingency-statement , invoices",
+                      "key": "statement",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by transaction allocated from ID",
+                      "key": "allocated_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The status of the transaction. The available options are paid , unpaid , partpaid , outstanding , overdue , or voided . Use this parameter to filter transactions based on their payment status.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the ID of the transaction type or by its alias name (Obtained from the v2/transaction_types endpoint)",
+                      "key": "transaction_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the modified date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modifiedFrom",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the modified date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "modifiedTo",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the date, starting from the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "transaction_date_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "transaction_date_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-37e5c925-ca52-4cb3-a598-427913174db3"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:11.000Z",
+          "updatedAt": "2026-07-28T01:05:11.000Z",
+          "uid": "35240-a3ca8d3b-8575-45be-942a-0d585e4e6647"
+        }
+      ],
+      "id": "53300d2e-3826-4ac4-9f90-0fcc9a422e3c",
+      "createdAt": "2026-07-28T01:05:11.000Z",
+      "updatedAt": "2026-07-28T01:05:11.000Z",
+      "uid": "35240-53300d2e-3826-4ac4-9f90-0fcc9a422e3c"
+    },
+    {
+      "name": "invoices",
+      "item": [
+        {
+          "name": "{invoice_id}",
+          "item": [
+            {
+              "name": "View Invoices",
+              "id": "c9e4cf31-6353-4def-afc7-b5fdf34f4602",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices/:invoice_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a771a1a6-f310-4fbe-8a5d-a93b881142f4",
+                      "key": "invoice_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur invoice id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single invoice, identified by its unique\u00a0 invoice_id .\n\nUse this endpoint to view the specific details of an invoice."
+              },
+              "response": [
+                {
+                  "id": "b126dac0-edb4-4eae-9119-57d4c5afe8a0",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invoices/:invoice_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invoices",
+                        ":invoice_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "invoice_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-b126dac0-edb4-4eae-9119-57d4c5afe8a0"
+                },
+                {
+                  "id": "100cddb2-e9bc-4931-ae61-041a6aca625a",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invoices/:invoice_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invoices",
+                        ":invoice_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "invoice_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-100cddb2-e9bc-4931-ae61-041a6aca625a"
+                },
+                {
+                  "id": "2512493e-c959-405f-8ddf-f12bf4bc1fc4",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invoices/:invoice_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invoices",
+                        ":invoice_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "invoice_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-2512493e-c959-405f-8ddf-f12bf4bc1fc4"
+                },
+                {
+                  "id": "9d62d0be-f5f5-4130-855f-512880aa4ed8",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invoices/:invoice_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invoices",
+                        ":invoice_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "invoice_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:11.000Z",
+                  "updatedAt": "2026-07-28T01:05:11.000Z",
+                  "uid": "35240-9d62d0be-f5f5-4130-855f-512880aa4ed8"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-c9e4cf31-6353-4def-afc7-b5fdf34f4602"
+            }
+          ],
+          "id": "1d2f7fc3-5ac9-4afa-89c8-9f6aaf707c5e",
+          "createdAt": "2026-07-28T01:05:11.000Z",
+          "updatedAt": "2026-07-28T01:05:11.000Z",
+          "uid": "35240-1d2f7fc3-5ac9-4afa-89c8-9f6aaf707c5e"
+        },
+        {
+          "name": "List Invoices",
+          "id": "898ffe8a-69e3-489b-b55f-b8ec10b82098",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invoices?workorder_id=<string>&status=<string>&amount=<string>&amount_outstanding=<string>&amount_vat=<string>&vat_percentage=<string>&paid_date=<string>&submitted=<string>&completed_date=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices"
+              ],
+              "query": [
+                {
+                  "description": "Filter by the connected workorder ID",
+                  "key": "workorder_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by invoice status (paid, unpaid, pending, cancelled)",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by invoice amount",
+                  "key": "amount",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by invoice amount outstanding",
+                  "key": "amount_outstanding",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by VAT amount",
+                  "key": "amount_vat",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by the percentage of VAT",
+                  "key": "vat_percentage",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters the contractor invoices by the paid date. Use the format yyyy-mm-dd to input the date",
+                  "key": "paid_date",
+                  "value": "<string>"
+                },
+                {
+                  "description": "To show only submitted invoices, set submitted flag to true",
+                  "key": "submitted",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters the contractor invoices by the completed date. Use the format yyyy-mm-dd to input the date",
+                  "key": "completed_date",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Page number, between 1 and the total number of pages.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Items per page, between 1 and 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Field to sort the collection by.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort direction.",
+                  "key": "direction",
+                  "value": "ASC"
+                }
+              ]
+            },
+            "description": "This retrieves a list of invoices."
+          },
+          "response": [
+            {
+              "id": "3a67a036-e3a4-4b06-881d-7706d57d3643",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices?workorder_id=<string>&status=<string>&amount=<string>&amount_outstanding=<string>&amount_vat=<string>&vat_percentage=<string>&paid_date=<string>&submitted=<string>&completed_date=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by the connected workorder ID",
+                      "key": "workorder_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice status (paid, unpaid, pending, cancelled)",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice amount",
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice amount outstanding",
+                      "key": "amount_outstanding",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by VAT amount",
+                      "key": "amount_vat",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the percentage of VAT",
+                      "key": "vat_percentage",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the contractor invoices by the paid date. Use the format yyyy-mm-dd to input the date",
+                      "key": "paid_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "To show only submitted invoices, set submitted flag to true",
+                      "key": "submitted",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the contractor invoices by the completed date. Use the format yyyy-mm-dd to input the date",
+                      "key": "completed_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-3a67a036-e3a4-4b06-881d-7706d57d3643"
+            },
+            {
+              "id": "7e843b0f-70d4-4dfb-a09e-6d4d8cea4d81",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices?workorder_id=<string>&status=<string>&amount=<string>&amount_outstanding=<string>&amount_vat=<string>&vat_percentage=<string>&paid_date=<string>&submitted=<string>&completed_date=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by the connected workorder ID",
+                      "key": "workorder_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice status (paid, unpaid, pending, cancelled)",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice amount",
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice amount outstanding",
+                      "key": "amount_outstanding",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by VAT amount",
+                      "key": "amount_vat",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the percentage of VAT",
+                      "key": "vat_percentage",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the contractor invoices by the paid date. Use the format yyyy-mm-dd to input the date",
+                      "key": "paid_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "To show only submitted invoices, set submitted flag to true",
+                      "key": "submitted",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the contractor invoices by the completed date. Use the format yyyy-mm-dd to input the date",
+                      "key": "completed_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-7e843b0f-70d4-4dfb-a09e-6d4d8cea4d81"
+            },
+            {
+              "id": "2913c577-7be4-4176-9780-1c80f6d988c0",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices?workorder_id=<string>&status=<string>&amount=<string>&amount_outstanding=<string>&amount_vat=<string>&vat_percentage=<string>&paid_date=<string>&submitted=<string>&completed_date=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by the connected workorder ID",
+                      "key": "workorder_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice status (paid, unpaid, pending, cancelled)",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice amount",
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice amount outstanding",
+                      "key": "amount_outstanding",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by VAT amount",
+                      "key": "amount_vat",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the percentage of VAT",
+                      "key": "vat_percentage",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the contractor invoices by the paid date. Use the format yyyy-mm-dd to input the date",
+                      "key": "paid_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "To show only submitted invoices, set submitted flag to true",
+                      "key": "submitted",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the contractor invoices by the completed date. Use the format yyyy-mm-dd to input the date",
+                      "key": "completed_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-2913c577-7be4-4176-9780-1c80f6d988c0"
+            },
+            {
+              "id": "58c0d856-2057-45d4-addd-9ab8792f9ba7",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices?workorder_id=<string>&status=<string>&amount=<string>&amount_outstanding=<string>&amount_vat=<string>&vat_percentage=<string>&paid_date=<string>&submitted=<string>&completed_date=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by the connected workorder ID",
+                      "key": "workorder_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice status (paid, unpaid, pending, cancelled)",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice amount",
+                      "key": "amount",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by invoice amount outstanding",
+                      "key": "amount_outstanding",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by VAT amount",
+                      "key": "amount_vat",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the percentage of VAT",
+                      "key": "vat_percentage",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the contractor invoices by the paid date. Use the format yyyy-mm-dd to input the date",
+                      "key": "paid_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "To show only submitted invoices, set submitted flag to true",
+                      "key": "submitted",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters the contractor invoices by the completed date. Use the format yyyy-mm-dd to input the date",
+                      "key": "completed_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:11.000Z",
+              "updatedAt": "2026-07-28T01:05:11.000Z",
+              "uid": "35240-58c0d856-2057-45d4-addd-9ab8792f9ba7"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:11.000Z",
+          "updatedAt": "2026-07-28T01:05:11.000Z",
+          "uid": "35240-898ffe8a-69e3-489b-b55f-b8ec10b82098"
+        }
+      ],
+      "id": "26a4297e-5776-4f0f-a9e4-43544e92191a",
+      "createdAt": "2026-07-28T01:05:11.000Z",
+      "updatedAt": "2026-07-28T01:05:11.000Z",
+      "uid": "35240-26a4297e-5776-4f0f-a9e4-43544e92191a"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}

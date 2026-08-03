@@ -1,0 +1,1420 @@
+{
+  "info": {
+    "_postman_id": "67e405e9-9f9c-4007-8a7c-7a17ef43093d",
+    "name": "Arthur Tags API",
+    "description": "Arthur Tags API - the tags surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:37.000Z",
+    "updatedAt": "2026-07-28T01:05:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-67e405e9-9f9c-4007-8a7c-7a17ef43093d"
+  },
+  "item": [
+    {
+      "name": "tags",
+      "item": [
+        {
+          "name": "{resource}",
+          "item": [
+            {
+              "name": "List Tags On Resource",
+              "id": "dd268c4f-de92-44d6-a1ca-34c2836cedcc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resource?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resource"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "553c7f68-e8b2-4ab7-b262-4802550ad1c2",
+                      "key": "resource",
+                      "value": "<string>",
+                      "description": "(Required) Arthur resource."
+                    }
+                  ]
+                },
+                "description": "This endpoint retrieves a list of tags related to the following resources:\n\nProperties \n Units \n Tenancies \n Tasks \n Applicants \n Viewings"
+              },
+              "response": [
+                {
+                  "id": "c97f3024-5cdc-46da-b66f-a71a057b2a32",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resource?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resource"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "ASC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resource"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-c97f3024-5cdc-46da-b66f-a71a057b2a32"
+                },
+                {
+                  "id": "674e4174-d94e-4444-8d9b-3e98c1b6ec6c",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resource?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resource"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "ASC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resource"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-674e4174-d94e-4444-8d9b-3e98c1b6ec6c"
+                },
+                {
+                  "id": "e68b4a11-ba22-4801-932d-9834387ed2ae",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resource?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resource"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "ASC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resource"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-e68b4a11-ba22-4801-932d-9834387ed2ae"
+                },
+                {
+                  "id": "7c33fe85-8e24-49b7-8936-8c54b51d5af1",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resource?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resource"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "ASC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resource"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-7c33fe85-8e24-49b7-8936-8c54b51d5af1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:38.000Z",
+              "updatedAt": "2026-07-28T01:05:38.000Z",
+              "uid": "35240-dd268c4f-de92-44d6-a1ca-34c2836cedcc"
+            },
+            {
+              "name": "Add Tag On Resource",
+              "id": "f180e8d2-c1b4-4c8f-a689-c59d62aade7f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:resource?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":resource"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "1e1b61b8-501d-4f0b-a1c1-4a8bd9f44c15",
+                      "key": "resource",
+                      "value": "<string>",
+                      "description": "(Required) Arthur resource."
+                    }
+                  ]
+                },
+                "description": "Use this endpoint to create a new tag record on a resource . The API will return the saved data and a unique tag ID.\n\nTags can be added to resources such as tenancies, tasks, units, applicants, viewings, and properties.\nIf field color not provided it will select a random color.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nname \n All fixed \n String \n Yes \n\ncolor \n Blue \n String \n No"
+              },
+              "response": [
+                {
+                  "id": "557914aa-42d1-4585-9306-ebda6ecaa593",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resource?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resource"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resource"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-557914aa-42d1-4585-9306-ebda6ecaa593"
+                },
+                {
+                  "id": "81a0ff5d-f166-4527-bb65-69656aa82e0d",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resource?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resource"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resource"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-81a0ff5d-f166-4527-bb65-69656aa82e0d"
+                },
+                {
+                  "id": "529d4dee-6bc8-40bf-9d51-0512ca608445",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resource?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resource"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resource"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-529d4dee-6bc8-40bf-9d51-0512ca608445"
+                },
+                {
+                  "id": "64f2c5a3-9ac2-4a8c-8b7a-451968797cd4",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:resource?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":resource"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "resource"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-64f2c5a3-9ac2-4a8c-8b7a-451968797cd4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:38.000Z",
+              "updatedAt": "2026-07-28T01:05:38.000Z",
+              "uid": "35240-f180e8d2-c1b4-4c8f-a689-c59d62aade7f"
+            }
+          ],
+          "id": "b935e629-884b-4969-ae80-3ab1c4035660",
+          "createdAt": "2026-07-28T01:05:38.000Z",
+          "updatedAt": "2026-07-28T01:05:38.000Z",
+          "uid": "35240-b935e629-884b-4969-ae80-3ab1c4035660"
+        },
+        {
+          "name": "{tag_id}",
+          "item": [
+            {
+              "name": "View Tag",
+              "id": "695f989e-b6c8-4fad-a812-ebb158bf27ce",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:tag_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":tag_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "13dd1e09-4e2f-4fc0-8b1a-0b67975153df",
+                      "key": "tag_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur tag id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single tag, identified by its unique\u00a0 tag_id .\n\nUse this endpoint to view the specific details of a tag."
+              },
+              "response": [
+                {
+                  "id": "8f311e0e-9ff3-4f9e-bf87-38ba1710d217",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:tag_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":tag_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tag_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-8f311e0e-9ff3-4f9e-bf87-38ba1710d217"
+                },
+                {
+                  "id": "b5e60f88-d8ef-473a-b2df-2bf12700e99e",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:tag_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":tag_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tag_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-b5e60f88-d8ef-473a-b2df-2bf12700e99e"
+                },
+                {
+                  "id": "a476375f-46ce-41ff-87a5-e9e9ee5fd165",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:tag_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":tag_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tag_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-a476375f-46ce-41ff-87a5-e9e9ee5fd165"
+                },
+                {
+                  "id": "cb0c20ae-e0e1-41f3-9b15-50680aa7312c",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:tag_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":tag_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tag_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-cb0c20ae-e0e1-41f3-9b15-50680aa7312c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:38.000Z",
+              "updatedAt": "2026-07-28T01:05:38.000Z",
+              "uid": "35240-695f989e-b6c8-4fad-a812-ebb158bf27ce"
+            },
+            {
+              "name": "Update Tag",
+              "id": "c1995afe-13ac-4913-87f0-9346dfa10fb5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tags/:tag_id?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tags",
+                    ":tag_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "d20789c6-36e6-4346-9aee-ccd6efca9ebf",
+                      "key": "tag_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur tag id."
+                    }
+                  ]
+                },
+                "description": "This endpoint updates an existing tag using the same fields as the 'Add Tag' endpoint. The API will return the updated data for the tag in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nname \n All fixed \n String \n No \n\ncolor \n Blue \n String \n No"
+              },
+              "response": [
+                {
+                  "id": "db6491f5-7996-43a4-bf72-0d3fbe87cf71",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:tag_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":tag_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "tag_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-db6491f5-7996-43a4-bf72-0d3fbe87cf71"
+                },
+                {
+                  "id": "3787b70e-af0f-48c6-8148-b6a4526a3946",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:tag_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":tag_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "tag_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-3787b70e-af0f-48c6-8148-b6a4526a3946"
+                },
+                {
+                  "id": "9f95afa1-2961-4ed2-98e8-6b4054c2acae",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:tag_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":tag_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "tag_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-9f95afa1-2961-4ed2-98e8-6b4054c2acae"
+                },
+                {
+                  "id": "bd29d920-6b5b-43ce-a820-3fbf380e3af0",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tags/:tag_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tags",
+                        ":tag_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "tag_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:38.000Z",
+                  "updatedAt": "2026-07-28T01:05:38.000Z",
+                  "uid": "35240-bd29d920-6b5b-43ce-a820-3fbf380e3af0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:38.000Z",
+              "updatedAt": "2026-07-28T01:05:38.000Z",
+              "uid": "35240-c1995afe-13ac-4913-87f0-9346dfa10fb5"
+            }
+          ],
+          "id": "412912dd-3899-4719-85fc-c93fc496a348",
+          "createdAt": "2026-07-28T01:05:38.000Z",
+          "updatedAt": "2026-07-28T01:05:38.000Z",
+          "uid": "35240-412912dd-3899-4719-85fc-c93fc496a348"
+        }
+      ],
+      "id": "0ca97045-0751-4602-95fe-303af0195a55",
+      "createdAt": "2026-07-28T01:05:38.000Z",
+      "updatedAt": "2026-07-28T01:05:38.000Z",
+      "uid": "35240-0ca97045-0751-4602-95fe-303af0195a55"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}

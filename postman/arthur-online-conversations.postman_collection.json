@@ -1,0 +1,1853 @@
+{
+  "info": {
+    "_postman_id": "0aa8e8d2-3790-44ee-8f74-4724f3461ad3",
+    "name": "Arthur Conversations API",
+    "description": "Arthur Conversations API - the conversations surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:36.000Z",
+    "updatedAt": "2026-07-28T01:05:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0aa8e8d2-3790-44ee-8f74-4724f3461ad3"
+  },
+  "item": [
+    {
+      "name": "conversations",
+      "item": [
+        {
+          "name": "{conversation_id}",
+          "item": [
+            {
+              "name": "assets",
+              "item": [
+                {
+                  "name": "List Assets on Conversation",
+                  "id": "14337a79-5ee5-44cf-a4d8-abe80e5196f1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/conversations/:conversation_id/assets?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conversations",
+                        ":conversation_id",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "DESC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "7dd051eb-340c-4297-9234-6f6e00e15228",
+                          "key": "conversation_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur conversation id."
+                        }
+                      ]
+                    },
+                    "description": "This endpoint retrieves a list of assets associated with the given conversation ID."
+                  },
+                  "response": [
+                    {
+                      "id": "4e624c8d-7d06-4afe-aa32-8ca89c54e7ef",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/assets?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-4e624c8d-7d06-4afe-aa32-8ca89c54e7ef"
+                    },
+                    {
+                      "id": "acc1b5f0-96f1-42c7-9962-f18cd38132f1",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/assets?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-acc1b5f0-96f1-42c7-9962-f18cd38132f1"
+                    },
+                    {
+                      "id": "d3e121b8-f583-41eb-b65d-2cc60b594289",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/assets?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-d3e121b8-f583-41eb-b65d-2cc60b594289"
+                    },
+                    {
+                      "id": "36452d46-d39d-488d-80de-637f60de45f4",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/assets?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-36452d46-d39d-488d-80de-637f60de45f4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:37.000Z",
+                  "updatedAt": "2026-07-28T01:05:37.000Z",
+                  "uid": "35240-14337a79-5ee5-44cf-a4d8-abe80e5196f1"
+                }
+              ],
+              "id": "0a1a006c-b153-4ffd-886a-dbc0299db960",
+              "createdAt": "2026-07-28T01:05:37.000Z",
+              "updatedAt": "2026-07-28T01:05:37.000Z",
+              "uid": "35240-0a1a006c-b153-4ffd-886a-dbc0299db960"
+            },
+            {
+              "name": "messages",
+              "item": [
+                {
+                  "name": "{message_id}",
+                  "item": [
+                    {
+                      "name": "View Message Related To Conversation",
+                      "id": "a3edfa83-c990-4eb5-aa62-9f7fbe1ce5d5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages/:message_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages",
+                            ":message_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "aebb6ab0-d53c-4f24-aac4-d6ae87fac558",
+                              "key": "conversation_id",
+                              "value": "<integer>",
+                              "description": "(Required) Arthur conversation id."
+                            },
+                            {
+                              "id": "34244292-b439-4eeb-8e05-386340047042",
+                              "key": "message_id",
+                              "value": "<integer>",
+                              "description": "(Required) Arthur message id."
+                            }
+                          ]
+                        },
+                        "description": "This API endpoint retrieves the details of a single message, identified by its unique\u00a0 message_id .\n\nUse this endpoint to view the specific details of a message within a conversation."
+                      },
+                      "response": [
+                        {
+                          "id": "4d4c020f-c29d-4bd9-98f7-cb62d2214315",
+                          "name": "The request was completed successfully without errors.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/conversations/:conversation_id/messages/:message_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "conversations",
+                                ":conversation_id",
+                                "messages",
+                                ":message_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "conversation_id"
+                                },
+                                {
+                                  "key": "message_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"current\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"pageCount\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:05:37.000Z",
+                          "updatedAt": "2026-07-28T01:05:37.000Z",
+                          "uid": "35240-4d4c020f-c29d-4bd9-98f7-cb62d2214315"
+                        },
+                        {
+                          "id": "872784d6-38d0-4da1-a7e5-71bca477c70f",
+                          "name": "The request was invalid or malformed.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/conversations/:conversation_id/messages/:message_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "conversations",
+                                ":conversation_id",
+                                "messages",
+                                ":message_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "conversation_id"
+                                },
+                                {
+                                  "key": "message_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:37.000Z",
+                          "updatedAt": "2026-07-28T01:05:37.000Z",
+                          "uid": "35240-872784d6-38d0-4da1-a7e5-71bca477c70f"
+                        },
+                        {
+                          "id": "8f8d52f1-d5d4-48f5-8ff9-f85d9f5df708",
+                          "name": "Missing, invalid or expired access token.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/conversations/:conversation_id/messages/:message_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "conversations",
+                                ":conversation_id",
+                                "messages",
+                                ":message_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "conversation_id"
+                                },
+                                {
+                                  "key": "message_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:37.000Z",
+                          "updatedAt": "2026-07-28T01:05:37.000Z",
+                          "uid": "35240-8f8d52f1-d5d4-48f5-8ff9-f85d9f5df708"
+                        },
+                        {
+                          "id": "88421efd-0937-46cc-ad7b-788554b5c6df",
+                          "name": "The request was sent to a location that does not exist in the API.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                                "key": "X-EntityID",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/conversations/:conversation_id/messages/:message_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "conversations",
+                                ":conversation_id",
+                                "messages",
+                                ":message_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "conversation_id"
+                                },
+                                {
+                                  "key": "message_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:05:37.000Z",
+                          "updatedAt": "2026-07-28T01:05:37.000Z",
+                          "uid": "35240-88421efd-0937-46cc-ad7b-788554b5c6df"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-a3edfa83-c990-4eb5-aa62-9f7fbe1ce5d5"
+                    }
+                  ],
+                  "id": "ac5ba39c-1c23-4669-ad48-21d63fad9c98",
+                  "createdAt": "2026-07-28T01:05:37.000Z",
+                  "updatedAt": "2026-07-28T01:05:37.000Z",
+                  "uid": "35240-ac5ba39c-1c23-4669-ad48-21d63fad9c98"
+                },
+                {
+                  "name": "List Messages Related To Conversation",
+                  "id": "9bba2779-fa88-4a05-94ab-2acfb26dbdc8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/conversations/:conversation_id/messages?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conversations",
+                        ":conversation_id",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "DESC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "149ae8ef-59d7-4340-9abc-051c4e83b70b",
+                          "key": "conversation_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur conversation id."
+                        }
+                      ]
+                    },
+                    "description": "This retrieves a list of messages related to a conversation id ."
+                  },
+                  "response": [
+                    {
+                      "id": "6221f714-b311-4005-84be-3e129e8e5b25",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"current\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"pageCount\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-6221f714-b311-4005-84be-3e129e8e5b25"
+                    },
+                    {
+                      "id": "b967b55b-0b2a-4701-9620-8fd2468db4b0",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-b967b55b-0b2a-4701-9620-8fd2468db4b0"
+                    },
+                    {
+                      "id": "b8a40912-1ef6-47ff-b165-a0d4f3409bc0",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-b8a40912-1ef6-47ff-b165-a0d4f3409bc0"
+                    },
+                    {
+                      "id": "41c1a0d8-bc6b-4343-98a2-23847b10f729",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "DESC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-41c1a0d8-bc6b-4343-98a2-23847b10f729"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:37.000Z",
+                  "updatedAt": "2026-07-28T01:05:37.000Z",
+                  "uid": "35240-9bba2779-fa88-4a05-94ab-2acfb26dbdc8"
+                },
+                {
+                  "name": "Add Messages Related To Conversation",
+                  "id": "c8f07552-e81e-4ed4-b965-f15b5c9b4b7a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/conversations/:conversation_id/messages?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conversations",
+                        ":conversation_id",
+                        "messages"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "503ccb45-8773-4628-b22a-0bab3fe5d4b7",
+                          "key": "conversation_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur conversation id."
+                        }
+                      ]
+                    },
+                    "description": "Use this endpoint to add a new message related to a\u00a0 conversation . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's done \n String \n Yes"
+                  },
+                  "response": [
+                    {
+                      "id": "54decbf1-a97a-461d-a7e9-ad963e331744",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-54decbf1-a97a-461d-a7e9-ad963e331744"
+                    },
+                    {
+                      "id": "0a1f9c38-5e53-4dca-8664-193faf0948af",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-0a1f9c38-5e53-4dca-8664-193faf0948af"
+                    },
+                    {
+                      "id": "c9490b29-c289-435a-9669-c554d324c99b",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-c9490b29-c289-435a-9669-c554d324c99b"
+                    },
+                    {
+                      "id": "43006d66-b02b-4c1f-98d5-9efade0c664e",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"message\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/conversations/:conversation_id/messages?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "conversations",
+                            ":conversation_id",
+                            "messages"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "conversation_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:37.000Z",
+                      "updatedAt": "2026-07-28T01:05:37.000Z",
+                      "uid": "35240-43006d66-b02b-4c1f-98d5-9efade0c664e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:37.000Z",
+                  "updatedAt": "2026-07-28T01:05:37.000Z",
+                  "uid": "35240-c8f07552-e81e-4ed4-b965-f15b5c9b4b7a"
+                }
+              ],
+              "id": "a471001e-93a7-436d-8828-7bbc19cbccb8",
+              "createdAt": "2026-07-28T01:05:37.000Z",
+              "updatedAt": "2026-07-28T01:05:37.000Z",
+              "uid": "35240-a471001e-93a7-436d-8828-7bbc19cbccb8"
+            },
+            {
+              "name": "List Conversations",
+              "id": "4671dd5b-ac26-4d83-a62e-6b777271769b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/conversations/:conversation_id?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "conversations",
+                    ":conversation_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "b1677c31-9dc7-465f-8d03-a337736aaa8f",
+                      "key": "conversation_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur conversation id."
+                    }
+                  ]
+                },
+                "description": "This endpoint retrieves a list of conversations."
+              },
+              "response": [
+                {
+                  "id": "6082e05f-2440-4fef-8b56-e95a71845ed7",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/conversations/:conversation_id?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conversations",
+                        ":conversation_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "DESC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "conversation_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"current\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"pageCount\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:05:37.000Z",
+                  "updatedAt": "2026-07-28T01:05:37.000Z",
+                  "uid": "35240-6082e05f-2440-4fef-8b56-e95a71845ed7"
+                },
+                {
+                  "id": "2c381c77-3bd8-4a06-9328-276dc570ffa1",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/conversations/:conversation_id?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conversations",
+                        ":conversation_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "DESC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "conversation_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:37.000Z",
+                  "updatedAt": "2026-07-28T01:05:37.000Z",
+                  "uid": "35240-2c381c77-3bd8-4a06-9328-276dc570ffa1"
+                },
+                {
+                  "id": "185794f8-1d41-4f7f-b38c-dcd61a39992e",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/conversations/:conversation_id?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conversations",
+                        ":conversation_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "DESC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "conversation_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:37.000Z",
+                  "updatedAt": "2026-07-28T01:05:37.000Z",
+                  "uid": "35240-185794f8-1d41-4f7f-b38c-dcd61a39992e"
+                },
+                {
+                  "id": "4ac01790-2317-4e11-bee9-2353900e15d1",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/conversations/:conversation_id?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "conversations",
+                        ":conversation_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "DESC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "conversation_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:37.000Z",
+                  "updatedAt": "2026-07-28T01:05:37.000Z",
+                  "uid": "35240-4ac01790-2317-4e11-bee9-2353900e15d1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:37.000Z",
+              "updatedAt": "2026-07-28T01:05:37.000Z",
+              "uid": "35240-4671dd5b-ac26-4d83-a62e-6b777271769b"
+            }
+          ],
+          "id": "baa788e3-1c88-48a0-af31-de2e65be8981",
+          "createdAt": "2026-07-28T01:05:37.000Z",
+          "updatedAt": "2026-07-28T01:05:37.000Z",
+          "uid": "35240-baa788e3-1c88-48a0-af31-de2e65be8981"
+        }
+      ],
+      "id": "a32961b9-7275-4ba2-811f-9e046bec1508",
+      "createdAt": "2026-07-28T01:05:37.000Z",
+      "updatedAt": "2026-07-28T01:05:37.000Z",
+      "uid": "35240-a32961b9-7275-4ba2-811f-9e046bec1508"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}

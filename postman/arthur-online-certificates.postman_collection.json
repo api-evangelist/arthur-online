@@ -1,0 +1,1273 @@
+{
+  "info": {
+    "_postman_id": "7bd750e5-106e-4e62-b06f-5d887b4cecef",
+    "name": "Arthur Certificates API",
+    "description": "Arthur Certificates API - the certificates surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:34.000Z",
+    "updatedAt": "2026-07-28T01:05:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7bd750e5-106e-4e62-b06f-5d887b4cecef"
+  },
+  "item": [
+    {
+      "name": "certificates",
+      "item": [
+        {
+          "name": "{certificate_id}",
+          "item": [
+            {
+              "name": "View Certificate",
+              "id": "01c8bb6f-6370-4b3c-a72b-3ae57da5a8c5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates/:certificate_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates",
+                    ":certificate_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "644348fe-bac5-480f-975b-de57b3dec404",
+                      "key": "certificate_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur certificate id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single certificate, identified by its unique\u00a0 certificate_id .\n\nUse this endpoint to view the specific details of a certificate."
+              },
+              "response": [
+                {
+                  "id": "a8b127ed-c6cd-4bae-a4db-b0c339a1c561",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-a8b127ed-c6cd-4bae-a4db-b0c339a1c561"
+                },
+                {
+                  "id": "9e07062c-2828-4f9b-8fd6-f4a94bf72085",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-9e07062c-2828-4f9b-8fd6-f4a94bf72085"
+                },
+                {
+                  "id": "816b43e8-52ca-41b9-b845-49b277fdfda8",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-816b43e8-52ca-41b9-b845-49b277fdfda8"
+                },
+                {
+                  "id": "a6a2e3e3-751c-4dad-a74e-169b3b82766a",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-a6a2e3e3-751c-4dad-a74e-169b3b82766a"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:34.000Z",
+              "updatedAt": "2026-07-28T01:05:34.000Z",
+              "uid": "35240-01c8bb6f-6370-4b3c-a72b-3ae57da5a8c5"
+            },
+            {
+              "name": "Update Certificate",
+              "id": "e4a87f8f-6e64-441e-9d23-7ce753d66375",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"expiry_date\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/certificates/:certificate_id?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates",
+                    ":certificate_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "5e5c9eae-c9ba-41fc-9433-27055404b15a",
+                      "key": "certificate_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur certificate id."
+                    }
+                  ]
+                },
+                "description": "This endpoint updates an existing certificate using the same fields as the 'Add Certificate' endpoint found under Properties, Units, Tenancies and Workorders. Any fields that are not provided will not be changed. The API will return the updated data for the asset in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntype \n Boiler Service \n String \n Yes \n\nexpiry_date \n 2023-12-05 \n String \n No \n\nnotes \n Fully assessed \n String \n No \n\nfile \n Base64 \n String \n No \n\nmime_type \n application/pdf \n String \n No (Required if File field is present) \n\nfile_name \n Certificate Document \n string \n No (Required if File field is present)"
+              },
+              "response": [
+                {
+                  "id": "e4ca07df-6327-4adb-96da-584ba71d9075",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"expiry_date\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-e4ca07df-6327-4adb-96da-584ba71d9075"
+                },
+                {
+                  "id": "e2b7bbf9-f952-4bb1-a467-ae9b0e6e45a7",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"expiry_date\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-e2b7bbf9-f952-4bb1-a467-ae9b0e6e45a7"
+                },
+                {
+                  "id": "de99b280-fa39-476c-b83f-13500c9a5572",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"expiry_date\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-de99b280-fa39-476c-b83f-13500c9a5572"
+                },
+                {
+                  "id": "a639e1c8-d2fa-4c4b-8677-ef38f9d45998",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"expiry_date\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-a639e1c8-d2fa-4c4b-8677-ef38f9d45998"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:34.000Z",
+              "updatedAt": "2026-07-28T01:05:34.000Z",
+              "uid": "35240-e4a87f8f-6e64-441e-9d23-7ce753d66375"
+            },
+            {
+              "name": "Delete Certificate",
+              "id": "d4c54cb9-9314-4334-81a5-6db08366c25e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates/:certificate_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates",
+                    ":certificate_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "17e73fb3-5fc5-4af9-afb9-42eb80766c11",
+                      "key": "certificate_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur certificate id."
+                    }
+                  ]
+                },
+                "description": "This endpoint deletes an existing ceriticate record using the certificate\u00a0 id ."
+              },
+              "response": [
+                {
+                  "id": "07fa2a32-1f8e-4879-88b6-8e4cb378d6c8",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-07fa2a32-1f8e-4879-88b6-8e4cb378d6c8"
+                },
+                {
+                  "id": "edf9b92f-8969-4ecc-bb51-95b1357c6243",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-edf9b92f-8969-4ecc-bb51-95b1357c6243"
+                },
+                {
+                  "id": "ca821316-541b-4d1c-8f78-f858f83522a8",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-ca821316-541b-4d1c-8f78-f858f83522a8"
+                },
+                {
+                  "id": "853b5538-633f-4d54-abd0-288095a0770b",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificate_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificate_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificate_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:34.000Z",
+                  "updatedAt": "2026-07-28T01:05:34.000Z",
+                  "uid": "35240-853b5538-633f-4d54-abd0-288095a0770b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:34.000Z",
+              "updatedAt": "2026-07-28T01:05:34.000Z",
+              "uid": "35240-d4c54cb9-9314-4334-81a5-6db08366c25e"
+            }
+          ],
+          "id": "70eb4b81-70ad-4d80-810f-5747baa7d7cb",
+          "createdAt": "2026-07-28T01:05:34.000Z",
+          "updatedAt": "2026-07-28T01:05:34.000Z",
+          "uid": "35240-70eb4b81-70ad-4d80-810f-5747baa7d7cb"
+        },
+        {
+          "name": "List Certificates",
+          "id": "3bd11dca-96d9-4ef0-92c0-66ac2d356306",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/certificates?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "certificates"
+              ],
+              "query": [
+                {
+                  "description": "Page number, between 1 and the total number of pages.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Items per page, between 1 and 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Field to sort the collection by.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort direction.",
+                  "key": "direction",
+                  "value": "DESC"
+                }
+              ]
+            },
+            "description": "This retrieves a list of certificates."
+          },
+          "response": [
+            {
+              "id": "c607a594-e86a-4aaa-94c6-1d868fb4d302",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"current\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"pageCount\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:05:34.000Z",
+              "updatedAt": "2026-07-28T01:05:34.000Z",
+              "uid": "35240-c607a594-e86a-4aaa-94c6-1d868fb4d302"
+            },
+            {
+              "id": "f7b50fab-98d6-40b8-a89e-7886c39a3e0e",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:34.000Z",
+              "updatedAt": "2026-07-28T01:05:34.000Z",
+              "uid": "35240-f7b50fab-98d6-40b8-a89e-7886c39a3e0e"
+            },
+            {
+              "id": "5806224b-b90a-42b7-a808-483466295245",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:34.000Z",
+              "updatedAt": "2026-07-28T01:05:34.000Z",
+              "uid": "35240-5806224b-b90a-42b7-a808-483466295245"
+            },
+            {
+              "id": "636a9995-9c44-4cc5-91a8-295a7a7995e1",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates?page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:34.000Z",
+              "updatedAt": "2026-07-28T01:05:34.000Z",
+              "uid": "35240-636a9995-9c44-4cc5-91a8-295a7a7995e1"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:34.000Z",
+          "updatedAt": "2026-07-28T01:05:34.000Z",
+          "uid": "35240-3bd11dca-96d9-4ef0-92c0-66ac2d356306"
+        }
+      ],
+      "id": "aa912f44-51ee-4f20-aa33-88b231045409",
+      "createdAt": "2026-07-28T01:05:34.000Z",
+      "updatedAt": "2026-07-28T01:05:34.000Z",
+      "uid": "35240-aa912f44-51ee-4f20-aa33-88b231045409"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}

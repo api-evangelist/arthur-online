@@ -1,0 +1,1849 @@
+{
+  "info": {
+    "_postman_id": "114a014f-e52f-4560-9e94-4dc5c8232da6",
+    "name": "Arthur Tenants API",
+    "description": "Arthur Tenants API - the tenants surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:03.000Z",
+    "updatedAt": "2026-07-28T01:05:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-114a014f-e52f-4560-9e94-4dc5c8232da6"
+  },
+  "item": [
+    {
+      "name": "tenants",
+      "item": [
+        {
+          "name": "{tenant_id}",
+          "item": [
+            {
+              "name": "invite",
+              "item": [
+                {
+                  "name": "Invite Tenant",
+                  "id": "cb9d350e-8ed8-445b-b3bb-8c62d0920355",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id/invite?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id",
+                        "invite"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c7619199-2c2a-4147-abca-2eea8709097b",
+                          "key": "tenant_id"
+                        }
+                      ]
+                    },
+                    "description": "This API endpoint can be used to initiate an automated process for inviting a tenant who is identified by their unique tenant_id .\n\nOnce the API call is made, the response will contain the tenant's details as well as an \"invite_code\"."
+                  },
+                  "response": [
+                    {
+                      "id": "5768d7f1-53db-4add-aebe-770a4326cfb1",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/invite?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "invite"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:05:04.000Z",
+                      "updatedAt": "2026-07-28T01:05:04.000Z",
+                      "uid": "35240-5768d7f1-53db-4add-aebe-770a4326cfb1"
+                    },
+                    {
+                      "id": "cd723122-8d00-4b09-bb44-490c2ff59011",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/invite?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "invite"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:04.000Z",
+                      "updatedAt": "2026-07-28T01:05:04.000Z",
+                      "uid": "35240-cd723122-8d00-4b09-bb44-490c2ff59011"
+                    },
+                    {
+                      "id": "d205a517-34bd-48e2-8b73-4dd1c8aac90f",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/invite?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "invite"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:04.000Z",
+                      "updatedAt": "2026-07-28T01:05:04.000Z",
+                      "uid": "35240-d205a517-34bd-48e2-8b73-4dd1c8aac90f"
+                    },
+                    {
+                      "id": "31617bda-eb61-4ac4-9ce1-0b9d38664cb8",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tenants/:tenant_id/invite?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tenants",
+                            ":tenant_id",
+                            "invite"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:04.000Z",
+                      "updatedAt": "2026-07-28T01:05:04.000Z",
+                      "uid": "35240-31617bda-eb61-4ac4-9ce1-0b9d38664cb8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-cb9d350e-8ed8-445b-b3bb-8c62d0920355"
+                }
+              ],
+              "id": "29bd10b6-406d-4410-859f-f2f32934b32b",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-29bd10b6-406d-4410-859f-f2f32934b32b"
+            },
+            {
+              "name": "View Tenant",
+              "id": "a713987e-bb71-4bde-9b7a-aa82c51d772a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants/:tenant_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "70a7cf8e-9bc8-4a9d-9e51-9905335a4e37",
+                      "key": "tenant_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single tenant, identified by its unique\u00a0 tenant_id .\n\nUse this endpoint to view the specific details of a renter."
+              },
+              "response": [
+                {
+                  "id": "437c9ac7-2f0c-49cf-95c3-e8c60e9ec1d3",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-437c9ac7-2f0c-49cf-95c3-e8c60e9ec1d3"
+                },
+                {
+                  "id": "1baeb7a0-a25c-485b-899e-2bc18e0f9a71",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-1baeb7a0-a25c-485b-899e-2bc18e0f9a71"
+                },
+                {
+                  "id": "8116c613-e23f-47b6-813a-d1ef8d2d751f",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-8116c613-e23f-47b6-813a-d1ef8d2d751f"
+                },
+                {
+                  "id": "7f78766d-9e96-46ee-b72b-42b753326adc",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-7f78766d-9e96-46ee-b72b-42b753326adc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-a713987e-bb71-4bde-9b7a-aa82c51d772a"
+            },
+            {
+              "name": "Update Tenant",
+              "id": "863323fb-90c4-43b4-9c48-9f9c26d4e358",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tenants/:tenant_id?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "064d54be-a2ec-4a95-a37a-b89addbca5a5",
+                      "key": "tenant_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "description": "This endpoint updates an existing tenant using the same fields as the 'Add Tenant' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the tenant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntenancy_id \n 123 \n Integer \n No \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No \n\ngender \n Male \n Enum \n No \n\ncitizen_type \n 1 \n Enum \n No \n\nemail \n email@gmail.com \n String \n No \n\ncompany_name \n MyCompany \n Strong \n No \n\ncompant_address_name \n Address \n String \n No \n\ncompany_address1 \n Boundry Road \n String \n No \n\ncompany_address2 \n Wren Court \n String \n No \n\ncompany_city \n London \n String \n No \n\ncompany_postcode \n SW94DA \n String \n No \n\ncompany_county \n City of London \n String \n No \n\ncompany_country \n England \n String \n No \n\nphone_home \n 029302932 \n String \n No \n\nphone_work \n 029382928 \n String \n No \n\nmobile \n 020192029 \n String \n No \n\nresidential_number \n 201 \n String \n No \n\nvisa_number \n 120-123 \n String \n No \n\nvisa_years \n 3 \n String \n No \n\nvisa_type \n Tier 2 \n Enum \n No \n\ncountry_of_origin \n Wales \n String \n No \n\nni_number \n KS 01 AK 11 F \n String \n No \n\nkin_mobile \n 029302991 \n String \n No \n\nkin_last_name \n Cullen \n String \n No \n\nkin_first_name \n Monica \n String \n No \n\nkin_phone_work \n 029320191 \n String \n No \n\nstudent_status \n Full-time \n String \n No \n\nuniversity \n Oxford \n String \n No \n\ncourse_name \n Doe Studies \n String \n No \n\ncourse_id \n 1 \n String \n No \n\ncourse_year \n 2 \n String \n No \n\nemployment_company_name \n Lorem \n String \n No \n\nemployment_address1 \n Address First Line \n String \n No \n\nemployment_address2 \n Address Second Line \n String \n No \n\nemployment_city \n Liverpool \n String \n No \n\nemployment_postcode \n LN91LS \n String \n No \n\nemployment_county \n Norfolk \n String \n No \n\nemployment_contact_name \n Grace \n String \n No \n\nemployment_contact_number \n 0239203900 \n String \n No \n\nemployment_salary \n 90000 \n String \n No \n\nemployment_length \n 5 years \n String \n No \n\nhousing_benefit_council \n Borought \n String \n No \n\nhousing_benefit_number \n 19203 \n String \n No \n\nguarantor_first_name \n Nicolas \n String \n No \n\nguarantor_last_name \n Cage \n String \n No \n\nguarantor_date_of_birth \n 1911-02-12 \n String \n No \n\nguarantor_address1 \n Address first line \n String \n No \n\nguarantor_address2 \n Address second line \n String \n No \n\nguarantor_city \n London \n String \n No \n\nguarantor_postcode \n XP91AP \n String \n No \n\nguarantor_county \n Suffolk \n String \n No \n\nguarantor_country \n England \n String \n No \n\nguarantor_phone_home \n 028392871 \n String \n No \n\nguarantor_phone_work \n 028191282 \n String \n No \n\nguarantor_mobile \n 029384383 \n String \n No \n\nguarantor_email \n guarantor@email.com \n String \n No \n\nguarantor_relation \n Brother \n String \n No \n\nguarantor_home_owner \n Yes \n String \n No \n\nguarantor_profession \n Teacher \n String \n No \n\nbank_name \n Barclays \n String \n No \n\nbank_address1 \n Address first line \n String \n No \n\nbank_address2 \n Address second line \n String \n No \n\nbank_city \n Romford \n String \n No \n\nbank_county \n Essex \n String \n No \n\nbank_postcode \n FS18LA \n String \n No \n\nref_name \n Ref Name \n String \n No \n\nref_address1 \n Ref First Line \n String \n No \n\nref_address2 \n Ref Second Line \n String \n No \n\nref_county \n Ref Hertfordshire \n String \n No \n\nref_city \n Ref City \n String \n No \n\nref_postcode \n Ref Postcode \n String \n No \n\nref_contact_number \n 029392832 \n String \n No \n\nref_relation \n Mother \n String \n No \n\napplicant_note \n Note to remember \n String \n No \n\nmanager_note \n Manager note \n String \n No"
+              },
+              "response": [
+                {
+                  "id": "d7725377-ca5f-4585-ba15-00be06f0cb2b",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-d7725377-ca5f-4585-ba15-00be06f0cb2b"
+                },
+                {
+                  "id": "8d6098d0-d900-46b3-93af-c7e7d5ef6b2e",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-8d6098d0-d900-46b3-93af-c7e7d5ef6b2e"
+                },
+                {
+                  "id": "b99731d5-9f0b-44b5-be0a-3533cc6ea926",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-b99731d5-9f0b-44b5-be0a-3533cc6ea926"
+                },
+                {
+                  "id": "f87f90e0-2f5f-40af-b316-a5eb63ded90c",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenant_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenant_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:04.000Z",
+                  "updatedAt": "2026-07-28T01:05:04.000Z",
+                  "uid": "35240-f87f90e0-2f5f-40af-b316-a5eb63ded90c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-863323fb-90c4-43b4-9c48-9f9c26d4e358"
+            }
+          ],
+          "id": "39c6bacd-9acc-4a46-b4de-2eb6f752ce8f",
+          "createdAt": "2026-07-28T01:05:04.000Z",
+          "updatedAt": "2026-07-28T01:05:04.000Z",
+          "uid": "35240-39c6bacd-9acc-4a46-b4de-2eb6f752ce8f"
+        },
+        {
+          "name": "List Tenants",
+          "id": "7f477a97-4e89-4d44-91ce-0a5897c09716",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tenants?property_id=<string>&unit_id=<string>&tenancy_id=<string>&email=<string>&phone_home=<string>&phone_work=<string>&mobile=<string>&full_address=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants"
+              ],
+              "query": [
+                {
+                  "description": "Filter by the property",
+                  "key": "property_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by the unit",
+                  "key": "unit_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by the tenancy",
+                  "key": "tenancy_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by tenant email",
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by phone home number",
+                  "key": "phone_home",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by phone work number",
+                  "key": "phone_work",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Fily by mobile number",
+                  "key": "mobile",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by the full address of the property",
+                  "key": "full_address",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Page number, between 1 and the total number of pages.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Items per page, between 1 and 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Field to sort the collection by.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort direction.",
+                  "key": "direction",
+                  "value": "DESC"
+                }
+              ]
+            },
+            "description": "This retrieves a list of tenants.\n\nSee available filters below to customize the list of tenants returned."
+          },
+          "response": [
+            {
+              "id": "5ca66d56-ce45-406c-86d9-f60cc6503944",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?property_id=<string>&unit_id=<string>&tenancy_id=<string>&email=<string>&phone_home=<string>&phone_work=<string>&mobile=<string>&full_address=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by the property",
+                      "key": "property_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the unit",
+                      "key": "unit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the tenancy",
+                      "key": "tenancy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by tenant email",
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by phone home number",
+                      "key": "phone_home",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by phone work number",
+                      "key": "phone_work",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fily by mobile number",
+                      "key": "mobile",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the full address of the property",
+                      "key": "full_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-5ca66d56-ce45-406c-86d9-f60cc6503944"
+            },
+            {
+              "id": "ffa2ebec-9fa8-4f76-bd45-6756fd09a877",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?property_id=<string>&unit_id=<string>&tenancy_id=<string>&email=<string>&phone_home=<string>&phone_work=<string>&mobile=<string>&full_address=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by the property",
+                      "key": "property_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the unit",
+                      "key": "unit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the tenancy",
+                      "key": "tenancy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by tenant email",
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by phone home number",
+                      "key": "phone_home",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by phone work number",
+                      "key": "phone_work",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fily by mobile number",
+                      "key": "mobile",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the full address of the property",
+                      "key": "full_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-ffa2ebec-9fa8-4f76-bd45-6756fd09a877"
+            },
+            {
+              "id": "88196484-a2ed-4a24-bf10-8b6c9fdd482b",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?property_id=<string>&unit_id=<string>&tenancy_id=<string>&email=<string>&phone_home=<string>&phone_work=<string>&mobile=<string>&full_address=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by the property",
+                      "key": "property_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the unit",
+                      "key": "unit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the tenancy",
+                      "key": "tenancy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by tenant email",
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by phone home number",
+                      "key": "phone_home",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by phone work number",
+                      "key": "phone_work",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fily by mobile number",
+                      "key": "mobile",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the full address of the property",
+                      "key": "full_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-88196484-a2ed-4a24-bf10-8b6c9fdd482b"
+            },
+            {
+              "id": "b207288b-bb6d-4d55-a883-944ff2c61fc4",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?property_id=<string>&unit_id=<string>&tenancy_id=<string>&email=<string>&phone_home=<string>&phone_work=<string>&mobile=<string>&full_address=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by the property",
+                      "key": "property_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the unit",
+                      "key": "unit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the tenancy",
+                      "key": "tenancy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by tenant email",
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by phone home number",
+                      "key": "phone_home",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by phone work number",
+                      "key": "phone_work",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Fily by mobile number",
+                      "key": "mobile",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by the full address of the property",
+                      "key": "full_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-b207288b-bb6d-4d55-a883-944ff2c61fc4"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:04.000Z",
+          "updatedAt": "2026-07-28T01:05:04.000Z",
+          "uid": "35240-7f477a97-4e89-4d44-91ce-0a5897c09716"
+        },
+        {
+          "name": "Add Tenant",
+          "id": "6d358293-96b6-49a4-8fdb-b9934a294879",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tenants?strict=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants"
+              ],
+              "query": [
+                {
+                  "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source",
+                  "key": "strict",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Use this endpoint to create a new tenant. The API will return the saved data and a unique tenant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntenancy_id \n 123 \n Integer \n Yes \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No \n\ngender \n Male \n Enum \n No \n\ncitizen_type \n 1 \n Enum \n No \n\nemail \n email@gmail.com \n String \n No \n\ncompany_name \n MyCompany \n Strong \n No \n\ncompant_address_name \n Address \n String \n No \n\ncompany_address1 \n Boundry Road \n String \n No \n\ncompany_address2 \n Wren Court \n String \n No \n\ncompany_city \n London \n String \n No \n\ncompany_postcode \n SW94DA \n String \n No \n\ncompany_county \n City of London \n String \n No \n\ncompany_country \n England \n String \n No \n\nphone_home \n 029302932 \n String \n No \n\nphone_work \n 029382928 \n String \n No \n\nmobile \n 020192029 \n String \n No \n\nresidential_number \n 201 \n String \n No \n\nvisa_number \n 120-123 \n String \n No \n\nvisa_years \n 3 \n String \n No \n\nvisa_type \n Tier 2 \n Enum \n No \n\ncountry_of_origin \n Wales \n String \n No \n\nni_number \n KS 01 AK 11 F \n String \n No \n\nkin_mobile \n 029302991 \n String \n No \n\nkin_last_name \n Cullen \n String \n No \n\nkin_first_name \n Monica \n String \n No \n\nkin_phone_work \n 029320191 \n String \n No \n\nstudent_status \n Full-time \n String \n No \n\nuniversity \n Oxford \n String \n No \n\ncourse_name \n Doe Studies \n String \n No \n\ncourse_id \n 1 \n String \n No \n\ncourse_year \n 2 \n String \n No \n\nemployment_company_name \n Lorem \n String \n No \n\nemployment_address1 \n Address First Line \n String \n No \n\nemployment_address2 \n Address Second Line \n String \n No \n\nemployment_city \n Liverpool \n String \n No \n\nemployment_postcode \n LN91LS \n String \n No \n\nemployment_county \n Norfolk \n String \n No \n\nemployment_contact_name \n Grace \n String \n No \n\nemployment_contact_number \n 0239203900 \n String \n No \n\nemployment_salary \n 90000 \n String \n No \n\nemployment_length \n 5 years \n String \n No \n\nhousing_benefit_council \n Borought \n String \n No \n\nhousing_benefit_number \n 19203 \n String \n No \n\nguarantor_first_name \n Nicolas \n String \n No \n\nguarantor_last_name \n Cage \n String \n No \n\nguarantor_date_of_birth \n 1911-02-12 \n String \n No \n\nguarantor_address1 \n Address first line \n String \n No \n\nguarantor_address2 \n Address second line \n String \n No \n\nguarantor_city \n London \n String \n No \n\nguarantor_postcode \n XP91AP \n String \n No \n\nguarantor_county \n Suffolk \n String \n No \n\nguarantor_country \n England \n String \n No \n\nguarantor_phone_home \n 028392871 \n String \n No \n\nguarantor_phone_work \n 028191282 \n String \n No \n\nguarantor_mobile \n 029384383 \n String \n No \n\nguarantor_email \n guarantor@email.com \n String \n No \n\nguarantor_relation \n Brother \n String \n No \n\nguarantor_home_owner \n Home owner outright, Home owner with mortgage, Rented accommodation \n String \n No \n\nguarantor_profession \n Teacher \n String \n No \n\nbank_name \n Barclays \n String \n No \n\nbank_address1 \n Address first line \n String \n No \n\nbank_address2 \n Address second line \n String \n No \n\nbank_city \n Romford \n String \n No \n\nbank_county \n Essex \n String \n No \n\nbank_postcode \n FS18LA \n String \n No \n\nref_name \n Ref Name \n String \n No \n\nref_address1 \n Ref First Line \n String \n No \n\nref_address2 \n Ref Second Line \n String \n No \n\nref_county \n Ref Hertfordshire \n String \n No \n\nref_city \n Ref City \n String \n No \n\nref_postcode \n Ref Postcode \n String \n No \n\nref_contact_number \n 029392832 \n String \n No \n\nref_relation \n Mother \n String \n No \n\napplicant_note \n Note to remember \n String \n No \n\nmanager_note \n Manager note \n String \n No"
+          },
+          "response": [
+            {
+              "id": "db02fed9-a4d1-4ded-85be-7f817f076aae",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?strict=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source",
+                      "key": "strict",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-db02fed9-a4d1-4ded-85be-7f817f076aae"
+            },
+            {
+              "id": "2bd4fb21-de30-474b-9664-1d964950efcc",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?strict=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source",
+                      "key": "strict",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-2bd4fb21-de30-474b-9664-1d964950efcc"
+            },
+            {
+              "id": "af0ea778-1dc0-4ff3-8350-72e42b04f5bf",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?strict=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source",
+                      "key": "strict",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-af0ea778-1dc0-4ff3-8350-72e42b04f5bf"
+            },
+            {
+              "id": "c5aeba2d-261b-4b67-b3d8-14c9ebeedcf7",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tenants?strict=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source",
+                      "key": "strict",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:04.000Z",
+              "updatedAt": "2026-07-28T01:05:04.000Z",
+              "uid": "35240-c5aeba2d-261b-4b67-b3d8-14c9ebeedcf7"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:04.000Z",
+          "updatedAt": "2026-07-28T01:05:04.000Z",
+          "uid": "35240-6d358293-96b6-49a4-8fdb-b9934a294879"
+        }
+      ],
+      "id": "c5a49189-e5e9-4dbb-ba2f-3845356bb845",
+      "createdAt": "2026-07-28T01:05:04.000Z",
+      "updatedAt": "2026-07-28T01:05:04.000Z",
+      "uid": "35240-c5a49189-e5e9-4dbb-ba2f-3845356bb845"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}

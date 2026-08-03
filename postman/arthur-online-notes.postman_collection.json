@@ -1,0 +1,2703 @@
+{
+  "info": {
+    "_postman_id": "bcf4dea2-930e-4717-b8e0-1b47b7684a6a",
+    "name": "Arthur Notes API",
+    "description": "Arthur Notes API - the notes surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:38.000Z",
+    "updatedAt": "2026-07-28T01:05:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bcf4dea2-930e-4717-b8e0-1b47b7684a6a"
+  },
+  "item": [
+    {
+      "name": "notes",
+      "item": [
+        {
+          "name": "{note_id}",
+          "item": [
+            {
+              "name": "tags",
+              "item": [
+                {
+                  "name": "List Tags on Note",
+                  "id": "d15c312b-9451-40f0-81df-2428f2b13cc4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id/tags?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id",
+                        "tags"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number, between 1 and the total number of pages.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Items per page, between 1 and 100.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Field to sort the collection by.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort direction.",
+                          "key": "direction",
+                          "value": "ASC"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "1c129325-993c-426b-bd5e-9681e69fb8ea",
+                          "key": "note_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur note id."
+                        }
+                      ]
+                    },
+                    "description": "This endpoint retrieves a list of tags associated with the given note ID."
+                  },
+                  "response": [
+                    {
+                      "id": "4e6d7861-0fb8-40d7-aabf-a5910373c1b4",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/tags?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "ASC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-4e6d7861-0fb8-40d7-aabf-a5910373c1b4"
+                    },
+                    {
+                      "id": "d15c4330-e49b-48dd-ad6a-7cb24c1cf1ba",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/tags?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "ASC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-d15c4330-e49b-48dd-ad6a-7cb24c1cf1ba"
+                    },
+                    {
+                      "id": "fc971380-5c0d-45b3-91b2-c53032cc0540",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/tags?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "ASC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-fc971380-5c0d-45b3-91b2-c53032cc0540"
+                    },
+                    {
+                      "id": "da8c61de-e99d-4955-8046-7732bbee1f1e",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/tags?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number, between 1 and the total number of pages.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Items per page, between 1 and 100.",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Field to sort the collection by.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort direction.",
+                              "key": "direction",
+                              "value": "ASC"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-da8c61de-e99d-4955-8046-7732bbee1f1e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-d15c312b-9451-40f0-81df-2428f2b13cc4"
+                },
+                {
+                  "name": "Tag Note",
+                  "id": "11d16fca-00c1-40cf-a57c-2b7545a67f69",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tag\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id/tags?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id",
+                        "tags"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "64308d48-1ede-48c7-8557-3fec1231c997",
+                          "key": "note_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur note id."
+                        }
+                      ]
+                    },
+                    "description": "Use this endpoint to create a new tag record for a\u00a0 note . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+                  },
+                  "response": [
+                    {
+                      "id": "2f113fe9-9b35-4780-a448-9cbe9c33829f",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tag\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/tags?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-2f113fe9-9b35-4780-a448-9cbe9c33829f"
+                    },
+                    {
+                      "id": "e068ef0d-fd58-4c8a-a698-554b61071ee5",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tag\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/tags?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-e068ef0d-fd58-4c8a-a698-554b61071ee5"
+                    },
+                    {
+                      "id": "e0b5e42d-338d-43a9-be74-1c8685a17254",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tag\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/tags?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-e0b5e42d-338d-43a9-be74-1c8685a17254"
+                    },
+                    {
+                      "id": "474fbabb-a10b-489c-9764-efefa6077e9c",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tag\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/tags?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "tags"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-474fbabb-a10b-489c-9764-efefa6077e9c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-11d16fca-00c1-40cf-a57c-2b7545a67f69"
+                }
+              ],
+              "id": "a2c04f29-a1df-4aec-b05c-19cb02662691",
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-a2c04f29-a1df-4aec-b05c-19cb02662691"
+            },
+            {
+              "name": "untag",
+              "item": [
+                {
+                  "name": "Untag Note",
+                  "id": "fe84be65-e16e-4d80-bc15-34b3a20e7c0f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"tag\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id/untag?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id",
+                        "untag"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f2de2cd-2f02-421b-8aca-0ff33db02d75",
+                          "key": "note_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur note id."
+                        }
+                      ]
+                    },
+                    "description": "Use this endpoint to unassign tag record from the note . The API will return the saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"1234\" \n String \n Yes"
+                  },
+                  "response": [
+                    {
+                      "id": "4d07f198-0d83-4d36-8856-e576979018f3",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tag\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/untag?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "untag"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-4d07f198-0d83-4d36-8856-e576979018f3"
+                    },
+                    {
+                      "id": "a76142b4-6476-4572-88fe-8c860746fa88",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tag\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/untag?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "untag"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-a76142b4-6476-4572-88fe-8c860746fa88"
+                    },
+                    {
+                      "id": "d9a9ce0d-ffcc-4ac0-8284-614f4cf635d9",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tag\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/untag?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "untag"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-d9a9ce0d-ffcc-4ac0-8284-614f4cf635d9"
+                    },
+                    {
+                      "id": "21461f54-ad60-4b63-9ff1-7647640c6639",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"tag\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/untag?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "untag"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-21461f54-ad60-4b63-9ff1-7647640c6639"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-fe84be65-e16e-4d80-bc15-34b3a20e7c0f"
+                }
+              ],
+              "id": "9d7592ed-84e6-45b0-aa8a-76bd2149c061",
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-9d7592ed-84e6-45b0-aa8a-76bd2149c061"
+            },
+            {
+              "name": "untag_all",
+              "item": [
+                {
+                  "name": "Untag All Note Tags",
+                  "id": "578ae6f9-a113-4cac-8b31-4a6c5bb5e6d3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id/untag_all?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id",
+                        "untag_all"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8420ad91-11fe-4e6c-b291-0f89f83dc078",
+                          "key": "note_id",
+                          "value": "<integer>",
+                          "description": "(Required) Arthur note id."
+                        }
+                      ]
+                    },
+                    "description": "Use this endpoint to unassign all tags from a\u00a0 note ."
+                  },
+                  "response": [
+                    {
+                      "id": "4f22bb17-b3fc-4054-9847-ba1a4fe3e8e6",
+                      "name": "The request was completed successfully without errors.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/untag_all?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "untag_all"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-4f22bb17-b3fc-4054-9847-ba1a4fe3e8e6"
+                    },
+                    {
+                      "id": "092b170f-3f75-40e7-aab2-b0d60ff5ca87",
+                      "name": "The request was invalid or malformed.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/untag_all?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "untag_all"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-092b170f-3f75-40e7-aab2-b0d60ff5ca87"
+                    },
+                    {
+                      "id": "618309b6-1fed-49fe-ad73-fb8ca9b9d0fa",
+                      "name": "Missing, invalid or expired access token.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/untag_all?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "untag_all"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-618309b6-1fed-49fe-ad73-fb8ca9b9d0fa"
+                    },
+                    {
+                      "id": "754b2848-7713-47f9-85c9-27f84f4e2607",
+                      "name": "The request was sent to a location that does not exist in the API.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                            "key": "X-EntityID",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/notes/:note_id/untag_all?strict=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "notes",
+                            ":note_id",
+                            "untag_all"
+                          ],
+                          "query": [
+                            {
+                              "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                              "key": "strict",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:05:39.000Z",
+                      "updatedAt": "2026-07-28T01:05:39.000Z",
+                      "uid": "35240-754b2848-7713-47f9-85c9-27f84f4e2607"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-578ae6f9-a113-4cac-8b31-4a6c5bb5e6d3"
+                }
+              ],
+              "id": "3c5f5103-7b94-45a7-b662-fd98ab13f662",
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-3c5f5103-7b94-45a7-b662-fd98ab13f662"
+            },
+            {
+              "name": "View Note",
+              "id": "588ab91d-5c64-4cb8-b975-ca0ca77c3cc4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notes/:note_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notes",
+                    ":note_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dbddf51e-1eae-4f5c-a34b-a540afbfcc13",
+                      "key": "note_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur note id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single\u00a0 note , identified by its unique\u00a0 id ."
+              },
+              "response": [
+                {
+                  "id": "15266cb2-c1ea-44da-861c-2276911b9fbd",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-15266cb2-c1ea-44da-861c-2276911b9fbd"
+                },
+                {
+                  "id": "67b94373-dfbe-437e-9661-99febe2be6ce",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-67b94373-dfbe-437e-9661-99febe2be6ce"
+                },
+                {
+                  "id": "2da5d5d0-8d9f-4057-b6dd-8e4ae199e850",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-2da5d5d0-8d9f-4057-b6dd-8e4ae199e850"
+                },
+                {
+                  "id": "7a631f04-d364-4085-a31d-400d6669eda0",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-7a631f04-d364-4085-a31d-400d6669eda0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-588ab91d-5c64-4cb8-b975-ca0ca77c3cc4"
+            },
+            {
+              "name": "Update Note",
+              "id": "59082e41-108b-4077-8bed-f5269c665f0e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"content\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/notes/:note_id?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notes",
+                    ":note_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "3457ce0d-6932-4692-81f9-f792a238ab4d",
+                      "key": "note_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur note id."
+                    }
+                  ]
+                },
+                "description": "This endpoint updates an existing note using the same fields. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No"
+              },
+              "response": [
+                {
+                  "id": "fac0ad64-91ca-4794-8193-1f728904bfa4",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"content\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-fac0ad64-91ca-4794-8193-1f728904bfa4"
+                },
+                {
+                  "id": "6b911410-75dc-4216-87d8-71c83fe63172",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"content\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-6b911410-75dc-4216-87d8-71c83fe63172"
+                },
+                {
+                  "id": "bf46f186-07d2-4589-884a-bfaf371c9d03",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"content\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-bf46f186-07d2-4589-884a-bfaf371c9d03"
+                },
+                {
+                  "id": "06f58e62-e03a-4394-900d-318341dfc8c8",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"content\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-06f58e62-e03a-4394-900d-318341dfc8c8"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-59082e41-108b-4077-8bed-f5269c665f0e"
+            },
+            {
+              "name": "Delete Note",
+              "id": "35c5e212-59d9-4bcd-ab1a-5bfb15e2ec43",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notes/:note_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notes",
+                    ":note_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "73d12d42-6db9-4c26-bb0f-857369050fec",
+                      "key": "note_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur note id."
+                    }
+                  ]
+                },
+                "description": "This endpoint deletes an existing note using the note\u00a0 id ."
+              },
+              "response": [
+                {
+                  "id": "f6242c99-7740-49db-bc24-01d0669bdeb8",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-f6242c99-7740-49db-bc24-01d0669bdeb8"
+                },
+                {
+                  "id": "d3c036cf-3cc7-4125-9da2-f6433e3723ae",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-d3c036cf-3cc7-4125-9da2-f6433e3723ae"
+                },
+                {
+                  "id": "f0907a7f-1852-4be7-8de8-e626a32c6edb",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-f0907a7f-1852-4be7-8de8-e626a32c6edb"
+                },
+                {
+                  "id": "6188e3f6-cca6-4d6b-932e-bd7f7e0c4782",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/notes/:note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "notes",
+                        ":note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:39.000Z",
+                  "updatedAt": "2026-07-28T01:05:39.000Z",
+                  "uid": "35240-6188e3f6-cca6-4d6b-932e-bd7f7e0c4782"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-35c5e212-59d9-4bcd-ab1a-5bfb15e2ec43"
+            }
+          ],
+          "id": "d4727f04-f7fb-419c-9493-e02d3cd0f851",
+          "createdAt": "2026-07-28T01:05:39.000Z",
+          "updatedAt": "2026-07-28T01:05:39.000Z",
+          "uid": "35240-d4727f04-f7fb-419c-9493-e02d3cd0f851"
+        },
+        {
+          "name": "List Notes",
+          "id": "928d7c30-6a8c-49c8-a07c-d8596d03cc8b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notes?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notes"
+              ],
+              "query": [
+                {
+                  "description": "Page number, between 1 and the total number of pages.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Items per page, between 1 and 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Field to sort the collection by.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort direction.",
+                  "key": "direction",
+                  "value": "ASC"
+                }
+              ]
+            },
+            "description": "This endpoint retrieves a list of\u00a0 notes \u00a0."
+          },
+          "response": [
+            {
+              "id": "3de4b48b-f68a-4a3d-bd92-67361dfea2c1",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notes?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"current\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"pageCount\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-3de4b48b-f68a-4a3d-bd92-67361dfea2c1"
+            },
+            {
+              "id": "7aa7d128-f8fa-4a28-a165-21ff363a7aab",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notes?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-7aa7d128-f8fa-4a28-a165-21ff363a7aab"
+            },
+            {
+              "id": "6365d84a-25ef-4b81-af00-dc6dffef1df9",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notes?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-6365d84a-25ef-4b81-af00-dc6dffef1df9"
+            },
+            {
+              "id": "970e303b-e70a-4341-9555-c82647938fce",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notes?page=<integer>&limit=<integer>&sort=<string>&direction=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:39.000Z",
+              "updatedAt": "2026-07-28T01:05:39.000Z",
+              "uid": "35240-970e303b-e70a-4341-9555-c82647938fce"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:39.000Z",
+          "updatedAt": "2026-07-28T01:05:39.000Z",
+          "uid": "35240-928d7c30-6a8c-49c8-a07c-d8596d03cc8b"
+        }
+      ],
+      "id": "0fc4615d-2eab-49f1-9fda-af47d93330bd",
+      "createdAt": "2026-07-28T01:05:39.000Z",
+      "updatedAt": "2026-07-28T01:05:39.000Z",
+      "uid": "35240-0fc4615d-2eab-49f1-9fda-af47d93330bd"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}

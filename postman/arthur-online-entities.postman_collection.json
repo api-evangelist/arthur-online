@@ -1,0 +1,1627 @@
+{
+  "info": {
+    "_postman_id": "5896216a-9b0e-4014-8984-79ce93035a41",
+    "name": "Arthur Entities API",
+    "description": "Arthur Entities API - the entities surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:35.000Z",
+    "updatedAt": "2026-07-28T01:05:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5896216a-9b0e-4014-8984-79ce93035a41"
+  },
+  "item": [
+    {
+      "name": "entities",
+      "item": [
+        {
+          "name": "{entity_id}",
+          "item": [
+            {
+              "name": "View Entity",
+              "id": "7cb4bf52-1ddf-4819-b137-8d2ea0e38b81",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities/:entity_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities",
+                    ":entity_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "928f9d2f-6792-4722-9353-710ed8e5604f",
+                      "key": "entity_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur entity id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single entity, identified by its unique\u00a0 entity_id .\n\nUse this endpoint to view the specific details of a entity."
+              },
+              "response": [
+                {
+                  "id": "98f3cd1c-46e8-436c-abf6-5c811d19615e",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-98f3cd1c-46e8-436c-abf6-5c811d19615e"
+                },
+                {
+                  "id": "db754863-a291-4e95-90f7-9f73f50a877b",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-db754863-a291-4e95-90f7-9f73f50a877b"
+                },
+                {
+                  "id": "88ccb79c-18a8-4c4c-8819-61bafdbb776f",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-88ccb79c-18a8-4c4c-8819-61bafdbb776f"
+                },
+                {
+                  "id": "3a5e6e32-7194-492e-a3fc-e92eeb3fe23d",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-3a5e6e32-7194-492e-a3fc-e92eeb3fe23d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-7cb4bf52-1ddf-4819-b137-8d2ea0e38b81"
+            },
+            {
+              "name": "Update Entity",
+              "id": "305691e8-f47e-4c10-8fc2-353ecc928896",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<integer>\",\n  \"website\": \"<string>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entities/:entity_id?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities",
+                    ":entity_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "f065f75d-f020-4f0d-97ae-71d585c3ac34",
+                      "key": "entity_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur entity id."
+                    }
+                  ]
+                },
+                "description": "This endpoint updates an existing entity using the same fields as the 'Add Entity' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the entity in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncompany \n company ltd \n String \n No \n\nemail \n company@email.com \n String \n No \n\nfirst_name \n Brian \n String \n No \n\nlast_name \n Jackson \n String \n No \n\ntitle \n Mr \n String \n No \n\nphone_work \n 12345 \n String \n No \n\nphone_home \n 12345 \n String \n No \n\nmobile \n 12345 \n String \n No \n\nvat_no \n 20 \n Integer \n No \n\nwebsite \n www.yourwebsite.com \n String \n No \n\naddress_name \n Queens road \n String \n No \n\naddress_line_1 \n 42 Raven drive \n String \n No \n\naddress_line_2 \n 3 Swan court \n String \n No \n\ncity \n London \n String \n No \n\ncounty \n Greater London \n String \n No \n\ncountry \n United Kingdom \n String \n No \n\npostcode \n NW14DG \n String \n No"
+              },
+              "response": [
+                {
+                  "id": "7ba3a22f-abc9-4b91-aa5c-00426a4f08d7",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"company\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<integer>\",\n  \"website\": \"<string>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-7ba3a22f-abc9-4b91-aa5c-00426a4f08d7"
+                },
+                {
+                  "id": "3bb8ab08-1894-4c8d-9117-f15819639858",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"company\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<integer>\",\n  \"website\": \"<string>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-3bb8ab08-1894-4c8d-9117-f15819639858"
+                },
+                {
+                  "id": "3d265be4-01ee-4f4f-9e0e-c7172fc99cf4",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"company\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<integer>\",\n  \"website\": \"<string>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-3d265be4-01ee-4f4f-9e0e-c7172fc99cf4"
+                },
+                {
+                  "id": "835ac854-b21f-4fdd-9b85-ba01d2abd470",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"company\": \"<string>\",\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<integer>\",\n  \"website\": \"<string>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-835ac854-b21f-4fdd-9b85-ba01d2abd470"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-305691e8-f47e-4c10-8fc2-353ecc928896"
+            },
+            {
+              "name": "Delete Entity",
+              "id": "2df447c5-144d-44bf-b96b-3d75d77f4c39",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities/:entity_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities",
+                    ":entity_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6c5dc8e4-3c0b-44f7-8a58-8578b26652e7",
+                      "key": "entity_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur entity id."
+                    }
+                  ]
+                },
+                "description": "This endpoint deletes an existing entity using the entity\u00a0 id ."
+              },
+              "response": [
+                {
+                  "id": "a0b3b42b-c071-4848-826c-0ac4ebe8c1ca",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-a0b3b42b-c071-4848-826c-0ac4ebe8c1ca"
+                },
+                {
+                  "id": "4616cc6c-cd7f-4a4e-af5e-a4af6807a101",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-4616cc6c-cd7f-4a4e-af5e-a4af6807a101"
+                },
+                {
+                  "id": "ec316859-d034-4560-bd9a-6fdce962c701",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-ec316859-d034-4560-bd9a-6fdce962c701"
+                },
+                {
+                  "id": "5821516c-fbd0-4fc7-92ca-583756e54a29",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/entities/:entity_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "entities",
+                        ":entity_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:35.000Z",
+                  "updatedAt": "2026-07-28T01:05:35.000Z",
+                  "uid": "35240-5821516c-fbd0-4fc7-92ca-583756e54a29"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-2df447c5-144d-44bf-b96b-3d75d77f4c39"
+            }
+          ],
+          "id": "64130519-d1af-4aad-b717-dcdd013c4079",
+          "createdAt": "2026-07-28T01:05:35.000Z",
+          "updatedAt": "2026-07-28T01:05:35.000Z",
+          "uid": "35240-64130519-d1af-4aad-b717-dcdd013c4079"
+        },
+        {
+          "name": "List Entities",
+          "id": "46e5e038-866b-4073-9e45-4b227dbe656a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/entities?service=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "entities"
+              ],
+              "query": [
+                {
+                  "description": "Filter by type of service",
+                  "key": "service",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Page number, between 1 and the total number of pages.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Items per page, between 1 and 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Field to sort the collection by.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort direction.",
+                  "key": "direction",
+                  "value": "DESC"
+                }
+              ]
+            },
+            "description": "This endpoint retrieves a list of entities."
+          },
+          "response": [
+            {
+              "id": "b8262f28-9c0c-4ad3-817e-68f08e834600",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities?service=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by type of service",
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"pagination\": {\n    \"page\": \"<integer>\",\n    \"current\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"pageCount\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-b8262f28-9c0c-4ad3-817e-68f08e834600"
+            },
+            {
+              "id": "c1aa62ff-da86-4f19-b389-81e0e863c6aa",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities?service=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by type of service",
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-c1aa62ff-da86-4f19-b389-81e0e863c6aa"
+            },
+            {
+              "id": "267e69c4-5a47-4db6-bd4f-b6c0fe8ed9bc",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities?service=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by type of service",
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-267e69c4-5a47-4db6-bd4f-b6c0fe8ed9bc"
+            },
+            {
+              "id": "32e2cf16-cd2c-456a-99ff-dfa827085cbc",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/entities?service=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by type of service",
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-32e2cf16-cd2c-456a-99ff-dfa827085cbc"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:35.000Z",
+          "updatedAt": "2026-07-28T01:05:35.000Z",
+          "uid": "35240-46e5e038-866b-4073-9e45-4b227dbe656a"
+        },
+        {
+          "name": "Create Entity",
+          "id": "8224b942-8b4f-4fad-8ecd-c40561451849",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"group\": \"<string>\",\n  \"company\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<string>\",\n  \"website\": \"<string>\",\n  \"invite_existing\": \"<boolean>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/entities?strict=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "entities"
+              ],
+              "query": [
+                {
+                  "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                  "key": "strict",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "Use this endpoint to create a new entity. The API will return the saved data and a unique Entity ID.\n\nCurrently only supports creating landlords and agents \n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncompany \n company ltd \n String \n No \n\nemail \n company@email.com \n String \n Yes \n\nfirst_name \n Brian \n String \n Yes \n\nlast_name \n Jackson \n String \n No \n\ntitle \n Mr \n String \n No \n\nphone_work \n 12345 \n String \n No \n\nphone_home \n 12345 \n String \n No \n\nmobile \n 12345 \n String \n No \n\ngroup \n Owner \n String \n Yes \n\nvat_no \n 1 \n String \n No \n\nwebsite \n www.yourwebsite.com \n String \n No \n\ninvite_existing \n true \n Boolean \n No \n\naddress_name \n Queens road \n String \n No \n\naddress_line_1 \n 42 Raven drive \n String \n No \n\naddress_line_2 \n 3 Swan court \n String \n No \n\ncity \n London \n String \n No \n\ncounty \n Greater London \n String \n No \n\ncountry \n United Kingdom \n String \n No \n\npostcode \n NW14DG \n String \n No"
+          },
+          "response": [
+            {
+              "id": "806a072d-1b97-4584-97e3-5e2958c54e91",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"group\": \"<string>\",\n  \"company\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<string>\",\n  \"website\": \"<string>\",\n  \"invite_existing\": \"<boolean>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entities?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-806a072d-1b97-4584-97e3-5e2958c54e91"
+            },
+            {
+              "id": "a2ab342f-c8f8-4448-b246-0b5f64ae011a",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"group\": \"<string>\",\n  \"company\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<string>\",\n  \"website\": \"<string>\",\n  \"invite_existing\": \"<boolean>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entities?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-a2ab342f-c8f8-4448-b246-0b5f64ae011a"
+            },
+            {
+              "id": "2bd12b5a-afdf-44d3-b465-47bf6fdf7be5",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"group\": \"<string>\",\n  \"company\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<string>\",\n  \"website\": \"<string>\",\n  \"invite_existing\": \"<boolean>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entities?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-2bd12b5a-afdf-44d3-b465-47bf6fdf7be5"
+            },
+            {
+              "id": "cd98f206-b5c8-4c62-b2d9-298b4d3908f6",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"group\": \"<string>\",\n  \"company\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"vat_no\": \"<string>\",\n  \"website\": \"<string>\",\n  \"invite_existing\": \"<boolean>\",\n  \"address_name\": \"<string>\",\n  \"address_line_1\": \"<string>\",\n  \"address_line_2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"county\": \"<string>\",\n  \"country\": \"<string>\",\n  \"postcode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/entities?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "entities"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:35.000Z",
+              "updatedAt": "2026-07-28T01:05:35.000Z",
+              "uid": "35240-cd98f206-b5c8-4c62-b2d9-298b4d3908f6"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:35.000Z",
+          "updatedAt": "2026-07-28T01:05:35.000Z",
+          "uid": "35240-8224b942-8b4f-4fad-8ecd-c40561451849"
+        }
+      ],
+      "id": "a2b3b8d5-dae9-42e7-8795-54b8cd2bb058",
+      "createdAt": "2026-07-28T01:05:35.000Z",
+      "updatedAt": "2026-07-28T01:05:35.000Z",
+      "uid": "35240-a2b3b8d5-dae9-42e7-8795-54b8cd2bb058"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}

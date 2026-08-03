@@ -1,0 +1,1727 @@
+{
+  "info": {
+    "_postman_id": "b5184d24-512c-4790-b69d-ae7d2083f12d",
+    "name": "Arthur Assets API",
+    "description": "Arthur Assets API - the assets surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:05:11.000Z",
+    "updatedAt": "2026-07-28T01:05:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b5184d24-512c-4790-b69d-ae7d2083f12d"
+  },
+  "item": [
+    {
+      "name": "assets",
+      "item": [
+        {
+          "name": "{asset_id}",
+          "item": [
+            {
+              "name": "View Asset",
+              "id": "02c4c89c-5ec0-4c6d-b287-5e8139a728aa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assets/:asset_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets",
+                    ":asset_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "76057d23-4d59-45be-814a-13ff8950e136",
+                      "key": "asset_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur asset id."
+                    }
+                  ]
+                },
+                "description": "This API endpoint retrieves the details of a single asset, identified by its unique\u00a0 asset_id .\n\nUse this endpoint to view the specific details of an asset."
+              },
+              "response": [
+                {
+                  "id": "6ad1bb7a-39aa-43ef-ae67-83c2c6a07bd9",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-6ad1bb7a-39aa-43ef-ae67-83c2c6a07bd9"
+                },
+                {
+                  "id": "432cfe26-d715-46b2-9fa0-8a5631a5dbc0",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-432cfe26-d715-46b2-9fa0-8a5631a5dbc0"
+                },
+                {
+                  "id": "4d4e3b42-ca73-4f5c-84e9-137383a1d5cf",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-4d4e3b42-ca73-4f5c-84e9-137383a1d5cf"
+                },
+                {
+                  "id": "685843d3-04ba-415f-b3ae-ea1b62d4e8a5",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-685843d3-04ba-415f-b3ae-ea1b62d4e8a5"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-02c4c89c-5ec0-4c6d-b287-5e8139a728aa"
+            },
+            {
+              "name": "Update Asset",
+              "id": "6653b3d3-5d04-4635-80d4-db0e8914e3d7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assets/:asset_id?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets",
+                    ":asset_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "caf55d9f-8932-4a4d-9f0c-d138d7725978",
+                      "key": "asset_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur asset id."
+                    }
+                  ]
+                },
+                "description": "This endpoint updates an existing asset using the same fields as the 'Add Asset' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the asset in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n No \n\nmime_type \n application/pdf \n String \n No \n\nfile_name \n inventory \n String \n No"
+              },
+              "response": [
+                {
+                  "id": "1114e8ae-d7fa-4985-8d83-3e666517717b",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-1114e8ae-d7fa-4985-8d83-3e666517717b"
+                },
+                {
+                  "id": "354f6a58-ea5f-4a68-aafd-ff97e31a22a7",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-354f6a58-ea5f-4a68-aafd-ff97e31a22a7"
+                },
+                {
+                  "id": "e150f251-8df8-4057-b936-e2ca913432cd",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-e150f251-8df8-4057-b936-e2ca913432cd"
+                },
+                {
+                  "id": "39cd2b44-53ed-4957-b515-6d50367ae90e",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\",\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id?strict=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                          "key": "strict",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-39cd2b44-53ed-4957-b515-6d50367ae90e"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-6653b3d3-5d04-4635-80d4-db0e8914e3d7"
+            },
+            {
+              "name": "Delete Asset",
+              "id": "b42530d1-009e-436b-999a-0045d31bb8ee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assets/:asset_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets",
+                    ":asset_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "88c3388e-374b-49a5-be6a-f62a0cda4941",
+                      "key": "asset_id",
+                      "value": "<integer>",
+                      "description": "(Required) Arthur asset id."
+                    }
+                  ]
+                },
+                "description": "This endpoint deletes an existing asset record using the asset id ."
+              },
+              "response": [
+                {
+                  "id": "0bf2f1ed-ed48-474a-81bd-0708823100ae",
+                  "name": "The request was completed successfully without errors.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-0bf2f1ed-ed48-474a-81bd-0708823100ae"
+                },
+                {
+                  "id": "fe1ec026-6c9f-409b-bcaf-1db17d501c3e",
+                  "name": "The request was invalid or malformed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-fe1ec026-6c9f-409b-bcaf-1db17d501c3e"
+                },
+                {
+                  "id": "a3555a40-1bb3-4554-b089-58ceb7c0d4ba",
+                  "name": "Missing, invalid or expired access token.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-a3555a40-1bb3-4554-b089-58ceb7c0d4ba"
+                },
+                {
+                  "id": "5f3d4382-2187-4a84-9662-8deb99d4e68d",
+                  "name": "The request was sent to a location that does not exist in the API.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                        "key": "X-EntityID",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/assets/:asset_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "assets",
+                        ":asset_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "asset_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:05:12.000Z",
+                  "updatedAt": "2026-07-28T01:05:12.000Z",
+                  "uid": "35240-5f3d4382-2187-4a84-9662-8deb99d4e68d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-b42530d1-009e-436b-999a-0045d31bb8ee"
+            }
+          ],
+          "id": "3e224698-ea30-4bbf-ae37-dc235be1bb2c",
+          "createdAt": "2026-07-28T01:05:12.000Z",
+          "updatedAt": "2026-07-28T01:05:12.000Z",
+          "uid": "35240-3e224698-ea30-4bbf-ae37-dc235be1bb2c"
+        },
+        {
+          "name": "List Assets",
+          "id": "f540a499-41f6-4dd9-be11-8bea83dee77f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/assets?type=<string>&main_image=<string>&created_from=<string>&created_to=<string>&model=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assets"
+              ],
+              "query": [
+                {
+                  "description": "Filter by asset type (image, notimage, document, other)",
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "To display only main images, set this to true",
+                  "key": "main_image",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters assets by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date",
+                  "key": "created_from",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filters assets by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                  "key": "created_to",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by attachment type (Property, Unit, Tenancy, Transaction)",
+                  "key": "model",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Page number, between 1 and the total number of pages.",
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Items per page, between 1 and 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Field to sort the collection by.",
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort direction.",
+                  "key": "direction",
+                  "value": "DESC"
+                }
+              ]
+            },
+            "description": "This retrieves a list of assets.\n\nSee available filters below to customize the list of properties returned."
+          },
+          "response": [
+            {
+              "id": "56c55972-dbf4-44b6-a6ac-ee8ab721c91a",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assets?type=<string>&main_image=<string>&created_from=<string>&created_to=<string>&model=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by asset type (image, notimage, document, other)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "To display only main images, set this to true",
+                      "key": "main_image",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters assets by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date",
+                      "key": "created_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters assets by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "created_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by attachment type (Property, Unit, Tenancy, Transaction)",
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-56c55972-dbf4-44b6-a6ac-ee8ab721c91a"
+            },
+            {
+              "id": "d4bf414b-685e-49e6-b526-b5bbfe9d09b9",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assets?type=<string>&main_image=<string>&created_from=<string>&created_to=<string>&model=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by asset type (image, notimage, document, other)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "To display only main images, set this to true",
+                      "key": "main_image",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters assets by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date",
+                      "key": "created_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters assets by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "created_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by attachment type (Property, Unit, Tenancy, Transaction)",
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-d4bf414b-685e-49e6-b526-b5bbfe9d09b9"
+            },
+            {
+              "id": "685ddc29-1138-449a-b501-230a7ef5cee6",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assets?type=<string>&main_image=<string>&created_from=<string>&created_to=<string>&model=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by asset type (image, notimage, document, other)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "To display only main images, set this to true",
+                      "key": "main_image",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters assets by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date",
+                      "key": "created_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters assets by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "created_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by attachment type (Property, Unit, Tenancy, Transaction)",
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-685ddc29-1138-449a-b501-230a7ef5cee6"
+            },
+            {
+              "id": "0d58d4e1-017f-46ab-aaa9-bf2d6c92aafc",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/assets?type=<string>&main_image=<string>&created_from=<string>&created_to=<string>&model=<string>&page=<integer>&limit=<integer>&sort=<string>&direction=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by asset type (image, notimage, document, other)",
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "To display only main images, set this to true",
+                      "key": "main_image",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters assets by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date",
+                      "key": "created_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filters assets by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.",
+                      "key": "created_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by attachment type (Property, Unit, Tenancy, Transaction)",
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number, between 1 and the total number of pages.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Items per page, between 1 and 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Field to sort the collection by.",
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort direction.",
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-0d58d4e1-017f-46ab-aaa9-bf2d6c92aafc"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:12.000Z",
+          "updatedAt": "2026-07-28T01:05:12.000Z",
+          "uid": "35240-f540a499-41f6-4dd9-be11-8bea83dee77f"
+        },
+        {
+          "name": "Create Asset",
+          "id": "c9fcedf6-49b1-4bbf-9969-b0c29aef9cbd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/assets?strict=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "assets"
+              ],
+              "query": [
+                {
+                  "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                  "key": "strict",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "Use this endpoint to create a new asset. The API will return the saved data and a unique Asset ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n Inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+          },
+          "response": [
+            {
+              "id": "3b298cb1-5413-45ce-a695-7a4ec2b1ce06",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assets?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-3b298cb1-5413-45ce-a695-7a4ec2b1ce06"
+            },
+            {
+              "id": "81a7602b-b218-42f9-a90d-ed36c7b5c470",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assets?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-81a7602b-b218-42f9-a90d-ed36c7b5c470"
+            },
+            {
+              "id": "67129a82-082d-4f1b-9e61-36702cd1ae67",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assets?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-67129a82-082d-4f1b-9e61-36702cd1ae67"
+            },
+            {
+              "id": "4fc6738d-b7d0-426e-87c4-af63afea3e89",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file\": \"<string>\",\n  \"mime_type\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"asset_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"share_manager\": \"<boolean>\",\n  \"share_tenant\": \"<boolean>\",\n  \"share_contractor\": \"<boolean>\",\n  \"share_owner\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/assets?strict=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.",
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<integer>\",\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:05:12.000Z",
+              "updatedAt": "2026-07-28T01:05:12.000Z",
+              "uid": "35240-4fc6738d-b7d0-426e-87c4-af63afea3e89"
+            }
+          ],
+          "createdAt": "2026-07-28T01:05:12.000Z",
+          "updatedAt": "2026-07-28T01:05:12.000Z",
+          "uid": "35240-c9fcedf6-49b1-4bbf-9969-b0c29aef9cbd"
+        }
+      ],
+      "id": "e80f23c6-ba6f-4fa9-9d0e-a7b08128c3e6",
+      "createdAt": "2026-07-28T01:05:12.000Z",
+      "updatedAt": "2026-07-28T01:05:12.000Z",
+      "uid": "35240-e80f23c6-ba6f-4fa9-9d0e-a7b08128c3e6"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.arthuronline.co.uk/v2"
+    }
+  ]
+}
