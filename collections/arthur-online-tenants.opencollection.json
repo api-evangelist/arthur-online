@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arthur Tenants API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.arthuronline.co.uk/oauth/authorize",
+      "accessTokenUrl": "https://auth.arthuronline.co.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invite",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invite Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/tenants/:tenant_id/invite",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ]
+          },
+          "docs": "This API endpoint can be used to initiate an automated process for inviting a tenant who is identified by their unique tenant_id .\n\nOnce the API call is made, the response will contain the tenant's details as well as an \"invite_code\"."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/tenants",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "property_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the property"
+              },
+              {
+                "name": "unit_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the unit"
+              },
+              {
+                "name": "tenancy_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the tenancy"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tenant email"
+              },
+              {
+                "name": "phone_home",
+                "value": "",
+                "type": "query",
+                "description": "Filter by phone home number"
+              },
+              {
+                "name": "phone_work",
+                "value": "",
+                "type": "query",
+                "description": "Filter by phone work number"
+              },
+              {
+                "name": "mobile",
+                "value": "",
+                "type": "query",
+                "description": "Fily by mobile number"
+              },
+              {
+                "name": "full_address",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the full address of the property"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This retrieves a list of tenants.\n\nSee available filters below to customize the list of tenants returned."
+        },
+        {
+          "info": {
+            "name": "Add Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/tenants",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "strict",
+                "value": "true",
+                "type": "query",
+                "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new tenant. The API will return the saved data and a unique tenant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntenancy_id \n 123 \n Integer \n Yes \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No "
+        },
+        {
+          "info": {
+            "name": "View Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/tenants/:tenant_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur tenant id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single tenant, identified by its unique  tenant_id .\n\nUse this endpoint to view the specific details of a renter."
+        },
+        {
+          "info": {
+            "name": "Update Tenant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/tenants/:tenant_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur tenant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing tenant using the same fields as the 'Add Tenant' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the tenant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntenancy_id \n 123 \n Integer \n No \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

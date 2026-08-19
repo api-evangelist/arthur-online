@@ -1,0 +1,709 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arthur Types API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.arthuronline.co.uk/oauth/authorize",
+      "accessTokenUrl": "https://auth.arthuronline.co.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applicant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Applicant types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicant_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Applicant types"
+        },
+        {
+          "info": {
+            "name": "Citizen types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/citizen_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Citizen types"
+        },
+        {
+          "info": {
+            "name": "Applicant statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicant_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Applicant statuses"
+        },
+        {
+          "info": {
+            "name": "Visa types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/visa_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Visa types"
+        },
+        {
+          "info": {
+            "name": "Student statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/student_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Student statuses"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Task types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/task_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Task types"
+        },
+        {
+          "info": {
+            "name": "Subtask templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/subtask_templates",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Subtask templates"
+        },
+        {
+          "info": {
+            "name": "Task statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/task_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Task statuses"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Profession types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/profession_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Profession types"
+        },
+        {
+          "info": {
+            "name": "Access details types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/access_details_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Access details types"
+        },
+        {
+          "info": {
+            "name": "Area types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/area_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Area types"
+        },
+        {
+          "info": {
+            "name": "Certificate types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/certificate_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Certificate types"
+        },
+        {
+          "info": {
+            "name": "Contract types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/contract_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Contract types"
+        },
+        {
+          "info": {
+            "name": "Countries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/countries",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Countries"
+        },
+        {
+          "info": {
+            "name": "Faq types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/faq_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Faq types"
+        },
+        {
+          "info": {
+            "name": "Feature types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/feature_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Feature types"
+        },
+        {
+          "info": {
+            "name": "Genders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/genders",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Genders"
+        },
+        {
+          "info": {
+            "name": "Home owner statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/home_owner_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Home owner statuses"
+        },
+        {
+          "info": {
+            "name": "Offer frequency types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/offer_frequencies",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Offer frequency types"
+        },
+        {
+          "info": {
+            "name": "Payment types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/payment_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Payment types"
+        },
+        {
+          "info": {
+            "name": "Property types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/property_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Property types"
+        },
+        {
+          "info": {
+            "name": "Service types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/service_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Service types"
+        },
+        {
+          "info": {
+            "name": "Tenancy  statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/tenancy_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Tenancy  statuses"
+        },
+        {
+          "info": {
+            "name": "Titles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/titles",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Titles"
+        },
+        {
+          "info": {
+            "name": "Transaction description formats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/description_formats",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Transaction description formats"
+        },
+        {
+          "info": {
+            "name": "Unit types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/unit_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "We have an extra filter available on this endpoint to include just used unit_types.\n\nhttps://api.arthuronline.co.uk/v2/unit_types?only_inclue_used=1"
+        },
+        {
+          "info": {
+            "name": "Unit status types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/unit_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Unit status types"
+        },
+        {
+          "info": {
+            "name": "Utility types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/utility_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Utility types"
+        },
+        {
+          "info": {
+            "name": "Vat codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/vat_codes",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Vat codes"
+        },
+        {
+          "info": {
+            "name": "Asset types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/asset_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Asset types"
+        },
+        {
+          "info": {
+            "name": "Viewing statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewing_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Viewing statuses"
+        },
+        {
+          "info": {
+            "name": "Tenancy types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/tenancy_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Tenancy types"
+        },
+        {
+          "info": {
+            "name": "Tenancy subtypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/tenancy_sub_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Tenancy subtypes"
+        },
+        {
+          "info": {
+            "name": "Tenancy subtypes on Tenancy Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/tenancy_types/:id/tenancy_sub_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Tenancy subtypes on Tenancy Type"
+        },
+        {
+          "info": {
+            "name": "Transaction types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/transaction_types",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Transaction types"
+        },
+        {
+          "info": {
+            "name": "Conversation statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/conversation_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Conversation statuses"
+        },
+        {
+          "info": {
+            "name": "Rent frequencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/rent_frequencies",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Rent frequencies"
+        },
+        {
+          "info": {
+            "name": "Workorder statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/workorder_statuses",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Workorder statuses"
+        },
+        {
+          "info": {
+            "name": "Recurring Frequencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/frequencies/recurring",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Recurring Frequencies"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

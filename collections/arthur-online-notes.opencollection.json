@@ -1,0 +1,316 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arthur Notes API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.arthuronline.co.uk/oauth/authorize",
+      "accessTokenUrl": "https://auth.arthuronline.co.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tags on Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/notes/:note_id/tags",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of tags associated with the given note ID."
+        },
+        {
+          "info": {
+            "name": "Tag Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/notes/:note_id/tags",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new tag record for a  note . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+        },
+        {
+          "info": {
+            "name": "Untag Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/notes/:note_id/untag",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to unassign tag record from the note . The API will return the saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"1234\" \n String \n Yes"
+        },
+        {
+          "info": {
+            "name": "Untag All Note Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/notes/:note_id/untag_all",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to unassign all tags from a  note ."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/notes",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of  notes  ."
+        },
+        {
+          "info": {
+            "name": "View Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single  note , identified by its unique  id ."
+        },
+        {
+          "info": {
+            "name": "Update Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing note using the same fields. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No"
+        },
+        {
+          "info": {
+            "name": "Delete Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing note using the note  id ."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

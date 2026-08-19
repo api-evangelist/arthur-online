@@ -1,0 +1,1121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arthur Applicants API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.arthuronline.co.uk/oauth/authorize",
+      "accessTokenUrl": "https://auth.arthuronline.co.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Assets On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/assets",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of assets associated with the given applicant ID."
+        },
+        {
+          "info": {
+            "name": "Create Asset On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/assets",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new asset related to an applicant . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String (base64) \n Yes \n\nmime_type \n application"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assigned Managers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Managers on Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/managers/:manager_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "manager_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur manager id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of assigned managers associated with the given applicant ID."
+        },
+        {
+          "info": {
+            "name": "Delete Manager on Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/managers/:manager_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "manager_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur manager id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing assignee using the assigned manager  id ."
+        },
+        {
+          "info": {
+            "name": "Add Manager on Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/managers",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to assign managers to an applicant. The API will return the saved manager data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nperson_id \n 158674 \n Integer \n Yes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Credit Checks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Credit Checks on Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/credit_checks",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of credit checks associated with the given applicant ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Recipients for Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/conversation_recipients",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of conversation recipients associated with the given applicant ID."
+        },
+        {
+          "info": {
+            "name": "List Conversations On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/conversations",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of conversations associated with the given applicant ID."
+        },
+        {
+          "info": {
+            "name": "Create Conversation On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/conversations",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new conversation related to a  applicant . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's done \n String \n Yes \n\nsubject \n Meeting tomorrow \n String \n Yes \n\nperson_ids \n ['1','2'] \n Array(String) \n Yes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Viewings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Viewings On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/viewings",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter the viewings by status."
+              },
+              {
+                "name": "assignedTo",
+                "value": "",
+                "type": "query",
+                "description": "Filter the viewings by assigned to ID."
+              },
+              {
+                "name": "viewingDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter the viewings by the date."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of viewings associated with the given applicant ID."
+        },
+        {
+          "info": {
+            "name": "Add Viewing On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/viewings",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new viewing record for the  applicant . The API will return the saved data and a unique applicant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nunit_id \n 123 \n Integer \n\nYes \n\nviewing_date \n 2019-05-28 \n Date \n\nNo \n\nviewing_time \n 00:00 \n Time \n\nNo \n\noffer_amount \n 250.00 \n Float \n\nNo \n\noffer_frequency \n Week \n Enum \n Month \n No \n\nmove_in_date \n 2019-07-01 \n Date \n\nNo \n\nassigned_to_ids"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Notes On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/notes",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of notes associated with the given applicant ID."
+        },
+        {
+          "info": {
+            "name": "Add Note On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/notes",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new note record for the applicant . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n Yes"
+        },
+        {
+          "info": {
+            "name": "View Note On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single note , identified by its unique id ."
+        },
+        {
+          "info": {
+            "name": "Update Note On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing note using the same fields as the 'Add Note' endpoint. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No"
+        },
+        {
+          "info": {
+            "name": "Delete Note On Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing note using the note id ."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tags on Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/tags",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of tags associated with the given applicant ID."
+        },
+        {
+          "info": {
+            "name": "Tag Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/tags",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new tag record for the applicant . The API will return the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+        },
+        {
+          "info": {
+            "name": "Untag Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/untag",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to unassign tag record from the applicant . The API will return the saved data and a unique applicant ID. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"1234\" \n String \n Yes"
+        },
+        {
+          "info": {
+            "name": "Untag All Applicant Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id/untag_all",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to unassign all tags from the  applicant ."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Applicants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Applicants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter by applicant email"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status (Tenant, Active, Inactive or custom created statuses)"
+              },
+              {
+                "name": "conditions",
+                "value": "",
+                "type": "query",
+                "description": "Filter by pre-defined conditions (with-viewing, without-viewing, empty)"
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags associated with the applicant, which should be provided as a comma-separated list"
+              },
+              {
+                "name": "created_date_from",
+                "value": "",
+                "type": "query",
+                "description": "Filters applicants by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "created_date_to",
+                "value": "",
+                "type": "query",
+                "description": "Filters applicants by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "new_applicants_today",
+                "value": "",
+                "type": "query",
+                "description": "To display only recent applicants, set this to true"
+              },
+              {
+                "name": "number_of_sharers",
+                "value": "",
+                "type": "query",
+                "description": "Filter applicants by the number of sharers"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Filter list by applicant source name"
+              },
+              {
+                "name": "assign_to",
+                "value": "",
+                "type": "query",
+                "description": "Filter list by Manager ID"
+              },
+              {
+                "name": "_q",
+                "value": "",
+                "type": "query",
+                "description": "Filter list by a keyword"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of applicants. The enterprise package is required to view/edit the matched_unit_ids array list.\n\nSee available filters below to customize the list of applicants returned."
+        },
+        {
+          "info": {
+            "name": "Add Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/applicants",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "strict",
+                "value": "true",
+                "type": "query",
+                "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new applicant. The API will return the saved data and a unique Applicant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_status \n Active \n String \n\nNo \n\ntitle \n Mr \n Enum \n Mr \n No \n\nfirst_name \n Ryan \n String \n\nNo \n\nlast_name \n Cullen \n String \n\nNo \n\ndate_of_birth \n 1995-05-28 \n Date \n\nNo \n\ngender \n Other \n Enum \n Male \n No \n\ncitizen_type \n UK Citizen \n Enum \n\nNo \n\nemail \n mye"
+        },
+        {
+          "info": {
+            "name": "View Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single applicant, identified by its unique  applicant_id .\n\nUse this endpoint to view the specific details of a applicant."
+        },
+        {
+          "info": {
+            "name": "Update Applicant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/applicants/:applicant_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "true",
+                "type": "query",
+                "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing unit using the same fields as the 'Add Applicant' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the applicant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\ntitle \n Mr \n Enum \n Mr \n No \n\nfirst_name \n Ryan \n String \n\nNo \n\nlast_name \n Cullen \n String \n\nNo \n\ndate_of_birth \n 1995-05-28 \n Date \n\nNo \n\ngender \n Other \n"
+        },
+        {
+          "info": {
+            "name": "Update Applicant Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/applicant/:applicant_id/status",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "applicant_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur applicant id."
+              },
+              {
+                "name": "strict",
+                "value": "true",
+                "type": "query",
+                "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing applicants status. The API will return the updated data for the applicant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n \"Tenant\" \n String \n Yes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

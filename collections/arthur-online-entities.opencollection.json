@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arthur Entities API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.arthuronline.co.uk/oauth/authorize",
+      "accessTokenUrl": "https://auth.arthuronline.co.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/entities",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type of service"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of entities."
+        },
+        {
+          "info": {
+            "name": "Create Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/entities",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new entity. The API will return the saved data and a unique Entity ID.\n\nCurrently only supports creating landlords and agents \n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncompany \n company ltd \n String \n No \n\nemail \n company@email.com \n String \n Yes \n\nfirst_name \n Brian \n String \n Yes \n\nlast_name \n Jackson \n String \n No \n\ntitle \n Mr \n String \n No \n\nphone_work \n 12345 \n String \n No \n\nphone_home \n 1"
+        },
+        {
+          "info": {
+            "name": "View Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/entities/:entity_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur entity id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single entity, identified by its unique  entity_id .\n\nUse this endpoint to view the specific details of a entity."
+        },
+        {
+          "info": {
+            "name": "Update Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/entities/:entity_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur entity id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing entity using the same fields as the 'Add Entity' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the entity in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncompany \n company ltd \n String \n No \n\nemail \n company@email.com \n String \n No \n\nfirst_name \n Brian \n String \n No \n\nlast_name \n Jackson \n String \n No \n\ntitle \n Mr \n String"
+        },
+        {
+          "info": {
+            "name": "Delete Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/entities/:entity_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur entity id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing entity using the entity  id ."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arthur Viewings API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.arthuronline.co.uk/oauth/authorize",
+      "accessTokenUrl": "https://auth.arthuronline.co.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applicants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Applicants on Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/applicants",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This retrieves a list of applicants on a viewing, identified by its unique  viewing_id ."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assigned Managers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Managers on Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/managers",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of assigned managers associated with the given viewing ID."
+        },
+        {
+          "info": {
+            "name": "Add Manager on Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/managers",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to assign managers to a viewing. The API will return the saved manager data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nperson_id \n 158674 \n Integer \n Yes"
+        },
+        {
+          "info": {
+            "name": "View Manager on Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/managers/:manager_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "manager_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur manager id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single assigned manager, identified by its unique  manager_id .\n\nUse this endpoint to view the specific details of an assigned manager, on a viewing record."
+        },
+        {
+          "info": {
+            "name": "Delete Manager on Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/managers/:manager_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "manager_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur manager id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing assignee using the assigned manager  id , on a viewing record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Recipients for Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/conversation_recipients",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of conversation recipients on a viewing record, identified by its unique viewing_id ."
+        },
+        {
+          "info": {
+            "name": "List Conversations On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/conversations",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of conversations on a viewing, identified by its unique  viewing_id ."
+        },
+        {
+          "info": {
+            "name": "Create Conversation On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/conversations",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new conversation on a viewing record. The API will return the saved data and a unique Conversation ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's done \n String \n Yes \n\nsubject \n Meeting tomorrow \n String \n Yes \n\nperson_ids \n ['1','2'] \n Array(String) \n Yes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tags on Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/tags",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of tags associated with the given Viewing ID."
+        },
+        {
+          "info": {
+            "name": "Tag Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/tags",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new tag record for the  viewing . The API will return the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+        },
+        {
+          "info": {
+            "name": "Untag Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/untag",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to unassign tag record from the viewing . The API will return the saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"123\" \n String \n Yes"
+        },
+        {
+          "info": {
+            "name": "Untag All Viewing Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/untag_all",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to unassign all tags from the  viewing ."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Notes On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/notes",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of  notes  associated with the given viewing ID."
+        },
+        {
+          "info": {
+            "name": "Add Note On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/notes",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new note record for the  viewing . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No"
+        },
+        {
+          "info": {
+            "name": "View Note On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single  note , identified by its unique  id ."
+        },
+        {
+          "info": {
+            "name": "Update Note On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing note using the same fields as the 'Add Note' endpoint. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No"
+        },
+        {
+          "info": {
+            "name": "Delete Note On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/notes/:note_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "note_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur note id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing note using the note  id ."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenancies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tenancies On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/tenancies",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of tenancies associated with the given viewing ID."
+        },
+        {
+          "info": {
+            "name": "Add Tenancy On Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/tenancies",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new tenancy from a viewing. The API will return the saved data and a unique Tenancy ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nstatus \n Current \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer \n Residential \n No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company \n String \n\nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01 \n "
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Offers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Offer on Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/submit_offer",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint submits an offer to an existing viewing. Any fields that are not provided will not be changed. The API will return the updated data for the viewing in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\namount \n 1200 \n String \n Yes \n\nfrequency \n Month \n String \n Yes (Week, Month, or Year)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Viewings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Viewings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "unit_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assigned unit"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter viewings by status."
+              },
+              {
+                "name": "assigned_to",
+                "value": "",
+                "type": "query",
+                "description": "Filter the viewings by assigned to ID."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter viewings by tags"
+              },
+              {
+                "name": "assigned_to_me",
+                "value": "",
+                "type": "query",
+                "description": "To display only viewings assigned to you, set this to true"
+              },
+              {
+                "name": "date_from",
+                "value": "",
+                "type": "query",
+                "description": "Filters viewings by the date, starting from the specified date. Use the format yyyy-mm-dd to input the date"
+              },
+              {
+                "name": "date_to",
+                "value": "",
+                "type": "query",
+                "description": "Filters viewings by the date, up to the specified date. Use the format yyyy-mm-dd to input the date"
+              },
+              {
+                "name": "viewing_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a viewing date. Use the format yyyy-mm-dd to input the date"
+              },
+              {
+                "name": "offer_amount",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the amount offered"
+              },
+              {
+                "name": "offer_frequency",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the amount offered frequency"
+              },
+              {
+                "name": "_q",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a keyword"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of viewings.\n\nSee available filters below to customize the list of viewings returned."
+        },
+        {
+          "info": {
+            "name": "Add Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/viewings",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "strict",
+                "value": "true",
+                "type": "query",
+                "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new viewing record. The API will return the saved data and a unique viewing ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_id \n 123 \n Integer \n\nYes if applicant_ids not provided. \n\napplicant_ids \n [\"123\"] \n Array(Strings) \n\nYes if applicant_id not provided. \n\nunit_id \n 1234 \n Integer \n\nYes \n\nviewing_date \n \"1999-12-12\" \n Date \n\nNo \n\nviewing_time \n \"14:31\" \n Time \n\nNo \n\nduratio"
+        },
+        {
+          "info": {
+            "name": "View Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single viewing, identified by its unique  viewing_id .\n\nUse this endpoint to view the specific details of a viewing."
+        },
+        {
+          "info": {
+            "name": "Update Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "true",
+                "type": "query",
+                "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing viewing using the same fields as the 'Add Viewing' endpoint, excluding unit_id and applicant_id . Any fields that are not provided will not be changed.\n\nThe API will return the updated data for the viewing in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nviewing_date \n \"2020-10-10\" \n Date \n No \n\nviewing_time \n \"15:30\" \n Time \n No \n\nduration \n 15 \n Integer \n No \n\noffer_amount \n 1050"
+        },
+        {
+          "info": {
+            "name": "Delete Viewing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing viewing record using the viewing id ."
+        },
+        {
+          "info": {
+            "name": "Update Viewing Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/viewings/:viewing_id/status",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "viewing_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur viewing id."
+              },
+              {
+                "name": "strict",
+                "value": "true",
+                "type": "query",
+                "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing viewing status. The API will return the updated data for the viewing in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n \"Confirmed\" \n String \n Yes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

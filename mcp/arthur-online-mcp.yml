@@ -2,10 +2,11 @@ generated: '2026-07-26'
 method: derived
 status: candidate
 source: openapi/ (16 documents, 317 operations) derived from the Arthur public Postman collection
-description: Arthur Online publishes no MCP server. This is a CANDIDATE tool surface derived one-for-one from the
-  Arthur API v2 operations, so an agent builder can stand up a local MCP server over the REST API. Every tool inherits
-  its real input contract (path parameters, query parameters and request body) from the backing OpenAPI operation
-  named in source_operation. No hosted Arthur MCP endpoint exists - do not treat server.url as live.
+description: Arthur Online publishes no MCP server. This is a CANDIDATE tool surface derived one-for-one
+  from the Arthur API v2 operations, so an agent builder can stand up a local MCP server over the REST
+  API. Every tool inherits its real input contract (path parameters, query parameters and request body)
+  from the backing OpenAPI operation named in source_operation. No hosted Arthur MCP endpoint exists -
+  do not treat server.url as live.
 server:
   name: arthur-online
   transport: stdio
@@ -17,14 +18,15 @@ server:
     authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
     tokenUrl: https://auth.arthuronline.co.uk/oauth/token
     required_header: X-EntityID
-    note: Every tool call must carry a bearer access token and the X-EntityID header naming the Arthur entity.
+    note: Every tool call must carry a bearer access token and the X-EntityID header naming the Arthur
+      entity.
 guardrails:
   read_only_default: 180 of the 317 operations are GET; expose those first.
   write_operations: 137
-  strict_parameter: Set strict=true on every POST/PUT tool so an unrecognised Simple type fails instead of silently
-    creating reference data.
-  no_idempotency: Arthur has no idempotency key - a retried write creates a duplicate record. Agents must not auto-retry
-    writes.
+  strict_parameter: Set strict=true on every POST/PUT tool so an unrecognised Simple type fails instead
+    of silently creating reference data.
+  no_idempotency: Arthur has no idempotency key - a retried write creates a duplicate record. Agents must
+    not auto-retry writes.
   rate_limit: 5,000 requests per hour, platform-wide.
 tool_count: 317
 tools_by_category:
@@ -1947,3 +1949,9 @@ tools:
   method: PUT
   path: /viewings/{viewing_id}/status
   source_operation: openapi/arthur-online-viewings-openapi.yml#updateViewingStatus
+deployment:
+  mode: none
+  verified: derived
+  tools: 317
+  checked: '2026-08-12'
+  source: catalog MCP census

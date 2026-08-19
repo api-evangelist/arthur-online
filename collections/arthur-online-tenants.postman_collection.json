@@ -1,0 +1,1789 @@
+{
+  "item": [
+    {
+      "id": "60830e98-8189-4670-9f9d-73c42f54ece8",
+      "name": "Invite",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51b5f054-6057-49c8-8767-0611c817ca2d",
+          "name": "Invite Tenant",
+          "request": {
+            "name": "Invite Tenant",
+            "description": {
+              "content": "This API endpoint can be used to initiate an automated process for inviting a tenant who is identified by their unique tenant_id .\n\nOnce the API call is made, the response will contain the tenant's details as well as an \"invite_code\".",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id",
+                "invite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "strict",
+                  "value": "<boolean>",
+                  "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f56f4860-acd9-478a-8161-1adb97961329",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f401a561-f885-4c45-98e5-b6a3d2c249d5",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1540cc8-bd83-4a3f-9b32-324e9f15eab6",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"expired_token\",\n  \"message\": \"This token has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecc4cea7-a1ed-4afc-83a3-d8742b608c6a",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e9593c54-e82f-433c-923f-198aa2dddc6a",
+      "name": "Tenants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a86bb337-86fc-4da2-a564-0c450466bb37",
+          "name": "List Tenants",
+          "request": {
+            "name": "List Tenants",
+            "description": {
+              "content": "This retrieves a list of tenants.\n\nSee available filters below to customize the list of tenants returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "property_id",
+                  "value": "<string>",
+                  "description": "Filter by the property"
+                },
+                {
+                  "disabled": false,
+                  "key": "unit_id",
+                  "value": "<string>",
+                  "description": "Filter by the unit"
+                },
+                {
+                  "disabled": false,
+                  "key": "tenancy_id",
+                  "value": "<string>",
+                  "description": "Filter by the tenancy"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Filter by tenant email"
+                },
+                {
+                  "disabled": false,
+                  "key": "phone_home",
+                  "value": "<string>",
+                  "description": "Filter by phone home number"
+                },
+                {
+                  "disabled": false,
+                  "key": "phone_work",
+                  "value": "<string>",
+                  "description": "Filter by phone work number"
+                },
+                {
+                  "disabled": false,
+                  "key": "mobile",
+                  "value": "<string>",
+                  "description": "Fily by mobile number"
+                },
+                {
+                  "disabled": false,
+                  "key": "full_address",
+                  "value": "<string>",
+                  "description": "Filter by the full address of the property"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number, between 1 and the total number of pages."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Items per page, between 1 and 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Field to sort the collection by."
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "Sort direction."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb08bfc4-541a-4977-a3a2-8025196ee64d",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenancy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone_home",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone_work",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mobile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "full_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "daa42e4c-dace-4b34-a19a-d94550a6e3a6",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenancy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone_home",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone_work",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mobile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "full_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62304284-f3c7-4e34-ac5a-458e07c9cd5a",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenancy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone_home",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone_work",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mobile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "full_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"expired_token\",\n  \"message\": \"This token has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61f88c24-7eec-4338-a020-0741133b1a7a",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "property_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unit_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tenancy_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone_home",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone_work",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mobile",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "full_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "017f22a7-7aae-452b-91b4-296fec3e0f14",
+          "name": "Add Tenant",
+          "request": {
+            "name": "Add Tenant",
+            "description": {
+              "content": "Use this endpoint to create a new tenant. The API will return the saved data and a unique tenant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntenancy_id \n 123 \n Integer \n Yes \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No \n\ngender \n Male \n Enum \n No \n\ncitizen_type \n 1 \n Enum \n No \n\nemail \n email@gmail.com \n String \n No \n\ncompany_name \n MyCompany \n Strong \n No \n\ncompant_address_name \n Address \n String \n No \n\ncompany_address1 \n Boundry Road \n String \n No \n\ncompany_address2 \n Wren Court \n String \n No \n\ncompany_city \n London \n String \n No \n\ncompany_postcode \n SW94DA \n String \n No \n\ncompany_county \n City of London \n String \n No \n\ncompany_country \n England \n String \n No \n\nphone_home \n 029302932 \n String \n No \n\nphone_work \n 029382928 \n String \n No \n\nmobile \n 020192029 \n String \n No \n\nresidential_number \n 201 \n String \n No \n\nvisa_number \n 120-123 \n String \n No \n\nvisa_years \n 3 \n String \n No \n\nvisa_type \n Tier 2 \n Enum \n No \n\ncountry_of_origin \n Wales \n String \n No \n\nni_number \n KS 01 AK 11 F \n String \n No \n\nkin_mobile \n 029302991 \n String \n No \n\nkin_last_name \n Cullen \n String \n No \n\nkin_first_name \n Monica \n String \n No \n\nkin_phone_work \n 029320191 \n String \n No \n\nstudent_status \n Full-time \n String \n No \n\nuniversity \n Oxford \n String \n No \n\ncourse_name \n Doe Studies \n String \n No \n\ncourse_id \n 1 \n String \n No \n\ncourse_year \n 2 \n String \n No \n\nemployment_company_name \n Lorem \n String \n No \n\nemployment_address1 \n Address First Line \n String \n No \n\nemployment_address2 \n Address Second Line \n String \n No \n\nemployment_city \n Liverpool \n String \n No \n\nemployment_postcode \n LN91LS \n String \n No \n\nemployment_county \n Norfolk \n String \n No \n\nemployment_contact_name \n Grace \n String \n No \n\nemployment_contact_number \n 0239203900 \n String \n No \n\nemployment_salary \n 90000 \n String \n No \n\nemployment_length \n 5 years \n String \n No \n\nhousing_benefit_council \n Borought \n String \n No \n\nhousing_benefit_number \n 19203 \n String \n No \n\nguarantor_first_name \n Nicolas \n String \n No \n\nguarantor_last_name \n Cage \n String \n No \n\nguarantor_date_of_birth \n 1911-02-12 \n String \n No \n\nguarantor_address1 \n Address first line \n String \n No \n\nguarantor_address2 \n Address second line \n String \n No \n\nguarantor_city \n London \n String \n No \n\nguarantor_postcode \n XP91AP \n String \n No \n\nguarantor_county \n Suffolk \n String \n No \n\nguarantor_country \n England \n String \n No \n\nguarantor_phone_home \n 028392871 \n String \n No \n\nguarantor_phone_work \n 028191282 \n String \n No \n\nguarantor_mobile \n 029384383 \n String \n No \n\nguarantor_email \n guarantor@email.com \n String \n No \n\nguarantor_relation \n Brother \n String \n No \n\nguarantor_home_owner \n Home owner outright, Home owner with mortgage, Rented accommodation \n String \n No \n\nguarantor_profession \n Teacher \n String \n No \n\nbank_name \n Barclays \n String \n No \n\nbank_address1 \n Address first line \n String \n No \n\nbank_address2 \n Address second line \n String \n No \n\nbank_city \n Romford \n String \n No \n\nbank_county \n Essex \n String \n No \n\nbank_postcode \n FS18LA \n String \n No \n\nref_name \n Ref Name \n String \n No \n\nref_address1 \n Ref First Line \n String \n No \n\nref_address2 \n Ref Second Line \n String \n No \n\nref_county \n Ref Hertfordshire \n String \n No \n\nref_city \n Ref City \n String \n No \n\nref_postcode \n Ref Postcode \n String \n No \n\nref_contact_number \n 029392832 \n String \n No \n\nref_relation \n Mother \n String \n No \n\napplicant_note \n Note to remember \n String \n No \n\nmanager_note \n Manager note \n String \n No",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "strict",
+                  "value": "<string>",
+                  "description": "Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8774b52f-7983-4c7d-84b6-059a96f369c0",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": 123,\n  \"main_tenant\": true,\n  \"move_in_date\": \"2019-05-28\",\n  \"move_out_date\": \"2019-06-28\",\n  \"title\": \"Mr\",\n  \"first_name\": \"Ryan\",\n  \"last_name\": \"Cullen\",\n  \"date_of_birth\": \"1995-01-21\",\n  \"gender\": \"Male\",\n  \"citizen_type\": \"1\",\n  \"email\": \"email@gmail.com\",\n  \"company_name\": \"MyCompany\",\n  \"compant_address_name\": \"Address\",\n  \"company_address1\": \"Boundry Road\",\n  \"company_address2\": \"Wren Court\",\n  \"company_city\": \"London\",\n  \"company_postcode\": \"SW94DA\",\n  \"company_county\": \"City of London\",\n  \"company_country\": \"England\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"201\",\n  \"visa_number\": \"120-123\",\n  \"visa_years\": \"3\",\n  \"visa_type\": \"Tier 2\",\n  \"country_of_origin\": \"Wales\",\n  \"ni_number\": \"KS 01 AK 11 F\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"Cullen\",\n  \"kin_first_name\": \"Monica\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"Full-time\",\n  \"university\": \"Oxford\",\n  \"course_name\": \"Doe Studies\",\n  \"course_id\": \"1\",\n  \"course_year\": \"2\",\n  \"employment_company_name\": \"Lorem\",\n  \"employment_address1\": \"Address First Line\",\n  \"employment_address2\": \"Address Second Line\",\n  \"employment_city\": \"Liverpool\",\n  \"employment_postcode\": \"LN91LS\",\n  \"employment_county\": \"Norfolk\",\n  \"employment_contact_name\": \"Grace\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"90000\",\n  \"employment_length\": \"5 years\",\n  \"housing_benefit_council\": \"Borought\",\n  \"housing_benefit_number\": \"19203\",\n  \"guarantor_first_name\": \"Nicolas\",\n  \"guarantor_last_name\": \"Cage\",\n  \"guarantor_date_of_birth\": \"1911-02-12\",\n  \"guarantor_address1\": \"Address first line\",\n  \"guarantor_address2\": \"Address second line\",\n  \"guarantor_city\": \"London\",\n  \"guarantor_postcode\": \"XP91AP\",\n  \"guarantor_county\": \"Suffolk\",\n  \"guarantor_country\": \"England\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"guarantor@email.com\",\n  \"guarantor_relation\": \"Brother\",\n  \"guarantor_home_owner\": \"Home owner outright, Home owner with mortgage, Rented accommodation\",\n  \"guarantor_profession\": \"Teacher\",\n  \"bank_name\": \"Barclays\",\n  \"bank_address1\": \"Address first line\",\n  \"bank_address2\": \"Address second line\",\n  \"bank_city\": \"Romford\",\n  \"bank_county\": \"Essex\",\n  \"bank_postcode\": \"FS18LA\",\n  \"ref_name\": \"Ref Name\",\n  \"ref_address1\": \"Ref First Line\",\n  \"ref_address2\": \"Ref Second Line\",\n  \"ref_county\": \"Ref Hertfordshire\",\n  \"ref_city\": \"Ref City\",\n  \"ref_postcode\": \"Ref Postcode\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"Mother\",\n  \"applicant_note\": \"Note to remember\",\n  \"manager_note\": \"Manager note\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "473a2cc5-4f6a-4043-a24f-0641926f5bb0",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": 123,\n  \"main_tenant\": true,\n  \"move_in_date\": \"2019-05-28\",\n  \"move_out_date\": \"2019-06-28\",\n  \"title\": \"Mr\",\n  \"first_name\": \"Ryan\",\n  \"last_name\": \"Cullen\",\n  \"date_of_birth\": \"1995-01-21\",\n  \"gender\": \"Male\",\n  \"citizen_type\": \"1\",\n  \"email\": \"email@gmail.com\",\n  \"company_name\": \"MyCompany\",\n  \"compant_address_name\": \"Address\",\n  \"company_address1\": \"Boundry Road\",\n  \"company_address2\": \"Wren Court\",\n  \"company_city\": \"London\",\n  \"company_postcode\": \"SW94DA\",\n  \"company_county\": \"City of London\",\n  \"company_country\": \"England\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"201\",\n  \"visa_number\": \"120-123\",\n  \"visa_years\": \"3\",\n  \"visa_type\": \"Tier 2\",\n  \"country_of_origin\": \"Wales\",\n  \"ni_number\": \"KS 01 AK 11 F\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"Cullen\",\n  \"kin_first_name\": \"Monica\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"Full-time\",\n  \"university\": \"Oxford\",\n  \"course_name\": \"Doe Studies\",\n  \"course_id\": \"1\",\n  \"course_year\": \"2\",\n  \"employment_company_name\": \"Lorem\",\n  \"employment_address1\": \"Address First Line\",\n  \"employment_address2\": \"Address Second Line\",\n  \"employment_city\": \"Liverpool\",\n  \"employment_postcode\": \"LN91LS\",\n  \"employment_county\": \"Norfolk\",\n  \"employment_contact_name\": \"Grace\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"90000\",\n  \"employment_length\": \"5 years\",\n  \"housing_benefit_council\": \"Borought\",\n  \"housing_benefit_number\": \"19203\",\n  \"guarantor_first_name\": \"Nicolas\",\n  \"guarantor_last_name\": \"Cage\",\n  \"guarantor_date_of_birth\": \"1911-02-12\",\n  \"guarantor_address1\": \"Address first line\",\n  \"guarantor_address2\": \"Address second line\",\n  \"guarantor_city\": \"London\",\n  \"guarantor_postcode\": \"XP91AP\",\n  \"guarantor_county\": \"Suffolk\",\n  \"guarantor_country\": \"England\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"guarantor@email.com\",\n  \"guarantor_relation\": \"Brother\",\n  \"guarantor_home_owner\": \"Home owner outright, Home owner with mortgage, Rented accommodation\",\n  \"guarantor_profession\": \"Teacher\",\n  \"bank_name\": \"Barclays\",\n  \"bank_address1\": \"Address first line\",\n  \"bank_address2\": \"Address second line\",\n  \"bank_city\": \"Romford\",\n  \"bank_county\": \"Essex\",\n  \"bank_postcode\": \"FS18LA\",\n  \"ref_name\": \"Ref Name\",\n  \"ref_address1\": \"Ref First Line\",\n  \"ref_address2\": \"Ref Second Line\",\n  \"ref_county\": \"Ref Hertfordshire\",\n  \"ref_city\": \"Ref City\",\n  \"ref_postcode\": \"Ref Postcode\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"Mother\",\n  \"applicant_note\": \"Note to remember\",\n  \"manager_note\": \"Manager note\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f931288e-b1fb-4860-a013-38fc482a1a47",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": 123,\n  \"main_tenant\": true,\n  \"move_in_date\": \"2019-05-28\",\n  \"move_out_date\": \"2019-06-28\",\n  \"title\": \"Mr\",\n  \"first_name\": \"Ryan\",\n  \"last_name\": \"Cullen\",\n  \"date_of_birth\": \"1995-01-21\",\n  \"gender\": \"Male\",\n  \"citizen_type\": \"1\",\n  \"email\": \"email@gmail.com\",\n  \"company_name\": \"MyCompany\",\n  \"compant_address_name\": \"Address\",\n  \"company_address1\": \"Boundry Road\",\n  \"company_address2\": \"Wren Court\",\n  \"company_city\": \"London\",\n  \"company_postcode\": \"SW94DA\",\n  \"company_county\": \"City of London\",\n  \"company_country\": \"England\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"201\",\n  \"visa_number\": \"120-123\",\n  \"visa_years\": \"3\",\n  \"visa_type\": \"Tier 2\",\n  \"country_of_origin\": \"Wales\",\n  \"ni_number\": \"KS 01 AK 11 F\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"Cullen\",\n  \"kin_first_name\": \"Monica\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"Full-time\",\n  \"university\": \"Oxford\",\n  \"course_name\": \"Doe Studies\",\n  \"course_id\": \"1\",\n  \"course_year\": \"2\",\n  \"employment_company_name\": \"Lorem\",\n  \"employment_address1\": \"Address First Line\",\n  \"employment_address2\": \"Address Second Line\",\n  \"employment_city\": \"Liverpool\",\n  \"employment_postcode\": \"LN91LS\",\n  \"employment_county\": \"Norfolk\",\n  \"employment_contact_name\": \"Grace\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"90000\",\n  \"employment_length\": \"5 years\",\n  \"housing_benefit_council\": \"Borought\",\n  \"housing_benefit_number\": \"19203\",\n  \"guarantor_first_name\": \"Nicolas\",\n  \"guarantor_last_name\": \"Cage\",\n  \"guarantor_date_of_birth\": \"1911-02-12\",\n  \"guarantor_address1\": \"Address first line\",\n  \"guarantor_address2\": \"Address second line\",\n  \"guarantor_city\": \"London\",\n  \"guarantor_postcode\": \"XP91AP\",\n  \"guarantor_county\": \"Suffolk\",\n  \"guarantor_country\": \"England\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"guarantor@email.com\",\n  \"guarantor_relation\": \"Brother\",\n  \"guarantor_home_owner\": \"Home owner outright, Home owner with mortgage, Rented accommodation\",\n  \"guarantor_profession\": \"Teacher\",\n  \"bank_name\": \"Barclays\",\n  \"bank_address1\": \"Address first line\",\n  \"bank_address2\": \"Address second line\",\n  \"bank_city\": \"Romford\",\n  \"bank_county\": \"Essex\",\n  \"bank_postcode\": \"FS18LA\",\n  \"ref_name\": \"Ref Name\",\n  \"ref_address1\": \"Ref First Line\",\n  \"ref_address2\": \"Ref Second Line\",\n  \"ref_county\": \"Ref Hertfordshire\",\n  \"ref_city\": \"Ref City\",\n  \"ref_postcode\": \"Ref Postcode\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"Mother\",\n  \"applicant_note\": \"Note to remember\",\n  \"manager_note\": \"Manager note\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"expired_token\",\n  \"message\": \"This token has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd262be7-0939-48cd-b114-704f44caf24c",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": 123,\n  \"main_tenant\": true,\n  \"move_in_date\": \"2019-05-28\",\n  \"move_out_date\": \"2019-06-28\",\n  \"title\": \"Mr\",\n  \"first_name\": \"Ryan\",\n  \"last_name\": \"Cullen\",\n  \"date_of_birth\": \"1995-01-21\",\n  \"gender\": \"Male\",\n  \"citizen_type\": \"1\",\n  \"email\": \"email@gmail.com\",\n  \"company_name\": \"MyCompany\",\n  \"compant_address_name\": \"Address\",\n  \"company_address1\": \"Boundry Road\",\n  \"company_address2\": \"Wren Court\",\n  \"company_city\": \"London\",\n  \"company_postcode\": \"SW94DA\",\n  \"company_county\": \"City of London\",\n  \"company_country\": \"England\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"201\",\n  \"visa_number\": \"120-123\",\n  \"visa_years\": \"3\",\n  \"visa_type\": \"Tier 2\",\n  \"country_of_origin\": \"Wales\",\n  \"ni_number\": \"KS 01 AK 11 F\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"Cullen\",\n  \"kin_first_name\": \"Monica\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"Full-time\",\n  \"university\": \"Oxford\",\n  \"course_name\": \"Doe Studies\",\n  \"course_id\": \"1\",\n  \"course_year\": \"2\",\n  \"employment_company_name\": \"Lorem\",\n  \"employment_address1\": \"Address First Line\",\n  \"employment_address2\": \"Address Second Line\",\n  \"employment_city\": \"Liverpool\",\n  \"employment_postcode\": \"LN91LS\",\n  \"employment_county\": \"Norfolk\",\n  \"employment_contact_name\": \"Grace\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"90000\",\n  \"employment_length\": \"5 years\",\n  \"housing_benefit_council\": \"Borought\",\n  \"housing_benefit_number\": \"19203\",\n  \"guarantor_first_name\": \"Nicolas\",\n  \"guarantor_last_name\": \"Cage\",\n  \"guarantor_date_of_birth\": \"1911-02-12\",\n  \"guarantor_address1\": \"Address first line\",\n  \"guarantor_address2\": \"Address second line\",\n  \"guarantor_city\": \"London\",\n  \"guarantor_postcode\": \"XP91AP\",\n  \"guarantor_county\": \"Suffolk\",\n  \"guarantor_country\": \"England\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"guarantor@email.com\",\n  \"guarantor_relation\": \"Brother\",\n  \"guarantor_home_owner\": \"Home owner outright, Home owner with mortgage, Rented accommodation\",\n  \"guarantor_profession\": \"Teacher\",\n  \"bank_name\": \"Barclays\",\n  \"bank_address1\": \"Address first line\",\n  \"bank_address2\": \"Address second line\",\n  \"bank_city\": \"Romford\",\n  \"bank_county\": \"Essex\",\n  \"bank_postcode\": \"FS18LA\",\n  \"ref_name\": \"Ref Name\",\n  \"ref_address1\": \"Ref First Line\",\n  \"ref_address2\": \"Ref Second Line\",\n  \"ref_county\": \"Ref Hertfordshire\",\n  \"ref_city\": \"Ref City\",\n  \"ref_postcode\": \"Ref Postcode\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"Mother\",\n  \"applicant_note\": \"Note to remember\",\n  \"manager_note\": \"Manager note\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0df3613-ee5a-4848-9147-ec9ca8f6e113",
+          "name": "View Tenant",
+          "request": {
+            "name": "View Tenant",
+            "description": {
+              "content": "This API endpoint retrieves the details of a single tenant, identified by its unique  tenant_id .\n\nUse this endpoint to view the specific details of a renter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) Arthur tenant id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "270116b2-c94c-4a07-8b10-353c2e24fb28",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "447ef61a-2789-4945-93f6-d04dbe5f0cac",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f8b3de4-5766-4d9e-a7a5-4680cca3bff4",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"expired_token\",\n  \"message\": \"This token has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb3079bb-69c1-4a72-b420-fefcc3a13ecf",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "020b8f19-7680-4a0a-a67b-9b5671d8965c",
+          "name": "Update Tenant",
+          "request": {
+            "name": "Update Tenant",
+            "description": {
+              "content": "This endpoint updates an existing tenant using the same fields as the 'Add Tenant' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the tenant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntenancy_id \n 123 \n Integer \n No \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No \n\ngender \n Male \n Enum \n No \n\ncitizen_type \n 1 \n Enum \n No \n\nemail \n email@gmail.com \n String \n No \n\ncompany_name \n MyCompany \n Strong \n No \n\ncompant_address_name \n Address \n String \n No \n\ncompany_address1 \n Boundry Road \n String \n No \n\ncompany_address2 \n Wren Court \n String \n No \n\ncompany_city \n London \n String \n No \n\ncompany_postcode \n SW94DA \n String \n No \n\ncompany_county \n City of London \n String \n No \n\ncompany_country \n England \n String \n No \n\nphone_home \n 029302932 \n String \n No \n\nphone_work \n 029382928 \n String \n No \n\nmobile \n 020192029 \n String \n No \n\nresidential_number \n 201 \n String \n No \n\nvisa_number \n 120-123 \n String \n No \n\nvisa_years \n 3 \n String \n No \n\nvisa_type \n Tier 2 \n Enum \n No \n\ncountry_of_origin \n Wales \n String \n No \n\nni_number \n KS 01 AK 11 F \n String \n No \n\nkin_mobile \n 029302991 \n String \n No \n\nkin_last_name \n Cullen \n String \n No \n\nkin_first_name \n Monica \n String \n No \n\nkin_phone_work \n 029320191 \n String \n No \n\nstudent_status \n Full-time \n String \n No \n\nuniversity \n Oxford \n String \n No \n\ncourse_name \n Doe Studies \n String \n No \n\ncourse_id \n 1 \n String \n No \n\ncourse_year \n 2 \n String \n No \n\nemployment_company_name \n Lorem \n String \n No \n\nemployment_address1 \n Address First Line \n String \n No \n\nemployment_address2 \n Address Second Line \n String \n No \n\nemployment_city \n Liverpool \n String \n No \n\nemployment_postcode \n LN91LS \n String \n No \n\nemployment_county \n Norfolk \n String \n No \n\nemployment_contact_name \n Grace \n String \n No \n\nemployment_contact_number \n 0239203900 \n String \n No \n\nemployment_salary \n 90000 \n String \n No \n\nemployment_length \n 5 years \n String \n No \n\nhousing_benefit_council \n Borought \n String \n No \n\nhousing_benefit_number \n 19203 \n String \n No \n\nguarantor_first_name \n Nicolas \n String \n No \n\nguarantor_last_name \n Cage \n String \n No \n\nguarantor_date_of_birth \n 1911-02-12 \n String \n No \n\nguarantor_address1 \n Address first line \n String \n No \n\nguarantor_address2 \n Address second line \n String \n No \n\nguarantor_city \n London \n String \n No \n\nguarantor_postcode \n XP91AP \n String \n No \n\nguarantor_county \n Suffolk \n String \n No \n\nguarantor_country \n England \n String \n No \n\nguarantor_phone_home \n 028392871 \n String \n No \n\nguarantor_phone_work \n 028191282 \n String \n No \n\nguarantor_mobile \n 029384383 \n String \n No \n\nguarantor_email \n guarantor@email.com \n String \n No \n\nguarantor_relation \n Brother \n String \n No \n\nguarantor_home_owner \n Yes \n String \n No \n\nguarantor_profession \n Teacher \n String \n No \n\nbank_name \n Barclays \n String \n No \n\nbank_address1 \n Address first line \n String \n No \n\nbank_address2 \n Address second line \n String \n No \n\nbank_city \n Romford \n String \n No \n\nbank_county \n Essex \n String \n No \n\nbank_postcode \n FS18LA \n String \n No \n\nref_name \n Ref Name \n String \n No \n\nref_address1 \n Ref First Line \n String \n No \n\nref_address2 \n Ref Second Line \n String \n No \n\nref_county \n Ref Hertfordshire \n String \n No \n\nref_city \n Ref City \n String \n No \n\nref_postcode \n Ref Postcode \n String \n No \n\nref_contact_number \n 029392832 \n String \n No \n\nref_relation \n Mother \n String \n No \n\napplicant_note \n Note to remember \n String \n No \n\nmanager_note \n Manager note \n String \n No",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "strict",
+                  "value": "<boolean>",
+                  "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "tenant_id",
+                  "description": "(Required) Arthur tenant id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                "key": "X-EntityID",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenancy_id\": \"<integer>\",\n  \"main_tenant\": \"<boolean>\",\n  \"move_in_date\": \"<date>\",\n  \"move_out_date\": \"<string>\",\n  \"title\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\",\n  \"gender\": \"<string>\",\n  \"citizen_type\": \"<string>\",\n  \"email\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"compant_address_name\": \"<string>\",\n  \"company_address1\": \"<string>\",\n  \"company_address2\": \"<string>\",\n  \"company_city\": \"<string>\",\n  \"company_postcode\": \"<string>\",\n  \"company_county\": \"<string>\",\n  \"company_country\": \"<string>\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"<string>\",\n  \"visa_number\": \"<string>\",\n  \"visa_years\": \"<string>\",\n  \"visa_type\": \"<string>\",\n  \"country_of_origin\": \"<string>\",\n  \"ni_number\": \"<string>\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"<string>\",\n  \"kin_first_name\": \"<string>\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"<string>\",\n  \"university\": \"<string>\",\n  \"course_name\": \"<string>\",\n  \"course_id\": \"<string>\",\n  \"course_year\": \"<string>\",\n  \"employment_company_name\": \"<string>\",\n  \"employment_address1\": \"<string>\",\n  \"employment_address2\": \"<string>\",\n  \"employment_city\": \"<string>\",\n  \"employment_postcode\": \"<string>\",\n  \"employment_county\": \"<string>\",\n  \"employment_contact_name\": \"<string>\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"<string>\",\n  \"employment_length\": \"<string>\",\n  \"housing_benefit_council\": \"<string>\",\n  \"housing_benefit_number\": \"<string>\",\n  \"guarantor_first_name\": \"<string>\",\n  \"guarantor_last_name\": \"<string>\",\n  \"guarantor_date_of_birth\": \"<string>\",\n  \"guarantor_address1\": \"<string>\",\n  \"guarantor_address2\": \"<string>\",\n  \"guarantor_city\": \"<string>\",\n  \"guarantor_postcode\": \"<string>\",\n  \"guarantor_county\": \"<string>\",\n  \"guarantor_country\": \"<string>\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"<string>\",\n  \"guarantor_relation\": \"<string>\",\n  \"guarantor_home_owner\": \"<string>\",\n  \"guarantor_profession\": \"<string>\",\n  \"bank_name\": \"<string>\",\n  \"bank_address1\": \"<string>\",\n  \"bank_address2\": \"<string>\",\n  \"bank_city\": \"<string>\",\n  \"bank_county\": \"<string>\",\n  \"bank_postcode\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"ref_address1\": \"<string>\",\n  \"ref_address2\": \"<string>\",\n  \"ref_county\": \"<string>\",\n  \"ref_city\": \"<string>\",\n  \"ref_postcode\": \"<string>\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"<string>\",\n  \"applicant_note\": \"<string>\",\n  \"manager_note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f4c4a5d-dfd3-4cbb-a9da-51523a8a71c3",
+              "name": "The request was completed successfully without errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": 123,\n  \"main_tenant\": true,\n  \"move_in_date\": \"2019-05-28\",\n  \"move_out_date\": \"2019-06-28\",\n  \"title\": \"Mr\",\n  \"first_name\": \"Ryan\",\n  \"last_name\": \"Cullen\",\n  \"date_of_birth\": \"1995-01-21\",\n  \"gender\": \"Male\",\n  \"citizen_type\": \"1\",\n  \"email\": \"email@gmail.com\",\n  \"company_name\": \"MyCompany\",\n  \"compant_address_name\": \"Address\",\n  \"company_address1\": \"Boundry Road\",\n  \"company_address2\": \"Wren Court\",\n  \"company_city\": \"London\",\n  \"company_postcode\": \"SW94DA\",\n  \"company_county\": \"City of London\",\n  \"company_country\": \"England\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"201\",\n  \"visa_number\": \"120-123\",\n  \"visa_years\": \"3\",\n  \"visa_type\": \"Tier 2\",\n  \"country_of_origin\": \"Wales\",\n  \"ni_number\": \"KS 01 AK 11 F\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"Cullen\",\n  \"kin_first_name\": \"Monica\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"Full-time\",\n  \"university\": \"Oxford\",\n  \"course_name\": \"Doe Studies\",\n  \"course_id\": \"1\",\n  \"course_year\": \"2\",\n  \"employment_company_name\": \"Lorem\",\n  \"employment_address1\": \"Address First Line\",\n  \"employment_address2\": \"Address Second Line\",\n  \"employment_city\": \"Liverpool\",\n  \"employment_postcode\": \"LN91LS\",\n  \"employment_county\": \"Norfolk\",\n  \"employment_contact_name\": \"Grace\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"90000\",\n  \"employment_length\": \"5 years\",\n  \"housing_benefit_council\": \"Borought\",\n  \"housing_benefit_number\": \"19203\",\n  \"guarantor_first_name\": \"Nicolas\",\n  \"guarantor_last_name\": \"Cage\",\n  \"guarantor_date_of_birth\": \"1911-02-12\",\n  \"guarantor_address1\": \"Address first line\",\n  \"guarantor_address2\": \"Address second line\",\n  \"guarantor_city\": \"London\",\n  \"guarantor_postcode\": \"XP91AP\",\n  \"guarantor_county\": \"Suffolk\",\n  \"guarantor_country\": \"England\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"guarantor@email.com\",\n  \"guarantor_relation\": \"Brother\",\n  \"guarantor_home_owner\": \"Yes\",\n  \"guarantor_profession\": \"Teacher\",\n  \"bank_name\": \"Barclays\",\n  \"bank_address1\": \"Address first line\",\n  \"bank_address2\": \"Address second line\",\n  \"bank_city\": \"Romford\",\n  \"bank_county\": \"Essex\",\n  \"bank_postcode\": \"FS18LA\",\n  \"ref_name\": \"Ref Name\",\n  \"ref_address1\": \"Ref First Line\",\n  \"ref_address2\": \"Ref Second Line\",\n  \"ref_county\": \"Ref Hertfordshire\",\n  \"ref_city\": \"Ref City\",\n  \"ref_postcode\": \"Ref Postcode\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"Mother\",\n  \"applicant_note\": \"Note to remember\",\n  \"manager_note\": \"Manager note\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c704408-3519-4ebf-945d-70791060c243",
+              "name": "The request was invalid or malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": 123,\n  \"main_tenant\": true,\n  \"move_in_date\": \"2019-05-28\",\n  \"move_out_date\": \"2019-06-28\",\n  \"title\": \"Mr\",\n  \"first_name\": \"Ryan\",\n  \"last_name\": \"Cullen\",\n  \"date_of_birth\": \"1995-01-21\",\n  \"gender\": \"Male\",\n  \"citizen_type\": \"1\",\n  \"email\": \"email@gmail.com\",\n  \"company_name\": \"MyCompany\",\n  \"compant_address_name\": \"Address\",\n  \"company_address1\": \"Boundry Road\",\n  \"company_address2\": \"Wren Court\",\n  \"company_city\": \"London\",\n  \"company_postcode\": \"SW94DA\",\n  \"company_county\": \"City of London\",\n  \"company_country\": \"England\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"201\",\n  \"visa_number\": \"120-123\",\n  \"visa_years\": \"3\",\n  \"visa_type\": \"Tier 2\",\n  \"country_of_origin\": \"Wales\",\n  \"ni_number\": \"KS 01 AK 11 F\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"Cullen\",\n  \"kin_first_name\": \"Monica\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"Full-time\",\n  \"university\": \"Oxford\",\n  \"course_name\": \"Doe Studies\",\n  \"course_id\": \"1\",\n  \"course_year\": \"2\",\n  \"employment_company_name\": \"Lorem\",\n  \"employment_address1\": \"Address First Line\",\n  \"employment_address2\": \"Address Second Line\",\n  \"employment_city\": \"Liverpool\",\n  \"employment_postcode\": \"LN91LS\",\n  \"employment_county\": \"Norfolk\",\n  \"employment_contact_name\": \"Grace\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"90000\",\n  \"employment_length\": \"5 years\",\n  \"housing_benefit_council\": \"Borought\",\n  \"housing_benefit_number\": \"19203\",\n  \"guarantor_first_name\": \"Nicolas\",\n  \"guarantor_last_name\": \"Cage\",\n  \"guarantor_date_of_birth\": \"1911-02-12\",\n  \"guarantor_address1\": \"Address first line\",\n  \"guarantor_address2\": \"Address second line\",\n  \"guarantor_city\": \"London\",\n  \"guarantor_postcode\": \"XP91AP\",\n  \"guarantor_county\": \"Suffolk\",\n  \"guarantor_country\": \"England\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"guarantor@email.com\",\n  \"guarantor_relation\": \"Brother\",\n  \"guarantor_home_owner\": \"Yes\",\n  \"guarantor_profession\": \"Teacher\",\n  \"bank_name\": \"Barclays\",\n  \"bank_address1\": \"Address first line\",\n  \"bank_address2\": \"Address second line\",\n  \"bank_city\": \"Romford\",\n  \"bank_county\": \"Essex\",\n  \"bank_postcode\": \"FS18LA\",\n  \"ref_name\": \"Ref Name\",\n  \"ref_address1\": \"Ref First Line\",\n  \"ref_address2\": \"Ref Second Line\",\n  \"ref_county\": \"Ref Hertfordshire\",\n  \"ref_city\": \"Ref City\",\n  \"ref_postcode\": \"Ref Postcode\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"Mother\",\n  \"applicant_note\": \"Note to remember\",\n  \"manager_note\": \"Manager note\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faedaf98-9ef0-491a-b240-71765910bc78",
+              "name": "Missing, invalid or expired access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": 123,\n  \"main_tenant\": true,\n  \"move_in_date\": \"2019-05-28\",\n  \"move_out_date\": \"2019-06-28\",\n  \"title\": \"Mr\",\n  \"first_name\": \"Ryan\",\n  \"last_name\": \"Cullen\",\n  \"date_of_birth\": \"1995-01-21\",\n  \"gender\": \"Male\",\n  \"citizen_type\": \"1\",\n  \"email\": \"email@gmail.com\",\n  \"company_name\": \"MyCompany\",\n  \"compant_address_name\": \"Address\",\n  \"company_address1\": \"Boundry Road\",\n  \"company_address2\": \"Wren Court\",\n  \"company_city\": \"London\",\n  \"company_postcode\": \"SW94DA\",\n  \"company_county\": \"City of London\",\n  \"company_country\": \"England\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"201\",\n  \"visa_number\": \"120-123\",\n  \"visa_years\": \"3\",\n  \"visa_type\": \"Tier 2\",\n  \"country_of_origin\": \"Wales\",\n  \"ni_number\": \"KS 01 AK 11 F\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"Cullen\",\n  \"kin_first_name\": \"Monica\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"Full-time\",\n  \"university\": \"Oxford\",\n  \"course_name\": \"Doe Studies\",\n  \"course_id\": \"1\",\n  \"course_year\": \"2\",\n  \"employment_company_name\": \"Lorem\",\n  \"employment_address1\": \"Address First Line\",\n  \"employment_address2\": \"Address Second Line\",\n  \"employment_city\": \"Liverpool\",\n  \"employment_postcode\": \"LN91LS\",\n  \"employment_county\": \"Norfolk\",\n  \"employment_contact_name\": \"Grace\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"90000\",\n  \"employment_length\": \"5 years\",\n  \"housing_benefit_council\": \"Borought\",\n  \"housing_benefit_number\": \"19203\",\n  \"guarantor_first_name\": \"Nicolas\",\n  \"guarantor_last_name\": \"Cage\",\n  \"guarantor_date_of_birth\": \"1911-02-12\",\n  \"guarantor_address1\": \"Address first line\",\n  \"guarantor_address2\": \"Address second line\",\n  \"guarantor_city\": \"London\",\n  \"guarantor_postcode\": \"XP91AP\",\n  \"guarantor_county\": \"Suffolk\",\n  \"guarantor_country\": \"England\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"guarantor@email.com\",\n  \"guarantor_relation\": \"Brother\",\n  \"guarantor_home_owner\": \"Yes\",\n  \"guarantor_profession\": \"Teacher\",\n  \"bank_name\": \"Barclays\",\n  \"bank_address1\": \"Address first line\",\n  \"bank_address2\": \"Address second line\",\n  \"bank_city\": \"Romford\",\n  \"bank_county\": \"Essex\",\n  \"bank_postcode\": \"FS18LA\",\n  \"ref_name\": \"Ref Name\",\n  \"ref_address1\": \"Ref First Line\",\n  \"ref_address2\": \"Ref Second Line\",\n  \"ref_county\": \"Ref Hertfordshire\",\n  \"ref_city\": \"Ref City\",\n  \"ref_postcode\": \"Ref Postcode\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"Mother\",\n  \"applicant_note\": \"Note to remember\",\n  \"manager_note\": \"Manager note\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"expired_token\",\n  \"message\": \"This token has expired.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d436c63-6bd9-43eb-9a1c-92bd072670d6",
+              "name": "The request was sent to a location that does not exist in the API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "strict",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "tenant_id",
+                      "description": "(Required) Arthur tenant id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Arthur entity (account) the request is scoped to. Mandatory on every API call.",
+                    "key": "X-EntityID",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tenancy_id\": 123,\n  \"main_tenant\": true,\n  \"move_in_date\": \"2019-05-28\",\n  \"move_out_date\": \"2019-06-28\",\n  \"title\": \"Mr\",\n  \"first_name\": \"Ryan\",\n  \"last_name\": \"Cullen\",\n  \"date_of_birth\": \"1995-01-21\",\n  \"gender\": \"Male\",\n  \"citizen_type\": \"1\",\n  \"email\": \"email@gmail.com\",\n  \"company_name\": \"MyCompany\",\n  \"compant_address_name\": \"Address\",\n  \"company_address1\": \"Boundry Road\",\n  \"company_address2\": \"Wren Court\",\n  \"company_city\": \"London\",\n  \"company_postcode\": \"SW94DA\",\n  \"company_county\": \"City of London\",\n  \"company_country\": \"England\",\n  \"phone_home\": \"<string>\",\n  \"phone_work\": \"<string>\",\n  \"mobile\": \"<string>\",\n  \"residential_number\": \"201\",\n  \"visa_number\": \"120-123\",\n  \"visa_years\": \"3\",\n  \"visa_type\": \"Tier 2\",\n  \"country_of_origin\": \"Wales\",\n  \"ni_number\": \"KS 01 AK 11 F\",\n  \"kin_mobile\": \"<string>\",\n  \"kin_last_name\": \"Cullen\",\n  \"kin_first_name\": \"Monica\",\n  \"kin_phone_work\": \"<string>\",\n  \"student_status\": \"Full-time\",\n  \"university\": \"Oxford\",\n  \"course_name\": \"Doe Studies\",\n  \"course_id\": \"1\",\n  \"course_year\": \"2\",\n  \"employment_company_name\": \"Lorem\",\n  \"employment_address1\": \"Address First Line\",\n  \"employment_address2\": \"Address Second Line\",\n  \"employment_city\": \"Liverpool\",\n  \"employment_postcode\": \"LN91LS\",\n  \"employment_county\": \"Norfolk\",\n  \"employment_contact_name\": \"Grace\",\n  \"employment_contact_number\": \"<string>\",\n  \"employment_salary\": \"90000\",\n  \"employment_length\": \"5 years\",\n  \"housing_benefit_council\": \"Borought\",\n  \"housing_benefit_number\": \"19203\",\n  \"guarantor_first_name\": \"Nicolas\",\n  \"guarantor_last_name\": \"Cage\",\n  \"guarantor_date_of_birth\": \"1911-02-12\",\n  \"guarantor_address1\": \"Address first line\",\n  \"guarantor_address2\": \"Address second line\",\n  \"guarantor_city\": \"London\",\n  \"guarantor_postcode\": \"XP91AP\",\n  \"guarantor_county\": \"Suffolk\",\n  \"guarantor_country\": \"England\",\n  \"guarantor_phone_home\": \"<string>\",\n  \"guarantor_phone_work\": \"<string>\",\n  \"guarantor_mobile\": \"<string>\",\n  \"guarantor_email\": \"guarantor@email.com\",\n  \"guarantor_relation\": \"Brother\",\n  \"guarantor_home_owner\": \"Yes\",\n  \"guarantor_profession\": \"Teacher\",\n  \"bank_name\": \"Barclays\",\n  \"bank_address1\": \"Address first line\",\n  \"bank_address2\": \"Address second line\",\n  \"bank_city\": \"Romford\",\n  \"bank_county\": \"Essex\",\n  \"bank_postcode\": \"FS18LA\",\n  \"ref_name\": \"Ref Name\",\n  \"ref_address1\": \"Ref First Line\",\n  \"ref_address2\": \"Ref Second Line\",\n  \"ref_county\": \"Ref Hertfordshire\",\n  \"ref_city\": \"Ref City\",\n  \"ref_postcode\": \"Ref Postcode\",\n  \"ref_contact_number\": \"<string>\",\n  \"ref_relation\": \"Mother\",\n  \"applicant_note\": \"Note to remember\",\n  \"manager_note\": \"Manager note\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 6622,\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.arthuronline.co.uk/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://auth.arthuronline.co.uk/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.arthuronline.co.uk/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0414e4b6-fdab-49a6-88f7-2e609947c0d4",
+    "name": "Arthur Tenants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Arthur Tenants API - the tenants surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.\n\nContact Support:\n Name: Arthur Online API Support",
+      "type": "text/plain"
+    }
+  }
+}

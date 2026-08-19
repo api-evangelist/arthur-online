@@ -1,0 +1,356 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arthur Financials API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.arthuronline.co.uk/oauth/authorize",
+      "accessTokenUrl": "https://auth.arthuronline.co.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recurrings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "View Recurring",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/recurrings/:recurringId",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "recurringId",
+                "value": "",
+                "type": "path",
+                "description": "Arthur recurringId."
+              }
+            ]
+          },
+          "docs": "View Recurring"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/transactions",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "statement",
+                "value": "",
+                "type": "query",
+                "description": "Filters the transactions by statement. The available options are tenant , tenant-deposit , property-owner , \n property-owner-consolidated , contractor , tenancy-closing-statement , late-rents , contingency-statement , invoices"
+              },
+              {
+                "name": "allocated_from",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction allocated from ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The status of the transaction. The available options are paid , unpaid , partpaid , outstanding , overdue , or voided . Use this parameter to filter transactions based on their payment status."
+              },
+              {
+                "name": "transaction_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the ID of the transaction type or by its alias name (Obtained from the v2/transaction_types endpoint)"
+              },
+              {
+                "name": "date_from",
+                "value": "",
+                "type": "query",
+                "description": "Filters the transactions by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "date_to",
+                "value": "",
+                "type": "query",
+                "description": "Filters the transactions by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "modifiedFrom",
+                "value": "",
+                "type": "query",
+                "description": "Filters the transactions by the modified date, starting from the specified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "modifiedTo",
+                "value": "",
+                "type": "query",
+                "description": "Filters the transactions by the modified date, up to the specified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "transaction_date_from",
+                "value": "",
+                "type": "query",
+                "description": "Filters the transactions by the date, starting from the specified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "transaction_date_to",
+                "value": "",
+                "type": "query",
+                "description": "Filters the transactions by the date, up to the specified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This retrieves a list of transactions.\n\nSee available filters below to customize the list of transactions returned."
+        },
+        {
+          "info": {
+            "name": "View Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/transactions/:transaction_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur transaction id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single transaction, identified by its unique transaction_id .\n\nUse this endpoint to view the specific details of a transaction."
+        },
+        {
+          "info": {
+            "name": "Payoff Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/transactions/:transaction_id/payoff",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur transaction id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API endpoint allows the user to payoff a transaction with a payment. The transaction is identified by its unique transaction_id and the payment details are included in the optional request body.\n\nIf no request body is included, the endpoint will pay off the full charge.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Data Type \n Description \n\ndescription \n string \n A description of the payoff receipt. \n\npayment_method_id \n integer \n The ID of the payment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contractor Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/invoices",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "workorder_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the connected workorder ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by invoice status (paid, unpaid, pending, cancelled)"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Filter by invoice amount"
+              },
+              {
+                "name": "amount_outstanding",
+                "value": "",
+                "type": "query",
+                "description": "Filter by invoice amount outstanding"
+              },
+              {
+                "name": "amount_vat",
+                "value": "",
+                "type": "query",
+                "description": "Filter by VAT amount"
+              },
+              {
+                "name": "vat_percentage",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the percentage of VAT"
+              },
+              {
+                "name": "paid_date",
+                "value": "",
+                "type": "query",
+                "description": "Filters the contractor invoices by the paid date. Use the format yyyy-mm-dd to input the date"
+              },
+              {
+                "name": "submitted",
+                "value": "",
+                "type": "query",
+                "description": "To show only submitted invoices, set submitted flag to true"
+              },
+              {
+                "name": "completed_date",
+                "value": "",
+                "type": "query",
+                "description": "Filters the contractor invoices by the completed date. Use the format yyyy-mm-dd to input the date"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This retrieves a list of invoices."
+        },
+        {
+          "info": {
+            "name": "View Invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/invoices/:invoice_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur invoice id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single invoice, identified by its unique  invoice_id .\n\nUse this endpoint to view the specific details of an invoice."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

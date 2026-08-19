@@ -1,0 +1,389 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Arthur Utilities API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.arthuronline.co.uk/oauth/authorize",
+      "accessTokenUrl": "https://auth.arthuronline.co.uk/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Readings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Readings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/utilities/:utility_id/readings",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "utility_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur utility id."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a list of readings associated with the given utility ID."
+        },
+        {
+          "info": {
+            "name": "Create Reading",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.arthuronline.co.uk/v2/utilities/:utility_id/readings",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "utility_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur utility id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint to create a new reading record for the  utility . The API will return the saved data and a unique reading ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nreading_value \n 21021 \n String \n Yes \n\nreading_date \n 2020-10-21 \n Date \n Yes \n\ntaken_by \n Brian Smith \n String \n No \n\nnotes \n reading notes \n string \n No"
+        },
+        {
+          "info": {
+            "name": "View Reading",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/utilities/:utility_id/readings/:reading_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "utility_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur utility id."
+              },
+              {
+                "name": "reading_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur reading id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single  reading , identified by its unique  id related to a reading ."
+        },
+        {
+          "info": {
+            "name": "Update Reading",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/utilities/:utility_id/readings/:reading_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "utility_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur utility id."
+              },
+              {
+                "name": "reading_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur reading id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing reading using the same fields as the 'Add Reading' endpoint. The API will return the updated data for the reading in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nreading_value \n 21021 \n String \n No \n\nreading_date \n 2020-10-21 \n Date \n No \n\ntaken_by \n Brian Smith \n String \n No \n\nnotes \n reading notes \n string \n No"
+        },
+        {
+          "info": {
+            "name": "Delete Reading",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/utilities/:utility_id/readings/:reading_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "utility_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur utility id."
+              },
+              {
+                "name": "reading_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur reading id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing reading using the reading id related to a utility ."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Utilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/utilities",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type (e.g. gas, water, eletric)"
+              },
+              {
+                "name": "serial_number",
+                "value": "",
+                "type": "query",
+                "description": "Filter by serial number"
+              },
+              {
+                "name": "account_number",
+                "value": "",
+                "type": "query",
+                "description": "Filter by account number"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Filter by provider"
+              },
+              {
+                "name": "created",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the created date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "modified",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the modified date. Use the format yyyy-mm-dd to input the date."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number, between 1 and the total number of pages."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Items per page, between 1 and 100."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the collection by."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "This retrieves a list of utilities.\n\nSee available filters below to customize the list of utilities returned."
+        },
+        {
+          "info": {
+            "name": "View Utility",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.arthuronline.co.uk/v2/utilities/:utility_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "utility_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur utility id."
+              }
+            ]
+          },
+          "docs": "This API endpoint retrieves the details of a single utility, identified by its unique  utility_id .\n\nUse this endpoint to view the specific details of a utility record."
+        },
+        {
+          "info": {
+            "name": "Update Utility",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.arthuronline.co.uk/v2/utilities/:utility_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "utility_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur utility id."
+              },
+              {
+                "name": "strict",
+                "value": "",
+                "type": "query",
+                "description": "When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint updates an existing utility. The API will return the updated data for the utility in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntype \n gas \n String \n No \n\nnotes \n behind back doors \n String \n No \n\nserial_number \n GA212FP21 \n String \n No \n\naccount_number \n 12344321 \n string \n No \n\nprovider \n company_name \n string \n No"
+        },
+        {
+          "info": {
+            "name": "Delete Utility",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.arthuronline.co.uk/v2/utilities/:utility_id",
+            "headers": [
+              {
+                "name": "X-EntityID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "utility_id",
+                "value": "",
+                "type": "path",
+                "description": "Arthur utility id."
+              }
+            ]
+          },
+          "docs": "This endpoint deletes an existing utility using the utility  id ."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
