@@ -19,6 +19,19 @@ description: 'Arthur Online is a London-headquartered UK property management sof
   here is portal-to-CRM feeds rather than a certified machine-readable standard.'
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/arthur-online.png
 tags:
+- Real-Estate
+- United Kingdom
+- Property Management
+- PropTech
+- Rentals
+- Lettings
+- Tenancy
+- Maintenance
+- Property Listings
+- Social Housing
+- Student Housing
+- Block Management
+tags_raw:
 - Real Estate
 - United Kingdom
 - Property Management
@@ -43,6 +56,10 @@ apis:
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
+  - Properties
+  - Real-Estate
+  - Property Records
+  tags_raw:
   - Properties
   - Real Estate
   - Property Records
@@ -71,6 +88,10 @@ apis:
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
+  - Units
+  - Real-Estate
+  - Inventory
+  tags_raw:
   - Units
   - Real Estate
   - Inventory
@@ -263,6 +284,10 @@ apis:
   tags:
   - Assets
   - Documents
+  - File
+  tags_raw:
+  - Assets
+  - Documents
   - Files
   properties:
   - type: Documentation
@@ -341,6 +366,10 @@ apis:
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
+  - Entities
+  - Account
+  - Multi-Tenancy
+  tags_raw:
   - Entities
   - Accounts
   - Multi-tenancy
