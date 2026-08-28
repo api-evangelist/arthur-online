@@ -17,6 +17,18 @@ description: 'Arthur Online is a London-headquartered UK property management sof
   and no data is readable anonymously. There is no RESO posture at all — the United Kingdom has no MLS,
   no NAR, and no RESO Data Dictionary or Web API certification regime, so listings interoperability
   here is portal-to-CRM feeds rather than a certified machine-readable standard.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/arthur-online.png
 tags:
 - Real-Estate
