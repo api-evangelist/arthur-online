@@ -1,7 +1,7 @@
-generated: '2026-07-26'
-method: derived
-source: openapi/ (317 operations derived from the Arthur Online public Postman collection)
-description: >-
+x-generated: '2026-07-26'
+x-method: derived
+x-source: openapi/ (317 operations derived from the Arthur Online public Postman collection)
+x-description: >-
   Native Arazzo 1.0.1 workflows stitching Arthur API v2 operations into the platform's real
   multi-step use cases. Every step names an operationId verified verbatim in the referenced spec.
   Arthur publishes no sandbox, so these run against a live entity - each write carries strict=true
