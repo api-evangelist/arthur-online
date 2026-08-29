@@ -1,0 +1,259 @@
+openapi: 3.2.0
+info:
+  title: Arthur Financials Contractor Invoices API
+  version: 2.0.0
+  description: Arthur Financials API - the financials surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Contractor Invoices
+paths:
+  /invoices:
+    get:
+      operationId: listInvoices
+      summary: List Invoices
+      tags:
+      - Contractor Invoices
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: workorder_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the connected workorder ID
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by invoice status (paid, unpaid, pending, cancelled)
+      - name: amount
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by invoice amount
+      - name: amount_outstanding
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by invoice amount outstanding
+      - name: amount_vat
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by VAT amount
+      - name: vat_percentage
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the percentage of VAT
+      - name: paid_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters the contractor invoices by the paid date. Use the format yyyy-mm-dd to input the date
+      - name: submitted
+        in: query
+        required: false
+        schema:
+          type: string
+        description: To show only submitted invoices, set submitted flag to true
+      - name: completed_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters the contractor invoices by the completed date. Use the format yyyy-mm-dd to input the date
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This retrieves a list of invoices.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /invoices/{invoice_id}:
+    get:
+      operationId: viewInvoices
+      summary: View Invoices
+      tags:
+      - Contractor Invoices
+      parameters:
+      - name: invoice_id
+        in: path
+        required: true
+        description: Arthur invoice id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single invoice, identified by its unique  invoice_id .
+
+
+        Use this endpoint to view the specific details of an invoice.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 123
+                  workorder_id: 123
+                  ref: W0/000
+                  status: unpaid
+                  location: Property address
+                  amount: '1476.00'
+                  amount_paid: '0.00'
+                  amount_outstanding: '1476.00'
+                  amount_vat: '246.00'
+                  vat_percentage: '20.00'
+                  paid_date: null
+                  submitted: true
+                  submitted_date: '2020-04-07T13:51:11+01:00'
+                  completed_date: null
+                  invoice_items:
+                  - id: 123
+                    name: Item name
+                    description: Item description
+                    amount: '1230.00'
+                    quantity: 1
+                  created_by:
+                    id: 123
+                    full_name: Zoltan Chivay
+                  workorder:
+                    id: 123
+                    ref: WO000
+                    title: Workorder title
+                  contractor:
+                    id: 123
+                    full_name: Zoltan Chivay
+                    status: live
+                  created: '2020-08-07T15:50:39+01:00'
+                  modified: '2020-09-04T15:23:55+01:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}

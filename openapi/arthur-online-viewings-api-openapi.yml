@@ -1,0 +1,849 @@
+openapi: 3.2.0
+info:
+  title: Arthur Online Viewings API
+  version: 2.0.0
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+  x-derived-from: collections/arthur-online.postman_collection.json
+  description: 'Operations tagged Viewings across 3 of this provider''s published API definitions: arthur-online-applicants-openapi.yml, arthur-online-units-openapi.yml, arthur-online-viewings-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Viewings
+paths:
+  /applicants/{applicant_id}/viewings:
+    get:
+      operationId: listViewingsOnApplicant
+      summary: List Viewings On Applicant
+      tags:
+      - Viewings
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by status.
+      - name: assignedTo
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by assigned to ID.
+      - name: viewingDate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by the date.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of viewings associated with the given applicant ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - unit_id: '1'
+                  applicant_id: '11'
+                  viewing_status: Confirmed
+                  viewing_date: '2019-05-28'
+                  viewing_time: '12:30'
+                  offer_amount: '500.00'
+                  offer_frequency: Weekly
+                  move_in_date: '2019-07-01'
+                  assigned_to_ids:
+                  - '1234'
+                  source: my website
+                  notes: this is an applicant
+                  modified: '2019-05-28T12:00:00+00:00'
+                  created: '2019-05-28T12:00:00+00:00'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addViewingOnApplicant
+      summary: Add Viewing On Applicant
+      tags:
+      - Viewings
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new viewing record for the  applicant . The API will return the saved data and a unique applicant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nunit_id \n 123 \n Integer \n\nYes \n\nviewing_date \n 2019-05-28 \n Date \n\nNo \n\nviewing_time \n 00:00 \n Time \n\nNo \n\noffer_amount \n 250.00 \n Float \n\nNo \n\noffer_frequency \n Week \n Enum \n Month \n No \n\nmove_in_date \n 2019-07-01 \n Date \n\nNo \n\nassigned_to_ids \n [123,124] \n Array (Integer) \n\nNo \n\nsource \n My website \n Simple \n\nNo \n\nnotes \n Landlord will be present for this viewing. \n String \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit_id:
+                  type: integer
+                  example: 123
+                viewing_date:
+                  type: string
+                  format: date
+                  example: '2019-05-28'
+                viewing_time:
+                  type: string
+                  example: 00:00
+                offer_amount:
+                  type: number
+                  example: 250.0
+                offer_frequency:
+                  type: string
+                  example: Week
+                  default: Month
+                  description: Enum - see the Types API for the allowed values
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-07-01'
+                assigned_to_ids:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,124]'
+                source:
+                  type: string
+                  example: My website
+                notes:
+                  type: string
+                  example: Landlord will be present for this viewing.
+              required:
+              - unit_id
+            example:
+              unit_id: '12'
+              viewing_date: '2021-10-10'
+              viewing_time: '14:23'
+              offer_amount: '1512'
+              offer_frequency: per week
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /units/{unit_id}/viewings:
+    get:
+      operationId: listViewingsOnUnit
+      summary: List Viewings on Unit
+      tags:
+      - Viewings
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by status.
+      - name: assignedTo
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by assigned to ID.
+      - name: viewingDate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by the date.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of viewings associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addViewingOnUnit
+      summary: Add Viewing on Unit
+      tags:
+      - Viewings
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
+        example: 'true'
+      description: "Use this endpoint to create a new viewing record for the  unit . The API will return the saved data and a unique viewing ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_id \n 123 \n Integer \n\nYes \n\nviewing_date \n 2019-05-28 \n Date \n\nNo \n\nviewing_time \n 00:00 \n Time \n\nNo \n\noffer_amount \n 250.00 \n Float \n\nNo \n\noffer_frequency \n Week \n Enum \n Month \n No \n\nmove_in_date \n 2019-07-01 \n Date \n\nNo \n\nassigned_to_ids \n [123,124] \n Array (Integer) \n\nNo \n\nsource \n My website \n Simple \n\nNo \n\nnotes \n Landlord will be present for this viewing. \n String \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                applicant_id:
+                  type: integer
+                  example: 123
+                viewing_date:
+                  type: string
+                  format: date
+                  example: '2019-05-28'
+                viewing_time:
+                  type: string
+                  example: 00:00
+                offer_amount:
+                  type: number
+                  example: 250.0
+                offer_frequency:
+                  type: string
+                  example: Week
+                  default: Month
+                  description: Enum - see the Types API for the allowed values
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-07-01'
+                assigned_to_ids:
+                  type: array
+                  items:
+                    type: integer
+                  example: '[123,124]'
+                source:
+                  type: string
+                  example: My website
+                notes:
+                  type: string
+                  example: Landlord will be present for this viewing.
+              required:
+              - applicant_id
+            example:
+              applicant_id: '12345'
+              viewing_date: '2019-05-28'
+              viewing_time: '12:30'
+              offer_amount: '500.00'
+              offer_frequency: Weekly
+              move_in_date: '2019-07-01'
+              assigned_to_ids:
+              - '1234'
+              source: my website
+              notes: this is an applicant
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /viewings:
+    get:
+      operationId: listViewings
+      summary: List Viewings
+      tags:
+      - Viewings
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: unit_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by assigned unit
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter viewings by status.
+      - name: assigned_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the viewings by assigned to ID.
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter viewings by tags
+      - name: assigned_to_me
+        in: query
+        required: false
+        schema:
+          type: string
+        description: To display only viewings assigned to you, set this to true
+      - name: date_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters viewings by the date, starting from the specified date. Use the format yyyy-mm-dd to input the date
+      - name: date_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters viewings by the date, up to the specified date. Use the format yyyy-mm-dd to input the date
+      - name: viewing_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by a viewing date. Use the format yyyy-mm-dd to input the date
+      - name: offer_amount
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the amount offered
+      - name: offer_frequency
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the amount offered frequency
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by a keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This endpoint retrieves a list of viewings.
+
+
+        See available filters below to customize the list of viewings returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addViewing
+      summary: Add Viewing
+      tags:
+      - Viewings
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
+        example: 'true'
+      description: "Use this endpoint to create a new viewing record. The API will return the saved data and a unique viewing ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_id \n 123 \n Integer \n\nYes if applicant_ids not provided. \n\napplicant_ids \n [\"123\"] \n Array(Strings) \n\nYes if applicant_id not provided. \n\nunit_id \n 1234 \n Integer \n\nYes \n\nviewing_date \n \"1999-12-12\" \n Date \n\nNo \n\nviewing_time \n \"14:31\" \n Time \n\nNo \n\nduration \n 15 \n Integer \n\nNo \n\noffer_amount \n 1250.00 \n Float \n\nNo \n\nmove_in_date \n \"1999-12-13\" \n Date \n\nNo \n\nassigned_to_ids \n [\"123\",\"321\"] \n Array(Strings) \n\nNo \n\ntags \n [\"cheap rent\"] \n Array(Strings) \n\nNo \n\nsource \n \"gumtree\" \n String \n\nNo \n\nviewing_notes \n \"3 month contract\" \n String \n\nNo \n\nviewing_status \n \"Confirmed\" \n String \n Confirmed \n No \n\nYou can use the \"new_applicants\" object to simultaneously create or update applicants. This will replace the \"applicant_id\" and \"applicant_ids\" fields. Here's an example of how to use it:\n\nTo create a new applicant, include the following information within the \"new_applicants\" object:\n\n\"new_applicants\": [\n {\n \"first_name\": \"Matej\",\n \"last_name\": \"Cubbit\",\n \"email\": \"matej123@gmail.com\"\n }\n]\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\napplicant_id \n 123 \n Integer \n No \n\nfirst_name \n \"Michael\" \n String \n Yes / if applicant_id not provided \n\nlast_name \n \"Cubitt\" \n String \n Yes / if applicant_id not provided \n\nemail \n \" michael123@gmail.com \n String \n Yes / if applicant_id not provided \n\ndate_of_birth \n \"1999-12-12\" \n Date \n No \n\nmobile \n \"0201230201\" \n String \n No \n\nphone_home \n \"0201230201\" \n String \n No \n\nphone_work \n \"0201230201\" \n String \n No \n\nhas_guarantor \n true \n Boolean \n No \n\nguarantor_first_name \n \"Brian\" \n String \n No \n\nguarantor_last_name \n \"Oneil\" \n String \n No \n\nguarantor_mobile \n \"0201230201\" \n String \n No \n\nguarantor_email \n \" myguarantor@gmail.com \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                applicant_id:
+                  type: integer
+                  example: 123
+                applicant_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: '["123"]'
+                unit_id:
+                  type: integer
+                  example: 1234
+                viewing_date:
+                  type: string
+                  format: date
+                  example: '"1999-12-12"'
+                viewing_time:
+                  type: string
+                  example: '"14:31"'
+                duration:
+                  type: integer
+                  example: 15
+                offer_amount:
+                  type: number
+                  example: 1250.0
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '"1999-12-13"'
+                assigned_to_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: '["123","321"]'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["cheap rent"]'
+                source:
+                  type: string
+                  example: '"gumtree"'
+                viewing_notes:
+                  type: string
+                  example: '"3 month contract"'
+                viewing_status:
+                  type: string
+                  example: '"Confirmed"'
+                  default: Confirmed
+                first_name:
+                  type: string
+                  example: '"Michael"'
+                last_name:
+                  type: string
+                  example: '"Cubitt"'
+                email:
+                  type: string
+                  example: '" michael123@gmail.com'
+                date_of_birth:
+                  type: string
+                  format: date
+                  example: '"1999-12-12"'
+                mobile:
+                  type: string
+                  example: '"0201230201"'
+                phone_home:
+                  type: string
+                  example: '"0201230201"'
+                phone_work:
+                  type: string
+                  example: '"0201230201"'
+                has_guarantor:
+                  type: boolean
+                  example: true
+                guarantor_first_name:
+                  type: string
+                  example: '"Brian"'
+                guarantor_last_name:
+                  type: string
+                  example: '"Oneil"'
+                guarantor_mobile:
+                  type: string
+                  example: '"0201230201"'
+                guarantor_email:
+                  type: string
+                  example: '" myguarantor@gmail.com'
+              required:
+              - unit_id
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /viewings/{viewing_id}:
+    get:
+      operationId: viewViewing
+      summary: View Viewing
+      tags:
+      - Viewings
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single viewing, identified by its unique  viewing_id .
+
+
+        Use this endpoint to view the specific details of a viewing.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateViewing
+      summary: Update Viewing
+      tags:
+      - Viewings
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
+        example: 'true'
+      description: "This endpoint updates an existing viewing using the same fields as the 'Add Viewing' endpoint, excluding unit_id and applicant_id . Any fields that are not provided will not be changed.\n\nThe API will return the updated data for the viewing in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nviewing_date \n \"2020-10-10\" \n Date \n No \n\nviewing_time \n \"15:30\" \n Time \n No \n\nduration \n 15 \n Integer \n No \n\noffer_amount \n 1050.30 \n float \n No \n\noffer_frequency \n \"per week\" \n string \n No \n\nmove_in_date \n \"2020-10-10\" \n Date \n No \n\nassigned_to_ids \n [\"12\"] \n Array(Strings) \n No \n\ntags \n [\"tag1\"] \n Array(Strings) \n No \n\nsource \n facebook \n String \n No \n\nviewing_notes \n \"lorem ipsum\" \n String \n No \n\nviewing_status \n \"Confirmed\" \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                viewing_date:
+                  type: string
+                  format: date
+                  example: '"2020-10-10"'
+                viewing_time:
+                  type: string
+                  example: '"15:30"'
+                duration:
+                  type: integer
+                  example: 15
+                offer_amount:
+                  type: number
+                  example: 1050.3
+                offer_frequency:
+                  type: string
+                  example: '"per week"'
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '"2020-10-10"'
+                assigned_to_ids:
+                  type: array
+                  items:
+                    type: string
+                  example: '["12"]'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["tag1"]'
+                source:
+                  type: string
+                  example: facebook
+                viewing_notes:
+                  type: string
+                  example: '"lorem ipsum"'
+                viewing_status:
+                  type: string
+                  example: '"Confirmed"'
+            example:
+              viewing_date: '2020-10-21'
+              viewing_time: '14:21'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteViewing
+      summary: Delete Viewing
+      tags:
+      - Viewings
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing viewing record using the viewing id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /viewings/{viewing_id}/status:
+    put:
+      operationId: updateViewingStatus
+      summary: Update Viewing Status
+      tags:
+      - Viewings
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
+        example: 'true'
+      description: "This endpoint updates an existing viewing status. The API will return the updated data for the viewing in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n \"Confirmed\" \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: '"Confirmed"'
+              required:
+              - status
+            example:
+              status: Confitmed
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+components:
+  parameters:
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+x-refined-from:
+- arthur-online-applicants-openapi.yml
+- arthur-online-units-openapi.yml
+- arthur-online-viewings-openapi.yml

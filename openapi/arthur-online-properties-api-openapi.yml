@@ -1,0 +1,804 @@
+openapi: 3.2.0
+info:
+  title: Arthur Properties API
+  version: 2.0.0
+  description: Arthur Properties API - the properties surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Properties
+paths:
+  /properties:
+    get:
+      operationId: listProperties
+      summary: List Properties
+      tags:
+      - Properties
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: full_address
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the full address of the property
+      - name: address_1
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the address 1 field of the property
+      - name: address_2
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the address 2 field of the property
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the city of the property
+      - name: county
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the county of the property
+      - name: area_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the area ID of the property
+      - name: postcode
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the postcode of the property
+      - name: property_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Use this parameter to filter by the type of property
+      - name: rentable_units
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter based on the number of units available for rent
+      - name: unit_status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter based on the current status of units, including Available To Let, Under Offer, Let, and Unavailable to Let
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the property, which should be provided as a comma-separated list
+      - name: i_manage_this
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter based on the management status of the property (boolean)
+      - name: letting_agent_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the ID of the letting agent associated with the property
+      - name: property_owner_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the ID of the owner of the property
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of properties.
+
+
+        See available filters below to customize the list of properties returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 121619
+                  property_type: Residential Block
+                  property_description: multi
+                  ref: reference
+                  full_address: full address
+                  address_line_1: address line 1
+                  address_line_2: address line 2
+                  city: city
+                  county: ''
+                  country: country
+                  area: ''
+                  postcode: postcode
+                  total_units: 3
+                  rentable_units: 0
+                  letting_agent_id: null
+                  property_owner_id: 123
+                  property_owner_full_name: New Company
+                  max_occupancy: N/A
+                  bathrooms: N/A
+                  floors: ''
+                  bedrooms: N/A
+                  receptions: N/A
+                  smart_meters: ''
+                  council_tax_band: N/A
+                  council_account_no: ''
+                  council_id: null
+                  portal_market_rent: 0
+                  portal_market_rent_frequency: ''
+                  main_image_url: null
+                  epc_urls: []
+                  floor_plan_urls: []
+                  thumbnail_urls: []
+                  image_urls: []
+                  features: []
+                  property_features: []
+                  additional_features: []
+                  tags: []
+                  notes: []
+                  i_manage_this: true
+                  latitude: null
+                  longitude: null
+                  custom_fields: []
+                  modified: '2021-01-19T11:35:10+00:00'
+                  created: '2021-01-19T11:35:10+00:00'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addProperty
+      summary: Add Property
+      tags:
+      - Properties
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
+        example: 'true'
+      description: "Use this endpoint to create a new property. The API will return the saved data and a unique Property ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nproperty_type \n Residential \n String \n No \n\nref \n My big property \n String \n Yes \n\naddress_line_1 \n Arthur House \n String \n Yes \n\naddress_line_2 \n 123 Property Street \n String \n No \n\ncity \n Stevenage \n String \n No \n\ncounty \n Hertfordshire \n String \n No \n\ncountry \n United Kingdom \n String \n No \n\narea \n South East \n Simple \n No \n\npostcode \n AB1 2CD \n String \n No \n\nletting_agent_id \n 4567 \n Integer \n No \n\nproperty_owner_id \n 5678 \n Integer \n Yes \n\nmax_occupancy \n 4 \n String \n No \n\nbathrooms \n 2 \n String \n No \n\nfloors \n 2 \n String \n No \n\nbedrooms \n 3 \n String \n No \n\nreceptions \n 1 \n String \n No \n\nsmart_meters \n 1 \n String \n No \n\ncouncil_tax_band \n B \n String \n No \n\ncouncil_account_no \n ABC123 \n String \n No \n\ncouncil_id \n 6789 \n Integer \n No \n\nportal_market_rent \n 850.00 \n Float \n No \n\nportal_market_rent_frequency \n Weekly \n String \n No \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n No \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n No \n\ni_manage_this \n true \n Boolean \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                property_type:
+                  type: string
+                  example: Residential
+                ref:
+                  type: string
+                  example: My big property
+                address_line_1:
+                  type: string
+                  example: Arthur House
+                address_line_2:
+                  type: string
+                  example: 123 Property Street
+                city:
+                  type: string
+                  example: Stevenage
+                county:
+                  type: string
+                  example: Hertfordshire
+                country:
+                  type: string
+                  example: United Kingdom
+                area:
+                  type: string
+                  example: South East
+                postcode:
+                  type: string
+                  example: AB1 2CD
+                letting_agent_id:
+                  type: integer
+                  example: 4567
+                property_owner_id:
+                  type: integer
+                  example: 5678
+                max_occupancy:
+                  type: string
+                  example: '4'
+                bathrooms:
+                  type: string
+                  example: '2'
+                floors:
+                  type: string
+                  example: '2'
+                bedrooms:
+                  type: string
+                  example: '3'
+                receptions:
+                  type: string
+                  example: '1'
+                smart_meters:
+                  type: string
+                  example: '1'
+                council_tax_band:
+                  type: string
+                  example: B
+                council_account_no:
+                  type: string
+                  example: ABC123
+                council_id:
+                  type: integer
+                  example: 6789
+                portal_market_rent:
+                  type: number
+                  example: 850.0
+                portal_market_rent_frequency:
+                  type: string
+                  example: Weekly
+                features:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Internet", "Fireplace", "Smart home integration" ]'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Cheap Rent" ]'
+                i_manage_this:
+                  type: boolean
+                  example: true
+              required:
+              - ref
+              - address_line_1
+              - property_owner_id
+            example:
+              property_type: Residential
+              ref: My big property
+              address_line_1: Arthur House
+              address_line_2: 123 Property Street
+              city: Stevenage
+              county: Hertfordshire
+              country: United Kingdom
+              area: South East
+              postcode: AB1 2CD
+              letting_agent_id: 49470
+              property_owner_id: 265389
+              max_occupancy: '4'
+              bathrooms: '2'
+              floors: '2'
+              bedrooms: '3'
+              receptions: '1'
+              smart_meters: '0'
+              council_tax_band: B
+              council_account_no: ABC123
+              council_id: 33624
+              portal_market_rent: 850.0
+              portal_market_rent_frequency: Weekly
+              features:
+              - Internet
+              - Fireplace
+              - Smart home integration
+              tags:
+              - Cheap Rent
+              i_manage_this: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 282789
+                  property_type: Residential
+                  property_description: single
+                  ref: My big property
+                  full_address: My big property, Arthur House, 123 Property Street, Stevenage, Hertfordshire, AB1 2CD, United Kingdom (South East)
+                  address_line_1: Arthur House
+                  address_line_2: 123 Property Street
+                  city: Stevenage
+                  county: Hertfordshire
+                  country: United Kingdom
+                  area: South East
+                  postcode: AB1 2CD
+                  lat: 51.903761
+                  lng: -0.196612
+                  total_units: 1
+                  rentable_units: 1
+                  letting_agent_id: 49470
+                  property_owner_id: 265389
+                  property_owner_full_name: 2nd PM Account
+                  max_occupancy: '4'
+                  bathrooms: '2'
+                  floors: '2'
+                  bedrooms: '3'
+                  receptions: '1'
+                  smart_meters: 'No'
+                  council_tax_band: B
+                  council_account_no: ABC123
+                  council_id: 33624
+                  portal_market_rent: 850
+                  portal_market_rent_frequency: Weekly
+                  main_image_url: null
+                  epc_urls: []
+                  floor_plan_urls: []
+                  thumbnail_urls: []
+                  image_urls: []
+                  features:
+                  - Fireplace
+                  - Internet
+                  - Smart home integration
+                  property_features:
+                  - Fireplace
+                  - Internet
+                  additional_features:
+                  - Smart home integration
+                  tags: []
+                  notes: []
+                  i_manage_this: true
+                  latitude: 51.903761
+                  longitude: -0.196612
+                  custom_fields: []
+                  modified: '2023-02-28T13:05:57'
+                  created: '2023-02-28T13:05:57'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /properties/{property_id}:
+    get:
+      operationId: viewProperty
+      summary: View Property
+      tags:
+      - Properties
+      parameters:
+      - name: property_id
+        in: path
+        required: true
+        description: Arthur property id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single property, identified by its unique property_id .
+
+
+        Use this endpoint to view the specific details of a property.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 121619
+                  property_type: Residential Block
+                  property_description: multi
+                  ref: reference
+                  full_address: full address
+                  address_line_1: address line 1
+                  address_line_2: address line 2
+                  city: city
+                  county: ''
+                  country: country
+                  area: ''
+                  postcode: postcode
+                  total_units: 3
+                  rentable_units: 0
+                  letting_agent_id: null
+                  property_owner_id: 123
+                  property_owner_full_name: New Company
+                  max_occupancy: N/A
+                  bathrooms: N/A
+                  floors: ''
+                  bedrooms: N/A
+                  receptions: N/A
+                  smart_meters: ''
+                  council_tax_band: N/A
+                  council_account_no: ''
+                  council_id: null
+                  portal_market_rent: 0
+                  portal_market_rent_frequency: ''
+                  main_image_url: null
+                  epc_urls: []
+                  floor_plan_urls: []
+                  thumbnail_urls: []
+                  image_urls: []
+                  features: []
+                  property_features: []
+                  additional_features: []
+                  tags: []
+                  notes: []
+                  i_manage_this: true
+                  latitude: null
+                  longitude: null
+                  custom_fields: []
+                  modified: '2021-01-19T11:35:10+00:00'
+                  created: '2021-01-19T11:35:10+00:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProperty
+      summary: Update Property
+      tags:
+      - Properties
+      parameters:
+      - name: property_id
+        in: path
+        required: true
+        description: Arthur property id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing property using the same fields as the 'Add Property' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the property in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n\nproperty_type \n Residential \n String \n\nref \n My big property \n String \n\naddress_line_1 \n Arthur House \n String \n\naddress_line_2 \n 123 Property Street \n String \n\ncity \n Stevenage \n String \n\ncounty \n Hertfordshire \n String \n\ncountry \n United Kingdom \n String \n\narea \n South East \n Simple \n\npostcode \n AB1 2CD \n String \n\nletting_agent_id \n 4567 \n Integer \n\nproperty_owner_id \n 5678 \n Integer \n\nmax_occupancy \n 4 \n String \n\nbathrooms \n 2 \n String \n\nfloors \n 2 \n String \n\nbedrooms \n 3 \n String \n\nreceptions \n 1 \n String \n\nsmart_meters \n 1 \n String \n\ncouncil_tax_band \n B \n String \n\ncouncil_account_no \n ABC123 \n String \n\ncouncil_id \n 6789 \n Integer \n\nportal_market_rent \n 850.00 \n Float \n\nportal_market_rent_frequency \n Weekly \n String \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n\ni_manage_this \n true \n Boolean"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                property_type:
+                  type: string
+                  example: Residential
+                ref:
+                  type: string
+                  example: My big property
+                address_line_1:
+                  type: string
+                  example: Arthur House
+                address_line_2:
+                  type: string
+                  example: 123 Property Street
+                city:
+                  type: string
+                  example: Stevenage
+                county:
+                  type: string
+                  example: Hertfordshire
+                country:
+                  type: string
+                  example: United Kingdom
+                area:
+                  type: string
+                  example: South East
+                postcode:
+                  type: string
+                  example: AB1 2CD
+                letting_agent_id:
+                  type: integer
+                  example: 4567
+                property_owner_id:
+                  type: integer
+                  example: 5678
+                max_occupancy:
+                  type: string
+                  example: '4'
+                bathrooms:
+                  type: string
+                  example: '2'
+                floors:
+                  type: string
+                  example: '2'
+                bedrooms:
+                  type: string
+                  example: '3'
+                receptions:
+                  type: string
+                  example: '1'
+                smart_meters:
+                  type: string
+                  example: '1'
+                council_tax_band:
+                  type: string
+                  example: B
+                council_account_no:
+                  type: string
+                  example: ABC123
+                council_id:
+                  type: integer
+                  example: 6789
+                portal_market_rent:
+                  type: number
+                  example: 850.0
+                portal_market_rent_frequency:
+                  type: string
+                  example: Weekly
+                features:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Internet", "Fireplace", "Smart home integration" ]'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Cheap Rent" ]'
+                i_manage_this:
+                  type: boolean
+                  example: true
+            example:
+              property_type: Residential
+              ref: My big property
+              address_line_1: Arthur House
+              address_line_2: 123 Property Street
+              city: Stevenage
+              county: Hertfordshire
+              country: United Kingdom
+              area: South East
+              postcode: AB1 2CD
+              letting_agent_id: 49470
+              property_owner_id: 265389
+              max_occupancy: '4'
+              bathrooms: '2'
+              floors: '2'
+              bedrooms: '3'
+              receptions: '1'
+              smart_meters: '0'
+              council_tax_band: B
+              council_account_no: ABC123
+              council_id: 33624
+              portal_market_rent: 850.0
+              portal_market_rent_frequency: Weekly
+              features:
+              - Internet
+              - Fireplace
+              - Smart home integration
+              tags:
+              - Cheap Rent
+              i_manage_this: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 282789
+                  property_type: Residential
+                  property_description: single
+                  ref: My big property
+                  full_address: My big property, Arthur House, 123 Property Street, Stevenage, Hertfordshire, AB1 2CD, United Kingdom (South East)
+                  address_line_1: Arthur House
+                  address_line_2: 123 Property Street
+                  city: Stevenage
+                  county: Hertfordshire
+                  country: United Kingdom
+                  area: South East
+                  postcode: AB1 2CD
+                  lat: 51.903761
+                  lng: -0.196612
+                  total_units: 1
+                  rentable_units: 1
+                  letting_agent_id: 49470
+                  property_owner_id: 265389
+                  property_owner_full_name: 2nd PM Account
+                  max_occupancy: '4'
+                  bathrooms: '2'
+                  floors: '2'
+                  bedrooms: '3'
+                  receptions: '1'
+                  smart_meters: 'No'
+                  council_tax_band: B
+                  council_account_no: ABC123
+                  council_id: 33624
+                  portal_market_rent: 850
+                  portal_market_rent_frequency: Weekly
+                  main_image_url: null
+                  epc_urls: []
+                  floor_plan_urls: []
+                  thumbnail_urls: []
+                  image_urls: []
+                  features:
+                  - Fireplace
+                  - Internet
+                  - Smart home integration
+                  property_features:
+                  - Fireplace
+                  - Internet
+                  additional_features:
+                  - Smart home integration
+                  tags: []
+                  notes: []
+                  i_manage_this: true
+                  latitude: 51.903761
+                  longitude: -0.196612
+                  custom_fields: []
+                  modified: '2023-02-28T13:05:57'
+                  created: '2023-02-28T13:05:57'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}

@@ -1,0 +1,950 @@
+openapi: 3.2.0
+info:
+  title: Arthur Online Applicants API
+  version: 2.0.0
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+  x-derived-from: collections/arthur-online.postman_collection.json
+  description: 'Operations tagged Applicants across 2 of this provider''s published API definitions: arthur-online-applicants-openapi.yml, arthur-online-viewings-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Applicants
+paths:
+  /applicants:
+    get:
+      operationId: listApplicants
+      summary: List Applicants
+      tags:
+      - Applicants
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: email
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by applicant email
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by status (Tenant, Active, Inactive or custom created statuses)
+      - name: conditions
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by pre-defined conditions (with-viewing, without-viewing, empty)
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the applicant, which should be provided as a comma-separated list
+      - name: created_date_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters applicants by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date.
+      - name: created_date_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters applicants by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.
+      - name: new_applicants_today
+        in: query
+        required: false
+        schema:
+          type: string
+        description: To display only recent applicants, set this to true
+      - name: number_of_sharers
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter applicants by the number of sharers
+      - name: source
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter list by applicant source name
+      - name: assign_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter list by Manager ID
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter list by a keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This endpoint retrieves a list of applicants. The enterprise package is required to view/edit the matched_unit_ids array list.
+
+
+        See available filters below to customize the list of applicants returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addApplicant
+      summary: Add Applicant
+      tags:
+      - Applicants
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
+        example: 'true'
+      description: "Use this endpoint to create a new applicant. The API will return the saved data and a unique Applicant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_status \n Active \n String \n\nNo \n\ntitle \n Mr \n Enum \n Mr \n No \n\nfirst_name \n Ryan \n String \n\nNo \n\nlast_name \n Cullen \n String \n\nNo \n\ndate_of_birth \n 1995-05-28 \n Date \n\nNo \n\ngender \n Other \n Enum \n Male \n No \n\ncitizen_type \n UK Citizen \n Enum \n\nNo \n\nemail \n myemail@example.com \n Email \n\nNo \n\ncompany_name \n Arthur Online \n String \n\nNo \n\ncompany_address_name \n Arthur Main Office \n String \n\nNo \n\ncompany_address1 \n comp line 1 \n String \n\nNo \n\ncompany_address2 \n comp line 2 \n String \n\nNo \n\ncompany_city \n compcity \n String \n\nNo \n\ncompany_postcode \n C0MP 123 \n String \n\nNo \n\ncompany_county \n comp hertfordshire \n String \n\nNo \n\ncompany_country \n 51 \n Enum \n\nNo \n\nphone_home \n 13597352 \n String \n\nNo \n\nphone_work \n 0159876589 \n String \n\nNo \n\nmobile \n 07726895134 \n String \n\nNo \n\nresidential_number \n 11236659 \n String \n\nNo \n\nvisa_number \n 1346dq89 \n String \n\nNo \n\nvisa_years \n 3 \n String \n\nNo \n\nvisa_type \n Tier 2 \n Enum \n\nNo \n\ncountry_of_origin \n original country \n String \n\nNo \n\nni_number \n ab 12 34 5f \n String \n\nNo \n\nhousing_benefit_council \n herts council \n String \n\nNo \n\nhousing_benefit_number \n 1346 \n String \n\nNo \n\nbank_name \n bnk name \n String \n\nNo \n\nbank_address1 \n bank line 1 \n String \n\nNo \n\nbank_address2 \n bank line 2 \n String \n\nNo \n\nbank_city \n bankcity \n String \n\nNo \n\nbank_county \n bank herts \n String \n\nNo \n\nbank_postcode \n B4N K12 \n String \n\nNo \n\nkin_first_name \n next-of \n String \n\nNo \n\nkin_last_name \n kin \n String \n\nNo \n\nkin_mobile \n 4512325178 \n String \n\nNo \n\nkin_phone_work \n 996832145 \n String \n\nNo \n\nstudent_status \n full time \n Enum \n Full Time \n No \n\nuniversity \n viking university \n String \n\nNo \n\ncourse_name \n viking studies \n String \n\nNo \n\ncourse_id \n MC1685 \n String \n\nNo \n\ncourse_year \n 3 \n String \n\nNo \n\nemployment_company_name \n emp company name \n String \n\nNo \n\nemployment_address1 \n emp line 1 \n String \n\nNo \n\nemployment_address2 \n emp line 2 \n String \n\nNo \n\nemployment_city \n emp city \n String \n\nNo \n\nemployment_postcode \n 3MP C0NT \n String \n\nNo \n\nemployment_county \n emp herts \n String \n\nNo \n\nemployment_contact_name \n employed contact \n String \n\nNo \n\nemployment_contact_number \n 968235174 \n String \n\nNo \n\nemployment_salary \n 21000 \n String \n\nNo \n\nemployment_length \n 3 years \n String \n\nNo \n\nguarantor_first_name \n Jason \n String \n\nNo \n\nguarantor_last_name \n Doe \n String \n\nNo \n\nguarantor_date_of_birth \n 1968-05-08 \n String \n\nNo \n\nguarantor_address1 \n 123 Fake Street \n String \n\nNo \n\nguarantor_address2 \n 123 Fake Street \n String \n\nNo \n\nguarantor_city \n Notreal \n String \n\nNo \n\nguarantor_postcode \n ABC 123 \n String \n\nNo \n\nguarantor_county \n Doeshire \n String \n\nNo \n\nguarantor_country \n United Kingdom \n String \n\nNo \n\nguarantor_phone_home \n 12345 678900 \n String \n\nNo \n\nguarantor_phone_work \n 01234 567890 \n String \n\nNo \n\nguarantor_mobile \n 07000 000000 \n String \n\nNo \n\nguarantor_email \n example@email.com \n String \n\nNo \n\nguarantor_relation \n Father \n String \n\nNo \n\nguarantor_home_owner \n Home Owner Outright \n String \n\nNo \n\nguarantor_profession \n Professional \n String \n\nNo \n\nref_name \n ref name \n String \n\nNo \n\nref_address1 \n ref line 1 \n String \n\nNo \n\nref_address2 \n ref line 2 \n String \n\nNo \n\nref_city \n ref Stevenage \n String \n\nNo \n\nref_county \n ref Hertfordshire \n String \n\nNo \n\nref_postcode \n R3F 8AW \n String \n\nNo \n\nref_contact_number \n 134679825 \n String \n\nNo \n\nref_relation \n mother \n String \n\nNo \n\nnumber_of_sharers \n 3 \n String \n\nNo \n\nsource \n 3 \n Simple \n\nNo \n\nmanager_note \n MANAGER NOTES \n String \n\nNo \n\napplicant_note \n TEST NOTE \n String \n\nNo \n\ntags \n [\"tag1\"] \n Array(String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                applicant_status:
+                  type: string
+                  example: Active
+                title:
+                  type: string
+                  example: Mr
+                  default: Mr
+                  description: Enum - see the Types API for the allowed values
+                first_name:
+                  type: string
+                  example: Ryan
+                last_name:
+                  type: string
+                  example: Cullen
+                date_of_birth:
+                  type: string
+                  format: date
+                  example: '1995-05-28'
+                gender:
+                  type: string
+                  example: Other
+                  default: Male
+                  description: Enum - see the Types API for the allowed values
+                citizen_type:
+                  type: string
+                  example: UK Citizen
+                  description: Enum - see the Types API for the allowed values
+                email:
+                  type: string
+                  format: email
+                  example: myemail@example.com
+                company_name:
+                  type: string
+                  example: Arthur Online
+                company_address_name:
+                  type: string
+                  example: Arthur Main Office
+                company_address1:
+                  type: string
+                  example: comp line 1
+                company_address2:
+                  type: string
+                  example: comp line 2
+                company_city:
+                  type: string
+                  example: compcity
+                company_postcode:
+                  type: string
+                  example: C0MP 123
+                company_county:
+                  type: string
+                  example: comp hertfordshire
+                company_country:
+                  type: string
+                  example: '51'
+                  description: Enum - see the Types API for the allowed values
+                phone_home:
+                  type: string
+                  example: '13597352'
+                phone_work:
+                  type: string
+                  example: 0159876589
+                mobile:
+                  type: string
+                  example: 07726895134
+                residential_number:
+                  type: string
+                  example: '11236659'
+                visa_number:
+                  type: string
+                  example: 1346dq89
+                visa_years:
+                  type: string
+                  example: '3'
+                visa_type:
+                  type: string
+                  example: Tier 2
+                  description: Enum - see the Types API for the allowed values
+                country_of_origin:
+                  type: string
+                  example: original country
+                ni_number:
+                  type: string
+                  example: ab 12 34 5f
+                housing_benefit_council:
+                  type: string
+                  example: herts council
+                housing_benefit_number:
+                  type: string
+                  example: '1346'
+                bank_name:
+                  type: string
+                  example: bnk name
+                bank_address1:
+                  type: string
+                  example: bank line 1
+                bank_address2:
+                  type: string
+                  example: bank line 2
+                bank_city:
+                  type: string
+                  example: bankcity
+                bank_county:
+                  type: string
+                  example: bank herts
+                bank_postcode:
+                  type: string
+                  example: B4N K12
+                kin_first_name:
+                  type: string
+                  example: next-of
+                kin_last_name:
+                  type: string
+                  example: kin
+                kin_mobile:
+                  type: string
+                  example: '4512325178'
+                kin_phone_work:
+                  type: string
+                  example: '996832145'
+                student_status:
+                  type: string
+                  example: full time
+                  default: Full Time
+                  description: Enum - see the Types API for the allowed values
+                university:
+                  type: string
+                  example: viking university
+                course_name:
+                  type: string
+                  example: viking studies
+                course_id:
+                  type: string
+                  example: MC1685
+                course_year:
+                  type: string
+                  example: '3'
+                employment_company_name:
+                  type: string
+                  example: emp company name
+                employment_address1:
+                  type: string
+                  example: emp line 1
+                employment_address2:
+                  type: string
+                  example: emp line 2
+                employment_city:
+                  type: string
+                  example: emp city
+                employment_postcode:
+                  type: string
+                  example: 3MP C0NT
+                employment_county:
+                  type: string
+                  example: emp herts
+                employment_contact_name:
+                  type: string
+                  example: employed contact
+                employment_contact_number:
+                  type: string
+                  example: '968235174'
+                employment_salary:
+                  type: string
+                  example: '21000'
+                employment_length:
+                  type: string
+                  example: 3 years
+                guarantor_first_name:
+                  type: string
+                  example: Jason
+                guarantor_last_name:
+                  type: string
+                  example: Doe
+                guarantor_date_of_birth:
+                  type: string
+                  example: '1968-05-08'
+                guarantor_address1:
+                  type: string
+                  example: 123 Fake Street
+                guarantor_address2:
+                  type: string
+                  example: 123 Fake Street
+                guarantor_city:
+                  type: string
+                  example: Notreal
+                guarantor_postcode:
+                  type: string
+                  example: ABC 123
+                guarantor_county:
+                  type: string
+                  example: Doeshire
+                guarantor_country:
+                  type: string
+                  example: United Kingdom
+                guarantor_phone_home:
+                  type: string
+                  example: 12345 678900
+                guarantor_phone_work:
+                  type: string
+                  example: 01234 567890
+                guarantor_mobile:
+                  type: string
+                  example: 07000 000000
+                guarantor_email:
+                  type: string
+                  example: example@email.com
+                guarantor_relation:
+                  type: string
+                  example: Father
+                guarantor_home_owner:
+                  type: string
+                  example: Home Owner Outright
+                guarantor_profession:
+                  type: string
+                  example: Professional
+                ref_name:
+                  type: string
+                  example: ref name
+                ref_address1:
+                  type: string
+                  example: ref line 1
+                ref_address2:
+                  type: string
+                  example: ref line 2
+                ref_city:
+                  type: string
+                  example: ref Stevenage
+                ref_county:
+                  type: string
+                  example: ref Hertfordshire
+                ref_postcode:
+                  type: string
+                  example: R3F 8AW
+                ref_contact_number:
+                  type: string
+                  example: '134679825'
+                ref_relation:
+                  type: string
+                  example: mother
+                number_of_sharers:
+                  type: string
+                  example: '3'
+                source:
+                  type: string
+                  example: '3'
+                manager_note:
+                  type: string
+                  example: MANAGER NOTES
+                applicant_note:
+                  type: string
+                  example: TEST NOTE
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["tag1"]'
+            example:
+              title: Mr
+              first_name: John
+              last_name: Doe
+              date_of_birth: '1970-01-01'
+              gender: Male
+              citizen_type: UK Citizen
+              email: sales@arthuronline.co.uk
+              company_name: Doe Industries
+              company_address_name: Main Office
+              company_address1: Fake House
+              company_address2: 123 Fake Street
+              company_city: London
+              company_postcode: ABC 123
+              company_county: ''
+              company_country: United Kingdom
+              phone_home: 01234 567899
+              phone_work: 01234 567898
+              mobile: 07777 777777
+              residential_number: '1234567890'
+              visa_number: ''
+              visa_years: '5'
+              visa_type: Tier 1
+              country_of_origin: UK
+              ni_number: 12 34 56 78
+              kin_first_name: Jennifer
+              kin_last_name: Doe
+              kin_mobile: 0788 888888
+              kin_phone_work: 09876 543211
+              student_status: full time
+              university: University of Doe
+              course_name: Doe Studies
+              course_id: '1234'
+              course_year: '2'
+              employment_company_name: Arthur Online
+              employment_address1: Unit 2 Iron Bridge House
+              employment_address2: Bridge Approach
+              employment_city: London
+              employment_postcode: NW1 8BD
+              employment_county: Greater London
+              employment_contact_name: Alice Doe
+              employment_contact_number: +44(0)207 112 4860
+              employment_salary: '100000'
+              employment_length: 1 year
+              housing_benefit_council: Doe Council
+              housing_benefit_number: '1234567'
+              guarantor_first_name: Jason
+              guarantor_last_name: Doe
+              guarantor_date_of_birth: '1968-05-08'
+              guarantor_address1: 123 Fake Street
+              guarantor_address2: ''
+              guarantor_city: Notreal City
+              guarantor_postcode: ABC 123
+              guarantor_county: Doeshire
+              guarantor_country: United Kingdom
+              guarantor_phone_home: 12345 678900
+              guarantor_phone_work: 01234 567890
+              guarantor_mobile: 07000 000000
+              guarantor_email: example@email.com
+              guarantor_relation: Father
+              guarantor_home_owner: Home owner outright
+              guarantor_profession: Professional
+              bank_name: Doe Bank
+              bank_address1: 99 Bank Street
+              bank_address2: ''
+              bank_city: Bank City
+              bank_county: Bankshire
+              bank_postcode: B4N K99
+              ref_name: Referee Ali
+              ref_address1: Unit 3 Referee House
+              ref_address2: 123 Referee Street
+              ref_city: Ref City
+              ref_county: Refshire
+              ref_postcode: ZXY 987
+              ref_contact_number: 07788 888777
+              ref_relation: Friend
+              number_of_sharers: '3'
+              source: My website
+              applicant_note: I would like a brand new 1 bed flat somewhere within 1 mile of the station.
+              manager_note: This applicant has called 15 times this week!
+              tags:
+              - tag1
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /applicants/{applicant_id}:
+    get:
+      operationId: viewApplicant
+      summary: View Applicant
+      tags:
+      - Applicants
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single applicant, identified by its unique  applicant_id .
+
+
+        Use this endpoint to view the specific details of a applicant.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateApplicant
+      summary: Update Applicant
+      tags:
+      - Applicants
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
+        example: 'true'
+      description: "This endpoint updates an existing unit using the same fields as the 'Add Applicant' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the applicant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\ntitle \n Mr \n Enum \n Mr \n No \n\nfirst_name \n Ryan \n String \n\nNo \n\nlast_name \n Cullen \n String \n\nNo \n\ndate_of_birth \n 1995-05-28 \n Date \n\nNo \n\ngender \n Other \n Enum \n Male \n No \n\ncitizen_type \n UK Citizen \n Enum \n\nNo \n\nemail \n myemail@example.com \n Email \n\nNo \n\ncompany_name \n Arthur Online \n String \n\nNo \n\ncompany_address_name \n Arthur Main Office \n String \n\nNo \n\ncompany_address1 \n comp line 1 \n String \n\nNo \n\ncompany_address2 \n comp line 2 \n String \n\nNo \n\ncompany_city \n compcity \n String \n\nNo \n\ncompany_postcode \n C0MP 123 \n String \n\nNo \n\ncompany_county \n comp hertfordshire \n String \n\nNo \n\ncompany_country \n 51 \n Enum \n\nNo \n\nphone_home \n 13597352 \n String \n\nNo \n\nphone_work \n 0159876589 \n String \n\nNo \n\nmobile \n 07726895134 \n String \n\nNo \n\nresidential_number \n 11236659 \n String \n\nNo \n\nvisa_number \n 1346dq89 \n String \n\nNo \n\nvisa_years \n 3 \n String \n\nNo \n\nvisa_type \n Tier 2 \n Enum \n\nNo \n\ncountry_of_origin \n original country \n String \n\nNo \n\nni_number \n ab 12 34 5f \n String \n\nNo \n\nhousing_benefit_council \n herts council \n String \n\nNo \n\nhousing_benefit_number \n 1346 \n String \n\nNo \n\nbank_name \n bnk name \n String \n\nNo \n\nbank_address1 \n bank line 1 \n String \n\nNo \n\nbank_address2 \n bank line 2 \n String \n\nNo \n\nbank_city \n bankcity \n String \n\nNo \n\nbank_county \n bank herts \n String \n\nNo \n\nbank_postcode \n B4N K12 \n String \n\nNo \n\nkin_first_name \n next-of \n String \n\nNo \n\nkin_last_name \n kin \n String \n\nNo \n\nkin_mobile \n 4512325178 \n String \n\nNo \n\nkin_phone_work \n 996832145 \n String \n\nNo \n\nstudent_status \n full time \n Enum \n Full Time \n No \n\nuniversity \n viking university \n String \n\nNo \n\ncourse_name \n viking studies \n String \n\nNo \n\ncourse_id \n MC1685 \n String \n\nNo \n\ncourse_year \n 3 \n String \n\nNo \n\nemployment_company_name \n emp company name \n String \n\nNo \n\nemployment_address1 \n emp line 1 \n String \n\nNo \n\nemployment_address2 \n emp line 2 \n String \n\nNo \n\nemployment_city \n emp city \n String \n\nNo \n\nemployment_postcode \n 3MP C0NT \n String \n\nNo \n\nemployment_county \n emp herts \n String \n\nNo \n\nemployment_contact_name \n employed contact \n String \n\nNo \n\nemployment_contact_number \n 968235174 \n String \n\nNo \n\nemployment_salary \n 21000 \n String \n\nNo \n\nemployment_length \n 3 years \n String \n\nNo \n\nref_name \n ref name \n String \n\nNo \n\nref_address1 \n ref line 1 \n String \n\nNo \n\nref_address2 \n ref line 2 \n String \n\nNo \n\nref_city \n ref Stevenage \n String \n\nNo \n\nref_county \n ref Hertfordshire \n String \n\nNo \n\nref_postcode \n R3F 8AW \n String \n\nNo \n\nref_contact_number \n 134679825 \n String \n\nNo \n\nref_relation \n mother \n String \n\nNo \n\nnumber_of_sharers \n 3 \n String \n\nNo \n\nsource \n 3 \n Simple \n\nNo \n\nmanager_note \n MANAGER NOTES \n String \n\nNo \n\napplicant_note \n TEST NOTE \n String \n\nNo \n\ntags \n [\"tag1\"] \n Array(String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Mr
+                  default: Mr
+                  description: Enum - see the Types API for the allowed values
+                first_name:
+                  type: string
+                  example: Ryan
+                last_name:
+                  type: string
+                  example: Cullen
+                date_of_birth:
+                  type: string
+                  format: date
+                  example: '1995-05-28'
+                gender:
+                  type: string
+                  example: Other
+                  default: Male
+                  description: Enum - see the Types API for the allowed values
+                citizen_type:
+                  type: string
+                  example: UK Citizen
+                  description: Enum - see the Types API for the allowed values
+                email:
+                  type: string
+                  format: email
+                  example: myemail@example.com
+                company_name:
+                  type: string
+                  example: Arthur Online
+                company_address_name:
+                  type: string
+                  example: Arthur Main Office
+                company_address1:
+                  type: string
+                  example: comp line 1
+                company_address2:
+                  type: string
+                  example: comp line 2
+                company_city:
+                  type: string
+                  example: compcity
+                company_postcode:
+                  type: string
+                  example: C0MP 123
+                company_county:
+                  type: string
+                  example: comp hertfordshire
+                company_country:
+                  type: string
+                  example: '51'
+                  description: Enum - see the Types API for the allowed values
+                phone_home:
+                  type: string
+                  example: '13597352'
+                phone_work:
+                  type: string
+                  example: 0159876589
+                mobile:
+                  type: string
+                  example: 07726895134
+                residential_number:
+                  type: string
+                  example: '11236659'
+                visa_number:
+                  type: string
+                  example: 1346dq89
+                visa_years:
+                  type: string
+                  example: '3'
+                visa_type:
+                  type: string
+                  example: Tier 2
+                  description: Enum - see the Types API for the allowed values
+                country_of_origin:
+                  type: string
+                  example: original country
+                ni_number:
+                  type: string
+                  example: ab 12 34 5f
+                housing_benefit_council:
+                  type: string
+                  example: herts council
+                housing_benefit_number:
+                  type: string
+                  example: '1346'
+                bank_name:
+                  type: string
+                  example: bnk name
+                bank_address1:
+                  type: string
+                  example: bank line 1
+                bank_address2:
+                  type: string
+                  example: bank line 2
+                bank_city:
+                  type: string
+                  example: bankcity
+                bank_county:
+                  type: string
+                  example: bank herts
+                bank_postcode:
+                  type: string
+                  example: B4N K12
+                kin_first_name:
+                  type: string
+                  example: next-of
+                kin_last_name:
+                  type: string
+                  example: kin
+                kin_mobile:
+                  type: string
+                  example: '4512325178'
+                kin_phone_work:
+                  type: string
+                  example: '996832145'
+                student_status:
+                  type: string
+                  example: full time
+                  default: Full Time
+                  description: Enum - see the Types API for the allowed values
+                university:
+                  type: string
+                  example: viking university
+                course_name:
+                  type: string
+                  example: viking studies
+                course_id:
+                  type: string
+                  example: MC1685
+                course_year:
+                  type: string
+                  example: '3'
+                employment_company_name:
+                  type: string
+                  example: emp company name
+                employment_address1:
+                  type: string
+                  example: emp line 1
+                employment_address2:
+                  type: string
+                  example: emp line 2
+                employment_city:
+                  type: string
+                  example: emp city
+                employment_postcode:
+                  type: string
+                  example: 3MP C0NT
+                employment_county:
+                  type: string
+                  example: emp herts
+                employment_contact_name:
+                  type: string
+                  example: employed contact
+                employment_contact_number:
+                  type: string
+                  example: '968235174'
+                employment_salary:
+                  type: string
+                  example: '21000'
+                employment_length:
+                  type: string
+                  example: 3 years
+                ref_name:
+                  type: string
+                  example: ref name
+                ref_address1:
+                  type: string
+                  example: ref line 1
+                ref_address2:
+                  type: string
+                  example: ref line 2
+                ref_city:
+                  type: string
+                  example: ref Stevenage
+                ref_county:
+                  type: string
+                  example: ref Hertfordshire
+                ref_postcode:
+                  type: string
+                  example: R3F 8AW
+                ref_contact_number:
+                  type: string
+                  example: '134679825'
+                ref_relation:
+                  type: string
+                  example: mother
+                number_of_sharers:
+                  type: string
+                  example: '3'
+                source:
+                  type: string
+                  example: '3'
+                manager_note:
+                  type: string
+                  example: MANAGER NOTES
+                applicant_note:
+                  type: string
+                  example: TEST NOTE
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["tag1"]'
+            example:
+              email: sales@arthuronlineUpdated.co.uk
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /applicant/{applicant_id}/status:
+    put:
+      operationId: updateApplicantStatus
+      summary: Update Applicant Status
+      tags:
+      - Applicants
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: strict
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
+        example: 'true'
+      description: "This endpoint updates an existing applicants status. The API will return the updated data for the applicant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n \"Tenant\" \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: '"Tenant"'
+              required:
+              - status
+            example:
+              status: Undecided
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /viewings/{viewing_id}/applicants:
+    get:
+      operationId: listApplicantsOnViewing
+      summary: List Applicants on Viewing
+      tags:
+      - Applicants
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This retrieves a list of applicants on a viewing, identified by its unique  viewing_id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+components:
+  parameters:
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+x-refined-from:
+- arthur-online-applicants-openapi.yml
+- arthur-online-viewings-openapi.yml

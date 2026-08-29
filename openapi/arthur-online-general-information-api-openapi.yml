@@ -1,0 +1,351 @@
+openapi: 3.2.0
+info:
+  title: Arthur Online General Information API
+  version: 2.0.0
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+  x-derived-from: collections/arthur-online.postman_collection.json
+  description: 'Operations tagged General Information across 2 of this provider''s published API definitions: arthur-online-properties-openapi.yml, arthur-online-units-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: General Information
+paths:
+  /properties/{property_id}/faqs:
+    get:
+      operationId: listGeneralInfoForProperty
+      summary: List General Info for Property
+      tags:
+      - General Information
+      parameters:
+      - name: property_id
+        in: path
+        required: true
+        description: Arthur property id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of general information records associated with the given property ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addGeneralInfoForProperty
+      summary: Add General Info for Property
+      tags:
+      - General Information
+      parameters:
+      - name: property_id
+        in: path
+        required: true
+        description: Arthur property id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new general information record for the property . The API will return the saved data and a unique general information ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n\ntitle \n Maintenance \n String \n\ndescription \n Weekly clean \n String \n\nfaq_type \n General \n String \n\nshare_owner \n true \n Boolean \n\nshare_tenant \n true \n Boolean \n\nshare_contractor \n false \n Boolean"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Maintenance
+                description:
+                  type: string
+                  example: Weekly clean
+                faq_type:
+                  type: string
+                  example: General
+                share_owner:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: true
+                share_contractor:
+                  type: boolean
+                  example: false
+            example:
+              title: Maintenance - Weekly Clean
+              description: Once a week the main hall will be cleaned
+              faq_type: General
+              share_owner: true
+              share_tenant: true
+              share_contractor: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 35767
+                  property_id: 282789
+                  unit_id: null
+                  title: Maintenance - Weekly Clean
+                  faq_type: General
+                  description: Once a week the main hall will be cleaned
+                  created_by:
+                    id: 1817080
+                    full_name: API Documentation
+                  share_owner: true
+                  share_contractor: true
+                  share_tenant: true
+                  modified: '2023-02-28T13:33:14'
+                  created: '2023-02-28T13:33:14'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /units/{unit_id}/faqs:
+    get:
+      operationId: listGeneralInfoForUnit
+      summary: List General Info for Unit
+      tags:
+      - General Information
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of general information records associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addGeneralInfoForUnit
+      summary: Add General Info for Unit
+      tags:
+      - General Information
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new general information record for the unit . The API will return the saved data and a unique general information ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n\ntitle \n Maintenance \n String \n\ndescription \n Weekly clean \n String \n\nfaq_type \n General \n String \n\nshare_owner \n true \n Boolean \n\nshare_tenant \n true \n Boolean \n\nshare_contractor \n false \n Boolean"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Maintenance
+                description:
+                  type: string
+                  example: Weekly clean
+                faq_type:
+                  type: string
+                  example: General
+                share_owner:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: true
+                share_contractor:
+                  type: boolean
+                  example: false
+            example:
+              title: Maintenance - Weekly Clean
+              description: Once a week the main hall will be cleaned
+              faq_type: General
+              share_owner: true
+              share_tenant: true
+              share_contractor: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 35767
+                  property_id: 282789
+                  unit_id: null
+                  title: Maintenance - Weekly Clean
+                  faq_type: General
+                  description: Once a week the main hall will be cleaned
+                  created_by:
+                    id: 1817080
+                    full_name: API Documentation
+                  share_owner: true
+                  share_contractor: true
+                  share_tenant: true
+                  modified: '2023-02-28T13:33:14'
+                  created: '2023-02-28T13:33:14'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+components:
+  parameters:
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+x-refined-from:
+- arthur-online-properties-openapi.yml
+- arthur-online-units-openapi.yml

@@ -1,0 +1,1026 @@
+openapi: 3.2.0
+info:
+  title: Arthur Online Assets API
+  version: 2.0.0
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+  x-derived-from: collections/arthur-online.postman_collection.json
+  description: 'Operations tagged Assets across 6 of this provider''s published API definitions: arthur-online-applicants-openapi.yml, arthur-online-assets-openapi.yml, arthur-online-conversations-openapi.yml, arthur-online-properties-openapi.yml, arthur-online-tenancies-openapi.yml, arthur-online-units-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Assets
+paths:
+  /applicants/{applicant_id}/assets:
+    get:
+      operationId: listAssetsOnApplicant
+      summary: List Assets On Applicant
+      tags:
+      - Assets
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given applicant ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 123
+                  name: ' Inventory'
+                  description: ' Inventory'
+                  created_by:
+                    full_name: Brian Wiliams
+                    company: Superfarm
+                  file_type: PDF
+                  mime_type: PDF
+                  is_image: false
+                  main_image: false
+                  asset_type: Inventory
+                  share_manager: true
+                  share_owner: false
+                  share_tenant: false
+                  share_contractor: false
+                  download_url: https://api.arthuronline.co.uk/public/assets/download/123123
+                  view_url: https://api.arthuronline.co.uk/public/assets/view/123123
+                  attachments:
+                  - id: 123
+                    model: Applicant
+                    model_id: 123
+                  created: '2020-06-23T11:13:02+01:00'
+                  modified: '2020-06-23T11:13:02+01:00'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAssetOnApplicant
+      summary: Create Asset On Applicant
+      tags:
+      - Assets
+      parameters:
+      - name: applicant_id
+        in: path
+        required: true
+        description: Arthur applicant id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset related to an applicant . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String (base64) \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 123
+                  name: name of asset
+                  description: null
+                  created_by:
+                    full_name: API Documentation
+                    company: API
+                  file_type: PDF
+                  mime_type: application/pdf
+                  is_image: false
+                  main_image: false
+                  asset_type: Image
+                  share_manager: true
+                  share_owner: true
+                  share_tenant: true
+                  share_contractor: true
+                  download_url: https://api.arthuronline.co.uk/public/assets/download/123123
+                  view_url: https://api.arthuronline.co.uk/public/assets/view/123123
+                  attachments:
+                  - id: 123
+                    model: Property
+                    model_id: 123
+                  created: '2020-07-03T09:25:52+01:00'
+                  modified: '2020-07-03T09:25:52+01:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /assets:
+    get:
+      operationId: listAssets
+      summary: List Assets
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by asset type (image, notimage, document, other)
+      - name: main_image
+        in: query
+        required: false
+        schema:
+          type: string
+        description: To display only main images, set this to true
+      - name: created_from
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters assets by the created date, starting from the specified date. Use the format yyyy-mm-dd to input the date
+      - name: created_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters assets by the created date, up to the specified date. Use the format yyyy-mm-dd to input the date.
+      - name: model
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by attachment type (Property, Unit, Tenancy, Transaction)
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of assets.
+
+
+        See available filters below to customize the list of properties returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAsset
+      summary: Create Asset
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset. The API will return the saved data and a unique Asset ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n Inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: Inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /assets/{asset_id}:
+    get:
+      operationId: viewAsset
+      summary: View Asset
+      tags:
+      - Assets
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        description: Arthur asset id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single asset, identified by its unique  asset_id .
+
+
+        Use this endpoint to view the specific details of an asset.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateAsset
+      summary: Update Asset
+      tags:
+      - Assets
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        description: Arthur asset id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing asset using the same fields as the 'Add Asset' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the asset in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n No \n\nmime_type \n application/pdf \n String \n No \n\nfile_name \n inventory \n String \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+            example:
+              asset_type: image
+              name: name of updated asset
+              share_manager: true
+              share_tenant: false
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAsset
+      summary: Delete Asset
+      tags:
+      - Assets
+      parameters:
+      - name: asset_id
+        in: path
+        required: true
+        description: Arthur asset id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint deletes an existing asset record using the asset id .
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /conversations/{conversation_id}/assets:
+    get:
+      operationId: listAssetsOnConversation
+      summary: List Assets on Conversation
+      tags:
+      - Assets
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        description: Arthur conversation id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given conversation ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /properties/{property_id}/assets:
+    get:
+      operationId: listAssetsOnProperty
+      summary: List Assets On Property
+      tags:
+      - Assets
+      parameters:
+      - name: property_id
+        in: path
+        required: true
+        description: Arthur property id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given property ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 123
+                  name: ' Inventory'
+                  description: ' Inventory'
+                  created_by:
+                    full_name: Brian Williams
+                    company: Superfarm
+                  file_type: PDF
+                  mime_type: application/pdf
+                  is_image: false
+                  main_image: false
+                  asset_type: Inventory
+                  share_manager: true
+                  share_owner: false
+                  share_tenant: false
+                  share_contractor: false
+                  download_url: https://api.arthuronline.co.uk/public/assets/download/123123
+                  view_url: https://api.arthuronline.co.uk/public/assets/view/123123
+                  attachments:
+                  - id: 123
+                    model: Inventory
+                    model_id: 123
+                  - id: 123
+                    model: Property
+                    model_id: 123
+                  created: '2020-06-23T11:13:02+01:00'
+                  modified: '2020-06-23T11:13:02+01:00'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAssetOnProperty
+      summary: Create Asset On Property
+      tags:
+      - Assets
+      parameters:
+      - name: property_id
+        in: path
+        required: true
+        description: Arthur property id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset related to a property . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String (base64) \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 123
+                  name: name of asset
+                  description: null
+                  created_by:
+                    full_name: API Documentation
+                    company: API
+                  file_type: PDF
+                  mime_type: application/pdf
+                  is_image: false
+                  main_image: false
+                  asset_type: Image
+                  share_manager: true
+                  share_owner: true
+                  share_tenant: true
+                  share_contractor: true
+                  download_url: https://api.arthuronline.co.uk/public/assets/download/123123
+                  view_url: https://api.arthuronline.co.uk/public/assets/view/123123
+                  attachments:
+                  - id: 123
+                    model: Property
+                    model_id: 123
+                  created: '2020-07-03T09:25:52+01:00'
+                  modified: '2020-07-03T09:25:52+01:00'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /tenancies/{tenancy_id}/assets:
+    get:
+      operationId: listAssetsOnTenancy
+      summary: List Assets On Tenancy
+      tags:
+      - Assets
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAssetOnTenancy
+      summary: Create Asset On Tenancy
+      tags:
+      - Assets
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset related to an  tenancy . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /units/{unit_id}/assets:
+    get:
+      operationId: listAssetsOnUnit
+      summary: List Assets On Unit
+      tags:
+      - Assets
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of assets associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAssetOnUnit
+      summary: Create Asset On Unit
+      tags:
+      - Assets
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new asset related to a unit . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                asset_type:
+                  type: string
+                  example: image
+                name:
+                  type: string
+                  example: inventory
+                share_manager:
+                  type: boolean
+                  example: true
+                share_tenant:
+                  type: boolean
+                  example: false
+                share_contractor:
+                  type: boolean
+                  example: true
+                share_owner:
+                  type: boolean
+                  example: true
+                file:
+                  type: string
+                  example: base64
+                mime_type:
+                  type: string
+                  example: application/pdf
+                file_name:
+                  type: string
+                  example: inventory
+              required:
+              - file
+              - mime_type
+              - file_name
+            example:
+              asset_type: image
+              name: name of asset
+              share_manager: true
+              share_tenant: true
+              share_owner: true
+              share_contractor: true
+              file: pdf file converted to base64 string
+              mime_type: application/pdf
+              file_name: inventory
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+components:
+  parameters:
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+x-refined-from:
+- arthur-online-applicants-openapi.yml
+- arthur-online-assets-openapi.yml
+- arthur-online-conversations-openapi.yml
+- arthur-online-properties-openapi.yml
+- arthur-online-tenancies-openapi.yml
+- arthur-online-units-openapi.yml

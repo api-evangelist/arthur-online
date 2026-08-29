@@ -1,0 +1,921 @@
+openapi: 3.2.0
+info:
+  title: Arthur Online Tenancies API
+  version: 2.0.0
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+  x-derived-from: collections/arthur-online.postman_collection.json
+  description: 'Operations tagged Tenancies across 4 of this provider''s published API definitions: arthur-online-properties-openapi.yml, arthur-online-tenancies-openapi.yml, arthur-online-units-openapi.yml, arthur-online-viewings-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Tenancies
+paths:
+  /properties/{property_id}/tenancies:
+    get:
+      operationId: listTenanciesOnProperty
+      summary: List Tenancies on Property
+      tags:
+      - Tenancies
+      parameters:
+      - name: property_id
+        in: path
+        required: true
+        description: Arthur property id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tenancies associated with the given property ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /tenancies/{tenancy_id}:
+    get:
+      operationId: viewTenancy
+      summary: View Tenancy
+      tags:
+      - Tenancies
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single tenancy, identified by its unique  tenancy_id .
+
+
+        Use this endpoint to view the specific details of a tenancy.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateTenancy
+      summary: Update Tenancy
+      tags:
+      - Tenancies
+      parameters:
+      - name: tenancy_id
+        in: path
+        required: true
+        description: Arthur tenancy id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing tenancy using the same fields as the 'Add Tenancy' endpoint excluding the  unit_id . Any fields that are not provided will not be changed. The API will return the updated data for the unit in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n Current \n Integer \n No \n\ntenancy_type \n Commercial \n Integer \n No \n\nletting_agent_id \n 90909 \n Integer \n No \n\ncontract_type \n Company \n String \n No \n\nrenter_company \n Renter Ltd. \n String \n No \n\nstart_date \n 2019-01-01 \n Date \n No \n\nend_date \n 2020-01-01 \n Date \n No \n\nbreak_clause_date \n 2019-06-01 \n Date \n No \n\nfixed_break_date \n 2019-06-01 \n Date \n No \n\nrolling_break_date \n 2019-09-18 \n Date \n No \n\nnotice_period \n 2 months \n String \n No \n\nissue_break_clause_to \n landlord \n String \n No \n\nmove_in_date \n 2019-01-01 \n Date \n No \n\nmove_in_time \n 12:00 \n Time \n No \n\nmove_out_date \n 2020-01-01 \n Date \n No \n\nmove_out_time \n 12:00 \n Time \n No \n\nrent_amount \n 875 \n Float \n No \n\nrent_frequency \n Monthly \n String \n No \n\ndeposit_held_by \n DPS \n String \n No \n\nrent_payment_bank_id \n 1423 \n Integer \n No \n\ndeposit_payment_bank_id \n 4132 \n Integer \n No \n\ndefault_rent_payment_method \n Bank Transfer \n String \n No \n\nrent_insured \n false \n Boolean \n No \n\ntags \n [\"12 month contract\"] \n Array (String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                tenancy_type:
+                  type: integer
+                letting_agent_id:
+                  type: integer
+                  example: 90909
+                contract_type:
+                  type: string
+                  example: Company
+                renter_company:
+                  type: string
+                  example: Renter Ltd.
+                start_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                end_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                break_clause_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                fixed_break_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                rolling_break_date:
+                  type: string
+                  format: date
+                  example: '2019-09-18'
+                notice_period:
+                  type: string
+                  example: 2 months
+                issue_break_clause_to:
+                  type: string
+                  example: landlord
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                move_in_time:
+                  type: string
+                  example: '12:00'
+                move_out_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                move_out_time:
+                  type: string
+                  example: '12:00'
+                rent_amount:
+                  type: number
+                  example: 875.0
+                rent_frequency:
+                  type: string
+                  example: Monthly
+                deposit_held_by:
+                  type: string
+                  example: DPS
+                rent_payment_bank_id:
+                  type: integer
+                  example: 1423
+                deposit_payment_bank_id:
+                  type: integer
+                  example: 4132
+                default_rent_payment_method:
+                  type: string
+                  example: Bank Transfer
+                rent_insured:
+                  type: boolean
+                  example: false
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["12 month contract"]'
+            example:
+              status: Current
+              tenancy_type: Commercial
+              start_date: '2019-01-01'
+              end_date: '2020-01-01'
+              break_clause_date: '2019-06-01'
+              fixed_break_date: '2019-06-01'
+              rolling_break_date: '2019-09-18'
+              move_in_date: '2019-01-01'
+              move_in_time: '12:00'
+              move_out_date: '2020-01-01'
+              move_out_time: '12:00'
+              deposit_held_by: ''
+              default_rent_payment_method: Bank Transfer
+              rent_insured: false
+              tags:
+              - 12 month contract
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /tenancies:
+    get:
+      operationId: listTenancies
+      summary: List Tenancies
+      tags:
+      - Tenancies
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: assigned_to
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by unit manager ID
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the tenancy, which should be provided as a comma-separated list
+      - name: moveInDate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tenancies move in date. Use the format yyyy-mm-dd to input the date
+      - name: moveOutDate
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tenancy move out date. Use the format yyyy-mm-dd to input the date
+      - name: modified
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the last modified date. Use the format yyyy-mm-dd to input the date
+      - name: modifiedFrom
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters tenancies by the modified date, starting from the specified date. Use the format yyyy-mm-dd to input the date.
+      - name: modifiedTo
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filters tenancies by the modified date, up to the specified date. Use the format yyyy-mm-dd to input the date.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the tenancy status
+      - name: full_address
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the full address of the property
+      - name: tenancy_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the tenancy type
+      - name: tenancy_sub_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the tenancy sub type
+      - name: unit_owner_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filer by the landlord ID
+      - name: letting_agent_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the letting agent ID
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by start date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by end date
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by a keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of tenancies.
+
+
+        See available filters below to customize the list of tenants returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addTenancy
+      summary: Add Tenancy
+      tags:
+      - Tenancies
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tenancy record. The API will return the saved data and a unique tenancy ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nunit_id \n 12345 \n Integer \n\nYes \n\nstatus \n Current \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer \n Residential \n No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company \n String \n\nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01 \n Date \n\nYes \n\nend_date \n 2020-01-01 \n Date \n\nNo \n\nbreak_clause_date \n 2019-06-01 \n Date \n\nNo \n\nfixed_break_date \n 2019-06-01 \n Date \n\nNo \n\nrolling_break_date \n 2019-09-18 \n Date \n\nNo \n\nnotice_period \n 2 months \n String \n 1 months \n No \n\nissue_break_clause_to \n landlord \n String \n\nNo \n\nmove_in_date \n 2019-01-01 \n Date \n\nNo \n\nmove_in_time \n 12:00 \n Time \n\nNo \n\nmove_out_date \n 2020-01-01 \n Date \n\nNo \n\nmove_out_time \n 12:00 \n Time \n\nNo \n\nrent_amount \n 875 \n Float \n\nYes \n\nrent_frequency \n Monthly \n String \n\nNo \n\ndeposit_held_by \n DPS \n String \n\nNo \n\nrent_payment_bank_id \n 1423 \n Integer \n\nNo \n\ndeposit_payment_bank_id \n 4132 \n Integer \n\nNo \n\ndefault_rent_payment_method \n Bank Transfer \n String \n\nNo \n\nrent_insured \n false \n Boolean \n\nNo \n\ntags \n [\"12 month contract\"] \n Array (String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit_id:
+                  type: integer
+                  example: 12345
+                status:
+                  type: integer
+                tenancy_type:
+                  type: integer
+                letting_agent_id:
+                  type: integer
+                  example: 90909
+                contract_type:
+                  type: string
+                  example: Company
+                renter_company:
+                  type: string
+                  example: Renter Ltd.
+                start_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                end_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                break_clause_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                fixed_break_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                rolling_break_date:
+                  type: string
+                  format: date
+                  example: '2019-09-18'
+                notice_period:
+                  type: string
+                  example: 2 months
+                  default: 1 months
+                issue_break_clause_to:
+                  type: string
+                  example: landlord
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                move_in_time:
+                  type: string
+                  example: '12:00'
+                move_out_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                move_out_time:
+                  type: string
+                  example: '12:00'
+                rent_amount:
+                  type: number
+                  example: 875.0
+                rent_frequency:
+                  type: string
+                  example: Monthly
+                deposit_held_by:
+                  type: string
+                  example: DPS
+                rent_payment_bank_id:
+                  type: integer
+                  example: 1423
+                deposit_payment_bank_id:
+                  type: integer
+                  example: 4132
+                default_rent_payment_method:
+                  type: string
+                  example: Bank Transfer
+                rent_insured:
+                  type: boolean
+                  example: false
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["12 month contract"]'
+              required:
+              - unit_id
+              - start_date
+              - rent_amount
+            example:
+              unit_id: 3
+              status: Current
+              tenancy_type: Commercial
+              start_date: '2019-01-01'
+              end_date: '2020-01-01'
+              break_clause_date: '2019-06-01'
+              fixed_break_date: '2019-06-01'
+              rolling_break_date: '2019-09-18'
+              move_in_date: '2019-01-01'
+              move_in_time: '12:00'
+              move_out_date: '2020-01-01'
+              move_out_time: '12:00'
+              deposit_held_by: ''
+              default_rent_payment_method: Bank Transfer
+              rent_insured: false
+              tags:
+              - 12 month contract
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /units/{unit_id}/tenancies:
+    get:
+      operationId: listTenanciesOnUnit
+      summary: List Tenancies on Unit
+      tags:
+      - Tenancies
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tenancies associated with the given unit ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addTenancyOnUnit
+      summary: Add Tenancy On Unit
+      tags:
+      - Tenancies
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tenancy record for the  unit . The API will return the saved data and a unique tenancy ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nstatus \n Current \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer \n Residential \n No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company \n String \n\nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01 \n Date \n\nYes \n\nend_date \n 2020-01-01 \n Date \n\nNo \n\nbreak_clause_date \n 2019-06-01 \n Date \n\nNo \n\nfixed_break_date \n 2019-06-01 \n Date \n\nNo \n\nrolling_break_date \n 2019-09-18 \n Date \n\nNo \n\nnotice_period \n 2 months \n String \n 1 months \n No \n\nissue_break_clause_to \n landlord \n String \n\nNo \n\nmove_in_date \n 2019-01-01 \n Date \n\nNo \n\nmove_in_time \n 12:00 \n Time \n\nNo \n\nmove_out_date \n 2020-01-01 \n Date \n\nNo \n\nmove_out_time \n 12:00 \n Time \n\nNo \n\nrent_amount \n 875 \n Float \n\nYes \n\nrent_frequency \n Monthly \n String \n\nNo \n\ndeposit_held_by \n DPS \n String \n\nNo \n\nrent_payment_bank_id \n 1423 \n Integer \n\nNo \n\ndeposit_payment_bank_id \n 4132 \n Integer \n\nNo \n\ndefault_rent_payment_method \n Bank Transfer \n String \n\nNo \n\nrent_insured \n false \n Boolean \n\nNo \n\ntags \n [\"12 month contract\"] \n Array (String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                tenancy_type:
+                  type: integer
+                letting_agent_id:
+                  type: integer
+                  example: 90909
+                contract_type:
+                  type: string
+                  example: Company
+                renter_company:
+                  type: string
+                  example: Renter Ltd.
+                start_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                end_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                break_clause_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                fixed_break_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                rolling_break_date:
+                  type: string
+                  format: date
+                  example: '2019-09-18'
+                notice_period:
+                  type: string
+                  example: 2 months
+                  default: 1 months
+                issue_break_clause_to:
+                  type: string
+                  example: landlord
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                move_in_time:
+                  type: string
+                  example: '12:00'
+                move_out_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                move_out_time:
+                  type: string
+                  example: '12:00'
+                rent_amount:
+                  type: number
+                  example: 875.0
+                rent_frequency:
+                  type: string
+                  example: Monthly
+                deposit_held_by:
+                  type: string
+                  example: DPS
+                rent_payment_bank_id:
+                  type: integer
+                  example: 1423
+                deposit_payment_bank_id:
+                  type: integer
+                  example: 4132
+                default_rent_payment_method:
+                  type: string
+                  example: Bank Transfer
+                rent_insured:
+                  type: boolean
+                  example: false
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["12 month contract"]'
+              required:
+              - start_date
+              - rent_amount
+            example:
+              status: Current
+              tenancy_type: Commercial
+              start_date: '2019-01-01'
+              end_date: '2020-01-01'
+              break_clause_date: '2019-06-01'
+              fixed_break_date: '2019-06-01'
+              rolling_break_date: '2019-09-18'
+              move_in_date: '2019-01-01'
+              move_in_time: '12:00'
+              move_out_date: '2020-01-01'
+              move_out_time: '12:00'
+              deposit_held_by: ''
+              default_rent_payment_method: Bank Transfer
+              rent_insured: false
+              tags:
+              - 12 month contract
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /viewings/{viewing_id}/tenancies:
+    get:
+      operationId: listTenanciesOnViewing
+      summary: List Tenancies On Viewing
+      tags:
+      - Tenancies
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of tenancies associated with the given viewing ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addTenancyOnViewing
+      summary: Add Tenancy On Viewing
+      tags:
+      - Tenancies
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new tenancy from a viewing. The API will return the saved data and a unique Tenancy ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nstatus \n Current \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer \n Residential \n No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company \n String \n\nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01 \n Date \n\nYes \n\nend_date \n 2020-01-01 \n Date \n\nNo \n\nbreak_clause_date \n 2019-06-01 \n Date \n\nNo \n\nfixed_break_date \n 2019-06-01 \n Date \n\nNo \n\nrolling_break_date \n 2019-09-18 \n Date \n\nNo \n\nnotice_period \n 2 months \n String \n 1 months \n No \n\nissue_break_clause_to \n landlord \n String \n\nNo \n\nmove_in_date \n 2019-01-01 \n Date \n\nNo \n\nmove_in_time \n 12:00 \n Time \n\nNo \n\nmove_out_date \n 2020-01-01 \n Date \n\nNo \n\nmove_out_time \n 12:00 \n Time \n\nNo \n\nrent_amount \n 875 \n Float \n\nYes \n\nrent_frequency \n Monthly \n String \n\nNo \n\ndeposit_held_by \n DPS \n String \n\nNo \n\nrent_payment_bank_id \n 1423 \n Integer \n\nNo \n\ndeposit_payment_bank_id \n 4132 \n Integer \n\nNo \n\ndefault_rent_payment_method \n Bank Transfer \n String \n\nNo \n\nrent_insured \n false \n Boolean \n\nNo \n\ntags \n [\"12 month contract\"] \n Array (String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                tenancy_type:
+                  type: integer
+                letting_agent_id:
+                  type: integer
+                  example: 90909
+                contract_type:
+                  type: string
+                  example: Company
+                renter_company:
+                  type: string
+                  example: Renter Ltd.
+                start_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                end_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                break_clause_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                fixed_break_date:
+                  type: string
+                  format: date
+                  example: '2019-06-01'
+                rolling_break_date:
+                  type: string
+                  format: date
+                  example: '2019-09-18'
+                notice_period:
+                  type: string
+                  example: 2 months
+                  default: 1 months
+                issue_break_clause_to:
+                  type: string
+                  example: landlord
+                move_in_date:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                move_in_time:
+                  type: string
+                  example: '12:00'
+                move_out_date:
+                  type: string
+                  format: date
+                  example: '2020-01-01'
+                move_out_time:
+                  type: string
+                  example: '12:00'
+                rent_amount:
+                  type: number
+                  example: 875.0
+                rent_frequency:
+                  type: string
+                  example: Monthly
+                deposit_held_by:
+                  type: string
+                  example: DPS
+                rent_payment_bank_id:
+                  type: integer
+                  example: 1423
+                deposit_payment_bank_id:
+                  type: integer
+                  example: 4132
+                default_rent_payment_method:
+                  type: string
+                  example: Bank Transfer
+                rent_insured:
+                  type: boolean
+                  example: false
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '["12 month contract"]'
+              required:
+              - start_date
+              - rent_amount
+            example:
+              status: Current
+              tenancy_type: Commercial
+              start_date: '2019-01-01'
+              end_date: '2020-01-01'
+              break_clause_date: '2019-06-01'
+              fixed_break_date: '2019-06-01'
+              rolling_break_date: '2019-09-18'
+              move_in_date: '2019-01-01'
+              move_in_time: '12:00'
+              move_out_date: '2020-01-01'
+              move_out_time: '12:00'
+              deposit_held_by: ''
+              default_rent_payment_method: Bank Transfer
+              rent_insured: false
+              tags:
+              - 12 month contract
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+components:
+  parameters:
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+x-refined-from:
+- arthur-online-properties-openapi.yml
+- arthur-online-tenancies-openapi.yml
+- arthur-online-units-openapi.yml
+- arthur-online-viewings-openapi.yml

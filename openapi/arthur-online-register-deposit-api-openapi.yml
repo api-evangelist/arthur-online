@@ -1,0 +1,204 @@
+openapi: 3.2.0
+info:
+  title: Arthur Tenancies Register Deposit API
+  version: 2.0.0
+  description: Arthur Tenancies API - the tenancies surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Register Deposit
+paths:
+  /tenancies/{id}/register_deposit:
+    get:
+      operationId: registerDepositOnTenancy
+      summary: Register Deposit on Tenancy
+      tags:
+      - Register Deposit
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      description: This endpoint retrieves the registered deposit associated with the given tenancy ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  tenancy_id: 709960
+                  deposit_registered_not_needed: false
+                  date_registered: '2022-10-01'
+                  payment_id: ''
+                  certificate_no: ''
+                  deposit_scheme: LSDWUC
+                  deposit_held_by: TDS
+                  deposit_required: '1200.00'
+                  deposit_registered: true
+                  image_urls: []
+                  document_urls:
+                  - https://asset.arthuronline.co.uk/download/27210b2b-896e-45fe-949f-171f90998f14
+                  modified: '2023-03-06T09:08:27'
+                  created: '2023-03-06T09:08:26'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDepositOnTenancy
+      summary: Update Deposit on Tenancy
+      tags:
+      - Register Deposit
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to update the registered deposit related to a tenancy . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ndeposit_registered_not_needed \n true \n Boolean \n No \n\ndate_registered \n 2023-12-05 \n String \n No \n\ncertificate_no \n ABC \n String \n No \n\ndeposit_scheme \n Base64 \n String \n No \n\ndeposit_held_by \n TDS \n String \n No \n\ndeposit_required \n 1200 \n string \n No \n\ndeposit_registered \n true \n Boolean \n No \n\nThe \"deposit_scheme\" field is required to have one of the following values:\n\nTenancy Deposit Scheme (TDS) \n Deposit Protection Service (DPS) \n MyDeposits \n Letting Protection Scotland \n Safe Deposits Scotland \n My Deposits Scotland \n Reposit \n N/A"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deposit_registered_not_needed:
+                  type: boolean
+                  example: true
+                date_registered:
+                  type: string
+                  example: '2023-12-05'
+                certificate_no:
+                  type: string
+                  example: ABC
+                deposit_scheme:
+                  type: string
+                  example: Base64
+                deposit_held_by:
+                  type: string
+                  example: TDS
+                deposit_required:
+                  type: string
+                  example: '1200'
+                deposit_registered:
+                  type: boolean
+                  example: true
+            example:
+              deposit_registered_not_needed: true
+              date_registered: '2022-01-20'
+              certificate_no: ABC123
+              deposit_scheme: Tenancy Deposit Scheme (TDS)
+              deposit_held_by: TDS
+              deposit_required: '1200'
+              deposit_registered: true
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  tenancy_id: 709960
+                  deposit_registered_not_needed: true
+                  date_registered: '2022-01-20'
+                  payment_id: ''
+                  certificate_no: ABC123
+                  deposit_scheme: Tenancy Deposit Scheme (TDS)
+                  deposit_held_by: TDS
+                  deposit_required: '1200.00'
+                  deposit_registered: true
+                  image_urls: []
+                  document_urls:
+                  - https://asset.arthuronline.co.uk/download/27210b2b-896e-45fe-949f-171f90998f14
+                  modified: '2023-03-06T15:43:07'
+                  created: '2023-03-06T09:08:26'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  parameters:
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}

@@ -1,0 +1,273 @@
+openapi: 3.2.0
+info:
+  title: Arthur Online Recurrings API
+  version: 2.0.0
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+  x-derived-from: collections/arthur-online.postman_collection.json
+  description: 'Operations tagged Recurrings across 2 of this provider''s published API definitions: arthur-online-financials-openapi.yml, arthur-online-tenancies-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Recurrings
+paths:
+  /recurrings/{recurringId}:
+    get:
+      operationId: viewRecurring
+      summary: View Recurring
+      tags:
+      - Recurrings
+      parameters:
+      - name: recurringId
+        in: path
+        required: true
+        description: Arthur recurringId.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/EntityId'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                  id: 1481960
+                  tenancy_id: 966665
+                  property_id: 36378
+                  unit_id: 80046
+                  transaction_type: Direct Rent
+                  description: Rent
+                  description_format_id: 1
+                  at_remittance: false
+                  fee_type: fixed
+                  amount: '1000.00'
+                  currency: GBP
+                  vat_code_id: 4
+                  frequency_id: 1
+                  start_date: '2025-01-31'
+                  next_collection_date: null
+                  end_type: tenancy-end
+                  end_date: '2025-01-29T00:00:00'
+                  created_by:
+                    id: 100569
+                    full_name: Max Mil
+                  active: false
+                  created: '2025-01-29T12:49:28'
+                  modified: '2025-01-29T12:59:49'
+                pagination:
+                  page: 1
+                  current: 20
+                  count: 291
+                  pageCount: 15
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /tenancies/{tenancyId}/recurrings:
+    get:
+      operationId: listRecurrings
+      summary: List Recurrings
+      tags:
+      - Recurrings
+      parameters:
+      - name: tenancyId
+        in: path
+        required: true
+        description: Arthur tenancyId.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of recurrings associated to a specific tenancy
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              example:
+                status: 200
+                data:
+                - id: 1481960
+                  tenancy_id: 966665
+                  property_id: 36378
+                  unit_id: 80046
+                  transaction_type: Direct Rent
+                  description: Rent
+                  description_format_id: 1
+                  at_remittance: false
+                  fee_type: fixed
+                  amount: '1000.00'
+                  currency: GBP
+                  vat_code_id: 4
+                  frequency_id: 1
+                  start_date: '2025-01-31'
+                  next_collection_date: null
+                  end_type: tenancy-end
+                  end_date: '2025-01-29T00:00:00'
+                  created_by:
+                    id: 100569
+                    full_name: Arthur Lettings
+                  active: false
+                  created: '2025-01-29T12:49:28'
+                  modified: '2025-01-29T12:59:49'
+                pagination:
+                  page: 1
+                  current: 1
+                  count: 1
+                  pageCount: 1
+                  limit: 20
+                  queryScope: null
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+components:
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Pagination:
+      type: object
+      description: Pagination block returned on every list response.
+      properties:
+        page:
+          type: integer
+        current:
+          type: integer
+        count:
+          type: integer
+        pageCount:
+          type: integer
+        limit:
+          type: integer
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  parameters:
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+x-refined-from:
+- arthur-online-financials-openapi.yml
+- arthur-online-tenancies-openapi.yml

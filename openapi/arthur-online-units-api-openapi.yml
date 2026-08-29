@@ -1,0 +1,982 @@
+openapi: 3.2.0
+info:
+  title: Arthur Online Units API
+  version: 2.0.0
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+  x-derived-from: collections/arthur-online.postman_collection.json
+  description: 'Operations tagged Units across 2 of this provider''s published API definitions: arthur-online-properties-openapi.yml, arthur-online-units-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Units
+paths:
+  /properties/{property_id}/units:
+    get:
+      operationId: listUnitsOnProperty
+      summary: List Units on Property
+      tags:
+      - Units
+      parameters:
+      - name: property_id
+        in: path
+        required: true
+        description: Arthur property id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the units by unit status.
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the units by unit type.
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter the units by a comma separated value of tags.
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: This endpoint retrieves a list of units associated with the given property ID.
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /units:
+    get:
+      operationId: listUnits
+      summary: List Units
+      tags:
+      - Units
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - name: unit_ref
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the address name of the unit
+      - name: address_line_1
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the address 1 field of the unit
+      - name: address_line_2
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the address 2 field of the unit
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the city of the unit
+      - name: county
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the county of the unit
+      - name: area_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the area ID of the unit
+      - name: area
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the area name of the unit
+      - name: postcode
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the postcode of the unit
+      - name: portal
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by portal
+      - name: unit_vacant
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by unit vacancy (boolean)
+      - name: available_move_in_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by unit availability date range. Use the format yyyy-mm-dd to input the date
+      - name: available_move_out_date
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by unit avaiability date range. Use the format yyyy-mm-dd to input the date
+      - name: unit_type
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by unit type
+      - name: unit_status
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter based on the current status of units, including Available To Let, Under Offer, Let, and Unavailable to Let
+      - name: market_rent
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by market rent amount
+      - name: bedrooms
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by bedroom count
+      - name: floors
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter units by floor count
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by tags associated with the units, which should be provided as a comma-separated list
+      - name: i_manage_this
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter based on the management status of the property (boolean)
+      - name: unit_owner_id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the ID of the owner of the unit
+      - name: max_occupancy
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by the max occupancy on a unit
+      - name: _q
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by keyword
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Direction'
+      description: 'This retrieves a list of units.
+
+
+        See available filters below to customize the list of units returned.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: addUnit
+      summary: Add Unit
+      tags:
+      - Units
+      parameters:
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "Use this endpoint to create a new unit. The API will return the saved data and a unique Unit ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nproperty_id \n 12345 \n Integer \n\nYes \n\nunit_type \n Residential \n String \n\nNo \n\nunit_status \n Available to Let \n String \n Available to Let \n No \n\nunit_ref \n Unit 1 \n String \n\nYes \n\naddress_line_1 \n Arthur House \n String \n\nYes \n\naddress_line_2 \n 123 Property Street \n String \n\nNo \n\ncity \n Stevenage \n String \n\nYes \n\ncounty \n Hertfordshire \n String \n\nNo \n\ncountry \n United Kingdom \n String \n\nNo \n\narea \n South East \n String \n\nNo \n\npostcode \n AB1 2CD \n String \n\nYes \n\nmarket_rent \n 800.00 \n Float \n\nNo \n\nmarket_rent_frequency \n Monthly \n String \n\nNo \n\navailable_from \n 2019-01-01 \n Date \n\nNo \n\navailable_since \n 2019-01-01 \n Date \n\nNo \n\nunit_owner_id \n 3456 \n Integer \n\nNo \n\nletting_agent_id \n 4567 \n Integer \n\nNo \n\nportal_address \n Property Street, Stevenage, AB1 \n String \n\nNo \n\nshort_description \n Brand new furnished unit in the heart of the city center! \n String \n\nNo \n\ndescription \n This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing. \n String \n\nNo \n\nportal_unit_type \n Apartment \n String \n\nNo \n\nsize \n 500 \n String \n\nNo \n\nsize_unit \n Sq Meter \n String \n\nNo \n\nfurnished \n Part-Furnished \n String \n\nNo \n\nmax_occupancy \n 1 \n String \n\nNo \n\nbathrooms \n 1 \n String \n\nNo \n\nfloors \n 1 \n String \n\nNo \n\nbedrooms \n 1 \n String \n\nNo \n\nreceptions \n 1 \n String \n\nNo \n\nsmart_meters \n No \n String \n\nNo \n\ndate_available \n 2019-01-01 \n Date \n\nNo \n\nrental_term \n Long \n String \n\nNo \n\ndeposit_amount \n 1600.00 \n Float \n\nNo \n\nservice_charge \n true \n Boolean \n\nNo \n\nservice_charge_amount \n 75.00 \n Float \n\nNo \n\ncouncil_tax_band \n C \n String \n\nNo \n\ncouncil_account_no \n ABC123 \n String \n\nNo \n\ncouncil_id \n 9874 \n Integer \n\nNo \n\nportal_market_rent \n 800.00 \n Float \n\nNo \n\nportal_market_rent_frequency \n Monthly \n String \n\nNo \n\nsharing_tenancies \n N/A \n String \n\nNo \n\ni_manage_this \n true \n Boolean \n\nNo \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n\nNo \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n\nNo"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                property_id:
+                  type: integer
+                  example: 12345
+                unit_type:
+                  type: string
+                  example: Residential
+                unit_status:
+                  type: string
+                  example: Available to Let
+                  default: Available to Let
+                unit_ref:
+                  type: string
+                  example: Unit 1
+                address_line_1:
+                  type: string
+                  example: Arthur House
+                address_line_2:
+                  type: string
+                  example: 123 Property Street
+                city:
+                  type: string
+                  example: Stevenage
+                county:
+                  type: string
+                  example: Hertfordshire
+                country:
+                  type: string
+                  example: United Kingdom
+                area:
+                  type: string
+                  example: South East
+                postcode:
+                  type: string
+                  example: AB1 2CD
+                market_rent:
+                  type: number
+                  example: 800.0
+                market_rent_frequency:
+                  type: string
+                  example: Monthly
+                available_from:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                available_since:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                unit_owner_id:
+                  type: integer
+                  example: 3456
+                letting_agent_id:
+                  type: integer
+                  example: 4567
+                portal_address:
+                  type: string
+                  example: Property Street, Stevenage, AB1
+                short_description:
+                  type: string
+                  example: Brand new furnished unit in the heart of the city center!
+                description:
+                  type: string
+                  example: This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing.
+                portal_unit_type:
+                  type: string
+                  example: Apartment
+                size:
+                  type: string
+                  example: '500'
+                size_unit:
+                  type: string
+                  example: Sq Meter
+                furnished:
+                  type: string
+                  example: Part-Furnished
+                max_occupancy:
+                  type: string
+                  example: '1'
+                bathrooms:
+                  type: string
+                  example: '1'
+                floors:
+                  type: string
+                  example: '1'
+                bedrooms:
+                  type: string
+                  example: '1'
+                receptions:
+                  type: string
+                  example: '1'
+                smart_meters:
+                  type: string
+                  example: 'No'
+                date_available:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                rental_term:
+                  type: string
+                  example: Long
+                deposit_amount:
+                  type: number
+                  example: 1600.0
+                service_charge:
+                  type: boolean
+                  example: true
+                service_charge_amount:
+                  type: number
+                  example: 75.0
+                council_tax_band:
+                  type: string
+                  example: C
+                council_account_no:
+                  type: string
+                  example: ABC123
+                council_id:
+                  type: integer
+                  example: 9874
+                portal_market_rent:
+                  type: number
+                  example: 800.0
+                portal_market_rent_frequency:
+                  type: string
+                  example: Monthly
+                sharing_tenancies:
+                  type: string
+                  example: N/A
+                i_manage_this:
+                  type: boolean
+                  example: true
+                features:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Internet", "Fireplace", "Smart home integration" ]'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Cheap Rent" ]'
+              required:
+              - property_id
+              - unit_ref
+              - address_line_1
+              - city
+              - postcode
+            example:
+              property_id: 282789
+              unit_type: Residential
+              unit_status: Available To Let
+              unit_ref: Unit 1
+              address_line_1: Arthur House
+              address_line_2: 123 Property Street
+              city: Stevenage
+              county: Hertfordshire
+              country: United Kingdom
+              area: South East
+              postcode: AB1 2CD
+              market_rent: 800
+              market_rent_frequency: Monthly
+              available_from: '2019-01-01'
+              available_since: '2019-01-01'
+              portal_address: Property Street, Stevenage, AB1
+              short_description: Brand new furnished unit in the heart of the city center!
+              description: This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing.
+              portal_unit_type: Apartment
+              size: '500'
+              size_unit: Sq Meter
+              furnished: Part-Furnished
+              max_occupancy: '1'
+              bathrooms: '1'
+              floors: '1'
+              bedrooms: '1'
+              receptions: '1'
+              smart_meters: 'No'
+              date_available: '2019-01-01'
+              rental_term: Long
+              deposit_amount: 1600
+              service_charge: true
+              service_charge_amount: 75
+              council_tax_band: C
+              council_account_no: ABC123
+              portal_market_rent: 800
+              portal_market_rent_frequency: Monthly
+              sharing_tenancies: N/A
+              i_manage_this: true
+              features:
+              - Internet
+              - Fireplace
+              - Smart home integration
+              tags:
+              - Cheap Rent
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 651669
+                  property_id: 282789
+                  unit_type: Residential
+                  unit_status: Available To Let
+                  unit_ref: Unit 1
+                  unit_vacant: true
+                  available_from: '2019-01-01'
+                  owner:
+                    id: null
+                    full_name: null
+                  assigned_managers: ''
+                  full_address: Unit 1, Arthur House, 123 Property Street, Stevenage, Hertfordshire, AB1 2CD, United Kingdom (South East)
+                  address_line_1: Arthur House
+                  address_line_2: 123 Property Street
+                  city: Stevenage
+                  county: Hertfordshire
+                  country: United Kingdom
+                  area: South East
+                  postcode: AB1 2CD
+                  lat: 51.903761
+                  lng: -0.196612
+                  market_rent: 800
+                  market_rent_frequency: Monthly
+                  available_since: null
+                  letting_agent_id: null
+                  letting_agent:
+                    id: null
+                    full_name: null
+                  portal_address: Property Street, Stevenage, AB1
+                  short_description: Brand new furnished unit in the heart of the city center!
+                  description: This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing.
+                  portal_unit_type: Apartment
+                  size: '500'
+                  size_unit: Sq Meter
+                  furnished: Part-Furnished
+                  max_occupancy: '1'
+                  bathrooms: '1'
+                  floors: '1'
+                  bedrooms: '1'
+                  receptions: '1'
+                  smart_meters: 'No'
+                  date_available: '2019-01-01'
+                  rental_term: Long
+                  deposit_amount: 1600
+                  service_charge: true
+                  service_charge_amount: 75
+                  council_tax_band: C
+                  council_account_no: ABC123
+                  council_id: null
+                  portal_market_rent: 800
+                  portal_market_rent_frequency: Monthly
+                  sharing_tenancies: N/A
+                  virtual_tour_url: ''
+                  i_manage_this: true
+                  main_image_url: null
+                  epc_urls: []
+                  floor_plan_urls: []
+                  thumbnail_urls: []
+                  image_urls: []
+                  features:
+                  - Fireplace
+                  - Internet
+                  - Smart home integration
+                  unit_features:
+                  - Fireplace
+                  - Internet
+                  additional_features:
+                  - Smart home integration
+                  notes: []
+                  tags:
+                  - Cheap Rent
+                  custom_fields: []
+                  relationships:
+                  - model: Property
+                    model_id: '282789'
+                    ref: My big property
+                  days_vacant: 1520 days ago
+                  days_vacant_total: 1520
+                  modified: '2023-03-01T16:14:06'
+                  created: '2023-03-01T16:14:05'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+  /units/{unit_id}:
+    get:
+      operationId: viewUnit
+      summary: View Unit
+      tags:
+      - Units
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      description: 'This API endpoint retrieves the details of a single unit, identified by its unique  unit_id .
+
+
+        Use this endpoint to view the specific details of a unit.'
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateUnit
+      summary: Update Unit
+      tags:
+      - Units
+      parameters:
+      - name: unit_id
+        in: path
+        required: true
+        description: Arthur unit id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint updates an existing unit using the same fields as the 'Add Unit' endpoint excluding the property_id . Any fields that are not provided will not be changed. The API will return the updated data for the unit in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nunit_type \n Residential \n String \n No \n\nunit_status \n Available to Let \n String \n No \n\nunit_ref \n Unit 1 \n String \n No \n\naddress_line_1 \n Arthur House \n String \n No \n\naddress_line_2 \n 123 Property Street \n String \n No \n\ncity \n Stevenage \n String \n No \n\ncounty \n Hertfordshire \n String \n No \n\ncountry \n United Kingdom \n String \n No \n\narea \n South East \n String \n No \n\npostcode \n AB1 2CD \n String \n No \n\nmarket_rent \n 800.00 \n Float \n No \n\nmarket_rent_frequency \n Monthly \n String \n No \n\navailable_from \n 2019-01-01 \n Date \n No \n\navailable_since \n 2019-01-01 \n Date \n No \n\nunit_owner_id \n 3456 \n Integer \n No \n\nletting_agent_id \n 4567 \n Integer \n No \n\nportal_address \n Property Street, Stevenage, AB1 \n String \n No \n\nshort_description \n Brand new furnished unit in the heart of the city center! \n String \n No \n\ndescription \n This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing. \n String \n No \n\nportal_unit_type \n Apartment \n String \n No \n\nsize \n 500 \n String \n No \n\nsize_unit \n Sq Meter \n String \n No \n\nfurnished \n Part-Furnished \n String \n No \n\nmax_occupancy \n 1 \n String \n No \n\nbathrooms \n 1 \n String \n No \n\nfloors \n 1 \n String \n No \n\nbedrooms \n 1 \n String \n No \n\nreceptions \n 1 \n String \n No \n\nsmart_meters \n No \n String \n No \n\ndate_available \n 2019-01-01 \n Date \n No \n\nrental_term \n Long \n String \n No \n\ndeposit_amount \n 1600.00 \n Float \n No \n\nservice_charge \n true \n Boolean \n No \n\nservice_charge_amount \n 75.00 \n Float \n No \n\ncouncil_tax_band \n C \n String \n No \n\ncouncil_account_no \n ABC123 \n String \n No \n\ncouncil_id \n 9874 \n Integer \n No \n\nportal_market_rent \n 800.00 \n Float \n No \n\nportal_market_rent_frequency \n Monthly \n String \n No \n\nsharing_tenancies \n N/A \n String \n No \n\ni_manage_this \n true \n Boolean \n No \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n No \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n No"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit_type:
+                  type: string
+                  example: Residential
+                unit_status:
+                  type: string
+                  example: Available to Let
+                unit_ref:
+                  type: string
+                  example: Unit 1
+                address_line_1:
+                  type: string
+                  example: Arthur House
+                address_line_2:
+                  type: string
+                  example: 123 Property Street
+                city:
+                  type: string
+                  example: Stevenage
+                county:
+                  type: string
+                  example: Hertfordshire
+                country:
+                  type: string
+                  example: United Kingdom
+                area:
+                  type: string
+                  example: South East
+                postcode:
+                  type: string
+                  example: AB1 2CD
+                market_rent:
+                  type: number
+                  example: 800.0
+                market_rent_frequency:
+                  type: string
+                  example: Monthly
+                available_from:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                available_since:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                unit_owner_id:
+                  type: integer
+                  example: 3456
+                letting_agent_id:
+                  type: integer
+                  example: 4567
+                portal_address:
+                  type: string
+                  example: Property Street, Stevenage, AB1
+                short_description:
+                  type: string
+                  example: Brand new furnished unit in the heart of the city center!
+                description:
+                  type: string
+                  example: This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing.
+                portal_unit_type:
+                  type: string
+                  example: Apartment
+                size:
+                  type: string
+                  example: '500'
+                size_unit:
+                  type: string
+                  example: Sq Meter
+                furnished:
+                  type: string
+                  example: Part-Furnished
+                max_occupancy:
+                  type: string
+                  example: '1'
+                bathrooms:
+                  type: string
+                  example: '1'
+                floors:
+                  type: string
+                  example: '1'
+                bedrooms:
+                  type: string
+                  example: '1'
+                receptions:
+                  type: string
+                  example: '1'
+                smart_meters:
+                  type: string
+                  example: 'No'
+                date_available:
+                  type: string
+                  format: date
+                  example: '2019-01-01'
+                rental_term:
+                  type: string
+                  example: Long
+                deposit_amount:
+                  type: number
+                  example: 1600.0
+                service_charge:
+                  type: boolean
+                  example: true
+                service_charge_amount:
+                  type: number
+                  example: 75.0
+                council_tax_band:
+                  type: string
+                  example: C
+                council_account_no:
+                  type: string
+                  example: ABC123
+                council_id:
+                  type: integer
+                  example: 9874
+                portal_market_rent:
+                  type: number
+                  example: 800.0
+                portal_market_rent_frequency:
+                  type: string
+                  example: Monthly
+                sharing_tenancies:
+                  type: string
+                  example: N/A
+                i_manage_this:
+                  type: boolean
+                  example: true
+                features:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Internet", "Fireplace", "Smart home integration" ]'
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: '[ "Cheap Rent" ]'
+            example:
+              property_id: 282789
+              unit_type: Residential
+              unit_status: Available To Let
+              unit_ref: Unit 1
+              address_line_1: Arthur House
+              address_line_2: 123 Property Street
+              city: Stevenage
+              county: Hertfordshire
+              country: United Kingdom
+              area: South East
+              postcode: AB1 2CD
+              market_rent: 800
+              market_rent_frequency: Monthly
+              available_from: '2019-01-01'
+              available_since: '2019-01-01'
+              portal_address: Property Street, Stevenage, AB1
+              short_description: Brand new furnished unit in the heart of the city center!
+              description: This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing.
+              portal_unit_type: Apartment
+              size: '500'
+              size_unit: Sq Meter
+              furnished: Part-Furnished
+              max_occupancy: '1'
+              bathrooms: '1'
+              floors: '1'
+              bedrooms: '1'
+              receptions: '1'
+              smart_meters: 'No'
+              date_available: '2019-01-01'
+              rental_term: Long
+              deposit_amount: 1600
+              service_charge: true
+              service_charge_amount: 75
+              council_tax_band: C
+              council_account_no: ABC123
+              portal_market_rent: 800
+              portal_market_rent_frequency: Monthly
+              sharing_tenancies: N/A
+              i_manage_this: true
+              features:
+              - Internet
+              - Fireplace
+              - Smart home integration
+              tags:
+              - Cheap Rent
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 651669
+                  property_id: 282789
+                  unit_type: Residential
+                  unit_status: Available To Let
+                  unit_ref: Unit 1
+                  unit_vacant: true
+                  available_from: '2019-01-01'
+                  owner:
+                    id: null
+                    full_name: null
+                  assigned_managers: ''
+                  full_address: Unit 1, Arthur House, 123 Property Street, Stevenage, Hertfordshire, AB1 2CD, United Kingdom (South East)
+                  address_line_1: Arthur House
+                  address_line_2: 123 Property Street
+                  city: Stevenage
+                  county: Hertfordshire
+                  country: United Kingdom
+                  area: South East
+                  postcode: AB1 2CD
+                  lat: 51.903761
+                  lng: -0.196612
+                  market_rent: 800
+                  market_rent_frequency: Monthly
+                  available_since: null
+                  letting_agent_id: null
+                  letting_agent:
+                    id: null
+                    full_name: null
+                  portal_address: Property Street, Stevenage, AB1
+                  short_description: Brand new furnished unit in the heart of the city center!
+                  description: This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing.
+                  portal_unit_type: Apartment
+                  size: '500'
+                  size_unit: Sq Meter
+                  furnished: Part-Furnished
+                  max_occupancy: '1'
+                  bathrooms: '1'
+                  floors: '1'
+                  bedrooms: '1'
+                  receptions: '1'
+                  smart_meters: 'No'
+                  date_available: '2019-01-01'
+                  rental_term: Long
+                  deposit_amount: 1600
+                  service_charge: true
+                  service_charge_amount: 75
+                  council_tax_band: C
+                  council_account_no: ABC123
+                  council_id: null
+                  portal_market_rent: 800
+                  portal_market_rent_frequency: Monthly
+                  sharing_tenancies: N/A
+                  virtual_tour_url: ''
+                  i_manage_this: true
+                  main_image_url: null
+                  epc_urls: []
+                  floor_plan_urls: []
+                  thumbnail_urls: []
+                  image_urls: []
+                  features:
+                  - Fireplace
+                  - Internet
+                  - Smart home integration
+                  unit_features:
+                  - Fireplace
+                  - Internet
+                  additional_features:
+                  - Smart home integration
+                  notes: []
+                  tags:
+                  - Cheap Rent
+                  custom_fields: []
+                  relationships:
+                  - model: Property
+                    model_id: '282789'
+                    ref: My big property
+                  days_vacant: 1520 days ago
+                  days_vacant_total: 1520
+                  modified: '2023-03-01T16:14:06'
+                  created: '2023-03-01T16:14:05'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://api.arthuronline.co.uk/v2
+      description: Arthur API v2 production
+components:
+  parameters:
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  schemas:
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
+x-refined-from:
+- arthur-online-properties-openapi.yml
+- arthur-online-units-openapi.yml

@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  title: Arthur Viewings Offers API
+  version: 2.0.0
+  description: Arthur Viewings API - the viewings surface of the Arthur API v2, the UK property management platform from Arthur Online (an Aareon company). Derived operation-for-operation from the provider's public Postman Documenter collection at https://developer.arthuronline.co.uk/. Every request is scoped to an Arthur entity via the mandatory X-EntityID header and authorised with an OAuth 2.0 Authorization Code access token.
+  contact:
+    name: Arthur Online API Support
+    url: https://support.arthuronline.co.uk/
+  termsOfService: https://www.arthuronline.co.uk/terms-and-conditions/
+  x-derived-from: collections/arthur-online.postman_collection.json
+  x-derived-by: API Evangelist enrichment pipeline
+  x-derived-date: '2026-07-26'
+servers:
+- url: https://api.arthuronline.co.uk/v2
+  description: Arthur API v2 production
+security:
+- arthurOAuth: []
+tags:
+- name: Offers
+paths:
+  /viewings/{viewing_id}/submit_offer:
+    put:
+      operationId: submitOfferOnViewing
+      summary: Submit Offer on Viewing
+      tags:
+      - Offers
+      parameters:
+      - name: viewing_id
+        in: path
+        required: true
+        description: Arthur viewing id.
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/EntityId'
+      - $ref: '#/components/parameters/Strict'
+      description: "This endpoint submits an offer to an existing viewing. Any fields that are not provided will not be changed. The API will return the updated data for the viewing in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\namount \n 1200 \n String \n Yes \n\nfrequency \n Month \n String \n Yes (Week, Month, or Year)"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: string
+                  example: '1200'
+                frequency:
+                  type: string
+                  example: Month
+              required:
+              - amount
+            example:
+              amount: '1200'
+              frequency: Month
+      responses:
+        '200':
+          description: The request was completed successfully without errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                  data:
+                    type: object
+              example:
+                status: 200
+                data:
+                  id: 633231
+                  unit_id: 599238
+                  unit_address: Unit 1 - Iron Bridge House, London, NW7 1JH
+                  lat: 53.2457105
+                  lng: -2.5220604
+                  applicant:
+                    id: 1182293
+                    full_name: API Support
+                  applicants:
+                  - id: 1182293
+                    full_name: API Support
+                  viewing_status: Confirmed
+                  viewing_date: '2023-02-27'
+                  viewing_time: '10:53'
+                  viewing_datetime: '2023-02-27T10:53:00'
+                  offer_amount: '1200.00'
+                  offer_frequency: Month
+                  duration: 30
+                  move_in_date: null
+                  unit_available_from: null
+                  unit_is_vacant: true
+                  assigned_to:
+                  - id: 100569
+                    full_name: 'Max '
+                  relationships:
+                  - model: Unit
+                    model_id: '599238'
+                    ref: Unit 1 - Iron Bridge House
+                  - model: Property
+                    model_id: '280736'
+                    ref: Iron Bridge House
+                  tags: []
+                  notes: []
+                  source: ''
+                  viewing_notes: ''
+                  modified: '2023-03-06T10:53:14'
+                  created: '2023-02-14T10:12:25'
+                  deleted: false
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
+  parameters:
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      description: Arthur error envelope.
+      properties:
+        status:
+          type: integer
+        error:
+          type: string
+          description: Machine-readable error code, e.g. expired_token.
+        message:
+          type: string
+  securitySchemes:
+    arthurOAuth:
+      type: oauth2
+      description: OAuth 2.0 Authorization Code flow. Access tokens are valid for 14 days; refresh tokens for 21 days. Register an application in Arthur Settings > OAuth Applications to obtain a client_id and client_secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.arthuronline.co.uk/oauth/authorize
+          tokenUrl: https://auth.arthuronline.co.uk/oauth/token
+          refreshUrl: https://auth.arthuronline.co.uk/oauth/token
+          scopes: {}
