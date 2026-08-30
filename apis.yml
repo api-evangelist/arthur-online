@@ -286,6 +286,8 @@ apis:
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
+  - invite
+  tags_raw:
   - Invite
   properties:
   - type: OpenAPI
@@ -308,6 +310,8 @@ apis:
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -572,6 +576,8 @@ apis:
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -638,6 +644,8 @@ apis:
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -748,6 +756,8 @@ apis:
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
+  - Work Orders
+  tags_raw:
   - Workorders
   properties:
   - type: OpenAPI
