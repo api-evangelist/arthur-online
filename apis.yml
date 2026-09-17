@@ -765,18 +765,16 @@ apis:
     url: asyncapi/arthur-online-webhooks.yml
   - type: AsyncAPI
     url: asyncapi/arthur-online-webhooks-asyncapi.yml
-- aid: arthur-online:arthur-online-workorders-api
-  name: Arthur Online Workorders API
-  description: The Workorders API from Arthur Online — 29 operation(s) for workorders.
+- aid: arthur-online:arthur-online-work-orders-api
+  name: Arthur Online Work Orders API
+  description: The Work Orders API from Arthur Online — 29 operation(s) for work orders.
   humanURL: https://developer.arthuronline.co.uk/
   baseURL: https://api.arthuronline.co.uk/v2
   tags:
   - Work Orders
-  tags_raw:
-  - Workorders
   properties:
   - type: OpenAPI
-    url: openapi/arthur-online-workorders-api-openapi.yml
+    url: openapi/arthur-online-work-orders-api-openapi.yml
   - type: Documentation
     url: https://developer.arthuronline.co.uk/
   - type: APIReference
