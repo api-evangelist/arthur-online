@@ -45,6 +45,9 @@ accessModel:
   generated: '2026-09-02'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/arthur-online.png
+x-docs-platform: postman
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-19
 tags:
 - Real-Estate
 - United Kingdom
