@@ -127,7 +127,836 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "Use this endpoint to create a new applicant. The API will return the saved data and a unique Applicant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_status \n Active \n String \n\nNo \n\ntitle \n Mr \n Enum \n Mr \n No \n\nfirst_name \n Ryan \n String \n\nNo \n\nlast_name \n Cullen \n String \n\nNo \n\ndate_of_birth \n 1995-05-28 \n Date \n\nNo \n\ngender \n Other \n Enum \n Male \n No \n\ncitizen_type \n UK Citizen \n Enum \n\nNo \n\nemail \n myemail@example.com \n Email \n\nNo \n\ncompany_name \n Arthur Online \n String \n\nNo \n\ncompany_address_name \n Arthur Main Office \n String \n\nNo \n\ncompany_address1 \n comp line 1 \n String \n\nNo \n\ncompany_address2 \n comp line 2 \n String \n\nNo \n\ncompany_city \n compcity \n String \n\nNo \n\ncompany_postcode \n C0MP 123 \n String \n\nNo \n\ncompany_county \n comp hertfordshire \n String \n\nNo \n\ncompany_country \n 51 \n Enum \n\nNo \n\nphone_home \n 13597352 \n String \n\nNo \n\nphone_work \n 0159876589 \n String \n\nNo \n\nmobile \n 07726895134 \n String \n\nNo \n\nresidential_number \n 11236659 \n String \n\nNo \n\nvisa_number \n 1346dq89 \n String \n\nNo \n\nvisa_years \n 3 \n String \n\nNo \n\nvisa_type \n Tier 2 \n Enum \n\nNo \n\ncountry_of_origin \n original country \n String \n\nNo \n\nni_number \n ab 12 34 5f \n String \n\nNo \n\nhousing_benefit_council \n herts council \n String \n\nNo \n\nhousing_benefit_number \n 1346 \n String \n\nNo \n\nbank_name \n bnk name \n String \n\nNo \n\nbank_address1 \n bank line 1 \n String \n\nNo \n\nbank_address2 \n bank line 2 \n String \n\nNo \n\nbank_city \n bankcity \n String \n\nNo \n\nbank_county \n bank herts \n String \n\nNo \n\nbank_postcode \n B4N K12 \n String \n\nNo \n\nkin_first_name \n next-of \n String \n\nNo \n\nkin_last_name \n kin \n String \n\nNo \n\nkin_mobile \n 4512325178 \n String \n\nNo \n\nkin_phone_work \n 996832145 \n String \n\nNo \n\nstudent_status \n full time \n Enum \n Full Time \n No \n\nuniversity \n viking university \n String \n\nNo \n\ncourse_name \n viking studies \n String \n\nNo \n\ncourse_id \n MC1685 \n String \n\nNo \n\ncourse_year \n 3 \n String \n\nNo \n\nemployment_company_name \n emp company name \n String \n\nNo \n\nemployment_address1 \n emp line 1 \n String \n\nNo \n\nemployment_address2 \n emp line 2 \n String \n\nNo \n\nemployment_city \n emp city \n String \n\nNo \n\nemployment_postcode \n 3MP C0NT \n String \n\nNo \n\nemployment_county \n emp herts \n String \n\nNo \n\nemployment_contact_name \n employed contact \n String \n\nNo \n\nemployment_contact_number \n 968235174 \n String \n\nNo \n\nemployment_salary \n 21000 \n String \n\nNo \n\nemployment_length \n 3 years \n String \n\nNo \n\nguarantor_first_name \n Jason \n String \n\nNo \n\nguarantor_last_name \n Doe \n String \n\nNo \n\nguarantor_date_of_birth \n 1968-05-08 \n String \n\nNo \n\nguarantor_address1 \n 123 Fake Street \n String \n\nNo \n\nguarantor_address2 \n 123 Fake Street \n String \n\nNo \n\nguarantor_city \n Notreal \n String \n\nNo \n\nguarantor_postcode \n ABC 123 \n String \n\nNo \n\nguarantor_county \n Doeshire \n String \n\nNo \n\nguarantor_country \n United Kingdom \n String \n\nNo \n\nguarantor_phone_home \n 12345 678900 \n String \n\nNo \n\nguarantor_phone_work \n 01234 567890 \n String \n\nNo \n\nguarantor_mobile \n 07000 000000 \n String \n\nNo \n\nguarantor_email \n example@email.com \n String \n\nNo \n\nguarantor_relation \n Father \n String \n\nNo \n\nguarantor_home_owner \n Home Owner Outright \n String \n\nNo \n\nguarantor_profession \n Professional \n String \n\nNo \n\nref_name \n ref name \n String \n\nNo \n\nref_address1 \n ref line 1 \n String \n\nNo \n\nref_address2 \n ref line 2 \n String \n\nNo \n\nref_city \n ref Stevenage \n String \n\nNo \n\nref_county \n ref Hertfordshire \n String \n\nNo \n\nref_postcode \n R3F 8AW \n String \n\nNo \n\nref_contact_number \n 134679825 \n String \n\nNo \n\nref_relation \n mother \n String \n\nNo \n\nnumber_of_sharers \n 3 \n String \n\nNo \n\nsource \n 3 \n Simple \n\nNo \n\nmanager_note \n MANAGER NOTES \n String \n\nNo \n\napplicant_note \n TEST NOTE \n String \n\nNo \n\ntags \n [\"tag1\"] \n Array(String) \n\nNo"
+      description: 'Use this endpoint to create a new applicant. The API will return the saved data and a unique Applicant ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        applicant_status
+
+        Active
+
+        String
+
+
+        No
+
+
+        title
+
+        Mr
+
+        Enum
+
+        Mr
+
+        No
+
+
+        first_name
+
+        Ryan
+
+        String
+
+
+        No
+
+
+        last_name
+
+        Cullen
+
+        String
+
+
+        No
+
+
+        date_of_birth
+
+        1995-05-28
+
+        Date
+
+
+        No
+
+
+        gender
+
+        Other
+
+        Enum
+
+        Male
+
+        No
+
+
+        citizen_type
+
+        UK Citizen
+
+        Enum
+
+
+        No
+
+
+        email
+
+        myemail@example.com
+
+        Email
+
+
+        No
+
+
+        company_name
+
+        Arthur Online
+
+        String
+
+
+        No
+
+
+        company_address_name
+
+        Arthur Main Office
+
+        String
+
+
+        No
+
+
+        company_address1
+
+        comp line 1
+
+        String
+
+
+        No
+
+
+        company_address2
+
+        comp line 2
+
+        String
+
+
+        No
+
+
+        company_city
+
+        compcity
+
+        String
+
+
+        No
+
+
+        company_postcode
+
+        C0MP 123
+
+        String
+
+
+        No
+
+
+        company_county
+
+        comp hertfordshire
+
+        String
+
+
+        No
+
+
+        company_country
+
+        51
+
+        Enum
+
+
+        No
+
+
+        phone_home
+
+        13597352
+
+        String
+
+
+        No
+
+
+        phone_work
+
+        0159876589
+
+        String
+
+
+        No
+
+
+        mobile
+
+        07726895134
+
+        String
+
+
+        No
+
+
+        residential_number
+
+        11236659
+
+        String
+
+
+        No
+
+
+        visa_number
+
+        1346dq89
+
+        String
+
+
+        No
+
+
+        visa_years
+
+        3
+
+        String
+
+
+        No
+
+
+        visa_type
+
+        Tier 2
+
+        Enum
+
+
+        No
+
+
+        country_of_origin
+
+        original country
+
+        String
+
+
+        No
+
+
+        ni_number
+
+        ab 12 34 5f
+
+        String
+
+
+        No
+
+
+        housing_benefit_council
+
+        herts council
+
+        String
+
+
+        No
+
+
+        housing_benefit_number
+
+        1346
+
+        String
+
+
+        No
+
+
+        bank_name
+
+        bnk name
+
+        String
+
+
+        No
+
+
+        bank_address1
+
+        bank line 1
+
+        String
+
+
+        No
+
+
+        bank_address2
+
+        bank line 2
+
+        String
+
+
+        No
+
+
+        bank_city
+
+        bankcity
+
+        String
+
+
+        No
+
+
+        bank_county
+
+        bank herts
+
+        String
+
+
+        No
+
+
+        bank_postcode
+
+        B4N K12
+
+        String
+
+
+        No
+
+
+        kin_first_name
+
+        next-of
+
+        String
+
+
+        No
+
+
+        kin_last_name
+
+        kin
+
+        String
+
+
+        No
+
+
+        kin_mobile
+
+        4512325178
+
+        String
+
+
+        No
+
+
+        kin_phone_work
+
+        996832145
+
+        String
+
+
+        No
+
+
+        student_status
+
+        full time
+
+        Enum
+
+        Full Time
+
+        No
+
+
+        university
+
+        viking university
+
+        String
+
+
+        No
+
+
+        course_name
+
+        viking studies
+
+        String
+
+
+        No
+
+
+        course_id
+
+        MC1685
+
+        String
+
+
+        No
+
+
+        course_year
+
+        3
+
+        String
+
+
+        No
+
+
+        employment_company_name
+
+        emp company name
+
+        String
+
+
+        No
+
+
+        employment_address1
+
+        emp line 1
+
+        String
+
+
+        No
+
+
+        employment_address2
+
+        emp line 2
+
+        String
+
+
+        No
+
+
+        employment_city
+
+        emp city
+
+        String
+
+
+        No
+
+
+        employment_postcode
+
+        3MP C0NT
+
+        String
+
+
+        No
+
+
+        employment_county
+
+        emp herts
+
+        String
+
+
+        No
+
+
+        employment_contact_name
+
+        employed contact
+
+        String
+
+
+        No
+
+
+        employment_contact_number
+
+        968235174
+
+        String
+
+
+        No
+
+
+        employment_salary
+
+        21000
+
+        String
+
+
+        No
+
+
+        employment_length
+
+        3 years
+
+        String
+
+
+        No
+
+
+        guarantor_first_name
+
+        Jason
+
+        String
+
+
+        No
+
+
+        guarantor_last_name
+
+        Doe
+
+        String
+
+
+        No
+
+
+        guarantor_date_of_birth
+
+        1968-05-08
+
+        String
+
+
+        No
+
+
+        guarantor_address1
+
+        123 Fake Street
+
+        String
+
+
+        No
+
+
+        guarantor_address2
+
+        123 Fake Street
+
+        String
+
+
+        No
+
+
+        guarantor_city
+
+        Notreal
+
+        String
+
+
+        No
+
+
+        guarantor_postcode
+
+        ABC 123
+
+        String
+
+
+        No
+
+
+        guarantor_county
+
+        Doeshire
+
+        String
+
+
+        No
+
+
+        guarantor_country
+
+        United Kingdom
+
+        String
+
+
+        No
+
+
+        guarantor_phone_home
+
+        12345 678900
+
+        String
+
+
+        No
+
+
+        guarantor_phone_work
+
+        01234 567890
+
+        String
+
+
+        No
+
+
+        guarantor_mobile
+
+        07000 000000
+
+        String
+
+
+        No
+
+
+        guarantor_email
+
+        example@email.com
+
+        String
+
+
+        No
+
+
+        guarantor_relation
+
+        Father
+
+        String
+
+
+        No
+
+
+        guarantor_home_owner
+
+        Home Owner Outright
+
+        String
+
+
+        No
+
+
+        guarantor_profession
+
+        Professional
+
+        String
+
+
+        No
+
+
+        ref_name
+
+        ref name
+
+        String
+
+
+        No
+
+
+        ref_address1
+
+        ref line 1
+
+        String
+
+
+        No
+
+
+        ref_address2
+
+        ref line 2
+
+        String
+
+
+        No
+
+
+        ref_city
+
+        ref Stevenage
+
+        String
+
+
+        No
+
+
+        ref_county
+
+        ref Hertfordshire
+
+        String
+
+
+        No
+
+
+        ref_postcode
+
+        R3F 8AW
+
+        String
+
+
+        No
+
+
+        ref_contact_number
+
+        134679825
+
+        String
+
+
+        No
+
+
+        ref_relation
+
+        mother
+
+        String
+
+
+        No
+
+
+        number_of_sharers
+
+        3
+
+        String
+
+
+        No
+
+
+        source
+
+        3
+
+        Simple
+
+
+        No
+
+
+        manager_note
+
+        MANAGER NOTES
+
+        String
+
+
+        No
+
+
+        applicant_note
+
+        TEST NOTE
+
+        String
+
+
+        No
+
+
+        tags
+
+        ["tag1"]
+
+        Array(String)
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -503,7 +1332,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single applicant, identified by its unique  applicant_id .
+      description: 'This API endpoint retrieves the details of a single applicant, identified by its unique applicant_id .
 
 
         Use this endpoint to view the specific details of a applicant.'
@@ -540,7 +1369,666 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "This endpoint updates an existing unit using the same fields as the 'Add Applicant' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the applicant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\ntitle \n Mr \n Enum \n Mr \n No \n\nfirst_name \n Ryan \n String \n\nNo \n\nlast_name \n Cullen \n String \n\nNo \n\ndate_of_birth \n 1995-05-28 \n Date \n\nNo \n\ngender \n Other \n Enum \n Male \n No \n\ncitizen_type \n UK Citizen \n Enum \n\nNo \n\nemail \n myemail@example.com \n Email \n\nNo \n\ncompany_name \n Arthur Online \n String \n\nNo \n\ncompany_address_name \n Arthur Main Office \n String \n\nNo \n\ncompany_address1 \n comp line 1 \n String \n\nNo \n\ncompany_address2 \n comp line 2 \n String \n\nNo \n\ncompany_city \n compcity \n String \n\nNo \n\ncompany_postcode \n C0MP 123 \n String \n\nNo \n\ncompany_county \n comp hertfordshire \n String \n\nNo \n\ncompany_country \n 51 \n Enum \n\nNo \n\nphone_home \n 13597352 \n String \n\nNo \n\nphone_work \n 0159876589 \n String \n\nNo \n\nmobile \n 07726895134 \n String \n\nNo \n\nresidential_number \n 11236659 \n String \n\nNo \n\nvisa_number \n 1346dq89 \n String \n\nNo \n\nvisa_years \n 3 \n String \n\nNo \n\nvisa_type \n Tier 2 \n Enum \n\nNo \n\ncountry_of_origin \n original country \n String \n\nNo \n\nni_number \n ab 12 34 5f \n String \n\nNo \n\nhousing_benefit_council \n herts council \n String \n\nNo \n\nhousing_benefit_number \n 1346 \n String \n\nNo \n\nbank_name \n bnk name \n String \n\nNo \n\nbank_address1 \n bank line 1 \n String \n\nNo \n\nbank_address2 \n bank line 2 \n String \n\nNo \n\nbank_city \n bankcity \n String \n\nNo \n\nbank_county \n bank herts \n String \n\nNo \n\nbank_postcode \n B4N K12 \n String \n\nNo \n\nkin_first_name \n next-of \n String \n\nNo \n\nkin_last_name \n kin \n String \n\nNo \n\nkin_mobile \n 4512325178 \n String \n\nNo \n\nkin_phone_work \n 996832145 \n String \n\nNo \n\nstudent_status \n full time \n Enum \n Full Time \n No \n\nuniversity \n viking university \n String \n\nNo \n\ncourse_name \n viking studies \n String \n\nNo \n\ncourse_id \n MC1685 \n String \n\nNo \n\ncourse_year \n 3 \n String \n\nNo \n\nemployment_company_name \n emp company name \n String \n\nNo \n\nemployment_address1 \n emp line 1 \n String \n\nNo \n\nemployment_address2 \n emp line 2 \n String \n\nNo \n\nemployment_city \n emp city \n String \n\nNo \n\nemployment_postcode \n 3MP C0NT \n String \n\nNo \n\nemployment_county \n emp herts \n String \n\nNo \n\nemployment_contact_name \n employed contact \n String \n\nNo \n\nemployment_contact_number \n 968235174 \n String \n\nNo \n\nemployment_salary \n 21000 \n String \n\nNo \n\nemployment_length \n 3 years \n String \n\nNo \n\nref_name \n ref name \n String \n\nNo \n\nref_address1 \n ref line 1 \n String \n\nNo \n\nref_address2 \n ref line 2 \n String \n\nNo \n\nref_city \n ref Stevenage \n String \n\nNo \n\nref_county \n ref Hertfordshire \n String \n\nNo \n\nref_postcode \n R3F 8AW \n String \n\nNo \n\nref_contact_number \n 134679825 \n String \n\nNo \n\nref_relation \n mother \n String \n\nNo \n\nnumber_of_sharers \n 3 \n String \n\nNo \n\nsource \n 3 \n Simple \n\nNo \n\nmanager_note \n MANAGER NOTES \n String \n\nNo \n\napplicant_note \n TEST NOTE \n String \n\nNo \n\ntags \n [\"tag1\"] \n Array(String) \n\nNo"
+      description: 'This endpoint updates an existing unit using the same fields as the ''Add Applicant'' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the applicant in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        title
+
+        Mr
+
+        Enum
+
+        Mr
+
+        No
+
+
+        first_name
+
+        Ryan
+
+        String
+
+
+        No
+
+
+        last_name
+
+        Cullen
+
+        String
+
+
+        No
+
+
+        date_of_birth
+
+        1995-05-28
+
+        Date
+
+
+        No
+
+
+        gender
+
+        Other
+
+        Enum
+
+        Male
+
+        No
+
+
+        citizen_type
+
+        UK Citizen
+
+        Enum
+
+
+        No
+
+
+        email
+
+        myemail@example.com
+
+        Email
+
+
+        No
+
+
+        company_name
+
+        Arthur Online
+
+        String
+
+
+        No
+
+
+        company_address_name
+
+        Arthur Main Office
+
+        String
+
+
+        No
+
+
+        company_address1
+
+        comp line 1
+
+        String
+
+
+        No
+
+
+        company_address2
+
+        comp line 2
+
+        String
+
+
+        No
+
+
+        company_city
+
+        compcity
+
+        String
+
+
+        No
+
+
+        company_postcode
+
+        C0MP 123
+
+        String
+
+
+        No
+
+
+        company_county
+
+        comp hertfordshire
+
+        String
+
+
+        No
+
+
+        company_country
+
+        51
+
+        Enum
+
+
+        No
+
+
+        phone_home
+
+        13597352
+
+        String
+
+
+        No
+
+
+        phone_work
+
+        0159876589
+
+        String
+
+
+        No
+
+
+        mobile
+
+        07726895134
+
+        String
+
+
+        No
+
+
+        residential_number
+
+        11236659
+
+        String
+
+
+        No
+
+
+        visa_number
+
+        1346dq89
+
+        String
+
+
+        No
+
+
+        visa_years
+
+        3
+
+        String
+
+
+        No
+
+
+        visa_type
+
+        Tier 2
+
+        Enum
+
+
+        No
+
+
+        country_of_origin
+
+        original country
+
+        String
+
+
+        No
+
+
+        ni_number
+
+        ab 12 34 5f
+
+        String
+
+
+        No
+
+
+        housing_benefit_council
+
+        herts council
+
+        String
+
+
+        No
+
+
+        housing_benefit_number
+
+        1346
+
+        String
+
+
+        No
+
+
+        bank_name
+
+        bnk name
+
+        String
+
+
+        No
+
+
+        bank_address1
+
+        bank line 1
+
+        String
+
+
+        No
+
+
+        bank_address2
+
+        bank line 2
+
+        String
+
+
+        No
+
+
+        bank_city
+
+        bankcity
+
+        String
+
+
+        No
+
+
+        bank_county
+
+        bank herts
+
+        String
+
+
+        No
+
+
+        bank_postcode
+
+        B4N K12
+
+        String
+
+
+        No
+
+
+        kin_first_name
+
+        next-of
+
+        String
+
+
+        No
+
+
+        kin_last_name
+
+        kin
+
+        String
+
+
+        No
+
+
+        kin_mobile
+
+        4512325178
+
+        String
+
+
+        No
+
+
+        kin_phone_work
+
+        996832145
+
+        String
+
+
+        No
+
+
+        student_status
+
+        full time
+
+        Enum
+
+        Full Time
+
+        No
+
+
+        university
+
+        viking university
+
+        String
+
+
+        No
+
+
+        course_name
+
+        viking studies
+
+        String
+
+
+        No
+
+
+        course_id
+
+        MC1685
+
+        String
+
+
+        No
+
+
+        course_year
+
+        3
+
+        String
+
+
+        No
+
+
+        employment_company_name
+
+        emp company name
+
+        String
+
+
+        No
+
+
+        employment_address1
+
+        emp line 1
+
+        String
+
+
+        No
+
+
+        employment_address2
+
+        emp line 2
+
+        String
+
+
+        No
+
+
+        employment_city
+
+        emp city
+
+        String
+
+
+        No
+
+
+        employment_postcode
+
+        3MP C0NT
+
+        String
+
+
+        No
+
+
+        employment_county
+
+        emp herts
+
+        String
+
+
+        No
+
+
+        employment_contact_name
+
+        employed contact
+
+        String
+
+
+        No
+
+
+        employment_contact_number
+
+        968235174
+
+        String
+
+
+        No
+
+
+        employment_salary
+
+        21000
+
+        String
+
+
+        No
+
+
+        employment_length
+
+        3 years
+
+        String
+
+
+        No
+
+
+        ref_name
+
+        ref name
+
+        String
+
+
+        No
+
+
+        ref_address1
+
+        ref line 1
+
+        String
+
+
+        No
+
+
+        ref_address2
+
+        ref line 2
+
+        String
+
+
+        No
+
+
+        ref_city
+
+        ref Stevenage
+
+        String
+
+
+        No
+
+
+        ref_county
+
+        ref Hertfordshire
+
+        String
+
+
+        No
+
+
+        ref_postcode
+
+        R3F 8AW
+
+        String
+
+
+        No
+
+
+        ref_contact_number
+
+        134679825
+
+        String
+
+
+        No
+
+
+        ref_relation
+
+        mother
+
+        String
+
+
+        No
+
+
+        number_of_sharers
+
+        3
+
+        String
+
+
+        No
+
+
+        source
+
+        3
+
+        Simple
+
+
+        No
+
+
+        manager_note
+
+        MANAGER NOTES
+
+        String
+
+
+        No
+
+
+        applicant_note
+
+        TEST NOTE
+
+        String
+
+
+        No
+
+
+        tags
+
+        ["tag1"]
+
+        Array(String)
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -792,7 +2280,30 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "This endpoint updates an existing applicants status. The API will return the updated data for the applicant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n \"Tenant\" \n String \n Yes"
+      description: 'This endpoint updates an existing applicants status. The API will return the updated data for the applicant in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        status
+
+        "Tenant"
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -841,7 +2352,7 @@ paths:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Sort'
       - $ref: '#/components/parameters/Direction'
-      description: This retrieves a list of applicants on a viewing, identified by its unique  viewing_id .
+      description: This retrieves a list of applicants on a viewing, identified by its unique viewing_id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -860,16 +2371,6 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
-    Direction:
-      name: direction
-      in: query
-      required: false
-      description: Sort direction.
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
     Sort:
       name: sort
       in: query
@@ -884,14 +2385,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -901,19 +2394,25 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -923,6 +2422,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object

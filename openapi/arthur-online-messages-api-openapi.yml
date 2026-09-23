@@ -128,7 +128,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to add a new message related to a  conversation . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's done \n String \n Yes"
+      description: 'Use this endpoint to add a new message related to a conversation . The API will return the saved data.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        message
+
+        It''s done
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -211,7 +234,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single message, identified by its unique  message_id .
+      description: 'This API endpoint retrieves the details of a single message, identified by its unique message_id .
 
 
         Use this endpoint to view the specific details of a message within a conversation.'
@@ -271,6 +294,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -281,20 +311,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -302,14 +318,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -319,19 +327,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -341,6 +352,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Pagination:
       type: object

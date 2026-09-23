@@ -105,7 +105,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new asset related to an applicant . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String (base64) \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      description: 'Use this endpoint to create a new asset related to an applicant . The API will return the saved data.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        asset_type
+
+        image
+
+        String
+
+        No
+
+
+        name
+
+        inventory
+
+        String
+
+        No
+
+
+        share_manager
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_tenant
+
+        false
+
+        Boolean
+
+        No
+
+
+        share_contractor
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_owner
+
+        true
+
+        Boolean
+
+        No
+
+
+        file
+
+        base64
+
+        String (base64)
+
+        Yes
+
+
+        mime_type
+
+        application/pdf
+
+        String
+
+        Yes
+
+
+        file_name
+
+        inventory
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -268,7 +363,102 @@ paths:
       parameters:
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new asset. The API will return the saved data and a unique Asset ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n Inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      description: 'Use this endpoint to create a new asset. The API will return the saved data and a unique Asset ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        asset_type
+
+        image
+
+        String
+
+        No
+
+
+        name
+
+        Inventory
+
+        String
+
+        No
+
+
+        share_manager
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_tenant
+
+        false
+
+        Boolean
+
+        No
+
+
+        share_contractor
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_owner
+
+        true
+
+        Boolean
+
+        No
+
+
+        file
+
+        base64
+
+        String
+
+        Yes
+
+
+        mime_type
+
+        application/pdf
+
+        String
+
+        Yes
+
+
+        file_name
+
+        inventory
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -347,7 +537,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single asset, identified by its unique  asset_id .
+      description: 'This API endpoint retrieves the details of a single asset, identified by its unique asset_id .
 
 
         Use this endpoint to view the specific details of an asset.'
@@ -378,7 +568,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing asset using the same fields as the 'Add Asset' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the asset in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n No \n\nmime_type \n application/pdf \n String \n No \n\nfile_name \n inventory \n String \n No"
+      description: 'This endpoint updates an existing asset using the same fields as the ''Add Asset'' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the asset in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        asset_type
+
+        image
+
+        String
+
+        No
+
+
+        name
+
+        inventory
+
+        String
+
+        No
+
+
+        share_manager
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_tenant
+
+        false
+
+        Boolean
+
+        No
+
+
+        share_contractor
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_owner
+
+        true
+
+        Boolean
+
+        No
+
+
+        file
+
+        base64
+
+        String
+
+        No
+
+
+        mime_type
+
+        application/pdf
+
+        String
+
+        No
+
+
+        file_name
+
+        inventory
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -591,7 +876,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new asset related to a property . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String (base64) \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      description: 'Use this endpoint to create a new asset related to a property . The API will return the saved data.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        asset_type
+
+        image
+
+        String
+
+        No
+
+
+        name
+
+        inventory
+
+        String
+
+        No
+
+
+        share_manager
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_tenant
+
+        false
+
+        Boolean
+
+        No
+
+
+        share_contractor
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_owner
+
+        true
+
+        Boolean
+
+        No
+
+
+        file
+
+        base64
+
+        String (base64)
+
+        Yes
+
+
+        mime_type
+
+        application/pdf
+
+        String
+
+        Yes
+
+
+        file_name
+
+        inventory
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -733,7 +1113,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new asset related to an  tenancy . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      description: 'Use this endpoint to create a new asset related to an tenancy . The API will return the saved data.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        asset_type
+
+        image
+
+        String
+
+        No
+
+
+        name
+
+        inventory
+
+        String
+
+        No
+
+
+        share_manager
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_tenant
+
+        false
+
+        Boolean
+
+        No
+
+
+        share_contractor
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_owner
+
+        true
+
+        Boolean
+
+        No
+
+
+        file
+
+        base64
+
+        String
+
+        Yes
+
+
+        mime_type
+
+        application/pdf
+
+        String
+
+        Yes
+
+
+        file_name
+
+        inventory
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -844,7 +1319,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new asset related to a unit . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nasset_type \n image \n String \n No \n\nname \n inventory \n String \n No \n\nshare_manager \n true \n Boolean \n No \n\nshare_tenant \n false \n Boolean \n No \n\nshare_contractor \n true \n Boolean \n No \n\nshare_owner \n true \n Boolean \n No \n\nfile \n base64 \n String \n Yes \n\nmime_type \n application/pdf \n String \n Yes \n\nfile_name \n inventory \n String \n Yes"
+      description: 'Use this endpoint to create a new asset related to a unit . The API will return the saved data.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        asset_type
+
+        image
+
+        String
+
+        No
+
+
+        name
+
+        inventory
+
+        String
+
+        No
+
+
+        share_manager
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_tenant
+
+        false
+
+        Boolean
+
+        No
+
+
+        share_contractor
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_owner
+
+        true
+
+        Boolean
+
+        No
+
+
+        file
+
+        base64
+
+        String
+
+        Yes
+
+
+        mime_type
+
+        application/pdf
+
+        String
+
+        Yes
+
+
+        file_name
+
+        inventory
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -911,6 +1481,13 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -921,20 +1498,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -942,14 +1505,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -959,19 +1514,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -981,6 +1539,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Pagination:
       type: object

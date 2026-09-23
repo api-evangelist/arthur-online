@@ -64,7 +64,57 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new reading record for the  utility . The API will return the saved data and a unique reading ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nreading_value \n 21021 \n String \n Yes \n\nreading_date \n 2020-10-21 \n Date \n Yes \n\ntaken_by \n Brian Smith \n String \n No \n\nnotes \n reading notes \n string \n No"
+      description: 'Use this endpoint to create a new reading record for the utility . The API will return the saved data and a unique reading ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        reading_value
+
+        21021
+
+        String
+
+        Yes
+
+
+        reading_date
+
+        2020-10-21
+
+        Date
+
+        Yes
+
+
+        taken_by
+
+        Brian Smith
+
+        String
+
+        No
+
+
+        notes
+
+        reading notes
+
+        string
+
+        No'
       requestBody:
         required: true
         content:
@@ -124,7 +174,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single  reading , identified by its unique  id related to a reading .
+      description: This API endpoint retrieves the details of a single reading , identified by its unique id related to a reading .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -158,7 +208,57 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing reading using the same fields as the 'Add Reading' endpoint. The API will return the updated data for the reading in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nreading_value \n 21021 \n String \n No \n\nreading_date \n 2020-10-21 \n Date \n No \n\ntaken_by \n Brian Smith \n String \n No \n\nnotes \n reading notes \n string \n No"
+      description: 'This endpoint updates an existing reading using the same fields as the ''Add Reading'' endpoint. The API will return the updated data for the reading in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        reading_value
+
+        21021
+
+        String
+
+        No
+
+
+        reading_date
+
+        2020-10-21
+
+        Date
+
+        No
+
+
+        taken_by
+
+        Brian Smith
+
+        String
+
+        No
+
+
+        notes
+
+        reading notes
+
+        string
+
+        No'
       requestBody:
         required: true
         content:
@@ -229,6 +329,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -239,20 +346,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -260,14 +353,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -277,19 +362,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -299,6 +387,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object

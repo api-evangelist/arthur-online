@@ -70,7 +70,104 @@ paths:
       parameters:
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to update the registered deposit related to a tenancy . The API will return the saved data.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ndeposit_registered_not_needed \n true \n Boolean \n No \n\ndate_registered \n 2023-12-05 \n String \n No \n\ncertificate_no \n ABC \n String \n No \n\ndeposit_scheme \n Base64 \n String \n No \n\ndeposit_held_by \n TDS \n String \n No \n\ndeposit_required \n 1200 \n string \n No \n\ndeposit_registered \n true \n Boolean \n No \n\nThe \"deposit_scheme\" field is required to have one of the following values:\n\nTenancy Deposit Scheme (TDS) \n Deposit Protection Service (DPS) \n MyDeposits \n Letting Protection Scotland \n Safe Deposits Scotland \n My Deposits Scotland \n Reposit \n N/A"
+      description: 'Use this endpoint to update the registered deposit related to a tenancy . The API will return the saved data.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        deposit_registered_not_needed
+
+        true
+
+        Boolean
+
+        No
+
+
+        date_registered
+
+        2023-12-05
+
+        String
+
+        No
+
+
+        certificate_no
+
+        ABC
+
+        String
+
+        No
+
+
+        deposit_scheme
+
+        Base64
+
+        String
+
+        No
+
+
+        deposit_held_by
+
+        TDS
+
+        String
+
+        No
+
+
+        deposit_required
+
+        1200
+
+        string
+
+        No
+
+
+        deposit_registered
+
+        true
+
+        Boolean
+
+        No
+
+
+        The "deposit_scheme" field is required to have one of the following values:
+
+
+        Tenancy Deposit Scheme (TDS)
+
+        Deposit Protection Service (DPS)
+
+        MyDeposits
+
+        Letting Protection Scotland
+
+        Safe Deposits Scotland
+
+        My Deposits Scotland
+
+        Reposit
+
+        N/A'
       requestBody:
         required: true
         content:
@@ -144,18 +241,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -165,14 +250,19 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -180,6 +270,13 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   schemas:
     Error:
       type: object

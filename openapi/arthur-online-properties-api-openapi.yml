@@ -213,7 +213,246 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "Use this endpoint to create a new property. The API will return the saved data and a unique Property ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nproperty_type \n Residential \n String \n No \n\nref \n My big property \n String \n Yes \n\naddress_line_1 \n Arthur House \n String \n Yes \n\naddress_line_2 \n 123 Property Street \n String \n No \n\ncity \n Stevenage \n String \n No \n\ncounty \n Hertfordshire \n String \n No \n\ncountry \n United Kingdom \n String \n No \n\narea \n South East \n Simple \n No \n\npostcode \n AB1 2CD \n String \n No \n\nletting_agent_id \n 4567 \n Integer \n No \n\nproperty_owner_id \n 5678 \n Integer \n Yes \n\nmax_occupancy \n 4 \n String \n No \n\nbathrooms \n 2 \n String \n No \n\nfloors \n 2 \n String \n No \n\nbedrooms \n 3 \n String \n No \n\nreceptions \n 1 \n String \n No \n\nsmart_meters \n 1 \n String \n No \n\ncouncil_tax_band \n B \n String \n No \n\ncouncil_account_no \n ABC123 \n String \n No \n\ncouncil_id \n 6789 \n Integer \n No \n\nportal_market_rent \n 850.00 \n Float \n No \n\nportal_market_rent_frequency \n Weekly \n String \n No \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n No \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n No \n\ni_manage_this \n true \n Boolean \n No"
+      description: 'Use this endpoint to create a new property. The API will return the saved data and a unique Property ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        property_type
+
+        Residential
+
+        String
+
+        No
+
+
+        ref
+
+        My big property
+
+        String
+
+        Yes
+
+
+        address_line_1
+
+        Arthur House
+
+        String
+
+        Yes
+
+
+        address_line_2
+
+        123 Property Street
+
+        String
+
+        No
+
+
+        city
+
+        Stevenage
+
+        String
+
+        No
+
+
+        county
+
+        Hertfordshire
+
+        String
+
+        No
+
+
+        country
+
+        United Kingdom
+
+        String
+
+        No
+
+
+        area
+
+        South East
+
+        Simple
+
+        No
+
+
+        postcode
+
+        AB1 2CD
+
+        String
+
+        No
+
+
+        letting_agent_id
+
+        4567
+
+        Integer
+
+        No
+
+
+        property_owner_id
+
+        5678
+
+        Integer
+
+        Yes
+
+
+        max_occupancy
+
+        4
+
+        String
+
+        No
+
+
+        bathrooms
+
+        2
+
+        String
+
+        No
+
+
+        floors
+
+        2
+
+        String
+
+        No
+
+
+        bedrooms
+
+        3
+
+        String
+
+        No
+
+
+        receptions
+
+        1
+
+        String
+
+        No
+
+
+        smart_meters
+
+        1
+
+        String
+
+        No
+
+
+        council_tax_band
+
+        B
+
+        String
+
+        No
+
+
+        council_account_no
+
+        ABC123
+
+        String
+
+        No
+
+
+        council_id
+
+        6789
+
+        Integer
+
+        No
+
+
+        portal_market_rent
+
+        850.00
+
+        Float
+
+        No
+
+
+        portal_market_rent_frequency
+
+        Weekly
+
+        String
+
+        No
+
+
+        features
+
+        [ "Internet", "Fireplace", "Smart home integration" ]
+
+        Array (String)
+
+        No
+
+
+        tags
+
+        [ "Cheap Rent" ]
+
+        Array (String)
+
+        No
+
+
+        i_manage_this
+
+        true
+
+        Boolean
+
+        No'
       requestBody:
         required: true
         content:
@@ -504,7 +743,194 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing property using the same fields as the 'Add Property' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the property in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n\nproperty_type \n Residential \n String \n\nref \n My big property \n String \n\naddress_line_1 \n Arthur House \n String \n\naddress_line_2 \n 123 Property Street \n String \n\ncity \n Stevenage \n String \n\ncounty \n Hertfordshire \n String \n\ncountry \n United Kingdom \n String \n\narea \n South East \n Simple \n\npostcode \n AB1 2CD \n String \n\nletting_agent_id \n 4567 \n Integer \n\nproperty_owner_id \n 5678 \n Integer \n\nmax_occupancy \n 4 \n String \n\nbathrooms \n 2 \n String \n\nfloors \n 2 \n String \n\nbedrooms \n 3 \n String \n\nreceptions \n 1 \n String \n\nsmart_meters \n 1 \n String \n\ncouncil_tax_band \n B \n String \n\ncouncil_account_no \n ABC123 \n String \n\ncouncil_id \n 6789 \n Integer \n\nportal_market_rent \n 850.00 \n Float \n\nportal_market_rent_frequency \n Weekly \n String \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n\ni_manage_this \n true \n Boolean"
+      description: 'This endpoint updates an existing property using the same fields as the ''Add Property'' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the property in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+
+        property_type
+
+        Residential
+
+        String
+
+
+        ref
+
+        My big property
+
+        String
+
+
+        address_line_1
+
+        Arthur House
+
+        String
+
+
+        address_line_2
+
+        123 Property Street
+
+        String
+
+
+        city
+
+        Stevenage
+
+        String
+
+
+        county
+
+        Hertfordshire
+
+        String
+
+
+        country
+
+        United Kingdom
+
+        String
+
+
+        area
+
+        South East
+
+        Simple
+
+
+        postcode
+
+        AB1 2CD
+
+        String
+
+
+        letting_agent_id
+
+        4567
+
+        Integer
+
+
+        property_owner_id
+
+        5678
+
+        Integer
+
+
+        max_occupancy
+
+        4
+
+        String
+
+
+        bathrooms
+
+        2
+
+        String
+
+
+        floors
+
+        2
+
+        String
+
+
+        bedrooms
+
+        3
+
+        String
+
+
+        receptions
+
+        1
+
+        String
+
+
+        smart_meters
+
+        1
+
+        String
+
+
+        council_tax_band
+
+        B
+
+        String
+
+
+        council_account_no
+
+        ABC123
+
+        String
+
+
+        council_id
+
+        6789
+
+        Integer
+
+
+        portal_market_rent
+
+        850.00
+
+        Float
+
+
+        portal_market_rent_frequency
+
+        Weekly
+
+        String
+
+
+        features
+
+        [ "Internet", "Fireplace", "Smart home integration" ]
+
+        Array (String)
+
+
+        tags
+
+        [ "Cheap Rent" ]
+
+        Array (String)
+
+
+        i_manage_this
+
+        true
+
+        Boolean'
       requestBody:
         required: true
         content:
@@ -696,6 +1122,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -706,20 +1139,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -727,14 +1146,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -744,19 +1155,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -766,6 +1180,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Pagination:
       type: object

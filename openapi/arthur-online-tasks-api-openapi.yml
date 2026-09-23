@@ -64,7 +64,48 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new subtask record for a  task . The API will return the saved data and a unique subtask ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ndescription \n subtask nb1 \n String \n Yes \n\ndue_date \n 2020-09-22 \n Date \n No \n\ncompleted \n true \n Boolean \n No"
+      description: 'Use this endpoint to create a new subtask record for a task . The API will return the saved data and a unique subtask ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        description
+
+        subtask nb1
+
+        String
+
+        Yes
+
+
+        due_date
+
+        2020-09-22
+
+        Date
+
+        No
+
+
+        completed
+
+        true
+
+        Boolean
+
+        No'
       requestBody:
         required: true
         content:
@@ -124,7 +165,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single subtask, identified by its unique  subtask_id .
+      description: 'This API endpoint retrieves the details of a single subtask, identified by its unique subtask_id .
 
 
         Use this endpoint to view the specific details of a subtask on a task.'
@@ -161,7 +202,48 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing subtask on a task using the same fields as the 'Add Subtask' endpoint. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ndescription \n subtask nb1 \n String \n No \n\ndue_date \n 2020-09-22 \n Date \n No \n\ncompleted \n true \n Boolean \n No"
+      description: 'This endpoint updates an existing subtask on a task using the same fields as the ''Add Subtask'' endpoint. The API will return the updated data for the note in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        description
+
+        subtask nb1
+
+        String
+
+        No
+
+
+        due_date
+
+        2020-09-22
+
+        Date
+
+        No
+
+
+        completed
+
+        true
+
+        Boolean
+
+        No'
       requestBody:
         required: true
         content:
@@ -213,7 +295,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing subtask note using the subtask  id .
+      description: This endpoint deletes an existing subtask note using the subtask id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -276,7 +358,147 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new workorder record for a  task . The API will return the saved data and a unique workorder ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntitle \n workorder title \n String \n No \n\ndescription \n workorder description \n String \n No \n\ninvite_contractors \n [123,1234] \n Array(integer) \n No \n\nservice_type \n Carpet Layer \n String \n Yes \n\nstart_date \n 2020-02-20 \n Date \n No \n\ndue_date \n 2020-02-20 \n Date \n No \n\nbudget \n 1000,00 \n Float \n No \n\nallocated_time_hours \n 20 \n Float \n No \n\nactual_time_hours \n 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float \n No \n\nemergency \n true \n Boolean \n No \n\nquote_required \n true \n Boolean \n No \n\nshare_assets \n false \n Boolean \n No \n\nhide_tenant_details \n true \n Boolean \n No"
+      description: 'Use this endpoint to create a new workorder record for a task . The API will return the saved data and a unique workorder ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        title
+
+        workorder title
+
+        String
+
+        No
+
+
+        description
+
+        workorder description
+
+        String
+
+        No
+
+
+        invite_contractors
+
+        [123,1234]
+
+        Array(integer)
+
+        No
+
+
+        service_type
+
+        Carpet Layer
+
+        String
+
+        Yes
+
+
+        start_date
+
+        2020-02-20
+
+        Date
+
+        No
+
+
+        due_date
+
+        2020-02-20
+
+        Date
+
+        No
+
+
+        budget
+
+        1000,00
+
+        Float
+
+        No
+
+
+        allocated_time_hours
+
+        20
+
+        Float
+
+        No
+
+
+        actual_time_hours
+
+        20
+
+        Float
+
+        No
+
+
+        price_per_hour
+
+        7,90
+
+        Float
+
+        No
+
+
+        emergency
+
+        true
+
+        Boolean
+
+        No
+
+
+        quote_required
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_assets
+
+        false
+
+        Boolean
+
+        No
+
+
+        hide_tenant_details
+
+        true
+
+        Boolean
+
+        No'
       requestBody:
         required: true
         content:
@@ -370,7 +592,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single task  workorder , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single task workorder , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -404,7 +626,147 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing workorder on a task using the same fields as the 'Add Workorder' endpoint. The API will return the updated data for the tenancy in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntitle \n workorder title \n String \n No \n\ndescription \n workorder description \n String \n No \n\ninvite_contractors \n [123,1234] \n Array(integer) \n No \n\nservice_type \n Carpet Layer \n String \n No \n\nstart_date \n 2020-02-20 \n Date \n No \n\ndue_date \n 2020-02-20 \n Date \n No \n\nbudget \n 1000,00 \n Float \n No \n\nallocated_time_hours \n 20 \n Float \n No \n\nactual_time_hours \n 20 \n Float \n No \n\nprice_per_hour \n 7,90 \n Float \n No \n\nemergency \n true \n Boolean \n No \n\nquote_required \n true \n Boolean \n No \n\nshare_assets \n false \n Boolean \n No \n\nhide_tenant_details \n true \n Boolean \n No"
+      description: 'This endpoint updates an existing workorder on a task using the same fields as the ''Add Workorder'' endpoint. The API will return the updated data for the tenancy in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        title
+
+        workorder title
+
+        String
+
+        No
+
+
+        description
+
+        workorder description
+
+        String
+
+        No
+
+
+        invite_contractors
+
+        [123,1234]
+
+        Array(integer)
+
+        No
+
+
+        service_type
+
+        Carpet Layer
+
+        String
+
+        No
+
+
+        start_date
+
+        2020-02-20
+
+        Date
+
+        No
+
+
+        due_date
+
+        2020-02-20
+
+        Date
+
+        No
+
+
+        budget
+
+        1000,00
+
+        Float
+
+        No
+
+
+        allocated_time_hours
+
+        20
+
+        Float
+
+        No
+
+
+        actual_time_hours
+
+        20
+
+        Float
+
+        No
+
+
+        price_per_hour
+
+        7,90
+
+        Float
+
+        No
+
+
+        emergency
+
+        true
+
+        Boolean
+
+        No
+
+
+        quote_required
+
+        true
+
+        Boolean
+
+        No
+
+
+        share_assets
+
+        false
+
+        Boolean
+
+        No
+
+
+        hide_tenant_details
+
+        true
+
+        Boolean
+
+        No'
       requestBody:
         required: true
         content:
@@ -537,7 +899,32 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tag record for a  task . The API will return the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      description: 'Use this endpoint to create a new tag record for a task . The API will return the saved data and a unique tag ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+        Tag field should be a valid tag ID or name.
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        ["123"]
+
+        Array(String)
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -586,7 +973,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to unassign tag record from a  task . The API will return the saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"123\" \n String \n Yes"
+      description: 'Use this endpoint to unassign tag record from a task . The API will return the saved data. Tag field should be a valid tag ID or name.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        "123"
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -632,7 +1042,7 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: Use this endpoint to unassign all tags from the  task .
+      description: Use this endpoint to unassign all tags from the task .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -667,7 +1077,7 @@ paths:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Sort'
       - $ref: '#/components/parameters/Direction'
-      description: This endpoint retrieves a list of  notes  associated with the given task ID.
+      description: This endpoint retrieves a list of notes associated with the given task ID.
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -695,7 +1105,39 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new note record for a  task . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No"
+      description: 'Use this endpoint to create a new note record for a task . The API will return the saved data and a unique note ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        Yes
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -751,7 +1193,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single task  note , identified by its unique  id
+      description: This API endpoint retrieves the details of a single task note , identified by its unique id
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -785,7 +1227,39 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing note on a task using the same fields as the 'Add Note' endpoint. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No"
+      description: 'This endpoint updates an existing note on a task using the same fields as the ''Add Note'' endpoint. The API will return the updated data for the note in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        No
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -835,7 +1309,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing task note using the note  id .
+      description: This endpoint deletes an existing task note using the note id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -866,7 +1340,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint retrieves a list of conversation recipients on a task record, identified by its unique  task_id .
+      description: This endpoint retrieves a list of conversation recipients on a task record, identified by its unique task_id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -901,7 +1375,7 @@ paths:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Sort'
       - $ref: '#/components/parameters/Direction'
-      description: This endpoint retrieves a list of conversations on a task, identified by its unique  task_id .
+      description: This endpoint retrieves a list of conversations on a task, identified by its unique task_id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -929,7 +1403,48 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new conversation on a task record. The API will return the saved data and a unique Conversation ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nmessage \n It's done \n String \n Yes \n\nsubject \n Meeting tomorrow \n String \n Yes \n\nperson_ids \n ['1','2'] \n Array(String) \n Yes"
+      description: 'Use this endpoint to create a new conversation on a task record. The API will return the saved data and a unique Conversation ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        message
+
+        It''s done
+
+        String
+
+        Yes
+
+
+        subject
+
+        Meeting tomorrow
+
+        String
+
+        Yes
+
+
+        person_ids
+
+        [''1'',''2'']
+
+        Array(String)
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -1028,7 +1543,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single task  asset , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single task asset , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1225,7 +1740,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single tenant on a task, identified by its unique  id .
+      description: This API endpoint retrieves the details of a single tenant on a task, identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1502,7 +2017,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single task, identified by its unique  task_id .
+      description: 'This API endpoint retrieves the details of a single task, identified by its unique task_id .
 
 
         Use this endpoint to view the specific details of a task.'
@@ -1533,7 +2048,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing task. Any fields that are not provided will not be changed. The API will return the updated data for the task in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String \n No"
+      description: 'This endpoint updates an existing task. Any fields that are not provided will not be changed. The API will return the updated data for the task in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        task_type
+
+        Inspection
+
+        String
+
+        No
+
+
+        description
+
+        Radiator not working
+
+        String
+
+        No
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No
+
+
+        due_date
+
+        2020-10-11
+
+        Date
+
+        No
+
+
+        due_time
+
+        15:32
+
+        Time
+
+        No
+
+
+        assigned_managers
+
+        [123,1234]
+
+        Array(Integer)
+
+        No
+
+
+        emergency
+
+        True
+
+        Boolean
+
+        No
+
+
+        private
+
+        True
+
+        Boolean
+
+        No
+
+
+        api_notes
+
+        Landlord will be present
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -1601,7 +2211,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing task using the task  id .
+      description: This endpoint deletes an existing task using the task id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1633,7 +2243,32 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing task status. The API will return the updated data for the task in the response.\n\nSupported Fields \n The following fields are supported for the request body\nStatus must be one of these: live, pending, cancelled, completed\n\nField \n Example \n Type \n Required? \n\nstatus \n live \n String \n Yes"
+      description: 'This endpoint updates an existing task status. The API will return the updated data for the task in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+        Status must be one of these: live, pending, cancelled, completed
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        status
+
+        live
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -1710,7 +2345,122 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new task record for the property . The API will return the saved data and a unique task ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String \n No \n\nfiles \n\n(each object must contain \"file_type\", \"file_name\", and \"file\") \n { \n\"file_type\":\"application/pdf\", \n\"file_name\":\"testing\", \n\"file\":\"(base 64)\" \n} \n [Array {Objects}] \n No"
+      description: 'Use this endpoint to create a new task record for the property . The API will return the saved data and a unique task ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        task_type
+
+        Inspection
+
+        String
+
+        No
+
+
+        description
+
+        Radiator not working
+
+        String
+
+        Yes
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No
+
+
+        due_date
+
+        2020-10-11
+
+        Date
+
+        No
+
+
+        due_time
+
+        15:32
+
+        Time
+
+        No
+
+
+        assigned_managers
+
+        [123,1234]
+
+        Array(Integer)
+
+        No
+
+
+        emergency
+
+        True
+
+        Boolean
+
+        No
+
+
+        private
+
+        True
+
+        Boolean
+
+        No
+
+
+        api_notes
+
+        Landlord will be present
+
+        String
+
+        No
+
+
+        files
+
+
+        (each object must contain "file_type", "file_name", and "file")
+
+        {
+
+        "file_type":"application/pdf",
+
+        "file_name":"testing",
+
+        "file":"(base 64)"
+
+        }
+
+        [Array {Objects}]
+
+        No'
       requestBody:
         required: true
         content:
@@ -1790,7 +2540,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single property  task , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single property task , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1824,7 +2574,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing task using the same fields as the 'Add Task' endpoint. The API will return the updated data for the property in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String \n No"
+      description: 'This endpoint updates an existing task using the same fields as the ''Add Task'' endpoint. The API will return the updated data for the property in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        task_type
+
+        Inspection
+
+        String
+
+        No
+
+
+        description
+
+        Radiator not working
+
+        String
+
+        No
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No
+
+
+        due_date
+
+        2020-10-11
+
+        Date
+
+        No
+
+
+        due_time
+
+        15:32
+
+        Time
+
+        No
+
+
+        assigned_managers
+
+        [123,1234]
+
+        Array(Integer)
+
+        No
+
+
+        emergency
+
+        True
+
+        Boolean
+
+        No
+
+
+        private
+
+        True
+
+        Boolean
+
+        No
+
+
+        api_notes
+
+        Landlord will be present
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -1898,7 +2743,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing asset record using the task  id , under a property ID
+      description: This endpoint deletes an existing asset record using the task id , under a property ID
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1961,7 +2806,123 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new task record for a tenancy . The API will return the saved data and a unique task ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String \n No \n\nfiles \n\n(each object must contain \"file_type\", \"file_name\", and \"file\") \n { \n\"file_type\":\"application/pdf\", \n\"file_name\":\"testing\", \n\"file\":\"(base 64)\" \n} \n\n[Array {Objects}] \n No"
+      description: 'Use this endpoint to create a new task record for a tenancy . The API will return the saved data and a unique task ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        task_type
+
+        Inspection
+
+        String
+
+        No
+
+
+        description
+
+        Radiator not working
+
+        String
+
+        Yes
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No
+
+
+        due_date
+
+        2020-10-11
+
+        Date
+
+        No
+
+
+        due_time
+
+        15:32
+
+        Time
+
+        No
+
+
+        assigned_managers
+
+        [123,1234]
+
+        Array(Integer)
+
+        No
+
+
+        emergency
+
+        True
+
+        Boolean
+
+        No
+
+
+        private
+
+        True
+
+        Boolean
+
+        No
+
+
+        api_notes
+
+        Landlord will be present
+
+        String
+
+        No
+
+
+        files
+
+
+        (each object must contain "file_type", "file_name", and "file")
+
+        {
+
+        "file_type":"application/pdf",
+
+        "file_name":"testing",
+
+        "file":"(base 64)"
+
+        }
+
+
+        [Array {Objects}]
+
+        No'
       requestBody:
         required: true
         content:
@@ -2041,7 +3002,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single tenancy  task , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single tenancy task , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -2075,7 +3036,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing task using the same fields as the 'Add Task' endpoint. The API will return the updated data for the tenancy in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String \n No"
+      description: 'This endpoint updates an existing task using the same fields as the ''Add Task'' endpoint. The API will return the updated data for the tenancy in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        task_type
+
+        Inspection
+
+        String
+
+        No
+
+
+        description
+
+        Radiator not working
+
+        String
+
+        No
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No
+
+
+        due_date
+
+        2020-10-11
+
+        Date
+
+        No
+
+
+        due_time
+
+        15:32
+
+        Time
+
+        No
+
+
+        assigned_managers
+
+        [123,1234]
+
+        Array(Integer)
+
+        No
+
+
+        emergency
+
+        True
+
+        Boolean
+
+        No
+
+
+        private
+
+        True
+
+        Boolean
+
+        No
+
+
+        api_notes
+
+        Landlord will be present
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -2147,7 +3203,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing asset record using the task  id , under a tenancy ID
+      description: This endpoint deletes an existing asset record using the task id , under a tenancy ID
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -2210,7 +3266,122 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new task record for the unit . The API will return the saved data and a unique task ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String \n No \n\nfiles \n\n(each object must contain \"file_type\", \"file_name\", and \"file\") \n { \n\"file_type\":\"application/pdf\", \n\"file_name\":\"testing\", \n\"file\":\"(base 64)\" \n} \n [Array {Objects}] \n No"
+      description: 'Use this endpoint to create a new task record for the unit . The API will return the saved data and a unique task ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        task_type
+
+        Inspection
+
+        String
+
+        No
+
+
+        description
+
+        Radiator not working
+
+        String
+
+        Yes
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No
+
+
+        due_date
+
+        2020-10-11
+
+        Date
+
+        No
+
+
+        due_time
+
+        15:32
+
+        Time
+
+        No
+
+
+        assigned_managers
+
+        [123,1234]
+
+        Array(Integer)
+
+        No
+
+
+        emergency
+
+        True
+
+        Boolean
+
+        No
+
+
+        private
+
+        True
+
+        Boolean
+
+        No
+
+
+        api_notes
+
+        Landlord will be present
+
+        String
+
+        No
+
+
+        files
+
+
+        (each object must contain "file_type", "file_name", and "file")
+
+        {
+
+        "file_type":"application/pdf",
+
+        "file_name":"testing",
+
+        "file":"(base 64)"
+
+        }
+
+        [Array {Objects}]
+
+        No'
       requestBody:
         required: true
         content:
@@ -2290,7 +3461,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single unit  task , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single unit task , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -2324,7 +3495,102 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing task using the same fields as the 'Add Task' endpoint. The API will return the updated data for the unit in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntask_type \n Inspection \n String \n No \n\ndescription \n Radiator not working \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No \n\ndue_date \n 2020-10-11 \n Date \n No \n\ndue_time \n 15:32 \n Time \n No \n\nassigned_managers \n [123,1234] \n Array(Integer) \n No \n\nemergency \n True \n Boolean \n No \n\nprivate \n True \n Boolean \n No \n\napi_notes \n Landlord will be present \n String \n No"
+      description: 'This endpoint updates an existing task using the same fields as the ''Add Task'' endpoint. The API will return the updated data for the unit in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        task_type
+
+        Inspection
+
+        String
+
+        No
+
+
+        description
+
+        Radiator not working
+
+        String
+
+        No
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No
+
+
+        due_date
+
+        2020-10-11
+
+        Date
+
+        No
+
+
+        due_time
+
+        15:32
+
+        Time
+
+        No
+
+
+        assigned_managers
+
+        [123,1234]
+
+        Array(Integer)
+
+        No
+
+
+        emergency
+
+        True
+
+        Boolean
+
+        No
+
+
+        private
+
+        True
+
+        Boolean
+
+        No
+
+
+        api_notes
+
+        Landlord will be present
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -2398,7 +3664,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing asset record using the task  id , under a unit ID
+      description: This endpoint deletes an existing asset record using the task id , under a unit ID
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -2417,21 +3683,18 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
-    Direction:
-      name: direction
-      in: query
-      required: false
-      description: Sort direction.
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
     Sort:
       name: sort
       in: query
       required: false
       description: Field to sort the collection by.
+      schema:
+        type: string
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
     Strict:
@@ -2441,13 +3704,6 @@ components:
       description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
       schema:
         type: boolean
-    EntityId:
-      name: X-EntityID
-      in: header
-      required: true
-      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
-      schema:
-        type: string
     Page:
       name: page
       in: query
@@ -2465,19 +3721,17 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -2487,6 +3741,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Pagination:
       type: object

@@ -86,7 +86,51 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Update Subtask\n\nSupported Fields \n\nField \n Example \n Type \n Default \n Required? \n\ndescription \n subtask nb1 \n String \n\nNo \n\ndue_date \n 2020-09-22 \n Date \n\nNo \n\ncompleted \n true \n Boolean \n\nNo"
+      description: 'Update Subtask
+
+
+        Supported Fields
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        description
+
+        subtask nb1
+
+        String
+
+
+        No
+
+
+        due_date
+
+        2020-09-22
+
+        Date
+
+
+        No
+
+
+        completed
+
+        true
+
+        Boolean
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -123,7 +167,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteSubtask
-      summary: Delete  Subtask
+      summary: Delete Subtask
       tags:
       - Subtasks
       parameters:
@@ -134,7 +178,6 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: Delete Subtask
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -150,6 +193,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -160,20 +210,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -181,14 +217,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -198,19 +226,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -220,6 +251,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object

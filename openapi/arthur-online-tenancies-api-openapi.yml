@@ -67,7 +67,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single tenancy, identified by its unique  tenancy_id .
+      description: 'This API endpoint retrieves the details of a single tenancy, identified by its unique tenancy_id .
 
 
         Use this endpoint to view the specific details of a tenancy.'
@@ -98,7 +98,237 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing tenancy using the same fields as the 'Add Tenancy' endpoint excluding the  unit_id . Any fields that are not provided will not be changed. The API will return the updated data for the unit in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n Current \n Integer \n No \n\ntenancy_type \n Commercial \n Integer \n No \n\nletting_agent_id \n 90909 \n Integer \n No \n\ncontract_type \n Company \n String \n No \n\nrenter_company \n Renter Ltd. \n String \n No \n\nstart_date \n 2019-01-01 \n Date \n No \n\nend_date \n 2020-01-01 \n Date \n No \n\nbreak_clause_date \n 2019-06-01 \n Date \n No \n\nfixed_break_date \n 2019-06-01 \n Date \n No \n\nrolling_break_date \n 2019-09-18 \n Date \n No \n\nnotice_period \n 2 months \n String \n No \n\nissue_break_clause_to \n landlord \n String \n No \n\nmove_in_date \n 2019-01-01 \n Date \n No \n\nmove_in_time \n 12:00 \n Time \n No \n\nmove_out_date \n 2020-01-01 \n Date \n No \n\nmove_out_time \n 12:00 \n Time \n No \n\nrent_amount \n 875 \n Float \n No \n\nrent_frequency \n Monthly \n String \n No \n\ndeposit_held_by \n DPS \n String \n No \n\nrent_payment_bank_id \n 1423 \n Integer \n No \n\ndeposit_payment_bank_id \n 4132 \n Integer \n No \n\ndefault_rent_payment_method \n Bank Transfer \n String \n No \n\nrent_insured \n false \n Boolean \n No \n\ntags \n [\"12 month contract\"] \n Array (String) \n No"
+      description: 'This endpoint updates an existing tenancy using the same fields as the ''Add Tenancy'' endpoint excluding the unit_id . Any fields that are not provided will not be changed. The API will return the updated data for the unit in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        status
+
+        Current
+
+        Integer
+
+        No
+
+
+        tenancy_type
+
+        Commercial
+
+        Integer
+
+        No
+
+
+        letting_agent_id
+
+        90909
+
+        Integer
+
+        No
+
+
+        contract_type
+
+        Company
+
+        String
+
+        No
+
+
+        renter_company
+
+        Renter Ltd.
+
+        String
+
+        No
+
+
+        start_date
+
+        2019-01-01
+
+        Date
+
+        No
+
+
+        end_date
+
+        2020-01-01
+
+        Date
+
+        No
+
+
+        break_clause_date
+
+        2019-06-01
+
+        Date
+
+        No
+
+
+        fixed_break_date
+
+        2019-06-01
+
+        Date
+
+        No
+
+
+        rolling_break_date
+
+        2019-09-18
+
+        Date
+
+        No
+
+
+        notice_period
+
+        2 months
+
+        String
+
+        No
+
+
+        issue_break_clause_to
+
+        landlord
+
+        String
+
+        No
+
+
+        move_in_date
+
+        2019-01-01
+
+        Date
+
+        No
+
+
+        move_in_time
+
+        12:00
+
+        Time
+
+        No
+
+
+        move_out_date
+
+        2020-01-01
+
+        Date
+
+        No
+
+
+        move_out_time
+
+        12:00
+
+        Time
+
+        No
+
+
+        rent_amount
+
+        875
+
+        Float
+
+        No
+
+
+        rent_frequency
+
+        Monthly
+
+        String
+
+        No
+
+
+        deposit_held_by
+
+        DPS
+
+        String
+
+        No
+
+
+        rent_payment_bank_id
+
+        1423
+
+        Integer
+
+        No
+
+
+        deposit_payment_bank_id
+
+        4132
+
+        Integer
+
+        No
+
+
+        default_rent_payment_method
+
+        Bank Transfer
+
+        String
+
+        No
+
+
+        rent_insured
+
+        false
+
+        Boolean
+
+        No
+
+
+        tags
+
+        ["12 month contract"]
+
+        Array (String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -351,7 +581,276 @@ paths:
       parameters:
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tenancy record. The API will return the saved data and a unique tenancy ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nunit_id \n 12345 \n Integer \n\nYes \n\nstatus \n Current \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer \n Residential \n No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company \n String \n\nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01 \n Date \n\nYes \n\nend_date \n 2020-01-01 \n Date \n\nNo \n\nbreak_clause_date \n 2019-06-01 \n Date \n\nNo \n\nfixed_break_date \n 2019-06-01 \n Date \n\nNo \n\nrolling_break_date \n 2019-09-18 \n Date \n\nNo \n\nnotice_period \n 2 months \n String \n 1 months \n No \n\nissue_break_clause_to \n landlord \n String \n\nNo \n\nmove_in_date \n 2019-01-01 \n Date \n\nNo \n\nmove_in_time \n 12:00 \n Time \n\nNo \n\nmove_out_date \n 2020-01-01 \n Date \n\nNo \n\nmove_out_time \n 12:00 \n Time \n\nNo \n\nrent_amount \n 875 \n Float \n\nYes \n\nrent_frequency \n Monthly \n String \n\nNo \n\ndeposit_held_by \n DPS \n String \n\nNo \n\nrent_payment_bank_id \n 1423 \n Integer \n\nNo \n\ndeposit_payment_bank_id \n 4132 \n Integer \n\nNo \n\ndefault_rent_payment_method \n Bank Transfer \n String \n\nNo \n\nrent_insured \n false \n Boolean \n\nNo \n\ntags \n [\"12 month contract\"] \n Array (String) \n\nNo"
+      description: 'Use this endpoint to create a new tenancy record. The API will return the saved data and a unique tenancy ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        unit_id
+
+        12345
+
+        Integer
+
+
+        Yes
+
+
+        status
+
+        Current
+
+        Integer
+
+        Prospective
+
+        No
+
+
+        tenancy_type
+
+        Commercial
+
+        Integer
+
+        Residential
+
+        No
+
+
+        letting_agent_id
+
+        90909
+
+        Integer
+
+
+        No
+
+
+        contract_type
+
+        Company
+
+        String
+
+
+        No
+
+
+        renter_company
+
+        Renter Ltd.
+
+        String
+
+
+        No
+
+
+        start_date
+
+        2019-01-01
+
+        Date
+
+
+        Yes
+
+
+        end_date
+
+        2020-01-01
+
+        Date
+
+
+        No
+
+
+        break_clause_date
+
+        2019-06-01
+
+        Date
+
+
+        No
+
+
+        fixed_break_date
+
+        2019-06-01
+
+        Date
+
+
+        No
+
+
+        rolling_break_date
+
+        2019-09-18
+
+        Date
+
+
+        No
+
+
+        notice_period
+
+        2 months
+
+        String
+
+        1 months
+
+        No
+
+
+        issue_break_clause_to
+
+        landlord
+
+        String
+
+
+        No
+
+
+        move_in_date
+
+        2019-01-01
+
+        Date
+
+
+        No
+
+
+        move_in_time
+
+        12:00
+
+        Time
+
+
+        No
+
+
+        move_out_date
+
+        2020-01-01
+
+        Date
+
+
+        No
+
+
+        move_out_time
+
+        12:00
+
+        Time
+
+
+        No
+
+
+        rent_amount
+
+        875
+
+        Float
+
+
+        Yes
+
+
+        rent_frequency
+
+        Monthly
+
+        String
+
+
+        No
+
+
+        deposit_held_by
+
+        DPS
+
+        String
+
+
+        No
+
+
+        rent_payment_bank_id
+
+        1423
+
+        Integer
+
+
+        No
+
+
+        deposit_payment_bank_id
+
+        4132
+
+        Integer
+
+
+        No
+
+
+        default_rent_payment_method
+
+        Bank Transfer
+
+        String
+
+
+        No
+
+
+        rent_insured
+
+        false
+
+        Boolean
+
+
+        No
+
+
+        tags
+
+        ["12 month contract"]
+
+        Array (String)
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -526,7 +1025,266 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tenancy record for the  unit . The API will return the saved data and a unique tenancy ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nstatus \n Current \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer \n Residential \n No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company \n String \n\nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01 \n Date \n\nYes \n\nend_date \n 2020-01-01 \n Date \n\nNo \n\nbreak_clause_date \n 2019-06-01 \n Date \n\nNo \n\nfixed_break_date \n 2019-06-01 \n Date \n\nNo \n\nrolling_break_date \n 2019-09-18 \n Date \n\nNo \n\nnotice_period \n 2 months \n String \n 1 months \n No \n\nissue_break_clause_to \n landlord \n String \n\nNo \n\nmove_in_date \n 2019-01-01 \n Date \n\nNo \n\nmove_in_time \n 12:00 \n Time \n\nNo \n\nmove_out_date \n 2020-01-01 \n Date \n\nNo \n\nmove_out_time \n 12:00 \n Time \n\nNo \n\nrent_amount \n 875 \n Float \n\nYes \n\nrent_frequency \n Monthly \n String \n\nNo \n\ndeposit_held_by \n DPS \n String \n\nNo \n\nrent_payment_bank_id \n 1423 \n Integer \n\nNo \n\ndeposit_payment_bank_id \n 4132 \n Integer \n\nNo \n\ndefault_rent_payment_method \n Bank Transfer \n String \n\nNo \n\nrent_insured \n false \n Boolean \n\nNo \n\ntags \n [\"12 month contract\"] \n Array (String) \n\nNo"
+      description: 'Use this endpoint to create a new tenancy record for the unit . The API will return the saved data and a unique tenancy ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        status
+
+        Current
+
+        Integer
+
+        Prospective
+
+        No
+
+
+        tenancy_type
+
+        Commercial
+
+        Integer
+
+        Residential
+
+        No
+
+
+        letting_agent_id
+
+        90909
+
+        Integer
+
+
+        No
+
+
+        contract_type
+
+        Company
+
+        String
+
+
+        No
+
+
+        renter_company
+
+        Renter Ltd.
+
+        String
+
+
+        No
+
+
+        start_date
+
+        2019-01-01
+
+        Date
+
+
+        Yes
+
+
+        end_date
+
+        2020-01-01
+
+        Date
+
+
+        No
+
+
+        break_clause_date
+
+        2019-06-01
+
+        Date
+
+
+        No
+
+
+        fixed_break_date
+
+        2019-06-01
+
+        Date
+
+
+        No
+
+
+        rolling_break_date
+
+        2019-09-18
+
+        Date
+
+
+        No
+
+
+        notice_period
+
+        2 months
+
+        String
+
+        1 months
+
+        No
+
+
+        issue_break_clause_to
+
+        landlord
+
+        String
+
+
+        No
+
+
+        move_in_date
+
+        2019-01-01
+
+        Date
+
+
+        No
+
+
+        move_in_time
+
+        12:00
+
+        Time
+
+
+        No
+
+
+        move_out_date
+
+        2020-01-01
+
+        Date
+
+
+        No
+
+
+        move_out_time
+
+        12:00
+
+        Time
+
+
+        No
+
+
+        rent_amount
+
+        875
+
+        Float
+
+
+        Yes
+
+
+        rent_frequency
+
+        Monthly
+
+        String
+
+
+        No
+
+
+        deposit_held_by
+
+        DPS
+
+        String
+
+
+        No
+
+
+        rent_payment_bank_id
+
+        1423
+
+        Integer
+
+
+        No
+
+
+        deposit_payment_bank_id
+
+        4132
+
+        Integer
+
+
+        No
+
+
+        default_rent_payment_method
+
+        Bank Transfer
+
+        String
+
+
+        No
+
+
+        rent_insured
+
+        false
+
+        Boolean
+
+
+        No
+
+
+        tags
+
+        ["12 month contract"]
+
+        Array (String)
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -696,7 +1454,266 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tenancy from a viewing. The API will return the saved data and a unique Tenancy ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nstatus \n Current \n Integer \n Prospective \n No \n\ntenancy_type \n Commercial \n Integer \n Residential \n No \n\nletting_agent_id \n 90909 \n Integer \n\nNo \n\ncontract_type \n Company \n String \n\nNo \n\nrenter_company \n Renter Ltd. \n String \n\nNo \n\nstart_date \n 2019-01-01 \n Date \n\nYes \n\nend_date \n 2020-01-01 \n Date \n\nNo \n\nbreak_clause_date \n 2019-06-01 \n Date \n\nNo \n\nfixed_break_date \n 2019-06-01 \n Date \n\nNo \n\nrolling_break_date \n 2019-09-18 \n Date \n\nNo \n\nnotice_period \n 2 months \n String \n 1 months \n No \n\nissue_break_clause_to \n landlord \n String \n\nNo \n\nmove_in_date \n 2019-01-01 \n Date \n\nNo \n\nmove_in_time \n 12:00 \n Time \n\nNo \n\nmove_out_date \n 2020-01-01 \n Date \n\nNo \n\nmove_out_time \n 12:00 \n Time \n\nNo \n\nrent_amount \n 875 \n Float \n\nYes \n\nrent_frequency \n Monthly \n String \n\nNo \n\ndeposit_held_by \n DPS \n String \n\nNo \n\nrent_payment_bank_id \n 1423 \n Integer \n\nNo \n\ndeposit_payment_bank_id \n 4132 \n Integer \n\nNo \n\ndefault_rent_payment_method \n Bank Transfer \n String \n\nNo \n\nrent_insured \n false \n Boolean \n\nNo \n\ntags \n [\"12 month contract\"] \n Array (String) \n\nNo"
+      description: 'Use this endpoint to create a new tenancy from a viewing. The API will return the saved data and a unique Tenancy ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        status
+
+        Current
+
+        Integer
+
+        Prospective
+
+        No
+
+
+        tenancy_type
+
+        Commercial
+
+        Integer
+
+        Residential
+
+        No
+
+
+        letting_agent_id
+
+        90909
+
+        Integer
+
+
+        No
+
+
+        contract_type
+
+        Company
+
+        String
+
+
+        No
+
+
+        renter_company
+
+        Renter Ltd.
+
+        String
+
+
+        No
+
+
+        start_date
+
+        2019-01-01
+
+        Date
+
+
+        Yes
+
+
+        end_date
+
+        2020-01-01
+
+        Date
+
+
+        No
+
+
+        break_clause_date
+
+        2019-06-01
+
+        Date
+
+
+        No
+
+
+        fixed_break_date
+
+        2019-06-01
+
+        Date
+
+
+        No
+
+
+        rolling_break_date
+
+        2019-09-18
+
+        Date
+
+
+        No
+
+
+        notice_period
+
+        2 months
+
+        String
+
+        1 months
+
+        No
+
+
+        issue_break_clause_to
+
+        landlord
+
+        String
+
+
+        No
+
+
+        move_in_date
+
+        2019-01-01
+
+        Date
+
+
+        No
+
+
+        move_in_time
+
+        12:00
+
+        Time
+
+
+        No
+
+
+        move_out_date
+
+        2020-01-01
+
+        Date
+
+
+        No
+
+
+        move_out_time
+
+        12:00
+
+        Time
+
+
+        No
+
+
+        rent_amount
+
+        875
+
+        Float
+
+
+        Yes
+
+
+        rent_frequency
+
+        Monthly
+
+        String
+
+
+        No
+
+
+        deposit_held_by
+
+        DPS
+
+        String
+
+
+        No
+
+
+        rent_payment_bank_id
+
+        1423
+
+        Integer
+
+
+        No
+
+
+        deposit_payment_bank_id
+
+        4132
+
+        Integer
+
+
+        No
+
+
+        default_rent_payment_method
+
+        Bank Transfer
+
+        String
+
+
+        No
+
+
+        rent_insured
+
+        false
+
+        Boolean
+
+
+        No
+
+
+        tags
+
+        ["12 month contract"]
+
+        Array (String)
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -822,16 +1839,6 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
-    Direction:
-      name: direction
-      in: query
-      required: false
-      description: Sort direction.
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
     Sort:
       name: sort
       in: query
@@ -846,14 +1853,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -863,6 +1862,24 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
     Strict:
       name: strict
       in: query
@@ -871,18 +1888,6 @@ components:
       schema:
         type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -892,6 +1897,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object

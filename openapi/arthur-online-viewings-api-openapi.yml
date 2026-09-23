@@ -114,7 +114,114 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new viewing record for the  applicant . The API will return the saved data and a unique applicant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nunit_id \n 123 \n Integer \n\nYes \n\nviewing_date \n 2019-05-28 \n Date \n\nNo \n\nviewing_time \n 00:00 \n Time \n\nNo \n\noffer_amount \n 250.00 \n Float \n\nNo \n\noffer_frequency \n Week \n Enum \n Month \n No \n\nmove_in_date \n 2019-07-01 \n Date \n\nNo \n\nassigned_to_ids \n [123,124] \n Array (Integer) \n\nNo \n\nsource \n My website \n Simple \n\nNo \n\nnotes \n Landlord will be present for this viewing. \n String \n\nNo"
+      description: 'Use this endpoint to create a new viewing record for the applicant . The API will return the saved data and a unique applicant ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        unit_id
+
+        123
+
+        Integer
+
+
+        Yes
+
+
+        viewing_date
+
+        2019-05-28
+
+        Date
+
+
+        No
+
+
+        viewing_time
+
+        00:00
+
+        Time
+
+
+        No
+
+
+        offer_amount
+
+        250.00
+
+        Float
+
+
+        No
+
+
+        offer_frequency
+
+        Week
+
+        Enum
+
+        Month
+
+        No
+
+
+        move_in_date
+
+        2019-07-01
+
+        Date
+
+
+        No
+
+
+        assigned_to_ids
+
+        [123,124]
+
+        Array (Integer)
+
+
+        No
+
+
+        source
+
+        My website
+
+        Simple
+
+
+        No
+
+
+        notes
+
+        Landlord will be present for this viewing.
+
+        String
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -249,7 +356,114 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "Use this endpoint to create a new viewing record for the  unit . The API will return the saved data and a unique viewing ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_id \n 123 \n Integer \n\nYes \n\nviewing_date \n 2019-05-28 \n Date \n\nNo \n\nviewing_time \n 00:00 \n Time \n\nNo \n\noffer_amount \n 250.00 \n Float \n\nNo \n\noffer_frequency \n Week \n Enum \n Month \n No \n\nmove_in_date \n 2019-07-01 \n Date \n\nNo \n\nassigned_to_ids \n [123,124] \n Array (Integer) \n\nNo \n\nsource \n My website \n Simple \n\nNo \n\nnotes \n Landlord will be present for this viewing. \n String \n\nNo"
+      description: 'Use this endpoint to create a new viewing record for the unit . The API will return the saved data and a unique viewing ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        applicant_id
+
+        123
+
+        Integer
+
+
+        Yes
+
+
+        viewing_date
+
+        2019-05-28
+
+        Date
+
+
+        No
+
+
+        viewing_time
+
+        00:00
+
+        Time
+
+
+        No
+
+
+        offer_amount
+
+        250.00
+
+        Float
+
+
+        No
+
+
+        offer_frequency
+
+        Week
+
+        Enum
+
+        Month
+
+        No
+
+
+        move_in_date
+
+        2019-07-01
+
+        Date
+
+
+        No
+
+
+        assigned_to_ids
+
+        [123,124]
+
+        Array (Integer)
+
+
+        No
+
+
+        source
+
+        My website
+
+        Simple
+
+
+        No
+
+
+        notes
+
+        Landlord will be present for this viewing.
+
+        String
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -428,7 +642,306 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "Use this endpoint to create a new viewing record. The API will return the saved data and a unique viewing ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\napplicant_id \n 123 \n Integer \n\nYes if applicant_ids not provided. \n\napplicant_ids \n [\"123\"] \n Array(Strings) \n\nYes if applicant_id not provided. \n\nunit_id \n 1234 \n Integer \n\nYes \n\nviewing_date \n \"1999-12-12\" \n Date \n\nNo \n\nviewing_time \n \"14:31\" \n Time \n\nNo \n\nduration \n 15 \n Integer \n\nNo \n\noffer_amount \n 1250.00 \n Float \n\nNo \n\nmove_in_date \n \"1999-12-13\" \n Date \n\nNo \n\nassigned_to_ids \n [\"123\",\"321\"] \n Array(Strings) \n\nNo \n\ntags \n [\"cheap rent\"] \n Array(Strings) \n\nNo \n\nsource \n \"gumtree\" \n String \n\nNo \n\nviewing_notes \n \"3 month contract\" \n String \n\nNo \n\nviewing_status \n \"Confirmed\" \n String \n Confirmed \n No \n\nYou can use the \"new_applicants\" object to simultaneously create or update applicants. This will replace the \"applicant_id\" and \"applicant_ids\" fields. Here's an example of how to use it:\n\nTo create a new applicant, include the following information within the \"new_applicants\" object:\n\n\"new_applicants\": [\n {\n \"first_name\": \"Matej\",\n \"last_name\": \"Cubbit\",\n \"email\": \"matej123@gmail.com\"\n }\n]\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\napplicant_id \n 123 \n Integer \n No \n\nfirst_name \n \"Michael\" \n String \n Yes / if applicant_id not provided \n\nlast_name \n \"Cubitt\" \n String \n Yes / if applicant_id not provided \n\nemail \n \" michael123@gmail.com \n String \n Yes / if applicant_id not provided \n\ndate_of_birth \n \"1999-12-12\" \n Date \n No \n\nmobile \n \"0201230201\" \n String \n No \n\nphone_home \n \"0201230201\" \n String \n No \n\nphone_work \n \"0201230201\" \n String \n No \n\nhas_guarantor \n true \n Boolean \n No \n\nguarantor_first_name \n \"Brian\" \n String \n No \n\nguarantor_last_name \n \"Oneil\" \n String \n No \n\nguarantor_mobile \n \"0201230201\" \n String \n No \n\nguarantor_email \n \" myguarantor@gmail.com \n String \n No"
+      description: 'Use this endpoint to create a new viewing record. The API will return the saved data and a unique viewing ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        applicant_id
+
+        123
+
+        Integer
+
+
+        Yes if applicant_ids not provided.
+
+
+        applicant_ids
+
+        ["123"]
+
+        Array(Strings)
+
+
+        Yes if applicant_id not provided.
+
+
+        unit_id
+
+        1234
+
+        Integer
+
+
+        Yes
+
+
+        viewing_date
+
+        "1999-12-12"
+
+        Date
+
+
+        No
+
+
+        viewing_time
+
+        "14:31"
+
+        Time
+
+
+        No
+
+
+        duration
+
+        15
+
+        Integer
+
+
+        No
+
+
+        offer_amount
+
+        1250.00
+
+        Float
+
+
+        No
+
+
+        move_in_date
+
+        "1999-12-13"
+
+        Date
+
+
+        No
+
+
+        assigned_to_ids
+
+        ["123","321"]
+
+        Array(Strings)
+
+
+        No
+
+
+        tags
+
+        ["cheap rent"]
+
+        Array(Strings)
+
+
+        No
+
+
+        source
+
+        "gumtree"
+
+        String
+
+
+        No
+
+
+        viewing_notes
+
+        "3 month contract"
+
+        String
+
+
+        No
+
+
+        viewing_status
+
+        "Confirmed"
+
+        String
+
+        Confirmed
+
+        No
+
+
+        You can use the "new_applicants" object to simultaneously create or update applicants. This will replace the "applicant_id" and "applicant_ids" fields. Here''s an example of how to use it:
+
+
+        To create a new applicant, include the following information within the "new_applicants" object:
+
+
+        "new_applicants": [
+
+        {
+
+        "first_name": "Matej",
+
+        "last_name": "Cubbit",
+
+        "email": "matej123@gmail.com"
+
+        }
+
+        ]
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        applicant_id
+
+        123
+
+        Integer
+
+        No
+
+
+        first_name
+
+        "Michael"
+
+        String
+
+        Yes / if applicant_id not provided
+
+
+        last_name
+
+        "Cubitt"
+
+        String
+
+        Yes / if applicant_id not provided
+
+
+        email
+
+        " michael123@gmail.com
+
+        String
+
+        Yes / if applicant_id not provided
+
+
+        date_of_birth
+
+        "1999-12-12"
+
+        Date
+
+        No
+
+
+        mobile
+
+        "0201230201"
+
+        String
+
+        No
+
+
+        phone_home
+
+        "0201230201"
+
+        String
+
+        No
+
+
+        phone_work
+
+        "0201230201"
+
+        String
+
+        No
+
+
+        has_guarantor
+
+        true
+
+        Boolean
+
+        No
+
+
+        guarantor_first_name
+
+        "Brian"
+
+        String
+
+        No
+
+
+        guarantor_last_name
+
+        "Oneil"
+
+        String
+
+        No
+
+
+        guarantor_mobile
+
+        "0201230201"
+
+        String
+
+        No
+
+
+        guarantor_email
+
+        " myguarantor@gmail.com
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -553,7 +1066,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single viewing, identified by its unique  viewing_id .
+      description: 'This API endpoint retrieves the details of a single viewing, identified by its unique viewing_id .
 
 
         Use this endpoint to view the specific details of a viewing.'
@@ -590,7 +1103,123 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "This endpoint updates an existing viewing using the same fields as the 'Add Viewing' endpoint, excluding unit_id and applicant_id . Any fields that are not provided will not be changed.\n\nThe API will return the updated data for the viewing in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nviewing_date \n \"2020-10-10\" \n Date \n No \n\nviewing_time \n \"15:30\" \n Time \n No \n\nduration \n 15 \n Integer \n No \n\noffer_amount \n 1050.30 \n float \n No \n\noffer_frequency \n \"per week\" \n string \n No \n\nmove_in_date \n \"2020-10-10\" \n Date \n No \n\nassigned_to_ids \n [\"12\"] \n Array(Strings) \n No \n\ntags \n [\"tag1\"] \n Array(Strings) \n No \n\nsource \n facebook \n String \n No \n\nviewing_notes \n \"lorem ipsum\" \n String \n No \n\nviewing_status \n \"Confirmed\" \n String \n No"
+      description: 'This endpoint updates an existing viewing using the same fields as the ''Add Viewing'' endpoint, excluding unit_id and applicant_id . Any fields that are not provided will not be changed.
+
+
+        The API will return the updated data for the viewing in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        viewing_date
+
+        "2020-10-10"
+
+        Date
+
+        No
+
+
+        viewing_time
+
+        "15:30"
+
+        Time
+
+        No
+
+
+        duration
+
+        15
+
+        Integer
+
+        No
+
+
+        offer_amount
+
+        1050.30
+
+        float
+
+        No
+
+
+        offer_frequency
+
+        "per week"
+
+        string
+
+        No
+
+
+        move_in_date
+
+        "2020-10-10"
+
+        Date
+
+        No
+
+
+        assigned_to_ids
+
+        ["12"]
+
+        Array(Strings)
+
+        No
+
+
+        tags
+
+        ["tag1"]
+
+        Array(Strings)
+
+        No
+
+
+        source
+
+        facebook
+
+        String
+
+        No
+
+
+        viewing_notes
+
+        "lorem ipsum"
+
+        String
+
+        No
+
+
+        viewing_status
+
+        "Confirmed"
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -704,7 +1333,30 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "This endpoint updates an existing viewing status. The API will return the updated data for the viewing in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nstatus \n \"Confirmed\" \n String \n Yes"
+      description: 'This endpoint updates an existing viewing status. The API will return the updated data for the viewing in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        status
+
+        "Confirmed"
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -737,6 +1389,13 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -747,20 +1406,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -768,14 +1413,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -785,19 +1422,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -807,6 +1447,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Pagination:
       type: object

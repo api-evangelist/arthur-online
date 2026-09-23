@@ -240,7 +240,464 @@ paths:
       parameters:
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new unit. The API will return the saved data and a unique Unit ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Default \n Required? \n\nproperty_id \n 12345 \n Integer \n\nYes \n\nunit_type \n Residential \n String \n\nNo \n\nunit_status \n Available to Let \n String \n Available to Let \n No \n\nunit_ref \n Unit 1 \n String \n\nYes \n\naddress_line_1 \n Arthur House \n String \n\nYes \n\naddress_line_2 \n 123 Property Street \n String \n\nNo \n\ncity \n Stevenage \n String \n\nYes \n\ncounty \n Hertfordshire \n String \n\nNo \n\ncountry \n United Kingdom \n String \n\nNo \n\narea \n South East \n String \n\nNo \n\npostcode \n AB1 2CD \n String \n\nYes \n\nmarket_rent \n 800.00 \n Float \n\nNo \n\nmarket_rent_frequency \n Monthly \n String \n\nNo \n\navailable_from \n 2019-01-01 \n Date \n\nNo \n\navailable_since \n 2019-01-01 \n Date \n\nNo \n\nunit_owner_id \n 3456 \n Integer \n\nNo \n\nletting_agent_id \n 4567 \n Integer \n\nNo \n\nportal_address \n Property Street, Stevenage, AB1 \n String \n\nNo \n\nshort_description \n Brand new furnished unit in the heart of the city center! \n String \n\nNo \n\ndescription \n This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing. \n String \n\nNo \n\nportal_unit_type \n Apartment \n String \n\nNo \n\nsize \n 500 \n String \n\nNo \n\nsize_unit \n Sq Meter \n String \n\nNo \n\nfurnished \n Part-Furnished \n String \n\nNo \n\nmax_occupancy \n 1 \n String \n\nNo \n\nbathrooms \n 1 \n String \n\nNo \n\nfloors \n 1 \n String \n\nNo \n\nbedrooms \n 1 \n String \n\nNo \n\nreceptions \n 1 \n String \n\nNo \n\nsmart_meters \n No \n String \n\nNo \n\ndate_available \n 2019-01-01 \n Date \n\nNo \n\nrental_term \n Long \n String \n\nNo \n\ndeposit_amount \n 1600.00 \n Float \n\nNo \n\nservice_charge \n true \n Boolean \n\nNo \n\nservice_charge_amount \n 75.00 \n Float \n\nNo \n\ncouncil_tax_band \n C \n String \n\nNo \n\ncouncil_account_no \n ABC123 \n String \n\nNo \n\ncouncil_id \n 9874 \n Integer \n\nNo \n\nportal_market_rent \n 800.00 \n Float \n\nNo \n\nportal_market_rent_frequency \n Monthly \n String \n\nNo \n\nsharing_tenancies \n N/A \n String \n\nNo \n\ni_manage_this \n true \n Boolean \n\nNo \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n\nNo \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n\nNo"
+      description: 'Use this endpoint to create a new unit. The API will return the saved data and a unique Unit ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        property_id
+
+        12345
+
+        Integer
+
+
+        Yes
+
+
+        unit_type
+
+        Residential
+
+        String
+
+
+        No
+
+
+        unit_status
+
+        Available to Let
+
+        String
+
+        Available to Let
+
+        No
+
+
+        unit_ref
+
+        Unit 1
+
+        String
+
+
+        Yes
+
+
+        address_line_1
+
+        Arthur House
+
+        String
+
+
+        Yes
+
+
+        address_line_2
+
+        123 Property Street
+
+        String
+
+
+        No
+
+
+        city
+
+        Stevenage
+
+        String
+
+
+        Yes
+
+
+        county
+
+        Hertfordshire
+
+        String
+
+
+        No
+
+
+        country
+
+        United Kingdom
+
+        String
+
+
+        No
+
+
+        area
+
+        South East
+
+        String
+
+
+        No
+
+
+        postcode
+
+        AB1 2CD
+
+        String
+
+
+        Yes
+
+
+        market_rent
+
+        800.00
+
+        Float
+
+
+        No
+
+
+        market_rent_frequency
+
+        Monthly
+
+        String
+
+
+        No
+
+
+        available_from
+
+        2019-01-01
+
+        Date
+
+
+        No
+
+
+        available_since
+
+        2019-01-01
+
+        Date
+
+
+        No
+
+
+        unit_owner_id
+
+        3456
+
+        Integer
+
+
+        No
+
+
+        letting_agent_id
+
+        4567
+
+        Integer
+
+
+        No
+
+
+        portal_address
+
+        Property Street, Stevenage, AB1
+
+        String
+
+
+        No
+
+
+        short_description
+
+        Brand new furnished unit in the heart of the city center!
+
+        String
+
+
+        No
+
+
+        description
+
+        This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing.
+
+        String
+
+
+        No
+
+
+        portal_unit_type
+
+        Apartment
+
+        String
+
+
+        No
+
+
+        size
+
+        500
+
+        String
+
+
+        No
+
+
+        size_unit
+
+        Sq Meter
+
+        String
+
+
+        No
+
+
+        furnished
+
+        Part-Furnished
+
+        String
+
+
+        No
+
+
+        max_occupancy
+
+        1
+
+        String
+
+
+        No
+
+
+        bathrooms
+
+        1
+
+        String
+
+
+        No
+
+
+        floors
+
+        1
+
+        String
+
+
+        No
+
+
+        bedrooms
+
+        1
+
+        String
+
+
+        No
+
+
+        receptions
+
+        1
+
+        String
+
+
+        No
+
+
+        smart_meters
+
+        No
+
+        String
+
+
+        No
+
+
+        date_available
+
+        2019-01-01
+
+        Date
+
+
+        No
+
+
+        rental_term
+
+        Long
+
+        String
+
+
+        No
+
+
+        deposit_amount
+
+        1600.00
+
+        Float
+
+
+        No
+
+
+        service_charge
+
+        true
+
+        Boolean
+
+
+        No
+
+
+        service_charge_amount
+
+        75.00
+
+        Float
+
+
+        No
+
+
+        council_tax_band
+
+        C
+
+        String
+
+
+        No
+
+
+        council_account_no
+
+        ABC123
+
+        String
+
+
+        No
+
+
+        council_id
+
+        9874
+
+        Integer
+
+
+        No
+
+
+        portal_market_rent
+
+        800.00
+
+        Float
+
+
+        No
+
+
+        portal_market_rent_frequency
+
+        Monthly
+
+        String
+
+
+        No
+
+
+        sharing_tenancies
+
+        N/A
+
+        String
+
+
+        No
+
+
+        i_manage_this
+
+        true
+
+        Boolean
+
+
+        No
+
+
+        features
+
+        [ "Internet", "Fireplace", "Smart home integration" ]
+
+        Array (String)
+
+
+        No
+
+
+        tags
+
+        [ "Cheap Rent" ]
+
+        Array (String)
+
+
+        No'
       requestBody:
         required: true
         content:
@@ -558,7 +1015,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single unit, identified by its unique  unit_id .
+      description: 'This API endpoint retrieves the details of a single unit, identified by its unique unit_id .
 
 
         Use this endpoint to view the specific details of a unit.'
@@ -589,7 +1046,408 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing unit using the same fields as the 'Add Unit' endpoint excluding the property_id . Any fields that are not provided will not be changed. The API will return the updated data for the unit in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nunit_type \n Residential \n String \n No \n\nunit_status \n Available to Let \n String \n No \n\nunit_ref \n Unit 1 \n String \n No \n\naddress_line_1 \n Arthur House \n String \n No \n\naddress_line_2 \n 123 Property Street \n String \n No \n\ncity \n Stevenage \n String \n No \n\ncounty \n Hertfordshire \n String \n No \n\ncountry \n United Kingdom \n String \n No \n\narea \n South East \n String \n No \n\npostcode \n AB1 2CD \n String \n No \n\nmarket_rent \n 800.00 \n Float \n No \n\nmarket_rent_frequency \n Monthly \n String \n No \n\navailable_from \n 2019-01-01 \n Date \n No \n\navailable_since \n 2019-01-01 \n Date \n No \n\nunit_owner_id \n 3456 \n Integer \n No \n\nletting_agent_id \n 4567 \n Integer \n No \n\nportal_address \n Property Street, Stevenage, AB1 \n String \n No \n\nshort_description \n Brand new furnished unit in the heart of the city center! \n String \n No \n\ndescription \n This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing. \n String \n No \n\nportal_unit_type \n Apartment \n String \n No \n\nsize \n 500 \n String \n No \n\nsize_unit \n Sq Meter \n String \n No \n\nfurnished \n Part-Furnished \n String \n No \n\nmax_occupancy \n 1 \n String \n No \n\nbathrooms \n 1 \n String \n No \n\nfloors \n 1 \n String \n No \n\nbedrooms \n 1 \n String \n No \n\nreceptions \n 1 \n String \n No \n\nsmart_meters \n No \n String \n No \n\ndate_available \n 2019-01-01 \n Date \n No \n\nrental_term \n Long \n String \n No \n\ndeposit_amount \n 1600.00 \n Float \n No \n\nservice_charge \n true \n Boolean \n No \n\nservice_charge_amount \n 75.00 \n Float \n No \n\ncouncil_tax_band \n C \n String \n No \n\ncouncil_account_no \n ABC123 \n String \n No \n\ncouncil_id \n 9874 \n Integer \n No \n\nportal_market_rent \n 800.00 \n Float \n No \n\nportal_market_rent_frequency \n Monthly \n String \n No \n\nsharing_tenancies \n N/A \n String \n No \n\ni_manage_this \n true \n Boolean \n No \n\nfeatures \n [ \"Internet\", \"Fireplace\", \"Smart home integration\" ] \n Array (String) \n No \n\ntags \n [ \"Cheap Rent\" ] \n Array (String) \n No"
+      description: 'This endpoint updates an existing unit using the same fields as the ''Add Unit'' endpoint excluding the property_id . Any fields that are not provided will not be changed. The API will return the updated data for the unit in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        unit_type
+
+        Residential
+
+        String
+
+        No
+
+
+        unit_status
+
+        Available to Let
+
+        String
+
+        No
+
+
+        unit_ref
+
+        Unit 1
+
+        String
+
+        No
+
+
+        address_line_1
+
+        Arthur House
+
+        String
+
+        No
+
+
+        address_line_2
+
+        123 Property Street
+
+        String
+
+        No
+
+
+        city
+
+        Stevenage
+
+        String
+
+        No
+
+
+        county
+
+        Hertfordshire
+
+        String
+
+        No
+
+
+        country
+
+        United Kingdom
+
+        String
+
+        No
+
+
+        area
+
+        South East
+
+        String
+
+        No
+
+
+        postcode
+
+        AB1 2CD
+
+        String
+
+        No
+
+
+        market_rent
+
+        800.00
+
+        Float
+
+        No
+
+
+        market_rent_frequency
+
+        Monthly
+
+        String
+
+        No
+
+
+        available_from
+
+        2019-01-01
+
+        Date
+
+        No
+
+
+        available_since
+
+        2019-01-01
+
+        Date
+
+        No
+
+
+        unit_owner_id
+
+        3456
+
+        Integer
+
+        No
+
+
+        letting_agent_id
+
+        4567
+
+        Integer
+
+        No
+
+
+        portal_address
+
+        Property Street, Stevenage, AB1
+
+        String
+
+        No
+
+
+        short_description
+
+        Brand new furnished unit in the heart of the city center!
+
+        String
+
+        No
+
+
+        description
+
+        This fabulous new property has been recently refurbished with close links to city center and nearby public transport. Please call now to book a viewing.
+
+        String
+
+        No
+
+
+        portal_unit_type
+
+        Apartment
+
+        String
+
+        No
+
+
+        size
+
+        500
+
+        String
+
+        No
+
+
+        size_unit
+
+        Sq Meter
+
+        String
+
+        No
+
+
+        furnished
+
+        Part-Furnished
+
+        String
+
+        No
+
+
+        max_occupancy
+
+        1
+
+        String
+
+        No
+
+
+        bathrooms
+
+        1
+
+        String
+
+        No
+
+
+        floors
+
+        1
+
+        String
+
+        No
+
+
+        bedrooms
+
+        1
+
+        String
+
+        No
+
+
+        receptions
+
+        1
+
+        String
+
+        No
+
+
+        smart_meters
+
+        No
+
+        String
+
+        No
+
+
+        date_available
+
+        2019-01-01
+
+        Date
+
+        No
+
+
+        rental_term
+
+        Long
+
+        String
+
+        No
+
+
+        deposit_amount
+
+        1600.00
+
+        Float
+
+        No
+
+
+        service_charge
+
+        true
+
+        Boolean
+
+        No
+
+
+        service_charge_amount
+
+        75.00
+
+        Float
+
+        No
+
+
+        council_tax_band
+
+        C
+
+        String
+
+        No
+
+
+        council_account_no
+
+        ABC123
+
+        String
+
+        No
+
+
+        council_id
+
+        9874
+
+        Integer
+
+        No
+
+
+        portal_market_rent
+
+        800.00
+
+        Float
+
+        No
+
+
+        portal_market_rent_frequency
+
+        Monthly
+
+        String
+
+        No
+
+
+        sharing_tenancies
+
+        N/A
+
+        String
+
+        No
+
+
+        i_manage_this
+
+        true
+
+        Boolean
+
+        No
+
+
+        features
+
+        [ "Internet", "Fireplace", "Smart home integration" ]
+
+        Array (String)
+
+        No
+
+
+        tags
+
+        [ "Cheap Rent" ]
+
+        Array (String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -885,16 +1743,6 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
-    Direction:
-      name: direction
-      in: query
-      required: false
-      description: Sort direction.
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
     Sort:
       name: sort
       in: query
@@ -909,14 +1757,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -926,6 +1766,24 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
     Strict:
       name: strict
       in: query
@@ -934,18 +1792,6 @@ components:
       schema:
         type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -955,6 +1801,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object

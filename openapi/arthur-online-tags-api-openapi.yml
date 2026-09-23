@@ -78,7 +78,32 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tag record for the applicant . The API will return the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      description: 'Use this endpoint to create a new tag record for the applicant . The API will return the saved data and a unique tag ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+        Tag field should be a valid tag ID or name.
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        ["123"]
+
+        Array(String)
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -127,7 +152,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to unassign tag record from the applicant . The API will return the saved data and a unique applicant ID. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"1234\" \n String \n Yes"
+      description: 'Use this endpoint to unassign tag record from the applicant . The API will return the saved data and a unique applicant ID. Tag field should be a valid tag ID or name.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        "1234"
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -173,7 +221,7 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: Use this endpoint to unassign all tags from the  applicant .
+      description: Use this endpoint to unassign all tags from the applicant .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -250,7 +298,32 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tag record for a  note . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      description: 'Use this endpoint to create a new tag record for a note . The API will return the saved data and a unique note ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+        Tag field should be a valid tag ID or name.
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        ["123"]
+
+        Array(String)
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -316,7 +389,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to unassign tag record from the note . The API will return the saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"1234\" \n String \n Yes"
+      description: 'Use this endpoint to unassign tag record from the note . The API will return the saved data. Tag field should be a valid tag ID or name.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        "1234"
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -376,7 +472,7 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: Use this endpoint to unassign all tags from a  note .
+      description: Use this endpoint to unassign all tags from a note .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -461,7 +557,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tag record for the  property . The API will return the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      description: 'Use this endpoint to create a new tag record for the property . The API will return the saved data and a unique tag ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        ["123"]
+
+        Array(String)
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -510,7 +629,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to unassign tag record from the  property . The API will return the saved data and a unique workorder ID. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"1234\" \n String \n Yes"
+      description: 'Use this endpoint to unassign tag record from the property . The API will return the saved data and a unique workorder ID. Tag field should be a valid tag ID or name.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        "1234"
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -556,7 +698,7 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: Use this endpoint to unassign all tags from the  property .
+      description: Use this endpoint to unassign all tags from the property .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -591,7 +733,20 @@ paths:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Sort'
       - $ref: '#/components/parameters/Direction'
-      description: "This endpoint retrieves a list of tags related to the following resources:\n\nProperties \n Units \n Tenancies \n Tasks \n Applicants \n Viewings"
+      description: 'This endpoint retrieves a list of tags related to the following resources:
+
+
+        Properties
+
+        Units
+
+        Tenancies
+
+        Tasks
+
+        Applicants
+
+        Viewings'
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -619,7 +774,44 @@ paths:
           type: string
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tag record on a resource . The API will return the saved data and a unique tag ID.\n\nTags can be added to resources such as tenancies, tasks, units, applicants, viewings, and properties.\nIf field color not provided it will select a random color.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nname \n All fixed \n String \n Yes \n\ncolor \n Blue \n String \n No"
+      description: 'Use this endpoint to create a new tag record on a resource . The API will return the saved data and a unique tag ID.
+
+
+        Tags can be added to resources such as tenancies, tasks, units, applicants, viewings, and properties.
+
+        If field color not provided it will select a random color.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        name
+
+        All fixed
+
+        String
+
+        Yes
+
+
+        color
+
+        Blue
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -667,7 +859,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single tag, identified by its unique  tag_id .
+      description: 'This API endpoint retrieves the details of a single tag, identified by its unique tag_id .
 
 
         Use this endpoint to view the specific details of a tag.'
@@ -698,7 +890,39 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing tag using the same fields as the 'Add Tag' endpoint. The API will return the updated data for the tag in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nname \n All fixed \n String \n No \n\ncolor \n Blue \n String \n No"
+      description: 'This endpoint updates an existing tag using the same fields as the ''Add Tag'' endpoint. The API will return the updated data for the tag in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        name
+
+        All fixed
+
+        String
+
+        No
+
+
+        color
+
+        Blue
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -776,7 +1000,32 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tag record for a  tenancy . The API will return the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      description: 'Use this endpoint to create a new tag record for a tenancy . The API will return the saved data and a unique tag ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+        Tag field should be a valid tag ID or name.
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        ["123"]
+
+        Array(String)
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -825,7 +1074,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to unassign tag record from a  tenancy . The API will return the saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"1234\" \n String \n Yes"
+      description: 'Use this endpoint to unassign tag record from a tenancy . The API will return the saved data. Tag field should be a valid tag ID or name.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        "1234"
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -871,7 +1143,7 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: Use this endpoint to unassign all tags from the  tenancy .
+      description: Use this endpoint to unassign all tags from the tenancy .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -942,7 +1214,35 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tag record for the unit . The API will return the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Default \n Required? \n\ntag \n [\"123\"] \n Array(String) \n\nYes"
+      description: 'Use this endpoint to create a new tag record for the unit . The API will return the saved data and a unique tag ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+        Tag field should be a valid tag ID or name.
+
+
+        Field
+
+        Example
+
+        Type
+
+        Default
+
+        Required?
+
+
+        tag
+
+        ["123"]
+
+        Array(String)
+
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -991,7 +1291,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to unassign tag record from the  unit . The API will return the saved data and a unique workorder ID. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n 123 \n String \n Yes"
+      description: 'Use this endpoint to unassign tag record from the unit . The API will return the saved data and a unique workorder ID. Tag field should be a valid tag ID or name.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        123
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -1037,7 +1360,7 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: Use this endpoint to unassign all tags from the  unit .
+      description: Use this endpoint to unassign all tags from the unit .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1114,7 +1437,32 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tag record for the  viewing . The API will return the saved data and a unique tag ID.\n\nSupported Fields \n The following fields are supported for the request body\nTag field should be a valid tag ID or name.\n\nField \n Example \n Type \n Required? \n\ntag \n [\"123\"] \n Array(String) \n Yes"
+      description: 'Use this endpoint to create a new tag record for the viewing . The API will return the saved data and a unique tag ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+        Tag field should be a valid tag ID or name.
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        ["123"]
+
+        Array(String)
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -1163,7 +1511,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to unassign tag record from the viewing . The API will return the saved data. Tag field should be a valid tag ID or name.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntag \n \"123\" \n String \n Yes"
+      description: 'Use this endpoint to unassign tag record from the viewing . The API will return the saved data. Tag field should be a valid tag ID or name.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tag
+
+        "123"
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -1209,7 +1580,7 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: Use this endpoint to unassign all tags from the  viewing .
+      description: Use this endpoint to unassign all tags from the viewing .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1228,6 +1599,13 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -1238,20 +1616,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -1259,14 +1623,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -1276,19 +1632,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -1298,6 +1657,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object

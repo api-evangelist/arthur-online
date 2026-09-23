@@ -64,7 +64,741 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new tenant on a tenancy. The API will return the saved data and a unique tenant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No \n\ngender \n Male \n Enum \n No \n\ncitizen_type \n 1 \n Enum \n No \n\nemail \n email@gmail.com \n String \n No \n\ncompany_name \n MyCompany \n Strong \n No \n\ncompant_address_name \n Address \n String \n No \n\ncompany_address1 \n Boundry Road \n String \n No \n\ncompany_address2 \n Wren Court \n String \n No \n\ncompany_city \n London \n String \n No \n\ncompany_postcode \n SW94DA \n String \n No \n\ncompany_county \n City of London \n String \n No \n\ncompany_country \n England \n String \n No \n\nphone_home \n 029302932 \n String \n No \n\nphone_work \n 029382928 \n String \n No \n\nmobile \n 020192029 \n String \n No \n\nresidential_number \n 201 \n String \n No \n\nvisa_number \n 120-123 \n String \n No \n\nvisa_years \n 3 \n String \n No \n\nvisa_type \n Tier 2 \n Enum \n No \n\ncountry_of_origin \n Wales \n String \n No \n\nni_number \n KS 01 AK 11 F \n String \n No \n\nkin_mobile \n 029302991 \n String \n No \n\nkin_last_name \n Cullen \n String \n No \n\nkin_first_name \n Monica \n String \n No \n\nkin_phone_work \n 029320191 \n String \n No \n\nstudent_status \n Full-time \n String \n No \n\nuniversity \n Oxford \n String \n No \n\ncourse_name \n Doe Studies \n String \n No \n\ncourse_id \n 1 \n String \n No \n\ncourse_year \n 2 \n String \n No \n\nemployment_company_name \n Lorem \n String \n No \n\nemployment_address1 \n Address First Line \n String \n No \n\nemployment_address2 \n Address Second Line \n String \n No \n\nemployment_city \n Liverpool \n String \n No \n\nemployment_postcode \n LN91LS \n String \n No \n\nemployment_county \n Norfolk \n String \n No \n\nemployment_contact_name \n Grace \n String \n No \n\nemployment_contact_number \n 0239203900 \n String \n No \n\nemployment_salary \n 90000 \n String \n No \n\nemployment_length \n 5 years \n String \n No \n\nhousing_benefit_council \n Borought \n String \n No \n\nhousing_benefit_number \n 19203 \n String \n No \n\nguarantor_first_name \n Nicolas \n String \n No \n\nguarantor_last_name \n Cage \n String \n No \n\nguarantor_date_of_birth \n 1911-02-12 \n String \n No \n\nguarantor_address1 \n Address first line \n String \n No \n\nguarantor_address2 \n Address second line \n String \n No \n\nguarantor_city \n London \n String \n No \n\nguarantor_postcode \n XP91AP \n String \n No \n\nguarantor_county \n Suffolk \n String \n No \n\nguarantor_country \n England \n String \n No \n\nguarantor_phone_home \n 028392871 \n String \n No \n\nguarantor_phone_work \n 028191282 \n String \n No \n\nguarantor_mobile \n 029384383 \n String \n No \n\nguarantor_email \n guarantor@email.com \n String \n No \n\nguarantor_relation \n Brother \n String \n No \n\nguarantor_home_owner \n Yes \n String \n No \n\nguarantor_profession \n Teacher \n String \n No \n\nbank_name \n Barclays \n String \n No \n\nbank_address1 \n Address first line \n String \n No \n\nbank_address2 \n Address second line \n String \n No \n\nbank_city \n Romford \n String \n No \n\nbank_county \n Essex \n String \n No \n\nbank_postcode \n FS18LA \n String \n No \n\nref_name \n Ref Name \n String \n No \n\nref_address1 \n Ref First Line \n String \n No \n\nref_address2 \n Ref Second Line \n String \n No \n\nref_county \n Ref Hertfordshire \n String \n No \n\nref_city \n Ref City \n String \n No \n\nref_postcode \n Ref Postcode \n String \n No \n\nref_contact_number \n 029392832 \n String \n No \n\nref_relation \n Mother \n String \n No \n\napplicant_note \n Note to remember \n String \n No \n\nmanager_note \n Manager note \n String \n No"
+      description: 'Use this endpoint to create a new tenant on a tenancy. The API will return the saved data and a unique tenant ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        main_tenant
+
+        True
+
+        Boolean
+
+        No
+
+
+        move_in_date
+
+        2019-05-28
+
+        Date
+
+        No
+
+
+        move_out_date
+
+        2019-06-28
+
+        Time
+
+        No
+
+
+        title
+
+        Mr
+
+        Enum
+
+        No
+
+
+        first_name
+
+        Ryan
+
+        String
+
+        No
+
+
+        last_name
+
+        Cullen
+
+        String
+
+        No
+
+
+        date_of_birth
+
+        1995-01-21
+
+        Date
+
+        No
+
+
+        gender
+
+        Male
+
+        Enum
+
+        No
+
+
+        citizen_type
+
+        1
+
+        Enum
+
+        No
+
+
+        email
+
+        email@gmail.com
+
+        String
+
+        No
+
+
+        company_name
+
+        MyCompany
+
+        Strong
+
+        No
+
+
+        compant_address_name
+
+        Address
+
+        String
+
+        No
+
+
+        company_address1
+
+        Boundry Road
+
+        String
+
+        No
+
+
+        company_address2
+
+        Wren Court
+
+        String
+
+        No
+
+
+        company_city
+
+        London
+
+        String
+
+        No
+
+
+        company_postcode
+
+        SW94DA
+
+        String
+
+        No
+
+
+        company_county
+
+        City of London
+
+        String
+
+        No
+
+
+        company_country
+
+        England
+
+        String
+
+        No
+
+
+        phone_home
+
+        029302932
+
+        String
+
+        No
+
+
+        phone_work
+
+        029382928
+
+        String
+
+        No
+
+
+        mobile
+
+        020192029
+
+        String
+
+        No
+
+
+        residential_number
+
+        201
+
+        String
+
+        No
+
+
+        visa_number
+
+        120-123
+
+        String
+
+        No
+
+
+        visa_years
+
+        3
+
+        String
+
+        No
+
+
+        visa_type
+
+        Tier 2
+
+        Enum
+
+        No
+
+
+        country_of_origin
+
+        Wales
+
+        String
+
+        No
+
+
+        ni_number
+
+        KS 01 AK 11 F
+
+        String
+
+        No
+
+
+        kin_mobile
+
+        029302991
+
+        String
+
+        No
+
+
+        kin_last_name
+
+        Cullen
+
+        String
+
+        No
+
+
+        kin_first_name
+
+        Monica
+
+        String
+
+        No
+
+
+        kin_phone_work
+
+        029320191
+
+        String
+
+        No
+
+
+        student_status
+
+        Full-time
+
+        String
+
+        No
+
+
+        university
+
+        Oxford
+
+        String
+
+        No
+
+
+        course_name
+
+        Doe Studies
+
+        String
+
+        No
+
+
+        course_id
+
+        1
+
+        String
+
+        No
+
+
+        course_year
+
+        2
+
+        String
+
+        No
+
+
+        employment_company_name
+
+        Lorem
+
+        String
+
+        No
+
+
+        employment_address1
+
+        Address First Line
+
+        String
+
+        No
+
+
+        employment_address2
+
+        Address Second Line
+
+        String
+
+        No
+
+
+        employment_city
+
+        Liverpool
+
+        String
+
+        No
+
+
+        employment_postcode
+
+        LN91LS
+
+        String
+
+        No
+
+
+        employment_county
+
+        Norfolk
+
+        String
+
+        No
+
+
+        employment_contact_name
+
+        Grace
+
+        String
+
+        No
+
+
+        employment_contact_number
+
+        0239203900
+
+        String
+
+        No
+
+
+        employment_salary
+
+        90000
+
+        String
+
+        No
+
+
+        employment_length
+
+        5 years
+
+        String
+
+        No
+
+
+        housing_benefit_council
+
+        Borought
+
+        String
+
+        No
+
+
+        housing_benefit_number
+
+        19203
+
+        String
+
+        No
+
+
+        guarantor_first_name
+
+        Nicolas
+
+        String
+
+        No
+
+
+        guarantor_last_name
+
+        Cage
+
+        String
+
+        No
+
+
+        guarantor_date_of_birth
+
+        1911-02-12
+
+        String
+
+        No
+
+
+        guarantor_address1
+
+        Address first line
+
+        String
+
+        No
+
+
+        guarantor_address2
+
+        Address second line
+
+        String
+
+        No
+
+
+        guarantor_city
+
+        London
+
+        String
+
+        No
+
+
+        guarantor_postcode
+
+        XP91AP
+
+        String
+
+        No
+
+
+        guarantor_county
+
+        Suffolk
+
+        String
+
+        No
+
+
+        guarantor_country
+
+        England
+
+        String
+
+        No
+
+
+        guarantor_phone_home
+
+        028392871
+
+        String
+
+        No
+
+
+        guarantor_phone_work
+
+        028191282
+
+        String
+
+        No
+
+
+        guarantor_mobile
+
+        029384383
+
+        String
+
+        No
+
+
+        guarantor_email
+
+        guarantor@email.com
+
+        String
+
+        No
+
+
+        guarantor_relation
+
+        Brother
+
+        String
+
+        No
+
+
+        guarantor_home_owner
+
+        Yes
+
+        String
+
+        No
+
+
+        guarantor_profession
+
+        Teacher
+
+        String
+
+        No
+
+
+        bank_name
+
+        Barclays
+
+        String
+
+        No
+
+
+        bank_address1
+
+        Address first line
+
+        String
+
+        No
+
+
+        bank_address2
+
+        Address second line
+
+        String
+
+        No
+
+
+        bank_city
+
+        Romford
+
+        String
+
+        No
+
+
+        bank_county
+
+        Essex
+
+        String
+
+        No
+
+
+        bank_postcode
+
+        FS18LA
+
+        String
+
+        No
+
+
+        ref_name
+
+        Ref Name
+
+        String
+
+        No
+
+
+        ref_address1
+
+        Ref First Line
+
+        String
+
+        No
+
+
+        ref_address2
+
+        Ref Second Line
+
+        String
+
+        No
+
+
+        ref_county
+
+        Ref Hertfordshire
+
+        String
+
+        No
+
+
+        ref_city
+
+        Ref City
+
+        String
+
+        No
+
+
+        ref_postcode
+
+        Ref Postcode
+
+        String
+
+        No
+
+
+        ref_contact_number
+
+        029392832
+
+        String
+
+        No
+
+
+        ref_relation
+
+        Mother
+
+        String
+
+        No
+
+
+        applicant_note
+
+        Note to remember
+
+        String
+
+        No
+
+
+        manager_note
+
+        Manager note
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -425,7 +1159,750 @@ paths:
           type: string
         description: Any simple fields that cannot be found will return a validation error, instead of creating a new value. E.g. source
         example: 'true'
-      description: "Use this endpoint to create a new tenant. The API will return the saved data and a unique tenant ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntenancy_id \n 123 \n Integer \n Yes \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No \n\ngender \n Male \n Enum \n No \n\ncitizen_type \n 1 \n Enum \n No \n\nemail \n email@gmail.com \n String \n No \n\ncompany_name \n MyCompany \n Strong \n No \n\ncompant_address_name \n Address \n String \n No \n\ncompany_address1 \n Boundry Road \n String \n No \n\ncompany_address2 \n Wren Court \n String \n No \n\ncompany_city \n London \n String \n No \n\ncompany_postcode \n SW94DA \n String \n No \n\ncompany_county \n City of London \n String \n No \n\ncompany_country \n England \n String \n No \n\nphone_home \n 029302932 \n String \n No \n\nphone_work \n 029382928 \n String \n No \n\nmobile \n 020192029 \n String \n No \n\nresidential_number \n 201 \n String \n No \n\nvisa_number \n 120-123 \n String \n No \n\nvisa_years \n 3 \n String \n No \n\nvisa_type \n Tier 2 \n Enum \n No \n\ncountry_of_origin \n Wales \n String \n No \n\nni_number \n KS 01 AK 11 F \n String \n No \n\nkin_mobile \n 029302991 \n String \n No \n\nkin_last_name \n Cullen \n String \n No \n\nkin_first_name \n Monica \n String \n No \n\nkin_phone_work \n 029320191 \n String \n No \n\nstudent_status \n Full-time \n String \n No \n\nuniversity \n Oxford \n String \n No \n\ncourse_name \n Doe Studies \n String \n No \n\ncourse_id \n 1 \n String \n No \n\ncourse_year \n 2 \n String \n No \n\nemployment_company_name \n Lorem \n String \n No \n\nemployment_address1 \n Address First Line \n String \n No \n\nemployment_address2 \n Address Second Line \n String \n No \n\nemployment_city \n Liverpool \n String \n No \n\nemployment_postcode \n LN91LS \n String \n No \n\nemployment_county \n Norfolk \n String \n No \n\nemployment_contact_name \n Grace \n String \n No \n\nemployment_contact_number \n 0239203900 \n String \n No \n\nemployment_salary \n 90000 \n String \n No \n\nemployment_length \n 5 years \n String \n No \n\nhousing_benefit_council \n Borought \n String \n No \n\nhousing_benefit_number \n 19203 \n String \n No \n\nguarantor_first_name \n Nicolas \n String \n No \n\nguarantor_last_name \n Cage \n String \n No \n\nguarantor_date_of_birth \n 1911-02-12 \n String \n No \n\nguarantor_address1 \n Address first line \n String \n No \n\nguarantor_address2 \n Address second line \n String \n No \n\nguarantor_city \n London \n String \n No \n\nguarantor_postcode \n XP91AP \n String \n No \n\nguarantor_county \n Suffolk \n String \n No \n\nguarantor_country \n England \n String \n No \n\nguarantor_phone_home \n 028392871 \n String \n No \n\nguarantor_phone_work \n 028191282 \n String \n No \n\nguarantor_mobile \n 029384383 \n String \n No \n\nguarantor_email \n guarantor@email.com \n String \n No \n\nguarantor_relation \n Brother \n String \n No \n\nguarantor_home_owner \n Home owner outright, Home owner with mortgage, Rented accommodation \n String \n No \n\nguarantor_profession \n Teacher \n String \n No \n\nbank_name \n Barclays \n String \n No \n\nbank_address1 \n Address first line \n String \n No \n\nbank_address2 \n Address second line \n String \n No \n\nbank_city \n Romford \n String \n No \n\nbank_county \n Essex \n String \n No \n\nbank_postcode \n FS18LA \n String \n No \n\nref_name \n Ref Name \n String \n No \n\nref_address1 \n Ref First Line \n String \n No \n\nref_address2 \n Ref Second Line \n String \n No \n\nref_county \n Ref Hertfordshire \n String \n No \n\nref_city \n Ref City \n String \n No \n\nref_postcode \n Ref Postcode \n String \n No \n\nref_contact_number \n 029392832 \n String \n No \n\nref_relation \n Mother \n String \n No \n\napplicant_note \n Note to remember \n String \n No \n\nmanager_note \n Manager note \n String \n No"
+      description: 'Use this endpoint to create a new tenant. The API will return the saved data and a unique tenant ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tenancy_id
+
+        123
+
+        Integer
+
+        Yes
+
+
+        main_tenant
+
+        True
+
+        Boolean
+
+        No
+
+
+        move_in_date
+
+        2019-05-28
+
+        Date
+
+        No
+
+
+        move_out_date
+
+        2019-06-28
+
+        Time
+
+        No
+
+
+        title
+
+        Mr
+
+        Enum
+
+        No
+
+
+        first_name
+
+        Ryan
+
+        String
+
+        No
+
+
+        last_name
+
+        Cullen
+
+        String
+
+        No
+
+
+        date_of_birth
+
+        1995-01-21
+
+        Date
+
+        No
+
+
+        gender
+
+        Male
+
+        Enum
+
+        No
+
+
+        citizen_type
+
+        1
+
+        Enum
+
+        No
+
+
+        email
+
+        email@gmail.com
+
+        String
+
+        No
+
+
+        company_name
+
+        MyCompany
+
+        Strong
+
+        No
+
+
+        compant_address_name
+
+        Address
+
+        String
+
+        No
+
+
+        company_address1
+
+        Boundry Road
+
+        String
+
+        No
+
+
+        company_address2
+
+        Wren Court
+
+        String
+
+        No
+
+
+        company_city
+
+        London
+
+        String
+
+        No
+
+
+        company_postcode
+
+        SW94DA
+
+        String
+
+        No
+
+
+        company_county
+
+        City of London
+
+        String
+
+        No
+
+
+        company_country
+
+        England
+
+        String
+
+        No
+
+
+        phone_home
+
+        029302932
+
+        String
+
+        No
+
+
+        phone_work
+
+        029382928
+
+        String
+
+        No
+
+
+        mobile
+
+        020192029
+
+        String
+
+        No
+
+
+        residential_number
+
+        201
+
+        String
+
+        No
+
+
+        visa_number
+
+        120-123
+
+        String
+
+        No
+
+
+        visa_years
+
+        3
+
+        String
+
+        No
+
+
+        visa_type
+
+        Tier 2
+
+        Enum
+
+        No
+
+
+        country_of_origin
+
+        Wales
+
+        String
+
+        No
+
+
+        ni_number
+
+        KS 01 AK 11 F
+
+        String
+
+        No
+
+
+        kin_mobile
+
+        029302991
+
+        String
+
+        No
+
+
+        kin_last_name
+
+        Cullen
+
+        String
+
+        No
+
+
+        kin_first_name
+
+        Monica
+
+        String
+
+        No
+
+
+        kin_phone_work
+
+        029320191
+
+        String
+
+        No
+
+
+        student_status
+
+        Full-time
+
+        String
+
+        No
+
+
+        university
+
+        Oxford
+
+        String
+
+        No
+
+
+        course_name
+
+        Doe Studies
+
+        String
+
+        No
+
+
+        course_id
+
+        1
+
+        String
+
+        No
+
+
+        course_year
+
+        2
+
+        String
+
+        No
+
+
+        employment_company_name
+
+        Lorem
+
+        String
+
+        No
+
+
+        employment_address1
+
+        Address First Line
+
+        String
+
+        No
+
+
+        employment_address2
+
+        Address Second Line
+
+        String
+
+        No
+
+
+        employment_city
+
+        Liverpool
+
+        String
+
+        No
+
+
+        employment_postcode
+
+        LN91LS
+
+        String
+
+        No
+
+
+        employment_county
+
+        Norfolk
+
+        String
+
+        No
+
+
+        employment_contact_name
+
+        Grace
+
+        String
+
+        No
+
+
+        employment_contact_number
+
+        0239203900
+
+        String
+
+        No
+
+
+        employment_salary
+
+        90000
+
+        String
+
+        No
+
+
+        employment_length
+
+        5 years
+
+        String
+
+        No
+
+
+        housing_benefit_council
+
+        Borought
+
+        String
+
+        No
+
+
+        housing_benefit_number
+
+        19203
+
+        String
+
+        No
+
+
+        guarantor_first_name
+
+        Nicolas
+
+        String
+
+        No
+
+
+        guarantor_last_name
+
+        Cage
+
+        String
+
+        No
+
+
+        guarantor_date_of_birth
+
+        1911-02-12
+
+        String
+
+        No
+
+
+        guarantor_address1
+
+        Address first line
+
+        String
+
+        No
+
+
+        guarantor_address2
+
+        Address second line
+
+        String
+
+        No
+
+
+        guarantor_city
+
+        London
+
+        String
+
+        No
+
+
+        guarantor_postcode
+
+        XP91AP
+
+        String
+
+        No
+
+
+        guarantor_county
+
+        Suffolk
+
+        String
+
+        No
+
+
+        guarantor_country
+
+        England
+
+        String
+
+        No
+
+
+        guarantor_phone_home
+
+        028392871
+
+        String
+
+        No
+
+
+        guarantor_phone_work
+
+        028191282
+
+        String
+
+        No
+
+
+        guarantor_mobile
+
+        029384383
+
+        String
+
+        No
+
+
+        guarantor_email
+
+        guarantor@email.com
+
+        String
+
+        No
+
+
+        guarantor_relation
+
+        Brother
+
+        String
+
+        No
+
+
+        guarantor_home_owner
+
+        Home owner outright, Home owner with mortgage, Rented accommodation
+
+        String
+
+        No
+
+
+        guarantor_profession
+
+        Teacher
+
+        String
+
+        No
+
+
+        bank_name
+
+        Barclays
+
+        String
+
+        No
+
+
+        bank_address1
+
+        Address first line
+
+        String
+
+        No
+
+
+        bank_address2
+
+        Address second line
+
+        String
+
+        No
+
+
+        bank_city
+
+        Romford
+
+        String
+
+        No
+
+
+        bank_county
+
+        Essex
+
+        String
+
+        No
+
+
+        bank_postcode
+
+        FS18LA
+
+        String
+
+        No
+
+
+        ref_name
+
+        Ref Name
+
+        String
+
+        No
+
+
+        ref_address1
+
+        Ref First Line
+
+        String
+
+        No
+
+
+        ref_address2
+
+        Ref Second Line
+
+        String
+
+        No
+
+
+        ref_county
+
+        Ref Hertfordshire
+
+        String
+
+        No
+
+
+        ref_city
+
+        Ref City
+
+        String
+
+        No
+
+
+        ref_postcode
+
+        Ref Postcode
+
+        String
+
+        No
+
+
+        ref_contact_number
+
+        029392832
+
+        String
+
+        No
+
+
+        ref_relation
+
+        Mother
+
+        String
+
+        No
+
+
+        applicant_note
+
+        Note to remember
+
+        String
+
+        No
+
+
+        manager_note
+
+        Manager note
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -714,7 +2191,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: 'This API endpoint retrieves the details of a single tenant, identified by its unique  tenant_id .
+      description: 'This API endpoint retrieves the details of a single tenant, identified by its unique tenant_id .
 
 
         Use this endpoint to view the specific details of a renter.'
@@ -745,7 +2222,750 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing tenant using the same fields as the 'Add Tenant' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the tenant in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ntenancy_id \n 123 \n Integer \n No \n\nmain_tenant \n True \n Boolean \n No \n\nmove_in_date \n 2019-05-28 \n Date \n No \n\nmove_out_date \n 2019-06-28 \n Time \n No \n\ntitle \n Mr \n Enum \n No \n\nfirst_name \n Ryan \n String \n No \n\nlast_name \n Cullen \n String \n No \n\ndate_of_birth \n 1995-01-21 \n Date \n No \n\ngender \n Male \n Enum \n No \n\ncitizen_type \n 1 \n Enum \n No \n\nemail \n email@gmail.com \n String \n No \n\ncompany_name \n MyCompany \n Strong \n No \n\ncompant_address_name \n Address \n String \n No \n\ncompany_address1 \n Boundry Road \n String \n No \n\ncompany_address2 \n Wren Court \n String \n No \n\ncompany_city \n London \n String \n No \n\ncompany_postcode \n SW94DA \n String \n No \n\ncompany_county \n City of London \n String \n No \n\ncompany_country \n England \n String \n No \n\nphone_home \n 029302932 \n String \n No \n\nphone_work \n 029382928 \n String \n No \n\nmobile \n 020192029 \n String \n No \n\nresidential_number \n 201 \n String \n No \n\nvisa_number \n 120-123 \n String \n No \n\nvisa_years \n 3 \n String \n No \n\nvisa_type \n Tier 2 \n Enum \n No \n\ncountry_of_origin \n Wales \n String \n No \n\nni_number \n KS 01 AK 11 F \n String \n No \n\nkin_mobile \n 029302991 \n String \n No \n\nkin_last_name \n Cullen \n String \n No \n\nkin_first_name \n Monica \n String \n No \n\nkin_phone_work \n 029320191 \n String \n No \n\nstudent_status \n Full-time \n String \n No \n\nuniversity \n Oxford \n String \n No \n\ncourse_name \n Doe Studies \n String \n No \n\ncourse_id \n 1 \n String \n No \n\ncourse_year \n 2 \n String \n No \n\nemployment_company_name \n Lorem \n String \n No \n\nemployment_address1 \n Address First Line \n String \n No \n\nemployment_address2 \n Address Second Line \n String \n No \n\nemployment_city \n Liverpool \n String \n No \n\nemployment_postcode \n LN91LS \n String \n No \n\nemployment_county \n Norfolk \n String \n No \n\nemployment_contact_name \n Grace \n String \n No \n\nemployment_contact_number \n 0239203900 \n String \n No \n\nemployment_salary \n 90000 \n String \n No \n\nemployment_length \n 5 years \n String \n No \n\nhousing_benefit_council \n Borought \n String \n No \n\nhousing_benefit_number \n 19203 \n String \n No \n\nguarantor_first_name \n Nicolas \n String \n No \n\nguarantor_last_name \n Cage \n String \n No \n\nguarantor_date_of_birth \n 1911-02-12 \n String \n No \n\nguarantor_address1 \n Address first line \n String \n No \n\nguarantor_address2 \n Address second line \n String \n No \n\nguarantor_city \n London \n String \n No \n\nguarantor_postcode \n XP91AP \n String \n No \n\nguarantor_county \n Suffolk \n String \n No \n\nguarantor_country \n England \n String \n No \n\nguarantor_phone_home \n 028392871 \n String \n No \n\nguarantor_phone_work \n 028191282 \n String \n No \n\nguarantor_mobile \n 029384383 \n String \n No \n\nguarantor_email \n guarantor@email.com \n String \n No \n\nguarantor_relation \n Brother \n String \n No \n\nguarantor_home_owner \n Yes \n String \n No \n\nguarantor_profession \n Teacher \n String \n No \n\nbank_name \n Barclays \n String \n No \n\nbank_address1 \n Address first line \n String \n No \n\nbank_address2 \n Address second line \n String \n No \n\nbank_city \n Romford \n String \n No \n\nbank_county \n Essex \n String \n No \n\nbank_postcode \n FS18LA \n String \n No \n\nref_name \n Ref Name \n String \n No \n\nref_address1 \n Ref First Line \n String \n No \n\nref_address2 \n Ref Second Line \n String \n No \n\nref_county \n Ref Hertfordshire \n String \n No \n\nref_city \n Ref City \n String \n No \n\nref_postcode \n Ref Postcode \n String \n No \n\nref_contact_number \n 029392832 \n String \n No \n\nref_relation \n Mother \n String \n No \n\napplicant_note \n Note to remember \n String \n No \n\nmanager_note \n Manager note \n String \n No"
+      description: 'This endpoint updates an existing tenant using the same fields as the ''Add Tenant'' endpoint. Any fields that are not provided will not be changed. The API will return the updated data for the tenant in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        tenancy_id
+
+        123
+
+        Integer
+
+        No
+
+
+        main_tenant
+
+        True
+
+        Boolean
+
+        No
+
+
+        move_in_date
+
+        2019-05-28
+
+        Date
+
+        No
+
+
+        move_out_date
+
+        2019-06-28
+
+        Time
+
+        No
+
+
+        title
+
+        Mr
+
+        Enum
+
+        No
+
+
+        first_name
+
+        Ryan
+
+        String
+
+        No
+
+
+        last_name
+
+        Cullen
+
+        String
+
+        No
+
+
+        date_of_birth
+
+        1995-01-21
+
+        Date
+
+        No
+
+
+        gender
+
+        Male
+
+        Enum
+
+        No
+
+
+        citizen_type
+
+        1
+
+        Enum
+
+        No
+
+
+        email
+
+        email@gmail.com
+
+        String
+
+        No
+
+
+        company_name
+
+        MyCompany
+
+        Strong
+
+        No
+
+
+        compant_address_name
+
+        Address
+
+        String
+
+        No
+
+
+        company_address1
+
+        Boundry Road
+
+        String
+
+        No
+
+
+        company_address2
+
+        Wren Court
+
+        String
+
+        No
+
+
+        company_city
+
+        London
+
+        String
+
+        No
+
+
+        company_postcode
+
+        SW94DA
+
+        String
+
+        No
+
+
+        company_county
+
+        City of London
+
+        String
+
+        No
+
+
+        company_country
+
+        England
+
+        String
+
+        No
+
+
+        phone_home
+
+        029302932
+
+        String
+
+        No
+
+
+        phone_work
+
+        029382928
+
+        String
+
+        No
+
+
+        mobile
+
+        020192029
+
+        String
+
+        No
+
+
+        residential_number
+
+        201
+
+        String
+
+        No
+
+
+        visa_number
+
+        120-123
+
+        String
+
+        No
+
+
+        visa_years
+
+        3
+
+        String
+
+        No
+
+
+        visa_type
+
+        Tier 2
+
+        Enum
+
+        No
+
+
+        country_of_origin
+
+        Wales
+
+        String
+
+        No
+
+
+        ni_number
+
+        KS 01 AK 11 F
+
+        String
+
+        No
+
+
+        kin_mobile
+
+        029302991
+
+        String
+
+        No
+
+
+        kin_last_name
+
+        Cullen
+
+        String
+
+        No
+
+
+        kin_first_name
+
+        Monica
+
+        String
+
+        No
+
+
+        kin_phone_work
+
+        029320191
+
+        String
+
+        No
+
+
+        student_status
+
+        Full-time
+
+        String
+
+        No
+
+
+        university
+
+        Oxford
+
+        String
+
+        No
+
+
+        course_name
+
+        Doe Studies
+
+        String
+
+        No
+
+
+        course_id
+
+        1
+
+        String
+
+        No
+
+
+        course_year
+
+        2
+
+        String
+
+        No
+
+
+        employment_company_name
+
+        Lorem
+
+        String
+
+        No
+
+
+        employment_address1
+
+        Address First Line
+
+        String
+
+        No
+
+
+        employment_address2
+
+        Address Second Line
+
+        String
+
+        No
+
+
+        employment_city
+
+        Liverpool
+
+        String
+
+        No
+
+
+        employment_postcode
+
+        LN91LS
+
+        String
+
+        No
+
+
+        employment_county
+
+        Norfolk
+
+        String
+
+        No
+
+
+        employment_contact_name
+
+        Grace
+
+        String
+
+        No
+
+
+        employment_contact_number
+
+        0239203900
+
+        String
+
+        No
+
+
+        employment_salary
+
+        90000
+
+        String
+
+        No
+
+
+        employment_length
+
+        5 years
+
+        String
+
+        No
+
+
+        housing_benefit_council
+
+        Borought
+
+        String
+
+        No
+
+
+        housing_benefit_number
+
+        19203
+
+        String
+
+        No
+
+
+        guarantor_first_name
+
+        Nicolas
+
+        String
+
+        No
+
+
+        guarantor_last_name
+
+        Cage
+
+        String
+
+        No
+
+
+        guarantor_date_of_birth
+
+        1911-02-12
+
+        String
+
+        No
+
+
+        guarantor_address1
+
+        Address first line
+
+        String
+
+        No
+
+
+        guarantor_address2
+
+        Address second line
+
+        String
+
+        No
+
+
+        guarantor_city
+
+        London
+
+        String
+
+        No
+
+
+        guarantor_postcode
+
+        XP91AP
+
+        String
+
+        No
+
+
+        guarantor_county
+
+        Suffolk
+
+        String
+
+        No
+
+
+        guarantor_country
+
+        England
+
+        String
+
+        No
+
+
+        guarantor_phone_home
+
+        028392871
+
+        String
+
+        No
+
+
+        guarantor_phone_work
+
+        028191282
+
+        String
+
+        No
+
+
+        guarantor_mobile
+
+        029384383
+
+        String
+
+        No
+
+
+        guarantor_email
+
+        guarantor@email.com
+
+        String
+
+        No
+
+
+        guarantor_relation
+
+        Brother
+
+        String
+
+        No
+
+
+        guarantor_home_owner
+
+        Yes
+
+        String
+
+        No
+
+
+        guarantor_profession
+
+        Teacher
+
+        String
+
+        No
+
+
+        bank_name
+
+        Barclays
+
+        String
+
+        No
+
+
+        bank_address1
+
+        Address first line
+
+        String
+
+        No
+
+
+        bank_address2
+
+        Address second line
+
+        String
+
+        No
+
+
+        bank_city
+
+        Romford
+
+        String
+
+        No
+
+
+        bank_county
+
+        Essex
+
+        String
+
+        No
+
+
+        bank_postcode
+
+        FS18LA
+
+        String
+
+        No
+
+
+        ref_name
+
+        Ref Name
+
+        String
+
+        No
+
+
+        ref_address1
+
+        Ref First Line
+
+        String
+
+        No
+
+
+        ref_address2
+
+        Ref Second Line
+
+        String
+
+        No
+
+
+        ref_county
+
+        Ref Hertfordshire
+
+        String
+
+        No
+
+
+        ref_city
+
+        Ref City
+
+        String
+
+        No
+
+
+        ref_postcode
+
+        Ref Postcode
+
+        String
+
+        No
+
+
+        ref_contact_number
+
+        029392832
+
+        String
+
+        No
+
+
+        ref_relation
+
+        Mother
+
+        String
+
+        No
+
+
+        applicant_note
+
+        Note to remember
+
+        String
+
+        No
+
+
+        manager_note
+
+        Manager note
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -1020,6 +3240,13 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -1030,20 +3257,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -1051,14 +3264,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -1068,19 +3273,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -1090,6 +3298,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object

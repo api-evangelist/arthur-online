@@ -64,7 +64,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new note record for the applicant . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n Yes"
+      description: 'Use this endpoint to create a new note record for the applicant . The API will return the saved data and a unique note ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -149,7 +172,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing note using the same fields as the 'Add Note' endpoint. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No"
+      description: 'This endpoint updates an existing note using the same fields as the ''Add Note'' endpoint. The API will return the updated data for the note in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -223,7 +269,7 @@ paths:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Sort'
       - $ref: '#/components/parameters/Direction'
-      description: This endpoint retrieves a list of  notes  .
+      description: This endpoint retrieves a list of notes .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -302,7 +348,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single  note , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single note , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -353,7 +399,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing note using the same fields. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No"
+      description: 'This endpoint updates an existing note using the same fields. The API will return the updated data for the note in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -415,7 +484,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing note using the note  id .
+      description: This endpoint deletes an existing note using the note id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -486,7 +555,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new note record for the property . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n Yes"
+      description: 'Use this endpoint to create a new note record for the property . The API will return the saved data and a unique note ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -537,7 +629,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single note , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single note , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -571,7 +663,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing note using the same fields as the 'Add Note' endpoint. The API will return the updated data for the property in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No"
+      description: 'This endpoint updates an existing note using the same fields as the ''Add Note'' endpoint. The API will return the updated data for the property in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        No'
       requestBody:
         required: true
         content:
@@ -651,7 +766,7 @@ paths:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Sort'
       - $ref: '#/components/parameters/Direction'
-      description: This endpoint retrieves a list of  notes  associated with the given tenancy ID.
+      description: This endpoint retrieves a list of notes associated with the given tenancy ID.
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -679,7 +794,39 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new note record for a  tenancy . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No"
+      description: 'Use this endpoint to create a new note record for a tenancy . The API will return the saved data and a unique note ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        Yes
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -735,7 +882,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single tenancy  note , identified by its unique  id
+      description: This API endpoint retrieves the details of a single tenancy note , identified by its unique id
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -769,7 +916,39 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing note on a tenancy using the same fields as the 'Add Note' endpoint. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No"
+      description: 'This endpoint updates an existing note on a tenancy using the same fields as the ''Add Note'' endpoint. The API will return the updated data for the note in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        No
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -819,7 +998,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing tenancy note using the note  id .
+      description: This endpoint deletes an existing tenancy note using the note id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -854,7 +1033,7 @@ paths:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Sort'
       - $ref: '#/components/parameters/Direction'
-      description: This endpoint retrieves a list of  notes  associated with the given unit ID.
+      description: This endpoint retrieves a list of notes associated with the given unit ID.
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -882,7 +1061,30 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new note record for the unit . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n Yes"
+      description: 'Use this endpoint to create a new note record for the unit . The API will return the saved data and a unique note ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        Yes'
       requestBody:
         required: true
         content:
@@ -933,7 +1135,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single  note , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single note , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -967,7 +1169,39 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing note using the same fields as the 'Add Note' endpoint. The API will return the updated data for the unit in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No"
+      description: 'This endpoint updates an existing note using the same fields as the ''Add Note'' endpoint. The API will return the updated data for the unit in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        No
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -1017,7 +1251,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing note using the note  id .
+      description: This endpoint deletes an existing note using the note id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1052,7 +1286,7 @@ paths:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Sort'
       - $ref: '#/components/parameters/Direction'
-      description: This endpoint retrieves a list of  notes  associated with the given viewing ID.
+      description: This endpoint retrieves a list of notes associated with the given viewing ID.
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1080,7 +1314,39 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "Use this endpoint to create a new note record for the  viewing . The API will return the saved data and a unique note ID.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n Yes \n\ntags \n ['one','two'] \n Array(String) \n No"
+      description: 'Use this endpoint to create a new note record for the viewing . The API will return the saved data and a unique note ID.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        Yes
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -1139,7 +1405,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This API endpoint retrieves the details of a single  note , identified by its unique  id .
+      description: This API endpoint retrieves the details of a single note , identified by its unique id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1173,7 +1439,39 @@ paths:
           type: integer
       - $ref: '#/components/parameters/EntityId'
       - $ref: '#/components/parameters/Strict'
-      description: "This endpoint updates an existing note using the same fields as the 'Add Note' endpoint. The API will return the updated data for the note in the response.\n\nSupported Fields \n The following fields are supported for the request body\n\nField \n Example \n Type \n Required? \n\ncontent \n Moving away \n String \n No \n\ntags \n ['one','two'] \n Array(String) \n No"
+      description: 'This endpoint updates an existing note using the same fields as the ''Add Note'' endpoint. The API will return the updated data for the note in the response.
+
+
+        Supported Fields
+
+        The following fields are supported for the request body
+
+
+        Field
+
+        Example
+
+        Type
+
+        Required?
+
+
+        content
+
+        Moving away
+
+        String
+
+        No
+
+
+        tags
+
+        [''one'',''two'']
+
+        Array(String)
+
+        No'
       requestBody:
         required: true
         content:
@@ -1223,7 +1521,7 @@ paths:
         schema:
           type: integer
       - $ref: '#/components/parameters/EntityId'
-      description: This endpoint deletes an existing note using the note  id .
+      description: This endpoint deletes an existing note using the note id .
       responses:
         '200':
           description: The request was completed successfully without errors.
@@ -1242,6 +1540,13 @@ paths:
       description: Arthur API v2 production
 components:
   parameters:
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Field to sort the collection by.
+      schema:
+        type: string
     Direction:
       name: direction
       in: query
@@ -1252,20 +1557,6 @@ components:
         enum:
         - ASC
         - DESC
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Field to sort the collection by.
-      schema:
-        type: string
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -1273,14 +1564,6 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: Page number, between 1 and the total number of pages.
-      schema:
-        type: integer
-        minimum: 1
     Limit:
       name: limit
       in: query
@@ -1290,19 +1573,22 @@ components:
         type: integer
         minimum: 1
         maximum: 100
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number, between 1 and the total number of pages.
+      schema:
+        type: integer
+        minimum: 1
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   responses:
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -1312,6 +1598,18 @@ components:
           example:
             error: expired_token
             message: This token has expired.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
