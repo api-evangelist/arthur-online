@@ -49,7 +49,7 @@ x-docs-platform: postman
 x-docs-platform-confidence: medium
 x-docs-platform-checked: 2026-09-19
 tags:
-- Real-Estate
+- Real Estate
 - United Kingdom
 - Property Management
 - PropTech
@@ -74,6 +74,7 @@ tags_raw:
 - Social Housing
 - Student Housing
 - Block Management
+- Real-Estate
 created: '2026-07-26'
 modified: '2026-07-26'
 specificationVersion: '0.23'

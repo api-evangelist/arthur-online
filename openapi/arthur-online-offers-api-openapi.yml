@@ -145,15 +145,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Missing, invalid or expired access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: expired_token
-            message: This token has expired.
     NotFound:
       description: The request was sent to a location that does not exist in the API.
       content:
@@ -166,14 +157,16 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
   parameters:
-    EntityId:
-      name: X-EntityID
-      in: header
-      required: true
-      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
-      schema:
-        type: string
     Strict:
       name: strict
       in: query
@@ -181,6 +174,13 @@ components:
       description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
       schema:
         type: boolean
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
   schemas:
     Error:
       type: object

@@ -328,6 +328,28 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing, invalid or expired access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: expired_token
+            message: This token has expired.
   parameters:
     Sort:
       name: sort
@@ -336,32 +358,6 @@ components:
       description: Field to sort the collection by.
       schema:
         type: string
-    Direction:
-      name: direction
-      in: query
-      required: false
-      description: Sort direction.
-      schema:
-        type: string
-        enum:
-        - ASC
-        - DESC
-    EntityId:
-      name: X-EntityID
-      in: header
-      required: true
-      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Items per page, between 1 and 100.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
     Page:
       name: page
       in: query
@@ -377,28 +373,32 @@ components:
       description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
       schema:
         type: boolean
-  responses:
-    Unauthorized:
-      description: Missing, invalid or expired access token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: expired_token
-            message: This token has expired.
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    EntityId:
+      name: X-EntityID
+      in: header
+      required: true
+      description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
+      schema:
+        type: string
+    Direction:
+      name: direction
+      in: query
+      required: false
+      description: Sort direction.
+      schema:
+        type: string
+        enum:
+        - ASC
+        - DESC
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Items per page, between 1 and 100.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
   schemas:
     Error:
       type: object
