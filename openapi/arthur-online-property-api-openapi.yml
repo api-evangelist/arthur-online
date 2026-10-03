@@ -54,6 +54,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing, invalid or expired access token.
       content:
@@ -63,12 +69,6 @@ components:
           example:
             error: expired_token
             message: This token has expired.
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     EntityId:
       name: X-EntityID

@@ -241,14 +241,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: The request was sent to a location that does not exist in the API.
+    BadRequest:
+      description: The request was invalid or malformed.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was invalid or malformed.
+    NotFound:
+      description: The request was sent to a location that does not exist in the API.
       content:
         application/json:
           schema:
@@ -263,13 +263,6 @@ components:
             error: expired_token
             message: This token has expired.
   parameters:
-    Strict:
-      name: strict
-      in: query
-      required: false
-      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
-      schema:
-        type: boolean
     EntityId:
       name: X-EntityID
       in: header
@@ -277,6 +270,13 @@ components:
       description: The Arthur entity (account) the request is scoped to. Mandatory on every API call.
       schema:
         type: string
+    Strict:
+      name: strict
+      in: query
+      required: false
+      description: When true, abort the request instead of auto-creating an unknown Simple type. POST and PUT only.
+      schema:
+        type: boolean
   schemas:
     Error:
       type: object
