@@ -76,7 +76,7 @@ tags_raw:
 - Block Management
 - Real-Estate
 created: '2026-07-26'
-modified: '2026-07-26'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: arthur-online:arthur-online-applicant-api
@@ -792,6 +792,8 @@ apis:
   - type: AsyncAPI
     url: asyncapi/arthur-online-webhooks-asyncapi.yml
 common:
+- url: https://www.arthuronline.co.uk/arthur-insight/blog/rss.xml
+  type: BlogRSS
 - type: Overlay
   url: overlays/arthur-online-properties-overlay.yaml
 - type: Overlay
